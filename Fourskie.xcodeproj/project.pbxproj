@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */; };
+		A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F52C0ACEFE00553F10 /* ContentView.swift */; };
+		A6E649F82C0ACEFE00553F10 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F72C0ACEFE00553F10 /* Item.swift */; };
+		A6E649FA2C0ACEFF00553F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E649F92C0ACEFF00553F10 /* Assets.xcassets */; };
+		A6E649FD2C0ACEFF00553F10 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E649FC2C0ACEFF00553F10 /* Preview Assets.xcassets */; };
+		A6E64A072C0ACEFF00553F10 /* FourskieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A062C0ACEFF00553F10 /* FourskieTests.swift */; };
+		A6E64A112C0ACEFF00553F10 /* FourskieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */; };
+		A6E64A132C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6E64A032C0ACEFF00553F10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6E649E82C0ACEFE00553F10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6E649EF2C0ACEFE00553F10;
+			remoteInfo = Fourskie;
+		};
+		A6E64A0D2C0ACEFF00553F10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6E649E82C0ACEFE00553F10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6E649EF2C0ACEFE00553F10;
+			remoteInfo = Fourskie;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A6E649F02C0ACEFE00553F10 /* Fourskie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fourskie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieApp.swift; sourceTree = "<group>"; };
+		A6E649F52C0ACEFE00553F10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A6E649F72C0ACEFE00553F10 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A6E649F92C0ACEFF00553F10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A6E649FC2C0ACEFF00553F10 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A6E64A022C0ACEFF00553F10 /* FourskieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FourskieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E64A062C0ACEFF00553F10 /* FourskieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieTests.swift; sourceTree = "<group>"; };
+		A6E64A0C2C0ACEFF00553F10 /* FourskieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FourskieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieUITests.swift; sourceTree = "<group>"; };
+		A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A6E649ED2C0ACEFE00553F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E649FF2C0ACEFF00553F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E64A092C0ACEFF00553F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A6E649E72C0ACEFE00553F10 = {
+			isa = PBXGroup;
+			children = (
+				A6E649F22C0ACEFE00553F10 /* Fourskie */,
+				A6E64A052C0ACEFF00553F10 /* FourskieTests */,
+				A6E64A0F2C0ACEFF00553F10 /* FourskieUITests */,
+				A6E649F12C0ACEFE00553F10 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A6E649F12C0ACEFE00553F10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6E649F02C0ACEFE00553F10 /* Fourskie.app */,
+				A6E64A022C0ACEFF00553F10 /* FourskieTests.xctest */,
+				A6E64A0C2C0ACEFF00553F10 /* FourskieUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A6E649F22C0ACEFE00553F10 /* Fourskie */ = {
+			isa = PBXGroup;
+			children = (
+				A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */,
+				A6E649F52C0ACEFE00553F10 /* ContentView.swift */,
+				A6E649F72C0ACEFE00553F10 /* Item.swift */,
+				A6E649F92C0ACEFF00553F10 /* Assets.xcassets */,
+				A6E649FB2C0ACEFF00553F10 /* Preview Content */,
+			);
+			path = Fourskie;
+			sourceTree = "<group>";
+		};
+		A6E649FB2C0ACEFF00553F10 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A6E649FC2C0ACEFF00553F10 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A6E64A052C0ACEFF00553F10 /* FourskieTests */ = {
+			isa = PBXGroup;
+			children = (
+				A6E64A062C0ACEFF00553F10 /* FourskieTests.swift */,
+			);
+			path = FourskieTests;
+			sourceTree = "<group>";
+		};
+		A6E64A0F2C0ACEFF00553F10 /* FourskieUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */,
+				A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */,
+			);
+			path = FourskieUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A6E649EF2C0ACEFE00553F10 /* Fourskie */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6E64A162C0ACEFF00553F10 /* Build configuration list for PBXNativeTarget "Fourskie" */;
+			buildPhases = (
+				A6E649EC2C0ACEFE00553F10 /* Sources */,
+				A6E649ED2C0ACEFE00553F10 /* Frameworks */,
+				A6E649EE2C0ACEFE00553F10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fourskie;
+			productName = Fourskie;
+			productReference = A6E649F02C0ACEFE00553F10 /* Fourskie.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A6E64A012C0ACEFF00553F10 /* FourskieTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6E64A192C0ACEFF00553F10 /* Build configuration list for PBXNativeTarget "FourskieTests" */;
+			buildPhases = (
+				A6E649FE2C0ACEFF00553F10 /* Sources */,
+				A6E649FF2C0ACEFF00553F10 /* Frameworks */,
+				A6E64A002C0ACEFF00553F10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6E64A042C0ACEFF00553F10 /* PBXTargetDependency */,
+			);
+			name = FourskieTests;
+			productName = FourskieTests;
+			productReference = A6E64A022C0ACEFF00553F10 /* FourskieTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A6E64A0B2C0ACEFF00553F10 /* FourskieUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6E64A1C2C0ACEFF00553F10 /* Build configuration list for PBXNativeTarget "FourskieUITests" */;
+			buildPhases = (
+				A6E64A082C0ACEFF00553F10 /* Sources */,
+				A6E64A092C0ACEFF00553F10 /* Frameworks */,
+				A6E64A0A2C0ACEFF00553F10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6E64A0E2C0ACEFF00553F10 /* PBXTargetDependency */,
+			);
+			name = FourskieUITests;
+			productName = FourskieUITests;
+			productReference = A6E64A0C2C0ACEFF00553F10 /* FourskieUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A6E649E82C0ACEFE00553F10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					A6E649EF2C0ACEFE00553F10 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					A6E64A012C0ACEFF00553F10 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A6E649EF2C0ACEFE00553F10;
+					};
+					A6E64A0B2C0ACEFF00553F10 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A6E649EF2C0ACEFE00553F10;
+					};
+				};
+			};
+			buildConfigurationList = A6E649EB2C0ACEFE00553F10 /* Build configuration list for PBXProject "Fourskie" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A6E649E72C0ACEFE00553F10;
+			productRefGroup = A6E649F12C0ACEFE00553F10 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A6E649EF2C0ACEFE00553F10 /* Fourskie */,
+				A6E64A012C0ACEFF00553F10 /* FourskieTests */,
+				A6E64A0B2C0ACEFF00553F10 /* FourskieUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A6E649EE2C0ACEFE00553F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E649FD2C0ACEFF00553F10 /* Preview Assets.xcassets in Resources */,
+				A6E649FA2C0ACEFF00553F10 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E64A002C0ACEFF00553F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E64A0A2C0ACEFF00553F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6E649EC2C0ACEFE00553F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
+				A6E649F82C0ACEFE00553F10 /* Item.swift in Sources */,
+				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E649FE2C0ACEFF00553F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E64A072C0ACEFF00553F10 /* FourskieTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E64A082C0ACEFF00553F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E64A132C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift in Sources */,
+				A6E64A112C0ACEFF00553F10 /* FourskieUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6E64A042C0ACEFF00553F10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6E649EF2C0ACEFE00553F10 /* Fourskie */;
+			targetProxy = A6E64A032C0ACEFF00553F10 /* PBXContainerItemProxy */;
+		};
+		A6E64A0E2C0ACEFF00553F10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6E649EF2C0ACEFE00553F10 /* Fourskie */;
+			targetProxy = A6E64A0D2C0ACEFF00553F10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A6E64A142C0ACEFF00553F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A6E64A152C0ACEFF00553F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A6E64A172C0ACEFF00553F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fourskie/Preview Content\"";
+				DEVELOPMENT_TEAM = Z773AM52SJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.Fourskie;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A6E64A182C0ACEFF00553F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fourskie/Preview Content\"";
+				DEVELOPMENT_TEAM = Z773AM52SJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.Fourskie;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A6E64A1A2C0ACEFF00553F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z773AM52SJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.FourskieTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fourskie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fourskie";
+			};
+			name = Debug;
+		};
+		A6E64A1B2C0ACEFF00553F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z773AM52SJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.FourskieTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fourskie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fourskie";
+			};
+			name = Release;
+		};
+		A6E64A1D2C0ACEFF00553F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z773AM52SJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.FourskieUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Fourskie;
+			};
+			name = Debug;
+		};
+		A6E64A1E2C0ACEFF00553F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z773AM52SJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.FourskieUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Fourskie;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A6E649EB2C0ACEFE00553F10 /* Build configuration list for PBXProject "Fourskie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E64A142C0ACEFF00553F10 /* Debug */,
+				A6E64A152C0ACEFF00553F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6E64A162C0ACEFF00553F10 /* Build configuration list for PBXNativeTarget "Fourskie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E64A172C0ACEFF00553F10 /* Debug */,
+				A6E64A182C0ACEFF00553F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6E64A192C0ACEFF00553F10 /* Build configuration list for PBXNativeTarget "FourskieTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E64A1A2C0ACEFF00553F10 /* Debug */,
+				A6E64A1B2C0ACEFF00553F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6E64A1C2C0ACEFF00553F10 /* Build configuration list for PBXNativeTarget "FourskieUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E64A1D2C0ACEFF00553F10 /* Debug */,
+				A6E64A1E2C0ACEFF00553F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A6E649E82C0ACEFE00553F10 /* Project object */;
+}
