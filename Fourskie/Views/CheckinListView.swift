@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 struct CheckinListView: View {
-	@Query var checkins: [Checkin]
+	@Query var checkins: [LocalCheckin]
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	var body: some View {

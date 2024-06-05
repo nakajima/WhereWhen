@@ -29,13 +29,15 @@ struct ContentView: View {
 			Text("Select an item")
 		}
 		.sheet(isPresented: $coordinator.isShowingManualCheckin) {
-			Text("Hi")
+			ManualCheckinView()
 		}
 	}
 }
 
+#if DEBUG
 #Preview {
 	ContentView()
-		.modelContainer(for: Checkin.self, inMemory: true)
+		.modelContainer(for: LocalCheckin.self, inMemory: true)
 		.environment(LocationListener(container: ModelContainer.preview))
 }
+#endif

@@ -20,7 +20,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct FourskieApp: App {
 	@UIApplicationDelegateAdaptor var appDelegate: AppDelegate
-	@StateObject var coordinator = FourskieCoordinator()
+	@StateObject var coordinator: FourskieCoordinator
+
+	init() {
+		_coordinator = StateObject(wrappedValue: FourskieCoordinator(container: ModelContainer.shared))
+	}
 
 	var body: some Scene {
 		WindowGroup {

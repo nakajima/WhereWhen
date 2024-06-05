@@ -58,6 +58,7 @@ struct HomeView: View {
 	}
 }
 
+#if DEBUG
 #Preview {
 	NavigationSplitView {
 		HomeView()
@@ -66,3 +67,4 @@ struct HomeView: View {
 	}
 	.environment(LocationListener(container: ModelContainer.preview))
 }
+#endif

@@ -1,0 +1,27 @@
+services:
+  nominatim:
+    image: mediagis/nominatim:4.4
+    ports:
+      - "8081:8080"
+    network_mode: host
+    volumes:
+      - ./data/nominatim-maps/data:/nominatim/data
+      - ./data/nominatim-db:/var/lib/postgresql/14/main
+      - ./data/nominatim-flatnode:/nominatim/flatnode
+    environment:
+      - PBF_URL=https://download.geofabrik.de/north-america/us-latest.osm.pbf
+      - REPLICATION_URL=https://download.geofabrik.de/north-america/us-updates
+      - UPDATE_MODE=catch-up
+      - IMPORT_WIKIPEDIA=true
+      - IMPORT_US_POSTCODES=true
+      - NOMINATIM_PASSWORD=qaIACxO6wMR3 # Default
+  fourskie:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app
+    environment:
+      - PORT=8080

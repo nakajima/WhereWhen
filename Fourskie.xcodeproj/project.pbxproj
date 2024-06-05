@@ -3,12 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */; };
+		A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A64DD77D2C10D2B9004FF084 /* LibFourskie */; };
+		A65191A52C10D39500884620 /* LocalPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A42C10D39500884620 /* LocalPlace.swift */; };
+		A65191A72C10D4AE00884620 /* LocalPlace+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */; };
+		A65191A92C10DC2900884620 /* PlaceNameFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A82C10DC2900884620 /* PlaceNameFinder.swift */; };
+		A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191AB2C10DD5C00884620 /* Coordinate+CL.swift */; };
+		A65191AE2C10E0A800884620 /* MKCoordinateSpan+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */; };
+		A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */; };
+		A65191B42C11016000884620 /* ManualCheckinPlaceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191B32C11016000884620 /* ManualCheckinPlaceCellView.swift */; };
+		A65191B62C11030E00884620 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191B52C11030E00884620 /* PlaceListView.swift */; };
+		A65191B82C11072000884620 /* LockAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191B72C11072000884620 /* LockAttribute.swift */; };
+		A65191BA2C11072E00884620 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191B92C11072E00884620 /* Debouncer.swift */; };
+		A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */; };
+		A65191BE2C1112AE00884620 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191BD2C1112AE00884620 /* Place.swift */; };
+		A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */; };
 		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
-		A6D11D512C0FD4C200349B05 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D502C0FD4C200349B05 /* Checkin.swift */; };
+		A6D11D512C0FD4C200349B05 /* LocalCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */; };
 		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
 		A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D552C0FD75B00349B05 /* HomeView.swift */; };
 		A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D582C0FD81200349B05 /* DiskLogger.swift */; };
@@ -16,6 +31,7 @@
 		A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */; };
 		A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5E2C1004C900349B05 /* CheckinListView.swift */; };
 		A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D602C10063800349B05 /* FourskieCoordinator.swift */; };
+		A6D11D632C10140E00349B05 /* ManualCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D622C10140E00349B05 /* ManualCheckinView.swift */; };
 		A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */; };
 		A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F52C0ACEFE00553F10 /* ContentView.swift */; };
 		A6E649FA2C0ACEFF00553F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E649F92C0ACEFF00553F10 /* Assets.xcassets */; };
@@ -43,9 +59,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCheckin+Wrapper.swift"; sourceTree = "<group>"; };
+		A65191A42C10D39500884620 /* LocalPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlace.swift; sourceTree = "<group>"; };
+		A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlace+Wrapper.swift"; sourceTree = "<group>"; };
+		A65191A82C10DC2900884620 /* PlaceNameFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceNameFinder.swift; sourceTree = "<group>"; };
+		A65191AB2C10DD5C00884620 /* Coordinate+CL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinate+CL.swift"; sourceTree = "<group>"; };
+		A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateSpan+Constants.swift"; sourceTree = "<group>"; };
+		A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointOfInterestCategory+Conversion.swift"; sourceTree = "<group>"; };
+		A65191B32C11016000884620 /* ManualCheckinPlaceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCheckinPlaceCellView.swift; sourceTree = "<group>"; };
+		A65191B52C11030E00884620 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
+		A65191B72C11072000884620 /* LockAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockAttribute.swift; sourceTree = "<group>"; };
+		A65191B92C11072E00884620 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCheckinFinishView.swift; sourceTree = "<group>"; };
+		A65191BD2C1112AE00884620 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualCheckinChoosePlaceView.swift; sourceTree = "<group>"; };
 		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
-		A6D11D502C0FD4C200349B05 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
+		A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCheckin.swift; sourceTree = "<group>"; };
 		A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermissionsView.swift; sourceTree = "<group>"; };
 		A6D11D552C0FD75B00349B05 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A6D11D582C0FD81200349B05 /* DiskLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskLogger.swift; sourceTree = "<group>"; };
@@ -53,6 +83,8 @@
 		A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 		A6D11D5E2C1004C900349B05 /* CheckinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinListView.swift; sourceTree = "<group>"; };
 		A6D11D602C10063800349B05 /* FourskieCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieCoordinator.swift; sourceTree = "<group>"; };
+		A6D11D622C10140E00349B05 /* ManualCheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCheckinView.swift; sourceTree = "<group>"; };
+		A6D11D642C10CB1E00349B05 /* FourskieServer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FourskieServer; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* Fourskie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fourskie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieApp.swift; sourceTree = "<group>"; };
 		A6E649F52C0ACEFE00553F10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,12 +123,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A65191AA2C10DD5500884620 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A65191AB2C10DD5C00884620 /* Coordinate+CL.swift */,
+				A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */,
+				A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */,
+				A65191BD2C1112AE00884620 /* Place.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A6D11D4F2C0FD4BB00349B05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A6D11D502C0FD4C200349B05 /* Checkin.swift */,
+				A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */,
+				A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */,
+				A65191A42C10D39500884620 /* LocalPlace.swift */,
+				A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */,
 				A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */,
 				A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */,
+				A65191A82C10DC2900884620 /* PlaceNameFinder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,7 +155,12 @@
 				A6D11D552C0FD75B00349B05 /* HomeView.swift */,
 				A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */,
 				A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */,
+				A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */,
+				A65191B32C11016000884620 /* ManualCheckinPlaceCellView.swift */,
+				A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */,
 				A6D11D5E2C1004C900349B05 /* CheckinListView.swift */,
+				A6D11D622C10140E00349B05 /* ManualCheckinView.swift */,
+				A65191B52C11030E00884620 /* PlaceListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				A6D11D582C0FD81200349B05 /* DiskLogger.swift */,
+				A65191B72C11072000884620 /* LockAttribute.swift */,
+				A65191B92C11072E00884620 /* Debouncer.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -123,6 +178,7 @@
 		A6E649E72C0ACEFE00553F10 = {
 			isa = PBXGroup;
 			children = (
+				A6D11D642C10CB1E00349B05 /* FourskieServer */,
 				A6E649F22C0ACEFE00553F10 /* Fourskie */,
 				A6E64A052C0ACEFF00553F10 /* FourskieTests */,
 				A6E64A0F2C0ACEFF00553F10 /* FourskieUITests */,
@@ -143,6 +199,7 @@
 		A6E649F22C0ACEFE00553F10 /* Fourskie */ = {
 			isa = PBXGroup;
 			children = (
+				A65191AA2C10DD5500884620 /* Extensions */,
 				A6D11D572C0FD80E00349B05 /* Util */,
 				A6D11D4C2C0FA36D00349B05 /* Info.plist */,
 				A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */,
@@ -196,6 +253,9 @@
 			dependencies = (
 			);
 			name = Fourskie;
+			packageProductDependencies = (
+				A64DD77D2C10D2B9004FF084 /* LibFourskie */,
+			);
 			productName = Fourskie;
 			productReference = A6E649F02C0ACEFE00553F10 /* Fourskie.app */;
 			productType = "com.apple.product-type.application";
@@ -268,6 +328,9 @@
 				Base,
 			);
 			mainGroup = A6E649E72C0ACEFE00553F10;
+			packageReferences = (
+				A64DD77C2C10D2B9004FF084 /* XCLocalSwiftPackageReference "FourskieServer" */,
+			);
 			productRefGroup = A6E649F12C0ACEFE00553F10 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -310,16 +373,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D11D632C10140E00349B05 /* ManualCheckinView.swift in Sources */,
+				A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */,
+				A65191BE2C1112AE00884620 /* Place.swift in Sources */,
 				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
 				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,
+				A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */,
+				A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */,
 				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
 				A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */,
+				A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */,
+				A65191B42C11016000884620 /* ManualCheckinPlaceCellView.swift in Sources */,
+				A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */,
+				A65191A72C10D4AE00884620 /* LocalPlace+Wrapper.swift in Sources */,
+				A65191AE2C10E0A800884620 /* MKCoordinateSpan+Constants.swift in Sources */,
+				A65191A52C10D39500884620 /* LocalPlace.swift in Sources */,
 				A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */,
 				A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */,
-				A6D11D512C0FD4C200349B05 /* Checkin.swift in Sources */,
+				A65191B62C11030E00884620 /* PlaceListView.swift in Sources */,
+				A65191BA2C11072E00884620 /* Debouncer.swift in Sources */,
+				A6D11D512C0FD4C200349B05 /* LocalCheckin.swift in Sources */,
+				A65191B82C11072000884620 /* LockAttribute.swift in Sources */,
 				A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */,
 				A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */,
+				A65191A92C10DC2900884620 /* PlaceNameFinder.swift in Sources */,
 				A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.Fourskie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -535,6 +614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.Fourskie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -656,6 +736,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A64DD77C2C10D2B9004FF084 /* XCLocalSwiftPackageReference "FourskieServer" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = FourskieServer;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A64DD77D2C10D2B9004FF084 /* LibFourskie */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LibFourskie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A6E649E82C0ACEFE00553F10 /* Project object */;
 }

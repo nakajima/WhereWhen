@@ -9,8 +9,9 @@ import Foundation
 import SwiftData
 
 extension ModelContainer {
-	fileprivate static let models = [
-		Checkin.self
+	fileprivate static let models: [any PersistentModel.Type] = [
+		LocalCheckin.self,
+		LocalPlace.self
 	]
 
 	static let shared = {
@@ -24,6 +25,7 @@ extension ModelContainer {
 		}
 	}()
 
+	#if DEBUG
 	static let preview = {
 		let schema = Schema(models)
 		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
@@ -34,4 +36,5 @@ extension ModelContainer {
 			fatalError("Could not create ModelContainer: \(error)")
 		}
 	}()
+	#endif
 }

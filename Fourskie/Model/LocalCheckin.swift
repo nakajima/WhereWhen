@@ -7,13 +7,12 @@
 
 import CoreLocation
 import SwiftData
+import LibFourskie
 
-@Model final class Checkin {
-	struct Coordinate: Codable {
-		let latitude: Double
-		let longitude: Double
-	}
+@Model final class LocalCheckin {
+	@Attribute(.unique) var uuid = UUID().uuidString
 
+	var source: CheckinSource
 	var coordinate: Coordinate
 	var savedAt: Date
 	var accuracy: Double
@@ -21,15 +20,38 @@ import SwiftData
 	var arrivalDate: Date?
 	var departureDate: Date?
 
+	var place: LocalPlace?
+
 	init(visit: CLVisit) {
 		self.coordinate = .init(
 			latitude: visit.coordinate.latitude,
 			longitude: visit.coordinate.longitude
 		)
 
+		self.source = .automatic
 		self.savedAt = Date()
 		self.arrivalDate = visit.arrivalDate == .distantPast ? nil : visit.arrivalDate
 		self.departureDate = visit.departureDate == .distantPast ? nil : visit.departureDate
 		self.accuracy = visit.horizontalAccuracy
+	}
+
+	init(
+		source: CheckinSource,
+		uuid: String,
+		coordinate: Coordinate,
+		savedAt: Date,
+		accuracy: Double,
+		arrivalDate: Date?,
+		departureDate: Date?,
+		place: LocalPlace?
+	) {
+		self.source = source
+		self.uuid = uuid
+		self.coordinate = coordinate
+		self.savedAt = savedAt
+		self.accuracy = accuracy
+		self.arrivalDate = arrivalDate
+		self.departureDate = departureDate
+		self.place = place
 	}
 }
