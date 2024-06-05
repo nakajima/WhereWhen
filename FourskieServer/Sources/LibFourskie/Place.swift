@@ -9,7 +9,7 @@ import Foundation
 
 // Places. This is basically a wrapper around CLPlacemark
 public struct Place: Codable, Identifiable, Sendable {
-	public var id: String { "\(name)-\(coordinate.id)" }
+	public var id: String { coordinate.id }
 
 	public let uuid: String
 
