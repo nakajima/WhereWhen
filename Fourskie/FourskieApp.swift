@@ -20,10 +20,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct FourskieApp: App {
 	@UIApplicationDelegateAdaptor var appDelegate: AppDelegate
+	@StateObject var coordinator = FourskieCoordinator()
 
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
+				.environmentObject(coordinator)
 		}
 		.environment(appDelegate.location)
 		.modelContainer(ModelContainer.shared)

@@ -16,7 +16,7 @@ struct HomeView: View {
 
 	var body: some View {
 		List {
-			Text("hi")
+			CheckinListView()
 		}
 		.toolbar {
 			ToolbarItem(placement: .navigationBarLeading) {

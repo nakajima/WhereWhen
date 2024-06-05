@@ -14,6 +14,7 @@ enum Route: Hashable {
 
 struct ContentView: View {
 	@Environment(\.modelContext) private var modelContext
+	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	var body: some View {
 		NavigationSplitView {
@@ -26,6 +27,9 @@ struct ContentView: View {
 				}
 		} detail: {
 			Text("Select an item")
+		}
+		.sheet(isPresented: $coordinator.isShowingManualCheckin) {
+			Text("Hi")
 		}
 	}
 }
