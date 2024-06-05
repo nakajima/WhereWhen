@@ -5,28 +5,40 @@
 //  Created by Pat Nakajima on 5/31/24.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
+import UIKit
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+	let location = LocationListener()
+
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+		true
+	}
+}
 
 @main
 struct FourskieApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+	@UIApplicationDelegateAdaptor var appDelegate: AppDelegate
 
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+	var sharedModelContainer: ModelContainer = {
+		let schema = Schema([
+			Checkin.self,
+		])
+		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-        .modelContainer(sharedModelContainer)
-    }
+		do {
+			return try ModelContainer(for: schema, configurations: [modelConfiguration])
+		} catch {
+			fatalError("Could not create ModelContainer: \(error)")
+		}
+	}()
+
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+		}
+		.environment(appDelegate.location)
+		.modelContainer(sharedModelContainer)
+	}
 }

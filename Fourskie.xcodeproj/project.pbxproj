@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
+		A6D11D512C0FD4C200349B05 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D502C0FD4C200349B05 /* Checkin.swift */; };
+		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
+		A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D552C0FD75B00349B05 /* HomeView.swift */; };
+		A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D582C0FD81200349B05 /* DiskLogger.swift */; };
+		A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */; };
 		A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */; };
 		A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F52C0ACEFE00553F10 /* ContentView.swift */; };
-		A6E649F82C0ACEFE00553F10 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F72C0ACEFE00553F10 /* Item.swift */; };
 		A6E649FA2C0ACEFF00553F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E649F92C0ACEFF00553F10 /* Assets.xcassets */; };
 		A6E649FD2C0ACEFF00553F10 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E649FC2C0ACEFF00553F10 /* Preview Assets.xcassets */; };
 		A6E64A072C0ACEFF00553F10 /* FourskieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A062C0ACEFF00553F10 /* FourskieTests.swift */; };
@@ -35,10 +40,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
+		A6D11D502C0FD4C200349B05 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
+		A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermissionsView.swift; sourceTree = "<group>"; };
+		A6D11D552C0FD75B00349B05 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A6D11D582C0FD81200349B05 /* DiskLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskLogger.swift; sourceTree = "<group>"; };
+		A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* Fourskie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fourskie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieApp.swift; sourceTree = "<group>"; };
 		A6E649F52C0ACEFE00553F10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A6E649F72C0ACEFE00553F10 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A6E649F92C0ACEFF00553F10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6E649FC2C0ACEFF00553F10 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A6E64A022C0ACEFF00553F10 /* FourskieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FourskieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +84,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6D11D4F2C0FD4BB00349B05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A6D11D502C0FD4C200349B05 /* Checkin.swift */,
+				A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A6D11D522C0FD56100349B05 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6E649F52C0ACEFE00553F10 /* ContentView.swift */,
+				A6D11D552C0FD75B00349B05 /* HomeView.swift */,
+				A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */,
+				A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6D11D572C0FD80E00349B05 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				A6D11D582C0FD81200349B05 /* DiskLogger.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		A6E649E72C0ACEFE00553F10 = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +135,11 @@
 		A6E649F22C0ACEFE00553F10 /* Fourskie */ = {
 			isa = PBXGroup;
 			children = (
+				A6D11D572C0FD80E00349B05 /* Util */,
+				A6D11D4C2C0FA36D00349B05 /* Info.plist */,
 				A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */,
-				A6E649F52C0ACEFE00553F10 /* ContentView.swift */,
-				A6E649F72C0ACEFE00553F10 /* Item.swift */,
+				A6D11D4F2C0FD4BB00349B05 /* Model */,
+				A6D11D522C0FD56100349B05 /* Views */,
 				A6E649F92C0ACEFF00553F10 /* Assets.xcassets */,
 				A6E649FB2C0ACEFF00553F10 /* Preview Content */,
 			);
@@ -260,9 +301,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
-				A6E649F82C0ACEFE00553F10 /* Item.swift in Sources */,
+				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,
 				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
+				A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */,
+				A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */,
+				A6D11D512C0FD4C200349B05 /* Checkin.swift in Sources */,
+				A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +475,9 @@
 				DEVELOPMENT_TEAM = Z773AM52SJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Fourskie/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To add to your personal location history";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To add to your personal location history";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,6 +507,9 @@
 				DEVELOPMENT_TEAM = Z773AM52SJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Fourskie/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To add to your personal location history";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To add to your personal location history";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
