@@ -13,6 +13,7 @@
 		A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D552C0FD75B00349B05 /* HomeView.swift */; };
 		A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D582C0FD81200349B05 /* DiskLogger.swift */; };
 		A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */; };
+		A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */; };
 		A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */; };
 		A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E649F52C0ACEFE00553F10 /* ContentView.swift */; };
 		A6E649FA2C0ACEFF00553F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E649F92C0ACEFF00553F10 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		A6D11D552C0FD75B00349B05 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A6D11D582C0FD81200349B05 /* DiskLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskLogger.swift; sourceTree = "<group>"; };
 		A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* Fourskie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fourskie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieApp.swift; sourceTree = "<group>"; };
 		A6E649F52C0ACEFE00553F10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				A6D11D502C0FD4C200349B05 /* Checkin.swift */,
 				A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */,
+				A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */,
 				A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */,
 				A6D11D512C0FD4C200349B05 /* Checkin.swift in Sources */,
+				A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */,
 				A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

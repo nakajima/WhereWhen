@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-	let location = LocationListener()
+	let location = LocationListener(container: ModelContainer.shared)
 
 	func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 		true
@@ -21,24 +21,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct FourskieApp: App {
 	@UIApplicationDelegateAdaptor var appDelegate: AppDelegate
 
-	var sharedModelContainer: ModelContainer = {
-		let schema = Schema([
-			Checkin.self,
-		])
-		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-		do {
-			return try ModelContainer(for: schema, configurations: [modelConfiguration])
-		} catch {
-			fatalError("Could not create ModelContainer: \(error)")
-		}
-	}()
-
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
 		}
 		.environment(appDelegate.location)
-		.modelContainer(sharedModelContainer)
+		.modelContainer(ModelContainer.shared)
 	}
 }

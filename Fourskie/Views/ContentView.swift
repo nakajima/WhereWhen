@@ -33,5 +33,5 @@ struct ContentView: View {
 #Preview {
 	ContentView()
 		.modelContainer(for: Checkin.self, inMemory: true)
-		.environment(LocationListener())
+		.environment(LocationListener(container: ModelContainer.preview))
 }

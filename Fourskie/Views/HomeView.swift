@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
 	@Environment(LocationListener.self) var location
@@ -63,5 +64,5 @@ struct HomeView: View {
 	} detail: {
 		Text("hi")
 	}
-	.environment(LocationListener())
+	.environment(LocationListener(container: ModelContainer.preview))
 }
