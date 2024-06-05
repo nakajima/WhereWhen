@@ -108,8 +108,8 @@ public struct DiskLogger: Sendable {
 			let parts = string.split(separator: "\t", maxSplits: 3).map { String($0) }
 
 			guard parts.count == 4,
-						let level = LogType(rawValue: parts[1].lowercased()),
-						let timestamp = Entry.formatter.date(from: parts[2])
+			      let level = LogType(rawValue: parts[1].lowercased()),
+			      let timestamp = Entry.formatter.date(from: parts[2])
 			else {
 				return nil
 			}
@@ -138,7 +138,7 @@ public struct DiskLogger: Sendable {
 		}
 	}
 
-	nonisolated public init(label: String = Bundle.main.bundleIdentifier!, location: URL, maxLines: Int = 1024) {
+	public nonisolated init(label: String = Bundle.main.bundleIdentifier!, location: URL, maxLines: Int = 1024) {
 		self.label = label
 		self.location = location
 		self.maxLines = maxLines
@@ -200,63 +200,63 @@ public struct DiskLogger: Sendable {
 #endif
 
 public struct DiskLoggerViewer: View {
-		@Environment(\.dismiss) var dismiss
+	@Environment(\.dismiss) var dismiss
 
-		@State var logger: DiskLogger
+	@State var logger: DiskLogger
 
-		public init(logger: DiskLogger) {
-			self.logger = logger
-		}
-
-		public var body: some View {
-			List {
-				if logger.entries.isEmpty {
-					Text("No logs found.")
-				}
-
-				ForEach(Array(logger.entries.reversed().enumerated()), id: \.0) { _, entry in
-					VStack(alignment: .leading, spacing: 4) {
-						Text(entry.text)
-							.padding(2)
-						HStack(alignment: .firstTextBaseline) {
-							Text(entry.level.rawValue.uppercased())
-								.padding(2)
-								.padding(.horizontal, 4)
-								.background(.ultraThinMaterial)
-								.clipShape(RoundedRectangle(cornerRadius: 4))
-								.font(.caption2)
-							Text(entry.timestamp.formatted(date: .numeric, time: .standard))
-						}
-					}
-					.listRowInsets(.init(top: 8, leading: 12, bottom: 8, trailing: 4))
-				}
-				.font(.caption)
-			}
-			.task {
-				while true {
-					logger.load()
-					try? await Task.sleep(for: .seconds(1))
-				}
-			}
-			.refreshable {
-				logger.load()
-			}
-			.toolbar {
-				ToolbarItem {
-					Button("Done") {
-						dismiss()
-					}
-					.buttonStyle(.bordered)
-				}
-				ToolbarItem {
-					Button("Clear Logs") {
-						withAnimation {
-							try? logger.clear()
-						}
-					}
-					.buttonStyle(.bordered)
-				}
-			}
-			.fontDesign(.monospaced)
-		}
+	public init(logger: DiskLogger) {
+		self.logger = logger
 	}
+
+	public var body: some View {
+		List {
+			if logger.entries.isEmpty {
+				Text("No logs found.")
+			}
+
+			ForEach(Array(logger.entries.reversed().enumerated()), id: \.0) { _, entry in
+				VStack(alignment: .leading, spacing: 4) {
+					Text(entry.text)
+						.padding(2)
+					HStack(alignment: .firstTextBaseline) {
+						Text(entry.level.rawValue.uppercased())
+							.padding(2)
+							.padding(.horizontal, 4)
+							.background(.ultraThinMaterial)
+							.clipShape(RoundedRectangle(cornerRadius: 4))
+							.font(.caption2)
+						Text(entry.timestamp.formatted(date: .numeric, time: .standard))
+					}
+				}
+				.listRowInsets(.init(top: 8, leading: 12, bottom: 8, trailing: 4))
+			}
+			.font(.caption)
+		}
+		.task {
+			while true {
+				logger.load()
+				try? await Task.sleep(for: .seconds(1))
+			}
+		}
+		.refreshable {
+			logger.load()
+		}
+		.toolbar {
+			ToolbarItem {
+				Button("Done") {
+					dismiss()
+				}
+				.buttonStyle(.bordered)
+			}
+			ToolbarItem {
+				Button("Clear Logs") {
+					withAnimation {
+						try? logger.clear()
+					}
+				}
+				.buttonStyle(.bordered)
+			}
+		}
+		.fontDesign(.monospaced)
+	}
+}

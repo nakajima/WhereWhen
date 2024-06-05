@@ -5,8 +5,8 @@
 //  Created by Pat Nakajima on 6/4/24.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 import Observation
 import SwiftData
 
@@ -43,7 +43,7 @@ import SwiftData
 
 	// MARK: Delegate methods
 
-	func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
+	func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
 		logger.info("didVisit: \(visit.debugDescription)")
 		let checkin = Checkin(visit: visit)
 
@@ -60,7 +60,7 @@ import SwiftData
 
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 		logger.info("DidChangeAuthorization: \(manager.authorizationStatus)")
-		self.isAuthorized = manager.authorizationStatus == .authorizedAlways
+		isAuthorized = manager.authorizationStatus == .authorizedAlways
 
 		if isAuthorized {
 			start()
