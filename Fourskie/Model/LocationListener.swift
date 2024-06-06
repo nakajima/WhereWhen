@@ -107,19 +107,8 @@ import SwiftData
 		Task {
 			do {
 				let context = ModelContext(container)
-
 				let checkin = LocalCheckin(visit: visit)
 				context.insert(checkin)
-
-				if let place = try await PlaceFinder(
-					container: container,
-					coordinate: .init(visit.coordinate)
-				).results(in: .init(center: visit.coordinate, span: .within(meters: 10))).first {
-					let localPlace = LocalPlace(wrapped: place)
-					context.insert(localPlace)
-					checkin.place = localPlace
-				}
-
 				try context.save()
 			} catch {
 				logger.error("Error saving checking: \(error)")

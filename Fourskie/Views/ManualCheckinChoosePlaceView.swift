@@ -13,27 +13,22 @@ import SwiftData
 import SwiftUI
 
 struct ManualCheckinChoosePlaceView: View {
-	@State private var isLoaded = false
-	@State private var isSearching = false
-
+	// What part of the map are we lookin at
 	@State private var region: MKCoordinateRegion
 
+	// What are our possible results
+	@State var possibleResults: [Place] = []
 	@State private var locationResults: [Place] = [] {
-		didSet {
-			findPossibleResults()
-		}
+		didSet { findPossibleResults() }
+	}
+	@State private var searchResults: [Place] = [] {
+		didSet { findPossibleResults() }
 	}
 
+	// What places should be shown on the map
 	@State private var visiblePlaces: [Place] = []
 
-	@State var possibleResults: [Place] = []
-
-	@State private var searchResults: [Place] = [] {
-		didSet {
-			findPossibleResults()
-		}
-	}
-
+	// Is the user searching for something?
 	@State private var searchTerm: String = ""
 
 	@Environment(\.modelContext) var modelContext
@@ -100,7 +95,6 @@ struct ManualCheckinChoosePlaceView: View {
 					}
 				}
 				.onMapCameraChange { context in
-					print("camera changed")
 					self.region = context.region
 				}
 				.frame(height: 200)
@@ -109,67 +103,48 @@ struct ManualCheckinChoosePlaceView: View {
 				)
 			}
 			.task(id: searchTerm) {
-				do {
-					try? await Task.sleep(for: .seconds(0.3))
-					if Task.isCancelled {
-						print("Task is canceled, bail")
-						return
-					}
-
-					let container = modelContext.container
-
-					isSearching = true
-					let searchResults = try await PlaceFinder(
-						container: container,
-						coordinate: .init(region.center)
-					).search(searchTerm)
-
-					withAnimation {
-						self.searchResults = searchResults
-						self.isSearching = false
-					}
-
-					findPossibleResults()
-				} catch {
-					coordinator.errorMessage = error.localizedDescription
-					isSearching = false
+				await refresh { finder in
+					try await finder.search(searchTerm)
 				}
 			}
 			.task(id: region.id) {
-				print("map changed")
-
-				do {
-					try? await Task.sleep(for: .seconds(0.5))
-					if Task.isCancelled {
-						print("Task is canceled, bail")
-						return
-					}
-
-					let container = modelContext.container
-
-					let possibleResults = try await PlaceFinder(
-						container: container,
-						coordinate: .init(region.center)
-					).results(in: region)
-
-					withAnimation {
-						self.locationResults = possibleResults
-						self.isLoaded = false
-					}
-
-					findPossibleResults()
-				} catch {
-					coordinator.errorMessage = error.localizedDescription
+				await refresh { finder in
+					try await finder.results(in: region)
 				}
 			}
+		}
+	}
+
+	func refresh(block: (PlaceFinder) async throws -> [Place]) async {
+		do {
+			try? await Task.sleep(for: .seconds(0.3))
+			if Task.isCancelled {
+				return
+			}
+
+			let container = modelContext.container
+
+			let placeFinder = PlaceFinder(
+				container: container,
+				coordinate: .init(region.center)
+			)
+			let searchResults = try await block(placeFinder)
+
+			withAnimation {
+				self.searchResults = searchResults
+			}
+
+			findPossibleResults()
+		} catch {
+			coordinator.errorMessage = error.localizedDescription
 		}
 	}
 }
 
 #if DEBUG
-	#Preview {
-		ManualCheckinView()
-			.environment(LocationListener(container: ModelContainer.preview))
-			.modelContainer(ModelContainer.preview)
-	}
+#Preview {
+	ManualCheckinView()
+		.environment(LocationListener(container: ModelContainer.preview))
+		.modelContainer(ModelContainer.preview)
+}
 #endif
