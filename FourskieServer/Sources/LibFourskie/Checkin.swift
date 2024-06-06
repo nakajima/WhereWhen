@@ -49,3 +49,18 @@ public struct Checkin: Codable, Sendable {
 		self.place = place
 	}
 }
+
+#if DEBUG
+public extension Checkin {
+	static let preview = Checkin(
+		source: .manual,
+		uuid: UUID().uuidString,
+		coordinate: Place.preview.coordinate,
+		savedAt: Date().addingTimeInterval(-100),
+		accuracy: 12,
+		arrivalDate: Date().addingTimeInterval(-100),
+		departureDate: Date().addingTimeInterval(-100),
+		place: Place.preview
+	)
+}
+#endif

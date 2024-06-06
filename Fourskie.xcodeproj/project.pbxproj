@@ -22,6 +22,11 @@
 		A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */; };
 		A65191BE2C1112AE00884620 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191BD2C1112AE00884620 /* Place.swift */; };
 		A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */; };
+		A657910A2C11225200D2273A /* ModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791092C11225200D2273A /* ModelContext.swift */; };
+		A657910C2C1124C900D2273A /* DragDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657910B2C1124C900D2273A /* DragDismissable.swift */; };
+		A657910E2C11252A00D2273A /* ErrorOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657910D2C11252A00D2273A /* ErrorOverlay.swift */; };
+		A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657910F2C112AF700D2273A /* PreviewsWrapper.swift */; };
+		A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791112C112C3200D2273A /* CheckinCellView.swift */; };
 		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
 		A6D11D512C0FD4C200349B05 /* LocalCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */; };
 		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
@@ -73,6 +78,11 @@
 		A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCheckinFinishView.swift; sourceTree = "<group>"; };
 		A65191BD2C1112AE00884620 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualCheckinChoosePlaceView.swift; sourceTree = "<group>"; };
+		A65791092C11225200D2273A /* ModelContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContext.swift; sourceTree = "<group>"; };
+		A657910B2C1124C900D2273A /* DragDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDismissable.swift; sourceTree = "<group>"; };
+		A657910D2C11252A00D2273A /* ErrorOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOverlay.swift; sourceTree = "<group>"; };
+		A657910F2C112AF700D2273A /* PreviewsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewsWrapper.swift; sourceTree = "<group>"; };
+		A65791112C112C3200D2273A /* CheckinCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinCellView.swift; sourceTree = "<group>"; };
 		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
 		A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCheckin.swift; sourceTree = "<group>"; };
@@ -130,6 +140,7 @@
 				A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */,
 				A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */,
 				A65191BD2C1112AE00884620 /* Place.swift */,
+				A65791092C11225200D2273A /* ModelContext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -152,14 +163,17 @@
 			isa = PBXGroup;
 			children = (
 				A6E649F52C0ACEFE00553F10 /* ContentView.swift */,
+				A657910D2C11252A00D2273A /* ErrorOverlay.swift */,
 				A6D11D552C0FD75B00349B05 /* HomeView.swift */,
 				A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */,
+				A657910F2C112AF700D2273A /* PreviewsWrapper.swift */,
 				A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */,
+				A6D11D622C10140E00349B05 /* ManualCheckinView.swift */,
 				A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */,
 				A65191B32C11016000884620 /* ManualCheckinPlaceCellView.swift */,
 				A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */,
 				A6D11D5E2C1004C900349B05 /* CheckinListView.swift */,
-				A6D11D622C10140E00349B05 /* ManualCheckinView.swift */,
+				A65791112C112C3200D2273A /* CheckinCellView.swift */,
 				A65191B52C11030E00884620 /* PlaceListView.swift */,
 			);
 			path = Views;
@@ -171,6 +185,7 @@
 				A6D11D582C0FD81200349B05 /* DiskLogger.swift */,
 				A65191B72C11072000884620 /* LockAttribute.swift */,
 				A65191B92C11072E00884620 /* Debouncer.swift */,
+				A657910B2C1124C900D2273A /* DragDismissable.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -374,13 +389,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6D11D632C10140E00349B05 /* ManualCheckinView.swift in Sources */,
+				A657910E2C11252A00D2273A /* ErrorOverlay.swift in Sources */,
 				A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */,
+				A657910C2C1124C900D2273A /* DragDismissable.swift in Sources */,
 				A65191BE2C1112AE00884620 /* Place.swift in Sources */,
 				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
 				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,
 				A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */,
 				A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */,
+				A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */,
 				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
 				A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */,
 				A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */,
@@ -395,10 +413,12 @@
 				A65191BA2C11072E00884620 /* Debouncer.swift in Sources */,
 				A6D11D512C0FD4C200349B05 /* LocalCheckin.swift in Sources */,
 				A65191B82C11072000884620 /* LockAttribute.swift in Sources */,
+				A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */,
 				A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */,
 				A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */,
 				A65191A92C10DC2900884620 /* PlaceNameFinder.swift in Sources */,
 				A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */,
+				A657910A2C11225200D2273A /* ModelContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

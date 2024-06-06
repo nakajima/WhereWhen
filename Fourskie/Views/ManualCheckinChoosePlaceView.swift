@@ -33,6 +33,9 @@ struct ManualCheckinChoosePlaceView: View {
 							currentLocation: .init(location.coordinate),
 							place: place
 						)
+						.onAppear {
+							print("\(place.name) \(place.coordinate.id)")
+						}
 					}
 				}
 				.safeAreaInset(edge: .top, spacing: 0) {

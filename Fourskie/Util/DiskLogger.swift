@@ -104,6 +104,13 @@ public struct DiskLogger: Sendable {
 		public let level: LogType
 		public let text: String
 
+		init(label: String, timestamp: Date, level: LogType, text: String) {
+			self.label = label
+			self.timestamp = timestamp
+			self.level = level
+			self.text = text
+		}
+
 		init?(string: String) {
 			let parts = string.split(separator: "\t", maxSplits: 3).map { String($0) }
 
@@ -133,8 +140,12 @@ public struct DiskLogger: Sendable {
 	}
 
 	public mutating func load() {
-		if let entries = try? String(contentsOf: location, encoding: .utf8).split(separator: "\n").compactMap({ Entry(string: String($0)) }) {
-			self.entries = entries
+		do {
+			self.entries = try String(contentsOf: location, encoding: .utf8).split(separator: "\n").compactMap({ Entry(string: String($0)) })
+		} catch {
+			self.entries = [
+				Entry(label: "DiskLogger", timestamp: Date(), level: .error, text: error.localizedDescription)
+			]
 		}
 	}
 

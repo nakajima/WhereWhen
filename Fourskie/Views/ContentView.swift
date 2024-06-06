@@ -31,13 +31,19 @@ struct ContentView: View {
 		.sheet(isPresented: $coordinator.isShowingManualCheckin) {
 			ManualCheckinView()
 		}
+		.overlay(alignment: .center) {
+			if let errorMessage = coordinator.errorMessage {
+				ErrorOverlay(message: errorMessage)
+			}
+		}
 	}
 }
 
 #if DEBUG
 #Preview {
 	ContentView()
-		.modelContainer(for: LocalCheckin.self, inMemory: true)
+		.modelContainer(ModelContainer.preview)
+		.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
 		.environment(LocationListener(container: ModelContainer.preview))
 }
 #endif

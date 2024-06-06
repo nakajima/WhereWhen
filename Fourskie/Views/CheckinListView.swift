@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import LibFourskie
 
 struct CheckinListView: View {
 	@Query var checkins: [LocalCheckin]
@@ -27,10 +28,18 @@ struct CheckinListView: View {
 		}
 
 		ForEach(checkins) { checkin in
-			VStack {
-				Text("Lat: \(checkin.coordinate.latitude) Lng: \(checkin.coordinate.longitude)")
-				Text("Saved at \(checkin.savedAt), Arrival: \(checkin.arrivalDate), Departure: \(checkin.departureDate)")
-			}
+			CheckinCellView(checkin: checkin)
 		}
 	}
 }
+
+#if DEBUG
+#Preview {
+	PreviewsWrapper {
+		CheckinListView()
+			.onAppear {
+				ModelContainer.preview.mainContext.insert(LocalCheckin(wrapped: Checkin.preview))
+			}
+	}
+}
+#endif
