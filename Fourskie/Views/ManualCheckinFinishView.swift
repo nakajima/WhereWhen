@@ -40,7 +40,7 @@ struct ManualCheckinFinishView: View {
 		.navigationTitle("Finish Checking In")
 		.navigationBarTitleDisplayMode(.inline)
 		.safeAreaInset(edge: .top) {
-			Map(initialPosition: .region(place.region), interactionModes: []) {
+			Map(initialPosition: .region(place.region(.within(meters: 100))), interactionModes: []) {
 				Marker(place.name, coordinate: place.coordinate.clLocation)
 			}
 			.frame(height: 200)

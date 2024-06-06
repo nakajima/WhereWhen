@@ -11,7 +11,7 @@ import SwiftData
 import LibFourskie
 
 struct CheckinListView: View {
-	@Query var checkins: [LocalCheckin]
+	@Query(sort: \LocalCheckin.savedAt, order: .reverse) var checkins: [LocalCheckin]
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	var body: some View {

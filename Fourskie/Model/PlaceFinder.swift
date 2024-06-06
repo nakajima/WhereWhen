@@ -10,7 +10,7 @@ import LibFourskie
 import MapKit
 import SwiftData
 
-struct PlaceNameFinder {
+struct PlaceFinder {
 	enum Error: Swift.Error {
 		case noPlaceOrError
 	}
@@ -23,37 +23,48 @@ struct PlaceNameFinder {
 		self.coordinate = coordinate
 	}
 
-	func results() async throws -> [Place] {
-		let localResults = try localLookup()
-		let clResults = try await lookupFromCL()
+	func search(_ term: String) async throws -> [Place] {
+		if Task.isCancelled || term.isBlank {
+			return []
+		}
 
-		return Set(localResults + clResults).sorted(by: { $0.coordinate.distance(to: coordinate) < $1.coordinate.distance(to: coordinate) })
+		let request = MKLocalSearch.Request()
+		request.naturalLanguageQuery = term.trimmed
+		let search = MKLocalSearch(request: request)
+
+		return try await results(for: search)
+	}
+
+	func results(in region: MKCoordinateRegion) async throws -> [Place] {
+		let localResults = try localLookup()
+		let clResults = try await lookupFromCL(region: region)
+
+		return Set(localResults + clResults).map { $0 }
 	}
 
 	// TODO: This just returns EVERYTHING.
-	func localLookup() throws -> [Place] {
+	private func localLookup() throws -> [Place] {
 		let context = ModelContext(container)
 		let descriptor = FetchDescriptor<LocalPlace>()
 		let localPlaces = try context.fetch(descriptor)
 		return localPlaces.map { $0.wrapped }
 	}
 
-	func lookupFromCL() async throws -> [Place] {
-		let request = MKLocalPointsOfInterestRequest(center: coordinate.clLocation, radius: 500)
+	private func lookupFromCL(region: MKCoordinateRegion) async throws -> [Place] {
+		let request = MKLocalPointsOfInterestRequest(coordinateRegion: region)
 		let search = MKLocalSearch(request: request)
 
-		let cacheURL = URL.cachesDirectory.appending(path: coordinate.id)
-		if FileManager.default.fileExists(atPath: cacheURL.path),
-		   let cachedData = try? Data(contentsOf: cacheURL),
-		   let cachedResults = try? JSONDecoder().decode([Place].self, from: cachedData)
-		{
-			print("Returning cached results")
-			return cachedResults
+		if Task.isCancelled {
+			return []
 		}
 
+		return try await results(for: search)
+	}
+
+	private func results(for search: MKLocalSearch) async throws -> [Place] {
 		return try await withCheckedThrowingContinuation { continuation in
 			search.start { response, error in
-				if let response, !response.mapItems.isEmpty {
+				if let response {
 					var results: [Place] = []
 					for item in response.mapItems {
 						guard let name = item.name else {
@@ -91,7 +102,6 @@ struct PlaceNameFinder {
 					} catch {
 						print("Error saving places: \(error)")
 					}
-
 					continuation.resume(returning: results)
 					return
 				}

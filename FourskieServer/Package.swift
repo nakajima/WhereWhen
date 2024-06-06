@@ -31,6 +31,7 @@ let package = Package(
 		.target(
 			name: "Server",
 			dependencies: [
+				"LibFourskie",
 				.product(name: "Hummingbird", package: "hummingbird"),
 				.product(name: "AsyncHTTPClient", package: "async-http-client"),
 				.product(name: "ServerData", package: "ServerData.swift"),

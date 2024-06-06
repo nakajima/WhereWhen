@@ -10,6 +10,7 @@ import Hummingbird
 import NIOCore
 import SQLiteKit
 import ServerData
+import LibFourskie
 
 public struct Server {
 	public init() {}
@@ -21,20 +22,28 @@ public struct Server {
 		let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
 		let container = Container.sqlite("fourskie.sqlite", on: eventLoopGroup)
 
-		let store = PersistentStore(for: ServerCheckin.self, container: container)
+		let checkinStore = PersistentStore(for: ServerCheckin.self, container: container)
+		let placeStore = PersistentStore(for: ServerCheckin.self, container: container)
 
 		// create router and add a single GET /hello route
 		let router = Router()
 		router.middlewares.add(LogRequestsMiddleware(.notice))
 
 		router.get("checkins") { request, context -> ByteBuffer in
-			let checkins = try await store.list()
+			let checkins = try await checkinStore.list()
 			let data = try encoder.encode(checkins)
 			return ByteBuffer(data: data)
 		}
 
 		router.post("checkins") { request, context -> ByteBuffer in
+			let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 5))
+			guard let checkin = try ServerCheckin.decode(checkinData) else {
+				return ByteBuffer(data: Data("Nope".utf8))
+			}
 
+			try await checkinStore.save(checkin)
+
+			return ByteBuffer(data: Data("OK".utf8))
 		}
 
 		router.get("ping") { request, context -> String in

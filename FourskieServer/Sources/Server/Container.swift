@@ -13,7 +13,7 @@ import ServerData
 extension Container {
 	static func sqlite(_ name: String, on eventLoopGroup: EventLoopGroup) -> Container {
 		// Configure our SQLite database so we can create a ServerData Container
-		let config = SQLiteConfiguration(storage: .memory)
+		let config = SQLiteConfiguration(storage: .file(path: name))
 		let source = SQLiteConnectionSource(configuration: config)
 		let pool = EventLoopGroupConnectionPool(source: source, on: eventLoopGroup)
 		let connection = try! source.makeConnection(logger: Logger(label: name), on: pool.eventLoopGroup.next()).wait()

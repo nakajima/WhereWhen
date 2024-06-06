@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct HomeView: View {
 	@Environment(LocationListener.self) var location
-
+	@EnvironmentObject var coordinator: FourskieCoordinator
 	@AppStorage("isLocationPromptDismissed") var isLocationPromptDismissed = false
 
 	var body: some View {
@@ -24,6 +24,14 @@ struct HomeView: View {
 					Label("Settings", systemImage: "gearshape")
 				}
 			}
+		}
+		.safeAreaInset(edge: .bottom) {
+			Button("Check In") {
+				coordinator.isShowingManualCheckin = true
+			}
+			.buttonStyle(.borderedProminent)
+			.controlSize(.large)
+			.clipShape(RoundedRectangle(cornerRadius: 32))
 		}
 		.safeAreaInset(edge: .bottom) {
 			if !location.isAuthorized, !isLocationPromptDismissed {

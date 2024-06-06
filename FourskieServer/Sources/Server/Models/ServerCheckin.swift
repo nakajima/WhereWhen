@@ -9,8 +9,9 @@ import Foundation
 import LibFourskie
 @preconcurrency import ServerData
 
-@Model(table: "checkins") struct ServerCheckin {
-	var id: Int?
+@Model(table: "checkins") struct ServerCheckin: Codable, Sendable {
+	@Column(.primaryKey(autoIncrement: true)) var id: Int?
+
 	var source: CheckinSource
 	var uuid: String
 	var latitude: Double

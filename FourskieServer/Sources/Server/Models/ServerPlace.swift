@@ -9,7 +9,9 @@ import Foundation
 import LibFourskie
 import ServerData
 
-@Model(table: "places") struct ServerPlace: Sendable {
+@Model(table: "places") struct ServerPlace: Codable, Sendable {
+	@Column(.primaryKey(autoIncrement: true)) var id: Int?
+
 	var uuid: String
 
 	var coordinateID: String

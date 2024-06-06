@@ -16,7 +16,7 @@ struct ManualCheckinPlaceCellView: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 4) {
 			Text(place.name)
-				.frame(maxWidth: .infinity, alignment: .leading)
+				.multilineTextAlignment(.leading)
 				.foregroundStyle(Color.primary)
 
 			HStack {
@@ -57,12 +57,12 @@ struct ManualCheckinPlaceCellView: View {
 		formatter.unitStyle = .long // You can also use .short or .medium
 
 		let distance: Measurement<UnitLength>
-		if meters < 1609.34 { // 1609.34 meters = 1 mile
-			formatter.numberFormatter.maximumFractionDigits = 1
-			distance = distanceInMeters.converted(to: .feet)
-		} else {
+		if meters > 200 {
 			formatter.numberFormatter.maximumFractionDigits = 1
 			distance = distanceInMeters.converted(to: .miles)
+		} else {
+			formatter.numberFormatter.maximumFractionDigits = 0
+			distance = distanceInMeters.converted(to: .feet)
 		}
 
 		let formattedDistance = formatter.string(from: distance)

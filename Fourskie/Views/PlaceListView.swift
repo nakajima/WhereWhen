@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import UIKit
-import SwiftUI
 import LibFourskie
+import SwiftUI
+import UIKit
 
 class PlaceListCell: UITableViewCell {
 	var place: Place!
@@ -42,12 +42,14 @@ class PlaceListCell: UITableViewCell {
 
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		visiblePlacesDebouncer.debounce {
-			self.visiblePlaces.wrappedValue = (self.tableView.visibleCells as! [PlaceListCell]).map(\.place)
+			self.visiblePlaces.wrappedValue = self.findVisiblePlaces()
 		}
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
-		self.visiblePlaces.wrappedValue = (self.tableView.visibleCells as! [PlaceListCell]).map(\.place)
+		visiblePlacesDebouncer.debounce {
+			self.visiblePlaces.wrappedValue = self.findVisiblePlaces()
+		}
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,6 +66,10 @@ class PlaceListCell: UITableViewCell {
 		return cell
 	}
 
+	public func findVisiblePlaces() -> [Place] {
+		(self.tableView.visibleCells as! [PlaceListCell]).map(\.place)
+	}
+
 	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -77,10 +83,17 @@ struct PlaceListView<CellView: View>: UIViewControllerRepresentable {
 	@ViewBuilder var cellBuilder: (Place) -> CellView
 
 	func makeUIViewController(context: Context) -> PlaceListController<CellView> {
-		PlaceListController(places: places, visiblePlaces: $visiblePlaces, cellBuilder: cellBuilder)
+		PlaceListController(
+			places: places,
+			visiblePlaces: $visiblePlaces,
+			cellBuilder: cellBuilder
+		)
 	}
 
 	func updateUIViewController(_ uiViewController: PlaceListController<CellView>, context: Context) {
-
+		print("Update")
+		uiViewController.places = places
+		uiViewController.tableView.reloadData()
+		self.visiblePlaces = uiViewController.findVisiblePlaces()
 	}
 }

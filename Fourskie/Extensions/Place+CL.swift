@@ -11,10 +11,10 @@ import LibFourskie
 import MapKit
 
 extension Place {
-	var region: MKCoordinateRegion {
+	func region(_ span: MKCoordinateSpan) -> MKCoordinateRegion {
 		MKCoordinateRegion(
 			center: coordinate.clLocation,
-			span: .within(meters: 50)
+			span: span
 		)
 	}
 

@@ -5,7 +5,7 @@
 //  Created by Pat Nakajima on 6/4/24.
 //
 
-import CoreLocation
+@preconcurrency import CoreLocation
 import Foundation
 import Observation
 import SwiftData
@@ -99,12 +99,27 @@ import SwiftData
 
 	func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
 		logger.info("didVisit: \(visit.debugDescription)")
-		let checkin = LocalCheckin(visit: visit)
+
+		// Assigning these to locals for sendability
+		let container = self.container
+		let logger = self.logger
 
 		Task {
-			let context = ModelContext(container)
-			context.insert(checkin)
 			do {
+				let context = ModelContext(container)
+
+				let checkin = LocalCheckin(visit: visit)
+				context.insert(checkin)
+
+				if let place = try await PlaceFinder(
+					container: container,
+					coordinate: .init(visit.coordinate)
+				).results(in: .init(center: visit.coordinate,span: .within(meters: 10))).first {
+					let localPlace = LocalPlace(wrapped: place)
+					context.insert(localPlace)
+					checkin.place = localPlace
+				}
+
 				try context.save()
 			} catch {
 				logger.error("Error saving checking: \(error)")

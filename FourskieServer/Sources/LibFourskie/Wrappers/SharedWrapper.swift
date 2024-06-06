@@ -15,3 +15,13 @@ public protocol SharedWrapper<Wrapped> {
 	var wrapped: Wrapped { get }
 	init?(wrapped: Wrapped)
 }
+
+extension SharedWrapper {
+	public static func decode(_ data: Data) throws -> Self? {
+		try .init(wrapped: JSONDecoder().decode(Wrapped.self, from: data))
+	}
+
+	public static func encode(_ object: Self) throws -> Data {
+		try JSONEncoder().encode(object.wrapped)
+	}
+}

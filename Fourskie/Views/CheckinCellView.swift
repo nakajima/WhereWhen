@@ -16,8 +16,10 @@ struct CheckinCellView: View {
 	var body: some View {
 		if let place = checkin.place {
 			HStack {
-				Map(initialPosition: .region(place.wrapped.region))
+				Map(initialPosition: .region(place.wrapped.region(.within(meters: 500))))
 					.frame(width: 64, height: 64)
+					.clipShape(RoundedRectangle(cornerRadius: 8))
+					.padding(8)
 					.overlay {
 						Image(systemName: "mappin")
 							.foregroundStyle(Color.accentColor)
