@@ -33,6 +33,9 @@ struct CheckinCellView: View {
 				}
 			}
 			.listRowInsets(.init())
+			.swipeActions {
+				Button("Delete", role: .destructive) {}
+			}
 		} else {
 			HStack {}
 		}

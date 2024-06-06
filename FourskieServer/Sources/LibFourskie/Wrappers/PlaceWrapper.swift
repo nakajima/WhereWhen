@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Types conforming to shared wrapper can be sent between
+// client and server serialized as their Wrapped type.
 public protocol SharedWrapper<Wrapped> {
 	associatedtype Wrapped: Codable
 

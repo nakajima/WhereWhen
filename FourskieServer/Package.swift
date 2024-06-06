@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "FourskieServer",
-	platforms: [.macOS(.v14), .iOS(.v16)],
+	platforms: [.macOS(.v14), .iOS(.v17)],
 	products: [
 		.executable(name: "fourskie", targets: ["Command"]),
 		.library(name: "LibFourskie", targets: ["LibFourskie"])

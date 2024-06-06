@@ -188,12 +188,10 @@ public struct DiskLogger: Sendable {
 	}
 
 	func write(_ level: LogType, _ message: String) {
-		#if DEBUG
-			do {
-				let text = "\(label)\t\(level.rawValue.uppercased())\t\(Date().ISO8601Format())\t\(message)\n"
-				try Data(text.utf8).append(to: location)
-			} catch {}
-		#endif
+		do {
+			let text = "\(label)\t\(level.rawValue.uppercased())\t\(Date().ISO8601Format())\t\(message)\n"
+			try Data(text.utf8).append(to: location)
+		} catch {}
 
 		switch level {
 		case .trace, .debug:
