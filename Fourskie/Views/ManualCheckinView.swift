@@ -41,9 +41,17 @@ struct ManualCheckinView: View {
 						}
 					}
 			case let .loaded(clLocation):
-				ManualCheckinChoosePlaceView(location: clLocation)
-					.navigationTitle("Check In")
-					.navigationBarTitleDisplayMode(.inline)
+				ManualCheckinChoosePlaceView(
+					location: .init(clLocation.coordinate),
+					destination: { place in
+						ManualCheckinFinishView(
+							place: place,
+							currentLocation: .init(clLocation.coordinate)
+						)
+					}
+				)
+				.navigationTitle("Check In")
+				.navigationBarTitleDisplayMode(.inline)
 			case let .error(string):
 				Text("Error fetching location: \(string)")
 			}

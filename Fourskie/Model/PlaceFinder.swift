@@ -15,16 +15,59 @@ struct PlaceFinder {
 		case noPlaceOrError
 	}
 
+	// We have a model container so we can save found places to the DB
 	let container: ModelContainer
+
+	// Where is the user right now? This may differ from where they are searching
 	let coordinate: Coordinate
 
-	init(container: ModelContainer, coordinate: Coordinate) {
+	// A user entered string to search for
+	let search: String
+
+	init(container: ModelContainer, coordinate: Coordinate, search: String) {
 		self.container = container
 		self.coordinate = coordinate
+		self.search = search
 	}
 
-	func search(_ term: String) async throws -> [Place] {
-		if Task.isCancelled || term.isBlank {
+	func results(in region: MKCoordinateRegion) async throws -> [Place] {
+		// Looks up places we have in our DB
+		let localResults = try localLookup()
+
+		let remoteResults = if search.isBlank {
+			// Looks up any places nearby from mapkit
+			try await lookupFromCL(region: region)
+		} else {
+			// Looks up places matching the search term from mapkit
+			try await lookupFromSearchTerm(term: search)
+		}
+
+		return Set(remoteResults + localResults)
+			.filter {
+				// Filter out far away stuff
+				if $0.coordinate.distance(to: .init(region.center)) > 1000 {
+					return false
+				}
+
+				// If the user searching, filter on that
+				if let search = search.presence {
+					return $0.name.lowercased().contains(search.lowercased())
+				}
+
+				// Otherwise let it all through
+				return true
+			}
+			.sorted(by: {
+				// Sort by how close the place is from our region's center (which may or
+				// may not be where the user actually is)
+				$0.coordinate.distance(to: .init(region.center)) <
+					$1.coordinate.distance(to: .init(region.center))
+			})
+			.first(20)
+	}
+
+	private func lookupFromSearchTerm(term: String) async throws -> [Place] {
+		if term.isBlank {
 			return []
 		}
 
@@ -33,13 +76,6 @@ struct PlaceFinder {
 		let search = MKLocalSearch(request: request)
 
 		return try await results(for: search)
-	}
-
-	func results(in region: MKCoordinateRegion) async throws -> [Place] {
-		let localResults = try localLookup()
-		let clResults = try await lookupFromCL(region: region)
-
-		return Set(localResults + clResults).map { $0 }
 	}
 
 	// TODO: This just returns EVERYTHING.
@@ -62,6 +98,8 @@ struct PlaceFinder {
 	}
 
 	private func results(for search: MKLocalSearch) async throws -> [Place] {
+		if Task.isCancelled { return [] }
+
 		return try await withCheckedThrowingContinuation { continuation in
 			search.start { response, error in
 				if let response {
@@ -102,6 +140,7 @@ struct PlaceFinder {
 					} catch {
 						print("Error saving places: \(error)")
 					}
+
 					continuation.resume(returning: results)
 					return
 				}

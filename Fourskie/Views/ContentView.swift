@@ -17,7 +17,7 @@ struct ContentView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	var body: some View {
-		NavigationSplitView {
+		NavigationStack {
 			HomeView()
 				.navigationDestination(for: Route.self) { route in
 					switch route {
@@ -25,8 +25,6 @@ struct ContentView: View {
 					case .settings: SettingsView()
 					}
 				}
-		} detail: {
-			Text("Select an item")
 		}
 		.sheet(isPresented: $coordinator.isShowingManualCheckin) {
 			ManualCheckinView()

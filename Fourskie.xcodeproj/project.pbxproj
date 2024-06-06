@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		A61308CA2C118171004B35A3 /* MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308C92C118171004B35A3 /* MKCoordinateRegion.swift */; };
 		A61308CC2C11817D004B35A3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308CB2C11817D004B35A3 /* Array.swift */; };
+		A61308CE2C1210D5004B35A3 /* Checkin+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308CD2C1210D5004B35A3 /* Checkin+MapKit.swift */; };
+		A61308D02C1211A8004B35A3 /* CheckinChoosePlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */; };
+		A61308D22C121F6D004B35A3 /* CheckinShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308D12C121F6D004B35A3 /* CheckinShowView.swift */; };
 		A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */; };
 		A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A64DD77D2C10D2B9004FF084 /* LibFourskie */; };
 		A65191A52C10D39500884620 /* LocalPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A42C10D39500884620 /* LocalPlace.swift */; };
@@ -69,6 +72,9 @@
 /* Begin PBXFileReference section */
 		A61308C92C118171004B35A3 /* MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegion.swift; sourceTree = "<group>"; };
 		A61308CB2C11817D004B35A3 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		A61308CD2C1210D5004B35A3 /* Checkin+MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+MapKit.swift"; sourceTree = "<group>"; };
+		A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinChoosePlaceView.swift; sourceTree = "<group>"; };
+		A61308D12C121F6D004B35A3 /* CheckinShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinShowView.swift; sourceTree = "<group>"; };
 		A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCheckin+Wrapper.swift"; sourceTree = "<group>"; };
 		A65191A42C10D39500884620 /* LocalPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlace.swift; sourceTree = "<group>"; };
 		A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlace+Wrapper.swift"; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */,
 				A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */,
 				A65191BD2C1112AE00884620 /* Place+CL.swift */,
+				A61308CD2C1210D5004B35A3 /* Checkin+MapKit.swift */,
 				A61308C92C118171004B35A3 /* MKCoordinateRegion.swift */,
 				A61308CB2C11817D004B35A3 /* Array.swift */,
 				A65791092C11225200D2273A /* ModelContext.swift */,
@@ -183,7 +190,9 @@
 				A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */,
 				A6D11D5E2C1004C900349B05 /* CheckinListView.swift */,
 				A65791112C112C3200D2273A /* CheckinCellView.swift */,
+				A61308D12C121F6D004B35A3 /* CheckinShowView.swift */,
 				A65191B52C11030E00884620 /* PlaceListView.swift */,
+				A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -406,10 +415,13 @@
 				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
 				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,
+				A61308D02C1211A8004B35A3 /* CheckinChoosePlaceView.swift in Sources */,
 				A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */,
 				A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */,
+				A61308D22C121F6D004B35A3 /* CheckinShowView.swift in Sources */,
 				A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */,
 				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
+				A61308CE2C1210D5004B35A3 /* Checkin+MapKit.swift in Sources */,
 				A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */,
 				A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */,
 				A65191B42C11016000884620 /* ManualCheckinPlaceCellView.swift in Sources */,

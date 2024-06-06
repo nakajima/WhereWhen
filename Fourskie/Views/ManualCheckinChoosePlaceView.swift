@@ -12,18 +12,12 @@ import MapKit
 import SwiftData
 import SwiftUI
 
-struct ManualCheckinChoosePlaceView: View {
+struct ManualCheckinChoosePlaceView<Destination: View>: View {
 	// What part of the map are we lookin at
 	@State private var region: MKCoordinateRegion
 
 	// What are our possible results
 	@State var possibleResults: [Place] = []
-	@State private var locationResults: [Place] = [] {
-		didSet { findPossibleResults() }
-	}
-	@State private var searchResults: [Place] = [] {
-		didSet { findPossibleResults() }
-	}
 
 	// What places should be shown on the map
 	@State private var visiblePlaces: [Place] = []
@@ -34,60 +28,38 @@ struct ManualCheckinChoosePlaceView: View {
 	@Environment(\.modelContext) var modelContext
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
-	let location: CLLocation
+	let location: Coordinate
+	let destination: (Place) -> Destination
 
-	init(location: CLLocation) {
+	init(location: Coordinate, destination: @escaping (Place) -> Destination) {
 		self.location = location
+		self.destination = destination
 
 		self._region = State(
 			wrappedValue: .init(
-				center: location.coordinate,
+				center: location.clLocation,
 				span: .within(meters: 500)
 			)
 		)
 	}
 
-	// This is gonna be slow. We should figure out a way to move
-	// more of this logic into the DB.
-	func findPossibleResults() {
-		let places = (locationResults + searchResults).filter {
-			if $0.coordinate.distance(to: .init(region.center)) > 1000 {
-				return false
-			}
-
-			guard let search = searchTerm.presence else {
-				return true
-			}
-
-			return $0.name.contains(search.trimmed)
-		}
-
-		let possibleResults = Set(places).sorted(by: {
-			$0.coordinate.distance(to: .init(region.center)) <
-				$1.coordinate.distance(to: .init(region.center))
-		}).first(20)
-
-		withAnimation {
-			self.possibleResults = possibleResults
-		}
-	}
-
 	var body: some View {
 		VStack(spacing: 0) {
-			PlaceListView(places: possibleResults, visiblePlaces: $visiblePlaces) { place in
+			PlaceListView(places: possibleResults, regionID: region.id) { visiblePlaces in
+				self.visiblePlaces = visiblePlaces
+			} cellBuilder: { place in
 				NavigationLink(
-					destination: ManualCheckinFinishView(
-						place: place,
-						currentLocation: .init(location.coordinate)
-					)
+					destination: destination(place)
 				) {
 					ManualCheckinPlaceCellView(
-						currentLocation: .init(location.coordinate),
+						currentLocation: location,
 						place: place
 					)
+					.contentShape(Rectangle())
 				}
 			}
-			.searchable(text: $searchTerm)
+			.ignoresSafeArea(edges: .bottom)
+			.searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
 			.safeAreaInset(edge: .top, spacing: 0) {
 				Map(initialPosition: .region(region), interactionModes: [.pan, .zoom]) {
 					ForEach(visiblePlaces) { place in
@@ -103,19 +75,15 @@ struct ManualCheckinChoosePlaceView: View {
 				)
 			}
 			.task(id: searchTerm) {
-				await refresh { finder in
-					try await finder.search(searchTerm)
-				}
+				await refresh()
 			}
 			.task(id: region.id) {
-				await refresh { finder in
-					try await finder.results(in: region)
-				}
+				await refresh()
 			}
 		}
 	}
 
-	func refresh(block: (PlaceFinder) async throws -> [Place]) async {
+	func refresh() async {
 		do {
 			try? await Task.sleep(for: .seconds(0.3))
 			if Task.isCancelled {
@@ -126,15 +94,15 @@ struct ManualCheckinChoosePlaceView: View {
 
 			let placeFinder = PlaceFinder(
 				container: container,
-				coordinate: .init(region.center)
+				coordinate: .init(region.center),
+				search: searchTerm
 			)
-			let searchResults = try await block(placeFinder)
+			let searchResults = try await placeFinder.results(in: region)
 
 			withAnimation {
-				self.searchResults = searchResults
+				// All of this is kinda gross
+				self.possibleResults = searchResults
 			}
-
-			findPossibleResults()
 		} catch {
 			coordinator.errorMessage = error.localizedDescription
 		}
@@ -142,9 +110,9 @@ struct ManualCheckinChoosePlaceView: View {
 }
 
 #if DEBUG
-#Preview {
-	ManualCheckinView()
-		.environment(LocationListener(container: ModelContainer.preview))
-		.modelContainer(ModelContainer.preview)
-}
+	#Preview {
+		ManualCheckinView()
+			.environment(LocationListener(container: ModelContainer.preview))
+			.modelContainer(ModelContainer.preview)
+	}
 #endif

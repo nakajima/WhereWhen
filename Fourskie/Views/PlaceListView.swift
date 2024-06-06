@@ -25,13 +25,18 @@ class PlaceListCell: UITableViewCell {
 
 @MainActor class PlaceListController<CellView: View>: UITableViewController {
 	var places: [Place]
-	var visiblePlaces: Binding<[Place]>
-	let visiblePlacesDebouncer = Debouncer()
+	var visiblePlacesChanged: (([Place]) -> Void)?
 	var cellBuilder: (Place) -> CellView
 
-	init(places: [Place], visiblePlaces: Binding<[Place]>, @ViewBuilder cellBuilder: @escaping (Place) -> CellView) {
+	let visiblePlacesDebouncer = Debouncer()
+
+	init(
+		places: [Place],
+		visiblePlacesChanged: (([Place]) -> Void)?,
+		@ViewBuilder cellBuilder: @escaping (Place) -> CellView
+	) {
 		self.places = places
-		self.visiblePlaces = visiblePlaces
+		self.visiblePlacesChanged = visiblePlacesChanged
 		self.cellBuilder = cellBuilder
 
 		super.init(style: .plain)
@@ -41,15 +46,11 @@ class PlaceListCell: UITableViewCell {
 	}
 
 	override func scrollViewDidScroll(_: UIScrollView) {
-		visiblePlacesDebouncer.debounce {
-			self.visiblePlaces.wrappedValue = self.findVisiblePlaces()
-		}
+		refreshVisiblePlaces()
 	}
 
 	override func viewDidAppear(_: Bool) {
-		visiblePlacesDebouncer.debounce {
-			self.visiblePlaces.wrappedValue = self.findVisiblePlaces()
-		}
+		refreshVisiblePlaces()
 	}
 
 	override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -66,8 +67,20 @@ class PlaceListCell: UITableViewCell {
 		return cell
 	}
 
-	public func findVisiblePlaces() -> [Place] {
-		(tableView.visibleCells as! [PlaceListCell]).map(\.place)
+	public func refreshVisiblePlaces() {
+		visiblePlacesDebouncer.debounce {
+			guard let paths = self.tableView.indexPathsForVisibleRows else {
+				return
+			}
+
+			let indices = paths.map(\.row)
+
+			guard let first = indices.first, let last = indices.last, first != last else {
+				return
+			}
+
+			self.visiblePlacesChanged?(Array(self.places[first ..< last]))
+		}
 	}
 
 	@available(*, unavailable)
@@ -79,21 +92,22 @@ class PlaceListCell: UITableViewCell {
 // Wrapping UIKit here because List doesn't let us get visible rows easily
 struct PlaceListView<CellView: View>: UIViewControllerRepresentable {
 	var places: [Place]
-	@Binding var visiblePlaces: [Place]
+	var regionID: String
+	var visiblePlacesChanged: (([Place]) -> Void)?
 	@ViewBuilder var cellBuilder: (Place) -> CellView
 
 	func makeUIViewController(context _: Context) -> PlaceListController<CellView> {
 		PlaceListController(
 			places: places,
-			visiblePlaces: $visiblePlaces,
+			visiblePlacesChanged: visiblePlacesChanged,
 			cellBuilder: cellBuilder
 		)
 	}
 
 	func updateUIViewController(_ uiViewController: PlaceListController<CellView>, context _: Context) {
-		print("Update")
+		print("Updating view controller")
 		uiViewController.places = places
 		uiViewController.tableView.reloadData()
-		visiblePlaces = uiViewController.findVisiblePlaces()
+		uiViewController.refreshVisiblePlaces()
 	}
 }

@@ -10,7 +10,7 @@ import Foundation
 import Observation
 import SwiftData
 
-@Observable class LocationListener: NSObject, CLLocationManagerDelegate {
+@Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
 	enum Error: Swift.Error {
 		case authorizationNeeded, requestAlreadyInProgress, locationNotFound
 	}

@@ -11,14 +11,17 @@ import SwiftUI
 
 struct ManualCheckinFinishView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
+	@Environment(\.dismiss) var dismiss
 
 	var place: Place
 	var currentLocation: Coordinate
+	var caption: String = "Checking in here:"
+	var buttonLabel: String = "Check In"
 
 	var body: some View {
 		Form {
 			VStack(alignment: .leading) {
-				Text("Checking in here:")
+				Text(caption)
 					.font(.caption)
 					.foregroundStyle(.secondary)
 				Text(place.name)
@@ -28,11 +31,11 @@ struct ManualCheckinFinishView: View {
 			}
 
 			Section {
-				Button("Check In") {
+				Button(buttonLabel) {
 					coordinator.manualCheckIn(place: place, from: currentLocation)
 				}
 				Button("Cancel", role: .cancel) {
-					coordinator.isShowingManualCheckin = false
+					dismiss()
 				}
 				.foregroundStyle(.secondary)
 			}

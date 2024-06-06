@@ -29,9 +29,9 @@ import SwiftUI
 	func manualCheckIn(place: Place, from coordinate: Coordinate) {
 		let context = container.mainContext
 		do {
-			let place = try context.first(where: #Predicate<LocalPlace> { $0.coordinateID == place.coordinate.id }) ?? LocalPlace(wrapped: place)
+			let foundPlace = try context.first(where: #Predicate<LocalPlace> { $0.coordinateID == place.coordinate.id }) ?? LocalPlace(wrapped: place)
 
-			container.mainContext.insert(place)
+			container.mainContext.insert(foundPlace)
 
 			let checkin = LocalCheckin(
 				source: .manual,
@@ -41,7 +41,7 @@ import SwiftUI
 				accuracy: place.coordinate.distance(to: coordinate),
 				arrivalDate: Date(),
 				departureDate: nil,
-				place: place
+				place: foundPlace
 			)
 
 			container.mainContext.insert(checkin)
