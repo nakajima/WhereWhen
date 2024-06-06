@@ -153,6 +153,10 @@ public struct DiskLogger: Sendable {
 		self.label = label
 		self.location = location
 		self.maxLines = maxLines
+
+		if !FileManager.default.fileExists(atPath: location.path) {
+			FileManager.default.createFile(atPath: location.path, contents: Data())
+		}
 	}
 
 	public func trace(_ message: String) {
