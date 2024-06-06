@@ -238,10 +238,11 @@ public struct DiskLoggerViewer: View {
 							.font(.caption2)
 						Text(entry.timestamp.formatted(date: .numeric, time: .standard))
 					}
+					.font(.caption)
 				}
 				.listRowInsets(.init(top: 8, leading: 12, bottom: 8, trailing: 4))
 			}
-			.font(.caption)
+			.font(.subheadline)
 		}
 		.task {
 			while true {
@@ -254,20 +255,21 @@ public struct DiskLoggerViewer: View {
 		}
 		.toolbar {
 			ToolbarItem {
-				Button("Done") {
-					dismiss()
-				}
-				.buttonStyle(.bordered)
-			}
-			ToolbarItem {
-				Button("Clear Logs") {
-					withAnimation {
-						try? logger.clear()
+				Menu("Options") {
+					Button("Clear Logs") {
+						withAnimation {
+							try? logger.clear()
+						}
+					}
+					Button("Test Message") {
+						logger.info("Here is a test message.")
+						logger.load()
+					}
+					Button("Done") {
+						dismiss()
 					}
 				}
-				.buttonStyle(.bordered)
 			}
 		}
-		.fontDesign(.monospaced)
 	}
 }

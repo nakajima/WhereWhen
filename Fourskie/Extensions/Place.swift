@@ -14,7 +14,7 @@ extension Place {
 	var region: MKCoordinateRegion {
 		MKCoordinateRegion(
 			center: coordinate.clLocation,
-			span: .within(meters: 100)
+			span: .within(meters: 50)
 		)
 	}
 

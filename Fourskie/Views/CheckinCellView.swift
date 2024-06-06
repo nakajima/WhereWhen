@@ -6,9 +6,9 @@
 //
 
 import LibFourskie
+import MapKit
 import SwiftData
 import SwiftUI
-import MapKit
 
 struct CheckinCellView: View {
 	let checkin: LocalCheckin
@@ -17,24 +17,39 @@ struct CheckinCellView: View {
 		if let place = checkin.place {
 			HStack {
 				Map(initialPosition: .region(place.wrapped.region))
-			}
-		} else {
-			HStack {
-			}
-		}
+					.frame(width: 64, height: 64)
+					.overlay {
+						Image(systemName: "mappin")
+							.foregroundStyle(Color.accentColor)
+					}
 
+				VStack(alignment: .leading) {
+					Text(place.name)
+						.bold()
+						.frame(maxWidth: .infinity, alignment: .leading)
+					Text(checkin.savedAt.formatted(.relative(presentation: .named)))
+						.font(.subheadline)
+						.foregroundStyle(.secondary)
+				}
+			}
+			.listRowInsets(.init())
+		} else {
+			HStack {}
+		}
 	}
 }
 
 #if DEBUG
 #Preview {
 	PreviewsWrapper {
-		CheckinListView()
-			.onAppear {
-				ModelContainer.preview.mainContext.insert(
-					LocalCheckin(wrapped: Checkin.preview)
-				)
-			}
+		List {
+			CheckinListView()
+		}
+		.onAppear {
+			ModelContainer.preview.mainContext.insert(
+				LocalCheckin(wrapped: Checkin.preview)
+			)
+		}
 	}
 }
 #endif

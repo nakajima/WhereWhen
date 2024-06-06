@@ -14,10 +14,12 @@ struct PreviewsWrapper<Content: View>: View {
 	var content: () -> Content
 
 	var body: some View {
-		content()
-			.modelContainer(ModelContainer.preview)
-			.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-			.environment(LocationListener(container: ModelContainer.preview))
+		NavigationStack {
+			content()
+				.modelContainer(ModelContainer.preview)
+				.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
+				.environment(LocationListener(container: ModelContainer.preview))
+		}
 	}
 }
 #endif
