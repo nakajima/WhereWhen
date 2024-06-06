@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  Place.swift
+//
 //
 //  Created by Pat Nakajima on 6/5/24.
 //
@@ -90,29 +90,29 @@ extension Place: Hashable {
 	public static func == (lhs: Place, rhs: Place) -> Bool {
 		lhs.id == rhs.id
 	}
-	
+
 	public func hash(into hasher: inout Hasher) {
 		hasher.combine(id)
 	}
 }
 
 #if DEBUG
-public extension Place {
-	static let preview = Place(
-		uuid: UUID().uuidString,
-		addedAt: Date(),
-		coordinate: .init(latitude: 37.33233141, longitude: -122.03121860),
-		name: "Test Location",
-		phoneNumber: nil,
-		url: nil,
-		category: .park,
-		thoroughfare: "123 Here St.",
-		subThoroughfare: nil,
-		locality: "Los Angeles",
-		subLocality: nil,
-		administrativeArea: "CA",
-		subAdministrativeArea: nil,
-		postalCode: "90120"
-	)
-}
+	public extension Place {
+		static let preview = Place(
+			uuid: UUID().uuidString,
+			addedAt: Date(),
+			coordinate: .init(latitude: 37.33233141, longitude: -122.03121860),
+			name: "Test Location",
+			phoneNumber: nil,
+			url: nil,
+			category: .park,
+			thoroughfare: "123 Here St.",
+			subThoroughfare: nil,
+			locality: "Los Angeles",
+			subLocality: nil,
+			administrativeArea: "CA",
+			subAdministrativeArea: nil,
+			postalCode: "90120"
+		)
+	}
 #endif

@@ -1,5 +1,5 @@
 //
-//  PlaceNameFinder.swift
+//  PlaceFinder.swift
 //  Fourskie
 //
 //  Created by Pat Nakajima on 6/5/24.

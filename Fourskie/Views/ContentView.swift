@@ -40,10 +40,10 @@ struct ContentView: View {
 }
 
 #if DEBUG
-#Preview {
-	ContentView()
-		.modelContainer(ModelContainer.preview)
-		.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-		.environment(LocationListener(container: ModelContainer.preview))
-}
+	#Preview {
+		ContentView()
+			.modelContainer(ModelContainer.preview)
+			.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
+			.environment(LocationListener(container: ModelContainer.preview))
+	}
 #endif

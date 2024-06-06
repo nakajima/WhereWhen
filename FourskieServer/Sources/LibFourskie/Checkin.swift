@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  Checkin.swift
+//
 //
 //  Created by Pat Nakajima on 6/4/24.
 //
@@ -51,16 +51,16 @@ public struct Checkin: Codable, Sendable {
 }
 
 #if DEBUG
-public extension Checkin {
-	static let preview = Checkin(
-		source: .manual,
-		uuid: UUID().uuidString,
-		coordinate: Place.preview.coordinate,
-		savedAt: Date().addingTimeInterval(-100),
-		accuracy: 12,
-		arrivalDate: Date().addingTimeInterval(-100),
-		departureDate: Date().addingTimeInterval(-100),
-		place: Place.preview
-	)
-}
+	public extension Checkin {
+		static let preview = Checkin(
+			source: .manual,
+			uuid: UUID().uuidString,
+			coordinate: Place.preview.coordinate,
+			savedAt: Date().addingTimeInterval(-100),
+			accuracy: 12,
+			arrivalDate: Date().addingTimeInterval(-100),
+			departureDate: Date().addingTimeInterval(-100),
+			place: Place.preview
+		)
+	}
 #endif

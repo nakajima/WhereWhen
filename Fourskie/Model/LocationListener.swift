@@ -78,7 +78,7 @@ import SwiftData
 
 	// MARK: Delegate methods
 
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+	func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		if let locationRequest, let location = locations.first {
 			logger.info("Location updated: \(location)")
 			locationRequest.fulfill(with: .success(location))
@@ -90,7 +90,7 @@ import SwiftData
 		}
 	}
 
-	func locationManager(_ manager: CLLocationManager, didFailWithError error: any Swift.Error) {
+	func locationManager(_: CLLocationManager, didFailWithError error: any Swift.Error) {
 		logger.info("Location request failed with: \(error)")
 		if let locationRequest {
 			locationRequest.fulfill(with: .failure(error))
@@ -114,7 +114,7 @@ import SwiftData
 				if let place = try await PlaceFinder(
 					container: container,
 					coordinate: .init(visit.coordinate)
-				).results(in: .init(center: visit.coordinate,span: .within(meters: 10))).first {
+				).results(in: .init(center: visit.coordinate, span: .within(meters: 10))).first {
 					let localPlace = LocalPlace(wrapped: place)
 					context.insert(localPlace)
 					checkin.place = localPlace

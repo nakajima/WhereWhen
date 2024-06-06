@@ -10,7 +10,7 @@ import Foundation
 extension Array {
 	func first(_ limit: Int) -> Array {
 		if limit < count {
-			return Array(self[0..<limit])
+			return Array(self[0 ..< limit])
 		} else {
 			return self
 		}

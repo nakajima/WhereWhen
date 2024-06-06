@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  ServerCheckin.swift
+//
 //
 //  Created by Pat Nakajima on 6/4/24.
 //
@@ -25,7 +25,7 @@ import LibFourskie
 	init(
 		id: Int? = nil,
 		source: CheckinSource,
-		uuid: String, 
+		uuid: String,
 		latitude: Double,
 		longitude: Double,
 		savedAt: Date,

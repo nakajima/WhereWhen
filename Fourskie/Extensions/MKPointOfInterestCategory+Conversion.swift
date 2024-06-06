@@ -1,5 +1,5 @@
 //
-//  MKPointOfInterestCategory.swift
+//  MKPointOfInterestCategory+Conversion.swift
 //  Fourskie
 //
 //  Created by Pat Nakajima on 6/5/24.
@@ -55,7 +55,7 @@ extension MKPointOfInterestCategory: SharedWrapper {
 		case .winery: .winery
 		case .zoo: .zoo
 		default:
-				.unknown
+			.unknown
 		}
 	}
 

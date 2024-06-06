@@ -141,10 +141,10 @@ public struct DiskLogger: Sendable {
 
 	public mutating func load() {
 		do {
-			self.entries = try String(contentsOf: location, encoding: .utf8).split(separator: "\n").compactMap({ Entry(string: String($0)) })
+			entries = try String(contentsOf: location, encoding: .utf8).split(separator: "\n").compactMap { Entry(string: String($0)) }
 		} catch {
-			self.entries = [
-				Entry(label: "DiskLogger", timestamp: Date(), level: .error, text: error.localizedDescription)
+			entries = [
+				Entry(label: "DiskLogger", timestamp: Date(), level: .error, text: error.localizedDescription),
 			]
 		}
 	}

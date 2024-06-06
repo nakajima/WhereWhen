@@ -1,5 +1,5 @@
 //
-//  ManualCheckinLocationView.swift
+//  ManualCheckinChoosePlaceView.swift
 //  Fourskie
 //
 //  Created by Pat Nakajima on 6/5/24.
@@ -23,15 +23,17 @@ struct ManualCheckinChoosePlaceView: View {
 			findPossibleResults()
 		}
 	}
+
 	@State private var visiblePlaces: [Place] = []
 
 	@State var possibleResults: [Place] = []
-	
+
 	@State private var searchResults: [Place] = [] {
 		didSet {
 			findPossibleResults()
 		}
 	}
+
 	@State private var searchTerm: String = ""
 
 	@Environment(\.modelContext) var modelContext
@@ -165,9 +167,9 @@ struct ManualCheckinChoosePlaceView: View {
 }
 
 #if DEBUG
-#Preview {
-	ManualCheckinView()
-		.environment(LocationListener(container: ModelContainer.preview))
-		.modelContainer(ModelContainer.preview)
-}
+	#Preview {
+		ManualCheckinView()
+			.environment(LocationListener(container: ModelContainer.preview))
+			.modelContainer(ModelContainer.preview)
+	}
 #endif

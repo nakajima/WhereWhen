@@ -6,20 +6,20 @@
 //
 
 import Foundation
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 #if DEBUG
-struct PreviewsWrapper<Content: View>: View {
-	var content: () -> Content
+	struct PreviewsWrapper<Content: View>: View {
+		var content: () -> Content
 
-	var body: some View {
-		NavigationStack {
-			content()
-				.modelContainer(ModelContainer.preview)
-				.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-				.environment(LocationListener(container: ModelContainer.preview))
+		var body: some View {
+			NavigationStack {
+				content()
+					.modelContainer(ModelContainer.preview)
+					.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
+					.environment(LocationListener(container: ModelContainer.preview))
+			}
 		}
 	}
-}
 #endif

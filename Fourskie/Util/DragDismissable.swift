@@ -48,34 +48,34 @@ public extension View {
 }
 
 #if DEBUG
-struct DragDismissableModifier_Previews: PreviewProvider {
-	struct Container: View {
-		@State private var isVisible = true
+	struct DragDismissableModifier_Previews: PreviewProvider {
+		struct Container: View {
+			@State private var isVisible = true
 
-		var body: some View {
-			ZStack {
-				Color.blue
+			var body: some View {
+				ZStack {
+					Color.blue
 
-				if isVisible {
-					VStack {
-						Text("Drag dismiss me")
-					}
-					.padding()
-					.background(.pink)
-					.cornerRadius(12)
-					.transition(.move(edge: .bottom).combined(with: .opacity))
-					.dragDismissable {
-						withAnimation(.spring) {
-							isVisible = false
+					if isVisible {
+						VStack {
+							Text("Drag dismiss me")
+						}
+						.padding()
+						.background(.pink)
+						.cornerRadius(12)
+						.transition(.move(edge: .bottom).combined(with: .opacity))
+						.dragDismissable {
+							withAnimation(.spring) {
+								isVisible = false
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 
-	static var previews: some View {
-		Container()
+		static var previews: some View {
+			Container()
+		}
 	}
-}
 #endif

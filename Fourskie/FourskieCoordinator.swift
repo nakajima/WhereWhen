@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import LibFourskie
 import SwiftData
 import SwiftUI
-import LibFourskie
 
 @MainActor final class FourskieCoordinator: ObservableObject {
 	let container: ModelContainer
@@ -26,7 +26,7 @@ import LibFourskie
 		}
 	}
 
-	func manualCheckIn(place: Place, from coordinate: Coordinate) {
+	func manualCheckIn(place _: Place, from coordinate: Coordinate) {
 		let context = container.mainContext
 		do {
 			let place = try context.first(where: #Predicate<LocalPlace> { $0.coordinateID == place.coordinate.id }) ?? LocalPlace(wrapped: place)
@@ -48,7 +48,7 @@ import LibFourskie
 
 			try container.mainContext.save()
 		} catch {
-			self.errorMessage = error.localizedDescription
+			errorMessage = error.localizedDescription
 		}
 
 		isShowingManualCheckin = false

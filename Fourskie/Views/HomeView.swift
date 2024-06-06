@@ -67,12 +67,12 @@ struct HomeView: View {
 }
 
 #if DEBUG
-#Preview {
-	NavigationSplitView {
-		HomeView()
-	} detail: {
-		Text("hi")
+	#Preview {
+		NavigationSplitView {
+			HomeView()
+		} detail: {
+			Text("hi")
+		}
+		.environment(LocationListener(container: ModelContainer.preview))
 	}
-	.environment(LocationListener(container: ModelContainer.preview))
-}
 #endif

@@ -18,7 +18,7 @@ class PlaceListCell: UITableViewCell {
 	}
 
 	@available(*, unavailable)
-	required init?(coder: NSCoder) {
+	required init?(coder _: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 }
@@ -40,19 +40,19 @@ class PlaceListCell: UITableViewCell {
 		tableView.allowsSelection = false
 	}
 
-	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+	override func scrollViewDidScroll(_: UIScrollView) {
 		visiblePlacesDebouncer.debounce {
 			self.visiblePlaces.wrappedValue = self.findVisiblePlaces()
 		}
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
+	override func viewDidAppear(_: Bool) {
 		visiblePlacesDebouncer.debounce {
 			self.visiblePlaces.wrappedValue = self.findVisiblePlaces()
 		}
 	}
 
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
 		places.count
 	}
 
@@ -67,11 +67,11 @@ class PlaceListCell: UITableViewCell {
 	}
 
 	public func findVisiblePlaces() -> [Place] {
-		(self.tableView.visibleCells as! [PlaceListCell]).map(\.place)
+		(tableView.visibleCells as! [PlaceListCell]).map(\.place)
 	}
 
 	@available(*, unavailable)
-	required init?(coder: NSCoder) {
+	required init?(coder _: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 }
@@ -82,7 +82,7 @@ struct PlaceListView<CellView: View>: UIViewControllerRepresentable {
 	@Binding var visiblePlaces: [Place]
 	@ViewBuilder var cellBuilder: (Place) -> CellView
 
-	func makeUIViewController(context: Context) -> PlaceListController<CellView> {
+	func makeUIViewController(context _: Context) -> PlaceListController<CellView> {
 		PlaceListController(
 			places: places,
 			visiblePlaces: $visiblePlaces,
@@ -90,10 +90,10 @@ struct PlaceListView<CellView: View>: UIViewControllerRepresentable {
 		)
 	}
 
-	func updateUIViewController(_ uiViewController: PlaceListController<CellView>, context: Context) {
+	func updateUIViewController(_ uiViewController: PlaceListController<CellView>, context _: Context) {
 		print("Update")
 		uiViewController.places = places
 		uiViewController.tableView.reloadData()
-		self.visiblePlaces = uiViewController.findVisiblePlaces()
+		visiblePlaces = uiViewController.findVisiblePlaces()
 	}
 }

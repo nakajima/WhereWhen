@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import SwiftUI
-import SwiftData
 import LibFourskie
+import SwiftData
+import SwiftUI
 
 struct CheckinListView: View {
 	@Query(sort: \LocalCheckin.savedAt, order: .reverse) var checkins: [LocalCheckin]
@@ -34,12 +34,12 @@ struct CheckinListView: View {
 }
 
 #if DEBUG
-#Preview {
-	PreviewsWrapper {
-		CheckinListView()
-			.onAppear {
-				ModelContainer.preview.mainContext.insert(LocalCheckin(wrapped: Checkin.preview))
-			}
+	#Preview {
+		PreviewsWrapper {
+			CheckinListView()
+				.onAppear {
+					ModelContainer.preview.mainContext.insert(LocalCheckin(wrapped: Checkin.preview))
+				}
+		}
 	}
-}
 #endif

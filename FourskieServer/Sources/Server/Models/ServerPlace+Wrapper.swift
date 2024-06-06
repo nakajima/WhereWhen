@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  ServerPlace+Wrapper.swift
+//
 //
 //  Created by Pat Nakajima on 6/5/24.
 //

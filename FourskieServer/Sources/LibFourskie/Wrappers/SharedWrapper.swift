@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  SharedWrapper.swift
+//
 //
 //  Created by Pat Nakajima on 6/5/24.
 //
@@ -16,12 +16,12 @@ public protocol SharedWrapper<Wrapped> {
 	init?(wrapped: Wrapped)
 }
 
-extension SharedWrapper {
-	public static func decode(_ data: Data) throws -> Self? {
+public extension SharedWrapper {
+	static func decode(_ data: Data) throws -> Self? {
 		try .init(wrapped: JSONDecoder().decode(Wrapped.self, from: data))
 	}
 
-	public static func encode(_ object: Self) throws -> Data {
+	static func encode(_ object: Self) throws -> Data {
 		try JSONEncoder().encode(object.wrapped)
 	}
 }

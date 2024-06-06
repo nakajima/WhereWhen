@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ModelContainer.swift
 //  Fourskie
 //
 //  Created by Pat Nakajima on 6/4/24.
@@ -11,7 +11,7 @@ import SwiftData
 extension ModelContainer {
 	fileprivate static let models: [any PersistentModel.Type] = [
 		LocalCheckin.self,
-		LocalPlace.self
+		LocalPlace.self,
 	]
 
 	static let shared = {
@@ -26,15 +26,15 @@ extension ModelContainer {
 	}()
 
 	#if DEBUG
-	static let preview = {
-		let schema = Schema(models)
-		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+		static let preview = {
+			let schema = Schema(models)
+			let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
-		do {
-			return try ModelContainer(for: schema, configurations: [modelConfiguration])
-		} catch {
-			fatalError("Could not create ModelContainer: \(error)")
-		}
-	}()
+			do {
+				return try ModelContainer(for: schema, configurations: [modelConfiguration])
+			} catch {
+				fatalError("Could not create ModelContainer: \(error)")
+			}
+		}()
 	#endif
 }

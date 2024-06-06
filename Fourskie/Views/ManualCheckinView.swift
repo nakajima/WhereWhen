@@ -40,11 +40,11 @@ struct ManualCheckinView: View {
 							self.status = .error(error.localizedDescription)
 						}
 					}
-			case .loaded(let clLocation):
+			case let .loaded(clLocation):
 				ManualCheckinChoosePlaceView(location: clLocation)
 					.navigationTitle("Check In")
 					.navigationBarTitleDisplayMode(.inline)
-			case .error(let string):
+			case let .error(string):
 				Text("Error fetching location: \(string)")
 			}
 		}
@@ -52,10 +52,10 @@ struct ManualCheckinView: View {
 }
 
 #if DEBUG
-#Preview {
-	ManualCheckinView()
-		.environment(LocationListener(container: ModelContainer.preview))
-		.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-		.modelContainer(ModelContainer.preview)
-}
+	#Preview {
+		ManualCheckinView()
+			.environment(LocationListener(container: ModelContainer.preview))
+			.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
+			.modelContainer(ModelContainer.preview)
+	}
 #endif

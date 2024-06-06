@@ -51,9 +51,9 @@ struct ManualCheckinFinishView: View {
 }
 
 #if DEBUG
-#Preview {
-	NavigationStack {
-		ManualCheckinFinishView(place: Place.preview, currentLocation: Place.preview.coordinate)
+	#Preview {
+		NavigationStack {
+			ManualCheckinFinishView(place: Place.preview, currentLocation: Place.preview.coordinate)
+		}
 	}
-}
 #endif

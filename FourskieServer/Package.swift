@@ -8,14 +8,14 @@ let package = Package(
 	platforms: [.macOS(.v14), .iOS(.v17)],
 	products: [
 		.executable(name: "fourskie", targets: ["Command"]),
-		.library(name: "LibFourskie", targets: ["LibFourskie"])
+		.library(name: "LibFourskie", targets: ["LibFourskie"]),
 	],
 	dependencies: [
 		.package(url: "https://github.com/hummingbird-project/hummingbird", branch: "main"),
 		.package(url: "https://github.com/apple/swift-argument-parser", branch: "main"),
 		.package(url: "https://github.com/swift-server/async-http-client", branch: "main"),
 		.package(url: "https://github.com/nakajima/ServerData.swift", branch: "main"),
-		.package(url: "https://github.com/vapor/sqlite-kit", branch: "main")
+		.package(url: "https://github.com/vapor/sqlite-kit", branch: "main"),
 	],
 	targets: [
 		// Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,7 +24,7 @@ let package = Package(
 			name: "Command",
 			dependencies: [
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
-				"Server"
+				"Server",
 			]
 		),
 		.target(name: "LibFourskie"),
@@ -37,7 +37,7 @@ let package = Package(
 				.product(name: "ServerData", package: "ServerData.swift"),
 				.product(name: "SQLiteKit", package: "sqlite-kit"),
 			]
-		)
+		),
 	]
 )
 

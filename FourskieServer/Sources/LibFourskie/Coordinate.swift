@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Coordinate.swift
 //
 //
 //  Created by Pat Nakajima on 6/5/24.

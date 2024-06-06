@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Server.swift
 //
 //
 //  Created by Pat Nakajima on 6/4/24.
@@ -7,10 +7,10 @@
 
 import Foundation
 import Hummingbird
-import NIOCore
-import SQLiteKit
-import ServerData
 import LibFourskie
+import NIOCore
+import ServerData
+import SQLiteKit
 
 public struct Server {
 	public init() {}
@@ -29,13 +29,13 @@ public struct Server {
 		let router = Router()
 		router.middlewares.add(LogRequestsMiddleware(.notice))
 
-		router.get("checkins") { request, context -> ByteBuffer in
+		router.get("checkins") { _, _ -> ByteBuffer in
 			let checkins = try await checkinStore.list()
 			let data = try encoder.encode(checkins)
 			return ByteBuffer(data: data)
 		}
 
-		router.post("checkins") { request, context -> ByteBuffer in
+		router.post("checkins") { request, _ -> ByteBuffer in
 			let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 5))
 			guard let checkin = try ServerCheckin.decode(checkinData) else {
 				return ByteBuffer(data: Data("Nope".utf8))
@@ -46,7 +46,7 @@ public struct Server {
 			return ByteBuffer(data: Data("OK".utf8))
 		}
 
-		router.get("ping") { request, context -> String in
+		router.get("ping") { _, _ -> String in
 			"PONG (\(Date().ISO8601Format()))\n"
 		}
 

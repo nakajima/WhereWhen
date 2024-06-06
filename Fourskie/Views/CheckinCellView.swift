@@ -45,16 +45,16 @@ struct CheckinCellView: View {
 }
 
 #if DEBUG
-#Preview {
-	PreviewsWrapper {
-		List {
-			CheckinListView()
-		}
-		.onAppear {
-			ModelContainer.preview.mainContext.insert(
-				LocalCheckin(wrapped: Checkin.preview)
-			)
+	#Preview {
+		PreviewsWrapper {
+			List {
+				CheckinListView()
+			}
+			.onAppear {
+				ModelContainer.preview.mainContext.insert(
+					LocalCheckin(wrapped: Checkin.preview)
+				)
+			}
 		}
 	}
-}
 #endif
