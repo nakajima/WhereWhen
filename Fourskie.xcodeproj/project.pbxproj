@@ -64,6 +64,7 @@
 		A6E64A072C0ACEFF00553F10 /* FourskieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A062C0ACEFF00553F10 /* FourskieTests.swift */; };
 		A6E64A112C0ACEFF00553F10 /* FourskieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */; };
 		A6E64A132C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */; };
+		A6EF91472C1383AE0080EEC8 /* DeletedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		A6E64A0C2C0ACEFF00553F10 /* FourskieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FourskieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieUITests.swift; sourceTree = "<group>"; };
 		A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				A69AE8A12C13625F00818D93 /* Place+Database.swift */,
 				A69AE89F2C13615200818D93 /* Model.swift */,
 				A69AE89D2C135FD400818D93 /* Database.swift */,
+				A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				A65191BE2C1112AE00884620 /* Place+CL.swift in Sources */,
 				A61D9C502C134D4800422715 /* NavigationContainer.swift in Sources */,
 				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
+				A6EF91472C1383AE0080EEC8 /* DeletedRecord.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
 				A61D9C452C12BC3400422715 /* Client.swift in Sources */,
 				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,

@@ -11,6 +11,8 @@ import LibFourskie
 
 extension HasManyAssociation: @unchecked Sendable {}
 
+extension Place: DeleteSyncable {}
+
 extension Place {
 	static let checkinsAssociation = hasMany(Checkin.self, using: ForeignKey(["placeID"]))
 }

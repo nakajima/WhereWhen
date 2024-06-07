@@ -16,7 +16,7 @@ import SwiftUI
 	@Published var errorMessage: String?
 	@Published var navigation: [Route] = []
 
-	let syncer: Syncer?
+	let syncer: Syncer
 
 	init(database: Database) {
 		self.database = database
@@ -31,7 +31,7 @@ import SwiftUI
 	}
 
 	func sync() {
-		syncer?.sync()
+		syncer.sync()
 	}
 
 	func dismissError() {

@@ -1,5 +1,5 @@
 {
-  "originHash" : "13c3f366cb866cc9bebbd0640f0902a2729afd3b11f467bfcf01752a20d5efe9",
+  "originHash" : "ada7b704694e1c58abcfa7d7942dc7750480cd9c8577aaebe22b14e1b07814d1",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -34,7 +34,7 @@
       "location" : "https://github.com/nakajima/ServerData.swift",
       "state" : {
         "branch" : "main",
-        "revision" : "1b69217a6287453b2c95696bc675826fed13c4de"
+        "revision" : "d72fd6e0417f7f2942027f3a7dcf92d8996c7a9d"
       }
     },
     {

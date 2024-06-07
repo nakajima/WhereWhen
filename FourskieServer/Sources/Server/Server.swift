@@ -59,6 +59,30 @@ public struct Server {
 			}
 		}
 
+    router.post("deletions") { request, context -> ByteBuffer in
+      do {
+        let deletionsData = try await Data(buffer: request.body.collect(upTo: 1024 * 5))
+        let deletions = try JSONDecoder().decode([DeletedRecord].self, from: deletionsData)
+
+        var deletedIDs: [String] = []
+        for deletion in deletions {
+          switch deletion.type {
+            case "Place": try await placeStore.delete(where: #SQL { $0.uuid == deletion.uuid })
+            case "Checkin": try await checkinStore.delete(where: #SQL { $0.uuid == deletion.uuid })
+            default: ()
+          }
+
+          deletedIDs.append(deletion.uuid)
+        }
+
+        let deletedIDsData = try JSONEncoder().encode(deletedIDs)
+        return .init(data: deletedIDsData)
+      } catch {
+        print("Error handling deletions: \(error)")
+        return .init()
+      }
+    }
+
 		router.post("checkins") { request, context -> ByteBuffer in
 			let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 5))
 			let checkins = try JSONDecoder().decode([Checkin].self, from: checkinData)

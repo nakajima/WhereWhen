@@ -22,6 +22,19 @@ actor Syncer {
 		self.queue = AsyncQueue()
 	}
 
+	func syncDeletions() async {
+		do {
+			let deletions = try await DeletedRecord.all(in: database)
+			let deletedIDs = try await client.upload(deletions: deletions)
+
+			_ = try await database.queue.write { db in
+				try DeletedRecord.deleteAll(db, keys: deletedIDs)
+			}
+		} catch {
+			logger.error("Error syncing deletions: \(error)")
+		}
+	}
+
 	func upload() async {
 		do {
 			let lastSyncedAt = await client.lastSyncedAt()
@@ -79,6 +92,7 @@ actor Syncer {
 			return
 		}
 
+		await syncDeletions()
 		await upload()
 		await download()
 	}
