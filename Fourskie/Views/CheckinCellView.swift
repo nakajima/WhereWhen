@@ -7,7 +7,6 @@
 
 import LibFourskie
 import MapKit
-import SwiftData
 import SwiftUI
 
 struct CheckinCellMapView: View {
@@ -26,14 +25,14 @@ struct CheckinCellMapView: View {
 }
 
 struct CheckinWithPlaceCellView: View {
-	@Environment(\.modelContext) var modelContext
+	@Environment(\.database) var database
 
-	let checkin: LocalCheckin
-	let place: LocalPlace
+	let checkin: Checkin
+	let place: Place
 
 	var body: some View {
 		HStack {
-			CheckinCellMapView(region: place.wrapped.region(.within(meters: 500)))
+			CheckinCellMapView(region: place.region(.within(meters: 500)))
 
 			VStack(alignment: .leading) {
 				Text(place.name)
@@ -47,24 +46,25 @@ struct CheckinWithPlaceCellView: View {
 		.listRowInsets(.init())
 		.swipeActions {
 			Button("Remove Place") {
+				var checkin = checkin
 				checkin.place = nil
-				try! modelContext.save()
+				try! checkin.save(to: database)
 			}
+
 			Button("Delete", role: .destructive) {
-				modelContext.delete(checkin)
-				try! modelContext.save()
+				try! database.delete(checkin)
 			}
 		}
 	}
 }
 
 struct CheckinWithoutPlaceCellView: View {
-	@Environment(\.modelContext) var modelContext
-	let checkin: LocalCheckin
+	@Environment(\.database) var database
+	let checkin: Checkin
 
 	var body: some View {
 		HStack {
-			CheckinCellMapView(region: checkin.wrapped.region(.within(meters: 500)))
+			CheckinCellMapView(region: checkin.region(.within(meters: 500)))
 
 			VStack(alignment: .leading) {
 				Text("Unknown Place")
@@ -78,24 +78,23 @@ struct CheckinWithoutPlaceCellView: View {
 		}
 		.swipeActions {
 			Button("Delete", role: .destructive) {
-				modelContext.delete(checkin)
-				try! modelContext.save()
+				try! database.delete(checkin)
 			}
 		}
 	}
 }
 
 struct CheckinCellView: View {
-	let checkin: LocalCheckin
+	let checkin: Checkin
 
 	var body: some View {
 		Group {
 			if let place = checkin.place {
-				NavigationLink(value: Route.checkin(checkin.wrapped, place.wrapped)) {
+				NavigationLink(value: Route.checkin(checkin, place)) {
 					CheckinWithPlaceCellView(checkin: checkin, place: place)
 				}
 			} else {
-				NavigationLink(value: Route.checkinChoosePlace(checkin.wrapped)) {
+				NavigationLink(value: Route.checkinChoosePlace(checkin)) {
 					CheckinWithoutPlaceCellView(checkin: checkin)
 				}
 			}
@@ -112,9 +111,7 @@ struct CheckinCellView: View {
 				CheckinListView()
 			}
 			.onAppear {
-				let checkin = LocalCheckin(wrapped: Checkin.preview)
-				ModelContainer.preview.mainContext.insert(checkin)
-				checkin.place = nil
+				try! Checkin.preview.save(to: .memory)
 			}
 		}
 	}

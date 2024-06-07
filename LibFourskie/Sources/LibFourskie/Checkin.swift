@@ -7,7 +7,9 @@
 
 import Foundation
 
-public struct Checkin: Codable, Sendable, Hashable {
+public struct Checkin: Identifiable, Codable, Sendable, Hashable {
+	public var id: String { uuid }
+
 	public let source: CheckinSource
 
 	// A unique ID shared across client/server

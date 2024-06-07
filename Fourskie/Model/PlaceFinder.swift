@@ -8,15 +8,14 @@
 import Foundation
 import LibFourskie
 import MapKit
-import SwiftData
 
 struct PlaceFinder {
 	enum Error: Swift.Error {
 		case noPlaceOrError
 	}
 
-	// We have a model container so we can save found places to the DB
-	let container: ModelContainer
+	// We have a database so we can save found places
+	let database: Database
 
 	// Where is the user right now? This may differ from where they are searching
 	let coordinate: Coordinate
@@ -24,8 +23,8 @@ struct PlaceFinder {
 	// A user entered string to search for
 	let search: String
 
-	init(container: ModelContainer, coordinate: Coordinate, search: String) {
-		self.container = container
+	init(database: Database, coordinate: Coordinate, search: String) {
+		self.database = database
 		self.coordinate = coordinate
 		self.search = search
 	}
@@ -80,10 +79,7 @@ struct PlaceFinder {
 
 	// TODO: This just returns EVERYTHING.
 	private func localLookup() throws -> [Place] {
-		let context = ModelContext(container)
-		let descriptor = FetchDescriptor<LocalPlace>()
-		let localPlaces = try context.fetch(descriptor)
-		return localPlaces.map { $0.wrapped }
+		return try Place.all(in: database)
 	}
 
 	private func lookupFromCL(region: MKCoordinateRegion) async throws -> [Place] {
@@ -129,16 +125,13 @@ struct PlaceFinder {
 						results.append(place)
 					}
 
-					let context = ModelContext(container)
-					for place in results {
-						let localPlace = LocalPlace(wrapped: place)
-						context.insert(localPlace)
-					}
-
 					do {
-						try context.save()
+						for place in results {
+							try place.save(to: database)
+						}
 					} catch {
-						print("Error saving places: \(error)")
+						continuation.resume(throwing: error)
+						return
 					}
 
 					continuation.resume(returning: results)

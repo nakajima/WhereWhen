@@ -6,11 +6,9 @@
 //
 
 import LibFourskie
-import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-	@Environment(\.modelContext) private var modelContext
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	var body: some View {
@@ -31,8 +29,8 @@ struct ContentView: View {
 #if DEBUG
 	#Preview {
 		ContentView()
-			.modelContainer(ModelContainer.preview)
-			.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-			.environment(LocationListener(container: ModelContainer.preview))
+			.environment(\.database, .memory)
+			.environmentObject(FourskieCoordinator(database: .memory))
+			.environment(LocationListener(database: .memory))
 	}
 #endif

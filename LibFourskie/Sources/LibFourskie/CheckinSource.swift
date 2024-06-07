@@ -8,5 +8,5 @@
 import Foundation
 
 public enum CheckinSource: Codable, Sendable {
-	case automatic, manual
+	case automatic, manual, unknown
 }
