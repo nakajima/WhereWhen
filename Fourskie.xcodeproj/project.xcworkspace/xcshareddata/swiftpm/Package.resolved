@@ -1,5 +1,5 @@
 {
-  "originHash" : "05b59c3809ec45a3c7509e3766a0d12f9b6950cc6bfe086de3cbb0ffbb20be2c",
+  "originHash" : "e0bd48e08c31c0f077bacd3134b290833d512e3bac8fba024c4a3e8028cbcb1c",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -20,12 +20,21 @@
       }
     },
     {
+      "identity" : "grdb.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDB.swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "4b934fda754b1cab34394ea89c2dd5acd170d50e"
+      }
+    },
+    {
       "identity" : "hummingbird",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hummingbird-project/hummingbird",
       "state" : {
         "branch" : "main",
-        "revision" : "44aea61cd1756125fb4d799685867956c054f149"
+        "revision" : "277a33e6f777973809667484cdbaf4e38d7e0617"
       }
     },
     {
@@ -43,7 +52,7 @@
       "location" : "https://github.com/nakajima/ServerData.swift",
       "state" : {
         "branch" : "main",
-        "revision" : "c81616a50b2fc01e6d5929229229b54f312c1143"
+        "revision" : "1b69217a6287453b2c95696bc675826fed13c4de"
       }
     },
     {

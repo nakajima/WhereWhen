@@ -17,7 +17,7 @@ import LibFourskie
 	}
 
 	var source: CheckinSource
-	var uuid: String
+	@Column(.unique) var uuid: String
 	var latitude: Double
 	var longitude: Double
 	var savedAt: Date
