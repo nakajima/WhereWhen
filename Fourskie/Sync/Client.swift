@@ -42,9 +42,21 @@ struct FourskieClient {
 		_ = try await URLSession.shared.upload(for: request, from: data)
 	}
 
-	func download(since _: Date) async throws -> [Checkin] {
+	func upload(deletions: [DeletedRecord]) async throws -> [String] {
+		let data = try JSONEncoder().encode(deletions)
+
+		var request = URLRequest(url: serverURL.appending(path: "deletions"))
+		request.httpMethod = "POST"
+
+		let deletedIDsData = try await URLSession.shared.upload(for: request, from: data).0
+		let deletedIDs = try JSONDecoder().decode([String].self, from: deletedIDsData)
+
+		return deletedIDs
+	}
+
+	func download(since: Date) async throws -> [Checkin] {
 		var request = URLRequest(url: serverURL.appending(path: "checkins"))
-//		request.setValue(since.formatted(.iso8601), forHTTPHeaderField: "If-Modified-Since")
+		request.setValue(since.formatted(.iso8601), forHTTPHeaderField: "If-Modified-Since")
 
 		let (data, response) = try await URLSession.shared.data(for: request)
 

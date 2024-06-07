@@ -46,6 +46,7 @@ final class Database: Sendable {
 	func setup() {
 		try! Place.create(in: self)
 		try! Checkin.create(in: self)
+		try! DeletedRecord.create(in: self)
 	}
 
 	func create(table: String, definition: (TableDefinition) throws -> Void) throws {
@@ -56,6 +57,11 @@ final class Database: Sendable {
 
 	func delete(_ model: Model) throws {
 		_ = try queue.write { db in
+			if let deleteSyncable = model as? DeleteSyncable {
+				let record = DeletedRecord(uuid: deleteSyncable.uuid, type: String(describing: type(of: model)), deletedAt: Date())
+				try record.insert(db)
+			}
+
 			try model.delete(db)
 		}
 	}

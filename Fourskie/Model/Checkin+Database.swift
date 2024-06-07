@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@preconcurrency import GRDB
+import GRDB
 import LibFourskie
 
 // Probably not but ¯\_(ツ)_/¯
@@ -15,6 +15,8 @@ extension BelongsToAssociation: @unchecked Sendable {}
 extension Checkin {
 	static let placeAssociation = belongsTo(Place.self, using: ForeignKey(["placeID"]))
 }
+
+extension Checkin: DeleteSyncable {}
 
 extension Checkin: Model, Sendable {
 	static func create(in database: Database) throws {
