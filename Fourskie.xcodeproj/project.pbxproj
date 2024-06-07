@@ -17,6 +17,7 @@
 		A61D9C492C12BD3600422715 /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C482C12BD3600422715 /* Syncer.swift */; };
 		A61D9C4C2C12BEC000422715 /* Queue in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C4B2C12BEC000422715 /* Queue */; };
 		A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C4D2C12C16600422715 /* WrappedDefault.swift */; };
+		A61D9C502C134D4800422715 /* NavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C4F2C134D4800422715 /* NavigationContainer.swift */; };
 		A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */; };
 		A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A64DD77D2C10D2B9004FF084 /* LibFourskie */; };
 		A65191A52C10D39500884620 /* LocalPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A42C10D39500884620 /* LocalPlace.swift */; };
@@ -87,6 +88,7 @@
 		A61D9C462C12BC8200422715 /* URLSession+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Helpers.swift"; sourceTree = "<group>"; };
 		A61D9C482C12BD3600422715 /* Syncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
 		A61D9C4D2C12C16600422715 /* WrappedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedDefault.swift; sourceTree = "<group>"; };
+		A61D9C4F2C134D4800422715 /* NavigationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContainer.swift; sourceTree = "<group>"; };
 		A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCheckin+Wrapper.swift"; sourceTree = "<group>"; };
 		A65191A42C10D39500884620 /* LocalPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlace.swift; sourceTree = "<group>"; };
 		A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlace+Wrapper.swift"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				A65191B52C11030E00884620 /* PlaceListView.swift */,
 				A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */,
 				A6901ED42C12B87B002F4764 /* Styles.swift */,
+				A61D9C4F2C134D4800422715 /* NavigationContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				A61308CC2C11817D004B35A3 /* Array.swift in Sources */,
 				A657910C2C1124C900D2273A /* DragDismissable.swift in Sources */,
 				A65191BE2C1112AE00884620 /* Place+CL.swift in Sources */,
+				A61D9C502C134D4800422715 /* NavigationContainer.swift in Sources */,
 				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
 				A61D9C452C12BC3400422715 /* Client.swift in Sources */,
