@@ -8,7 +8,6 @@
 import CoreLocation
 import Foundation
 import MapKit
-import SwiftData
 import SwiftUI
 
 struct ManualCheckinView: View {
@@ -57,10 +56,9 @@ struct ManualCheckinView: View {
 }
 
 #if DEBUG
-#Preview {
-	ManualCheckinView()
-		.environment(LocationListener(container: ModelContainer.preview))
-		.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-		.modelContainer(ModelContainer.preview)
-}
+	#Preview {
+		PreviewsWrapper {
+			ManualCheckinView()
+		}
+	}
 #endif

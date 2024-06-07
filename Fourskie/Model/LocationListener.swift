@@ -7,8 +7,8 @@
 
 @preconcurrency import CoreLocation
 import Foundation
+import LibFourskie
 import Observation
-import SwiftData
 
 @Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
 	enum Error: Swift.Error {
@@ -31,16 +31,16 @@ import SwiftData
 	let manager = CLLocationManager()
 
 	var isAuthorized = false
-	var container: ModelContainer
+	var database: Database
 	var locationRequest: LocationRequest?
 
-	init(container: ModelContainer) {
+	init(database: Database) {
 		manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 		manager.distanceFilter = kCLLocationAccuracyNearestTenMeters
 		manager.allowsBackgroundLocationUpdates = true
 		manager.pausesLocationUpdatesAutomatically = false
 
-		self.container = container
+		self.database = database
 		self.isAuthorized = manager.authorizationStatus != .authorizedAlways
 
 		super.init()
@@ -101,15 +101,10 @@ import SwiftData
 		logger.info("didVisit: \(visit.debugDescription)")
 
 		// Assigning these to locals for sendability
-		let container = self.container
-		let logger = self.logger
-
 		Task {
 			do {
-				let context = ModelContext(container)
-				let checkin = LocalCheckin(visit: visit)
-				context.insert(checkin)
-				try context.save()
+				let checkin = Checkin(visit: visit)
+				try await checkin.save(to: database)
 			} catch {
 				logger.error("Error saving checking: \(error)")
 			}

@@ -19,7 +19,6 @@ enum Route: Hashable {
 
 struct NavigationContainer<Content: View>: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
-	@Environment(\.modelContext) private var modelContext
 
 	var path: Binding<[Route]>
 	@ViewBuilder var content: () -> Content
@@ -38,14 +37,14 @@ struct NavigationContainer<Content: View>: View {
 						)
 					case let .finishUpdateCheckinView(checkin, place):
 						ManualCheckinFinishView(
-							checkin: LocalCheckin.model(for: checkin, in: modelContext),
+							checkin: checkin,
 							place: place,
 							currentLocation: checkin.coordinate
 						)
 					case let .checkin(checkin, place):
-						CheckinShowView(checkin: LocalCheckin.model(for: checkin, in: modelContext), place: LocalPlace.model(for: place, in: modelContext))
+						CheckinShowView(checkin: checkin, place: place)
 					case let .checkinChoosePlace(checkin):
-						CheckinChoosePlaceView(checkin: LocalCheckin.model(for: checkin, in: modelContext))
+						CheckinChoosePlaceView(checkin: checkin)
 					}
 				}
 		}
@@ -53,11 +52,11 @@ struct NavigationContainer<Content: View>: View {
 }
 
 #if DEBUG
-#Preview {
-	PreviewsWrapper {
-		NavigationContainer(path: .constant([])) {
-			Text("Hi")
+	#Preview {
+		PreviewsWrapper {
+			NavigationContainer(path: .constant([])) {
+				Text("Hi")
+			}
 		}
 	}
-}
 #endif

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 import SwiftUI
 
 struct HomeView: View {
@@ -68,11 +67,10 @@ struct HomeView: View {
 
 #if DEBUG
 	#Preview {
-		NavigationSplitView {
-			HomeView()
-		} detail: {
-			Text("hi")
+		PreviewsWrapper {
+			NavigationContainer(path: .constant([])) {
+				HomeView()
+			}
 		}
-		.environment(LocationListener(container: ModelContainer.preview))
 	}
 #endif

@@ -13,7 +13,7 @@ struct ManualCheckinFinishView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
 	@Environment(\.dismiss) var dismiss
 
-	var checkin: LocalCheckin?
+	var checkin: Checkin?
 	var place: Place
 	var currentLocation: Coordinate
 	var caption: String = "Checking in here:"
@@ -35,7 +35,7 @@ struct ManualCheckinFinishView: View {
 			Section {
 				Button(buttonLabel) {
 					if let checkin {
-						coordinator.updateCheckinPlace(checkin: checkin.wrapped, place: place)
+						coordinator.updateCheckinPlace(checkin: checkin, place: place)
 					} else {
 						coordinator.manualCheckIn(place: place, from: currentLocation)
 					}

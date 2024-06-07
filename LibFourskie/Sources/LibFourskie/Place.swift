@@ -51,6 +51,9 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 	// The postal code associated with the place.
 	public let postalCode: String?
 
+	// Gets populated by DBs
+	public var checkins: [Checkin] = []
+
 	public init(
 		uuid: String,
 		addedAt: Date,
