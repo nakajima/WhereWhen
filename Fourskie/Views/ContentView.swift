@@ -29,20 +29,20 @@ struct ContentView: View {
 					switch route {
 					case .home: HomeView()
 					case .settings: SettingsView()
-					case .finishCheckinView(let place, let coordinate):
+					case let .finishCheckinView(place, coordinate):
 						ManualCheckinFinishView(
 							place: place,
 							currentLocation: coordinate
 						)
-					case .finishUpdateCheckinView(let checkin, let place):
+					case let .finishUpdateCheckinView(checkin, place):
 						ManualCheckinFinishView(
 							checkin: LocalCheckin.model(for: checkin, in: modelContext),
 							place: place,
 							currentLocation: checkin.coordinate
 						)
-					case .checkin(let checkin, let place):
+					case let .checkin(checkin, place):
 						CheckinShowView(checkin: LocalCheckin.model(for: checkin, in: modelContext), place: LocalPlace.model(for: place, in: modelContext))
-					case .checkinChoosePlace(let checkin):
+					case let .checkinChoosePlace(checkin):
 						CheckinChoosePlaceView(checkin: LocalCheckin.model(for: checkin, in: modelContext))
 					}
 				}
@@ -59,10 +59,10 @@ struct ContentView: View {
 }
 
 #if DEBUG
-#Preview {
-	ContentView()
-		.modelContainer(ModelContainer.preview)
-		.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-		.environment(LocationListener(container: ModelContainer.preview))
-}
+	#Preview {
+		ContentView()
+			.modelContainer(ModelContainer.preview)
+			.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
+			.environment(LocationListener(container: ModelContainer.preview))
+	}
 #endif

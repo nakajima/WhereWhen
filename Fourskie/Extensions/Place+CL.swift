@@ -21,13 +21,7 @@ extension Place {
 	func formatAddress() -> String {
 		let postalAddress = CNMutablePostalAddress()
 
-		if let thoroughfare = thoroughfare {
-			postalAddress.street = thoroughfare
-		}
-
-		if let subThoroughfare = subThoroughfare {
-			postalAddress.street += " \(subThoroughfare)"
-		}
+		postalAddress.street = [subThoroughfare, thoroughfare].compactMap { $0 }.joined(separator: " ")
 
 		if let locality = locality {
 			postalAddress.city = locality
@@ -39,6 +33,7 @@ extension Place {
 
 		if let administrativeArea = administrativeArea {
 			postalAddress.state = administrativeArea
+			postalAddress.state += ","
 		}
 
 		if let subAdministrativeArea = subAdministrativeArea {
@@ -50,6 +45,7 @@ extension Place {
 		}
 
 		let formatter = CNPostalAddressFormatter()
+		formatter.style = .mailingAddress
 		let formattedAddress = formatter.string(from: postalAddress)
 
 		return formattedAddress

@@ -21,11 +21,12 @@ struct ManualCheckinFinishView: View {
 
 	var body: some View {
 		Form {
-			VStack(alignment: .leading) {
+			VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
 				Text(caption)
 					.font(.caption)
 					.foregroundStyle(.secondary)
 				Text(place.name)
+					.font(.title2)
 					.bold()
 				Text(place.formatAddress())
 					.font(.subheadline)

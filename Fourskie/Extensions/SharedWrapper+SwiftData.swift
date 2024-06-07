@@ -13,8 +13,12 @@ extension SharedWrapper where Self: PersistentModel {
 	static func model(for wrapped: Wrapped, in context: ModelContext) -> Self {
 		if let existing = try? context.first(where: #Predicate<Self> { $0.uuid == wrapped.uuid }) {
 			return existing
-		}
+		} else {
+			let model = Self(wrapped: wrapped)!
+			context.insert(model)
+			try! context.save()
 
-		return Self.init(wrapped: wrapped)!
+			return model
+		}
 	}
 }

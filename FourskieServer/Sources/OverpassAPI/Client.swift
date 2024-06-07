@@ -1,15 +1,13 @@
 //
-//  File.swift
-//  
+//  Client.swift
+//
 //
 //  Created by Pat Nakajima on 6/6/24.
 //
 
 import Foundation
 
-public struct OverpassResult {
-
-}
+public struct OverpassResult {}
 
 // So we can use URLSession or AsyncHTTPClient
 public protocol OverpassHTTPAdapter {
@@ -43,7 +41,7 @@ public struct OverpassClient {
 		"""
 
 		let data = try await request(body: Data(query.utf8))
-		
+
 		return []
 	}
 
