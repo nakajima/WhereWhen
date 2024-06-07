@@ -15,6 +15,7 @@ import SwiftUI
 
 	@Published var isShowingManualCheckin = false
 	@Published var errorMessage: String?
+	@Published var navigation: [Route] = []
 
 	init(container: ModelContainer) {
 		self.container = container
@@ -26,13 +27,27 @@ import SwiftUI
 		}
 	}
 
+	func updateCheckinPlace(checkin: Checkin, place: Place) {
+		let context = container.mainContext
+
+		let localCheckin = LocalCheckin.model(for: checkin, in: context)
+		let localPlace = LocalPlace.model(for: place, in: context)
+		context.insert(localPlace)
+
+		localCheckin.place = localPlace
+
+		do {
+			try context.save()
+			navigation = []
+		} catch {
+			errorMessage = error.localizedDescription
+		}
+	}
+
 	func manualCheckIn(place: Place, from coordinate: Coordinate) {
 		let context = container.mainContext
+		let localPlace = LocalPlace.model(for: place, in: context)
 		do {
-			let foundPlace = try context.first(where: #Predicate<LocalPlace> { $0.coordinateID == place.coordinate.id }) ?? LocalPlace(wrapped: place)
-
-			container.mainContext.insert(foundPlace)
-
 			let checkin = LocalCheckin(
 				source: .manual,
 				uuid: UUID().uuidString,
@@ -41,7 +56,7 @@ import SwiftUI
 				accuracy: place.coordinate.distance(to: coordinate),
 				arrivalDate: Date(),
 				departureDate: nil,
-				place: foundPlace
+				place: localPlace
 			)
 
 			container.mainContext.insert(checkin)

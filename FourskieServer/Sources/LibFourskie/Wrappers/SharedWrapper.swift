@@ -7,10 +7,19 @@
 
 import Foundation
 
+public protocol UUIDIdentifiable {
+	var uuid: String { get }
+}
+
+extension Place: UUIDIdentifiable {}
+extension Checkin: UUIDIdentifiable {}
+
 // Types conforming to shared wrapper can be sent between
 // client and server serialized as their Wrapped type.
 public protocol SharedWrapper<Wrapped> {
-	associatedtype Wrapped: Codable
+	associatedtype Wrapped: Codable, UUIDIdentifiable
+
+	var uuid: String { get }
 
 	var wrapped: Wrapped { get }
 	init?(wrapped: Wrapped)

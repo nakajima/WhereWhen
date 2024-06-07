@@ -27,6 +27,7 @@ let package = Package(
 				"Server",
 			]
 		),
+		.target(name: "OverpassAPI"),
 		.target(name: "LibFourskie"),
 		.target(
 			name: "Server",

@@ -9,6 +9,14 @@ import Foundation
 import LibFourskie
 import MapKit
 
+extension MKPointOfInterestCategory: UUIDIdentifiable {
+	public var uuid: String { rawValue }
+}
+
+extension PlaceCategory: UUIDIdentifiable {
+	public var uuid: String { rawValue }
+}
+
 extension MKPointOfInterestCategory: SharedWrapper {
 	public typealias Wrapped = PlaceCategory
 

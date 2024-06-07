@@ -97,7 +97,7 @@ import SwiftData
 		}
 	}
 
-	func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
+	func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
 		logger.info("didVisit: \(visit.debugDescription)")
 
 		// Assigning these to locals for sendability

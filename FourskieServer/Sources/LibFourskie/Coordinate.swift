@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Coordinate: Codable, Identifiable, Sendable {
+public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 	public var id: String { "\(latitude),\(longitude)" }
 
 	public let latitude: Double

@@ -50,12 +50,16 @@ struct CheckinWithPlaceCellView: View {
 				checkin.place = nil
 				try! modelContext.save()
 			}
-			Button("Delete", role: .destructive) {}
+			Button("Delete", role: .destructive) {
+				modelContext.delete(checkin)
+				try! modelContext.save()
+			}
 		}
 	}
 }
 
 struct CheckinWithoutPlaceCellView: View {
+	@Environment(\.modelContext) var modelContext
 	let checkin: LocalCheckin
 
 	var body: some View {
@@ -73,7 +77,10 @@ struct CheckinWithoutPlaceCellView: View {
 			}
 		}
 		.swipeActions {
-			Button("Delete", role: .destructive) {}
+			Button("Delete", role: .destructive) {
+				modelContext.delete(checkin)
+				try! modelContext.save()
+			}
 		}
 	}
 }
@@ -84,11 +91,11 @@ struct CheckinCellView: View {
 	var body: some View {
 		Group {
 			if let place = checkin.place {
-				NavigationLink(destination: CheckinShowView(checkin: checkin, place: place)) {
+				NavigationLink(value: Route.checkin(checkin.wrapped, place.wrapped)) {
 					CheckinWithPlaceCellView(checkin: checkin, place: place)
 				}
 			} else {
-				NavigationLink(destination: CheckinChoosePlaceView(checkin: checkin)) {
+				NavigationLink(value: Route.checkinChoosePlace(checkin.wrapped)) {
 					CheckinWithoutPlaceCellView(checkin: checkin)
 				}
 			}

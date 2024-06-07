@@ -38,6 +38,8 @@ import SwiftData
 	var subAdministrativeArea: String?
 	var postalCode: String?
 
+	@Relationship(inverse: \LocalCheckin.place) var checkins: [LocalCheckin] = []
+
 	init(
 		uuid: String,
 		addedAt: Date,

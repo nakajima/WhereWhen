@@ -12,7 +12,7 @@ import MapKit
 import SwiftData
 import SwiftUI
 
-struct ManualCheckinChoosePlaceView<Destination: View>: View {
+struct ManualCheckinChoosePlaceView: View {
 	// What part of the map are we lookin at
 	@State private var region: MKCoordinateRegion
 
@@ -29,9 +29,9 @@ struct ManualCheckinChoosePlaceView<Destination: View>: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	let location: Coordinate
-	let destination: (Place) -> Destination
+	let destination: (Place) -> Route
 
-	init(location: Coordinate, destination: @escaping (Place) -> Destination) {
+	init(location: Coordinate, destination: @escaping (Place) -> Route) {
 		self.location = location
 		self.destination = destination
 
@@ -49,7 +49,7 @@ struct ManualCheckinChoosePlaceView<Destination: View>: View {
 				self.visiblePlaces = visiblePlaces
 			} cellBuilder: { place in
 				NavigationLink(
-					destination: destination(place)
+					value: destination(place)
 				) {
 					ManualCheckinPlaceCellView(
 						currentLocation: location,

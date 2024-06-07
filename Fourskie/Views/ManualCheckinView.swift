@@ -12,6 +12,7 @@ import SwiftData
 import SwiftUI
 
 struct ManualCheckinView: View {
+	@EnvironmentObject var coordinator: FourskieCoordinator
 	@Environment(LocationListener.self) var location
 
 	@State private var status: Status = .loading
@@ -43,12 +44,7 @@ struct ManualCheckinView: View {
 			case let .loaded(clLocation):
 				ManualCheckinChoosePlaceView(
 					location: .init(clLocation.coordinate),
-					destination: { place in
-						ManualCheckinFinishView(
-							place: place,
-							currentLocation: .init(clLocation.coordinate)
-						)
-					}
+					destination: { place in .finishCheckinView(place, .init(clLocation.coordinate)) }
 				)
 				.navigationTitle("Check In")
 				.navigationBarTitleDisplayMode(.inline)
