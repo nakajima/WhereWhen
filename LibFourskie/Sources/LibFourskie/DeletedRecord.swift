@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  DeletedRecord.swift
+//
 //
 //  Created by Pat Nakajima on 6/7/24.
 //

@@ -8,7 +8,6 @@ let package = Package(
 	platforms: [.macOS(.v14), .iOS(.v17)],
 	products: [
 		.executable(name: "fourskie", targets: ["Command"]),
-		.library(name: "LibFourskie", targets: ["LibFourskie"]),
 	],
 	dependencies: [
 		.package(url: "https://github.com/hummingbird-project/hummingbird", branch: "main"),
@@ -16,6 +15,7 @@ let package = Package(
 		.package(url: "https://github.com/swift-server/async-http-client", branch: "main"),
 		.package(url: "https://github.com/nakajima/ServerData.swift", branch: "main"),
 		.package(url: "https://github.com/vapor/sqlite-kit", branch: "main"),
+		.package(path: "../LibFourskie"),
 	],
 	targets: [
 		// Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -28,7 +28,6 @@ let package = Package(
 			]
 		),
 		.target(name: "OverpassAPI"),
-		.target(name: "LibFourskie"),
 		.target(
 			name: "Server",
 			dependencies: [

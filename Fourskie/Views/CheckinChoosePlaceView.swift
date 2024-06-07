@@ -7,11 +7,10 @@
 
 import Foundation
 import LibFourskie
-import SwiftData
 import SwiftUI
 
 struct UpdateCheckinView: View {
-	var checkin: LocalCheckin
+	var checkin: Checkin
 	var place: Place
 
 	var body: some View {
@@ -26,12 +25,11 @@ struct UpdateCheckinView: View {
 
 struct CheckinChoosePlaceView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
-	@Environment(\.modelContext) var modelContext
-	let checkin: LocalCheckin
+	let checkin: Checkin
 
 	var body: some View {
 		ManualCheckinChoosePlaceView(location: checkin.coordinate) { place in
-			.finishUpdateCheckinView(checkin.wrapped, place)
+			.finishUpdateCheckinView(checkin, place)
 		}
 		.navigationTitle("Choose a place")
 	}
@@ -41,7 +39,7 @@ struct CheckinChoosePlaceView: View {
 	#Preview {
 		PreviewsWrapper {
 			NavigationStack {
-				CheckinChoosePlaceView(checkin: LocalCheckin(wrapped: Checkin.preview))
+				CheckinChoosePlaceView(checkin: Checkin.preview)
 			}
 		}
 	}

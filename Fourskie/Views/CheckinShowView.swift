@@ -6,16 +6,25 @@
 //
 
 import Foundation
+import GRDBQuery
 import LibFourskie
 import MapKit
-import SwiftData
 import SwiftUI
 
 @MainActor struct CheckinShowView: View {
-	let checkin: LocalCheckin
-	let place: LocalPlace
+	@Query(PlaceCheckinsRequest(placeUUID: ""))
+	var placeCheckins: [Checkin]
+
+	let checkin: Checkin
+	let place: Place
 
 	@State private var isDeleting = false
+
+	init(checkin: Checkin, place: Place) {
+		self.checkin = checkin
+		self.place = place
+		self._placeCheckins = Query(PlaceCheckinsRequest(placeUUID: place.uuid))
+	}
 
 	var body: some View {
 		List {
@@ -23,7 +32,7 @@ import SwiftUI
 				VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
 					Text(place.name)
 						.bold()
-					Text("You’ve checked-in here \(place.checkins.count.ordinalize("time")).")
+					Text("You’ve checked-in here \(placeCheckins.count.ordinalize("time")).")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
@@ -55,7 +64,7 @@ import SwiftUI
 
 				Divider()
 				meta("Address") {
-					Text(place.wrapped.formatAddress())
+					Text(place.formatAddress())
 				}
 			}
 
@@ -70,7 +79,7 @@ import SwiftUI
 			}
 		}
 		.safeAreaInset(edge: .top) {
-			Map(initialPosition: .region(place.wrapped.region(.within(meters: 100))), interactionModes: []) {
+			Map(initialPosition: .region(place.region(.within(meters: 100))), interactionModes: []) {
 				Marker(coordinate: checkin.coordinate.clLocation) {}
 			}
 			.frame(height: 200)
@@ -97,28 +106,9 @@ import SwiftUI
 	#Preview {
 		PreviewsWrapper {
 			CheckinShowView(
-				checkin: LocalCheckin.model(
-					for: Checkin.preview,
-					in: ModelContainer.preview.mainContext
-				),
-				place: LocalPlace.model(
-					for: Place.preview,
-					in: ModelContainer.preview.mainContext
-				)
+				checkin: Checkin.preview,
+				place: Place.preview
 			)
-			.onAppear {
-				let checkin = LocalCheckin.model(
-					for: Checkin.preview,
-					in: ModelContainer.preview.mainContext
-				)
-
-				let place = LocalPlace.model(
-					for: Place.preview,
-					in: ModelContainer.preview.mainContext
-				)
-
-				checkin.place = place
-			}
 		}
 	}
 #endif

@@ -5,12 +5,11 @@
 //  Created by Pat Nakajima on 5/31/24.
 //
 
-import SwiftData
 import SwiftUI
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-	let location = LocationListener(container: ModelContainer.shared)
+	let location = LocationListener(database: .dev)
 
 	func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 		true
@@ -23,7 +22,7 @@ struct FourskieApp: App {
 	@StateObject var coordinator: FourskieCoordinator
 
 	init() {
-		_coordinator = StateObject(wrappedValue: FourskieCoordinator(container: ModelContainer.shared))
+		_coordinator = StateObject(wrappedValue: FourskieCoordinator(database: .dev))
 	}
 
 	var body: some Scene {
@@ -32,6 +31,7 @@ struct FourskieApp: App {
 				.environmentObject(coordinator)
 		}
 		.environment(appDelegate.location)
-		.modelContainer(ModelContainer.shared)
+		.environment(\.database, .dev)
+		.environment(\.dbQueue, Database.dev.queue)
 	}
 }
