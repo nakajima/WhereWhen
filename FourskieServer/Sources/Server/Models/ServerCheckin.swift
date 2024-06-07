@@ -12,6 +12,10 @@ import LibFourskie
 @Model(table: "checkins") struct ServerCheckin: Codable, Sendable {
 	@Column(.primaryKey(autoIncrement: true)) var id: Int?
 
+	enum CodingKeys: CodingKey {
+		case source, uuid, latitude, longitude, savedAt, accuracy, arrivalDate, departureDate, placeUUID
+	}
+
 	var source: CheckinSource
 	var uuid: String
 	var latitude: Double
@@ -20,7 +24,9 @@ import LibFourskie
 	var accuracy: Double
 	var arrivalDate: Date?
 	var departureDate: Date?
-	var place: ServerPlace?
+	var placeUUID: String?
+
+	@Transient() var place: ServerPlace?
 
 	init(
 		id: Int? = nil,
@@ -43,6 +49,7 @@ import LibFourskie
 		self.accuracy = accuracy
 		self.arrivalDate = arrivalDate
 		self.departureDate = departureDate
+		self.placeUUID = place?.uuid
 		self.place = place
 	}
 }

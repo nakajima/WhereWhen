@@ -1,5 +1,5 @@
 {
-  "originHash" : "960de376b6306881b4a74f62f353ec13ab02f7c5ddfd1a14df4b3c5c8a0f5bfb",
+  "originHash" : "28a5e2b7201313fb632628cdc4373a2136eeb63e8d1302a1730d2fa0e07327b9",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -25,7 +25,7 @@
       "location" : "https://github.com/hummingbird-project/hummingbird",
       "state" : {
         "branch" : "main",
-        "revision" : "44aea61cd1756125fb4d799685867956c054f149"
+        "revision" : "277a33e6f777973809667484cdbaf4e38d7e0617"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/nakajima/ServerData.swift",
       "state" : {
         "branch" : "main",
-        "revision" : "19172a63fe7b171498750673f7e73b7a3fb6ddb2"
+        "revision" : "1b69217a6287453b2c95696bc675826fed13c4de"
       }
     },
     {

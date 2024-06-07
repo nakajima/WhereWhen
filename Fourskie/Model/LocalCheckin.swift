@@ -12,7 +12,7 @@ import SwiftData
 @Model final class LocalCheckin {
 	@Attribute(.unique) var uuid = UUID().uuidString
 
-	var source: CheckinSource
+	@Transient var source: CheckinSource = .manual
 	var coordinate: Coordinate
 	var savedAt: Date
 	var accuracy: Double

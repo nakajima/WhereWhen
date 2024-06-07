@@ -19,6 +19,8 @@ extension Container {
 		let connection = try! source.makeConnection(logger: Logger(label: name), on: pool.eventLoopGroup.next()).wait()
 		let database = connection.sql()
 
+		print("DB: \(config.storage)")
+
 		// Create the Container so we can use it to create a PersistentStore for
 		// our Person model
 		let container = try! Container(

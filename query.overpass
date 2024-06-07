@@ -1,0 +1,7 @@
+[out:json];
+(
+	node["name"](around:500.0,34.132865471720756,-118.21619106721997);
+);
+out body;
+>;
+out skel qt;

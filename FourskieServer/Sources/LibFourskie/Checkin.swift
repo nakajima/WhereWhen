@@ -27,7 +27,7 @@ public struct Checkin: Codable, Sendable, Hashable {
 	public let departureDate: Date?
 
 	// Do we have a place?
-	public let place: Place?
+	public var place: Place?
 
 	public init(
 		source: CheckinSource,

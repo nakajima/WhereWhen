@@ -12,6 +12,11 @@
 		A61308CE2C1210D5004B35A3 /* Checkin+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308CD2C1210D5004B35A3 /* Checkin+MapKit.swift */; };
 		A61308D02C1211A8004B35A3 /* CheckinChoosePlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */; };
 		A61308D22C121F6D004B35A3 /* CheckinShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61308D12C121F6D004B35A3 /* CheckinShowView.swift */; };
+		A61D9C452C12BC3400422715 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C442C12BC3400422715 /* Client.swift */; };
+		A61D9C472C12BC8200422715 /* URLSession+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C462C12BC8200422715 /* URLSession+Helpers.swift */; };
+		A61D9C492C12BD3600422715 /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C482C12BD3600422715 /* Syncer.swift */; };
+		A61D9C4C2C12BEC000422715 /* Queue in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C4B2C12BEC000422715 /* Queue */; };
+		A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C4D2C12C16600422715 /* WrappedDefault.swift */; };
 		A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */; };
 		A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A64DD77D2C10D2B9004FF084 /* LibFourskie */; };
 		A65191A52C10D39500884620 /* LocalPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A42C10D39500884620 /* LocalPlace.swift */; };
@@ -78,6 +83,10 @@
 		A61308CD2C1210D5004B35A3 /* Checkin+MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+MapKit.swift"; sourceTree = "<group>"; };
 		A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinChoosePlaceView.swift; sourceTree = "<group>"; };
 		A61308D12C121F6D004B35A3 /* CheckinShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinShowView.swift; sourceTree = "<group>"; };
+		A61D9C442C12BC3400422715 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		A61D9C462C12BC8200422715 /* URLSession+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Helpers.swift"; sourceTree = "<group>"; };
+		A61D9C482C12BD3600422715 /* Syncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
+		A61D9C4D2C12C16600422715 /* WrappedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedDefault.swift; sourceTree = "<group>"; };
 		A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCheckin+Wrapper.swift"; sourceTree = "<group>"; };
 		A65191A42C10D39500884620 /* LocalPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlace.swift; sourceTree = "<group>"; };
 		A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlace+Wrapper.swift"; sourceTree = "<group>"; };
@@ -130,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A61D9C4C2C12BEC000422715 /* Queue in Frameworks */,
 				A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +161,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A61D9C432C12BC2B00422715 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				A61D9C442C12BC3400422715 /* Client.swift */,
+				A61D9C482C12BD3600422715 /* Syncer.swift */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
 		A65191AA2C10DD5500884620 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +184,7 @@
 				A65791132C1170D200D2273A /* String.swift */,
 				A6901ED02C1299D1002F4764 /* SharedWrapper+SwiftData.swift */,
 				A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */,
+				A61D9C462C12BC8200422715 /* URLSession+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +233,7 @@
 				A65191B72C11072000884620 /* LockAttribute.swift */,
 				A65191B92C11072E00884620 /* Debouncer.swift */,
 				A657910B2C1124C900D2273A /* DragDismissable.swift */,
+				A61D9C4D2C12C16600422715 /* WrappedDefault.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -241,6 +262,7 @@
 		A6E649F22C0ACEFE00553F10 /* Fourskie */ = {
 			isa = PBXGroup;
 			children = (
+				A61D9C432C12BC2B00422715 /* Sync */,
 				A65191AA2C10DD5500884620 /* Extensions */,
 				A6D11D572C0FD80E00349B05 /* Util */,
 				A6D11D4C2C0FA36D00349B05 /* Info.plist */,
@@ -297,6 +319,7 @@
 			name = Fourskie;
 			packageProductDependencies = (
 				A64DD77D2C10D2B9004FF084 /* LibFourskie */,
+				A61D9C4B2C12BEC000422715 /* Queue */,
 			);
 			productName = Fourskie;
 			productReference = A6E649F02C0ACEFE00553F10 /* Fourskie.app */;
@@ -372,6 +395,7 @@
 			mainGroup = A6E649E72C0ACEFE00553F10;
 			packageReferences = (
 				A64DD77C2C10D2B9004FF084 /* XCLocalSwiftPackageReference "FourskieServer" */,
+				A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */,
 			);
 			productRefGroup = A6E649F12C0ACEFE00553F10 /* Products */;
 			projectDirPath = "";
@@ -423,6 +447,7 @@
 				A65191BE2C1112AE00884620 /* Place+CL.swift in Sources */,
 				A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */,
 				A6E649F62C0ACEFE00553F10 /* ContentView.swift in Sources */,
+				A61D9C452C12BC3400422715 /* Client.swift in Sources */,
 				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,
 				A61308D02C1211A8004B35A3 /* CheckinChoosePlaceView.swift in Sources */,
 				A6901ED32C12B4B7002F4764 /* Int+Formatting.swift in Sources */,
@@ -449,10 +474,13 @@
 				A65191B82C11072000884620 /* LockAttribute.swift in Sources */,
 				A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */,
 				A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */,
+				A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */,
 				A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */,
 				A65191A92C10DC2900884620 /* PlaceFinder.swift in Sources */,
 				A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */,
+				A61D9C472C12BC8200422715 /* URLSession+Helpers.swift in Sources */,
 				A65791142C1170D200D2273A /* String.swift in Sources */,
+				A61D9C492C12BD3600422715 /* Syncer.swift in Sources */,
 				A657910A2C11225200D2273A /* ModelContext.swift in Sources */,
 				A61308CA2C118171004B35A3 /* MKCoordinateRegion.swift in Sources */,
 			);
@@ -800,7 +828,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mattmassicotte/Queue";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		A61D9C4B2C12BEC000422715 /* Queue */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */;
+			productName = Queue;
+		};
 		A64DD77D2C10D2B9004FF084 /* LibFourskie */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LibFourskie;

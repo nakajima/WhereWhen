@@ -17,8 +17,22 @@ import SwiftUI
 	@Published var errorMessage: String?
 	@Published var navigation: [Route] = []
 
+	let syncer: Syncer?
+
 	init(container: ModelContainer) {
 		self.container = container
+		self.syncer = Syncer(
+			container: container,
+			client: .init(
+				serverURL: URL(string: "http://localhost:4567")!
+			)
+		)
+
+		sync()
+	}
+
+	func sync() {
+		syncer?.sync()
 	}
 
 	func dismissError() {
