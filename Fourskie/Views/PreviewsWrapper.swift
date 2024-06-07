@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 import SwiftUI
 
 #if DEBUG
@@ -16,9 +15,9 @@ import SwiftUI
 		var body: some View {
 			NavigationStack {
 				content()
-					.modelContainer(ModelContainer.preview)
-					.environmentObject(FourskieCoordinator(container: ModelContainer.preview))
-					.environment(LocationListener(container: ModelContainer.preview))
+					.environment(\.database, .memory)
+					.environmentObject(FourskieCoordinator(database: .memory))
+					.environment(LocationListener(database: .memory))
 			}
 		}
 	}

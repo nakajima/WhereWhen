@@ -9,7 +9,6 @@ import CoreLocation
 import Foundation
 import LibFourskie
 import MapKit
-import SwiftData
 import SwiftUI
 
 struct ManualCheckinChoosePlaceView: View {
@@ -25,7 +24,7 @@ struct ManualCheckinChoosePlaceView: View {
 	// Is the user searching for something?
 	@State private var searchTerm: String = ""
 
-	@Environment(\.modelContext) var modelContext
+	@Environment(\.database) var database
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	let location: Coordinate
@@ -90,10 +89,8 @@ struct ManualCheckinChoosePlaceView: View {
 				return
 			}
 
-			let container = modelContext.container
-
 			let placeFinder = PlaceFinder(
-				container: container,
+				database: database,
 				coordinate: .init(region.center),
 				search: searchTerm
 			)
@@ -111,8 +108,8 @@ struct ManualCheckinChoosePlaceView: View {
 
 #if DEBUG
 	#Preview {
-		ManualCheckinView()
-			.environment(LocationListener(container: ModelContainer.preview))
-			.modelContainer(ModelContainer.preview)
+		PreviewsWrapper {
+			ManualCheckinView()
+		}
 	}
 #endif

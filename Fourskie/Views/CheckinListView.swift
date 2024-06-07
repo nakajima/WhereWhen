@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import GRDB
+import GRDBQuery
 import LibFourskie
-import SwiftData
 import SwiftUI
 
 struct CheckinListView: View {
-	@Query(sort: \LocalCheckin.savedAt, order: .reverse) var checkins: [LocalCheckin]
+	@Query(CheckinListRequest(), in: \.database.queue) var checkins: [Checkin]
+
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	var body: some View {
@@ -38,7 +40,7 @@ struct CheckinListView: View {
 		PreviewsWrapper {
 			CheckinListView()
 				.onAppear {
-					ModelContainer.preview.mainContext.insert(LocalCheckin(wrapped: Checkin.preview))
+					try! Checkin.preview.save(to: Database.memory)
 				}
 		}
 	}

@@ -18,10 +18,13 @@
 		A61D9C4C2C12BEC000422715 /* Queue in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C4B2C12BEC000422715 /* Queue */; };
 		A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C4D2C12C16600422715 /* WrappedDefault.swift */; };
 		A61D9C502C134D4800422715 /* NavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61D9C4F2C134D4800422715 /* NavigationContainer.swift */; };
-		A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */; };
-		A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A64DD77D2C10D2B9004FF084 /* LibFourskie */; };
-		A65191A52C10D39500884620 /* LocalPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A42C10D39500884620 /* LocalPlace.swift */; };
-		A65191A72C10D4AE00884620 /* LocalPlace+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */; };
+		A61D9C582C1356EB00422715 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C572C1356EB00422715 /* GRDB */; };
+		A64C96752C136D28000C91BF /* Checkin+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64C96742C136D28000C91BF /* Checkin+CL.swift */; };
+		A64C96772C1373EA000C91BF /* DatabaseConvertibles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64C96762C1373EA000C91BF /* DatabaseConvertibles.swift */; };
+		A64C967A2C137493000C91BF /* ListQueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64C96792C137493000C91BF /* ListQueryRequest.swift */; };
+		A64C967C2C1374BC000C91BF /* CheckinListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64C967B2C1374BC000C91BF /* CheckinListRequest.swift */; };
+		A64C967E2C13794F000C91BF /* PlaceCheckinsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64C967D2C13794F000C91BF /* PlaceCheckinsRequest.swift */; };
+		A64C96802C137BFE000C91BF /* Query+DatabaseQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64C967F2C137BFE000C91BF /* Query+DatabaseQueue.swift */; };
 		A65191A92C10DC2900884620 /* PlaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191A82C10DC2900884620 /* PlaceFinder.swift */; };
 		A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191AB2C10DD5C00884620 /* Coordinate+CL.swift */; };
 		A65191AE2C10E0A800884620 /* MKCoordinateSpan+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */; };
@@ -33,22 +36,24 @@
 		A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */; };
 		A65191BE2C1112AE00884620 /* Place+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65191BD2C1112AE00884620 /* Place+CL.swift */; };
 		A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */; };
-		A657910A2C11225200D2273A /* ModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791092C11225200D2273A /* ModelContext.swift */; };
 		A657910C2C1124C900D2273A /* DragDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657910B2C1124C900D2273A /* DragDismissable.swift */; };
 		A657910E2C11252A00D2273A /* ErrorOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657910D2C11252A00D2273A /* ErrorOverlay.swift */; };
 		A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657910F2C112AF700D2273A /* PreviewsWrapper.swift */; };
 		A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791112C112C3200D2273A /* CheckinCellView.swift */; };
 		A65791142C1170D200D2273A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791132C1170D200D2273A /* String.swift */; };
-		A6901ED12C1299D1002F4764 /* SharedWrapper+SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6901ED02C1299D1002F4764 /* SharedWrapper+SwiftData.swift */; };
+		A66B840F2C135BB3004D4D51 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A66B840E2C135BB3004D4D51 /* LibFourskie */; };
 		A6901ED32C12B4B7002F4764 /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */; };
 		A6901ED52C12B87B002F4764 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6901ED42C12B87B002F4764 /* Styles.swift */; };
+		A69AE89C2C135F8B00818D93 /* Checkin+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE89B2C135F8B00818D93 /* Checkin+Database.swift */; };
+		A69AE89E2C135FD400818D93 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE89D2C135FD400818D93 /* Database.swift */; };
+		A69AE8A02C13615200818D93 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE89F2C13615200818D93 /* Model.swift */; };
+		A69AE8A22C13625F00818D93 /* Place+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE8A12C13625F00818D93 /* Place+Database.swift */; };
+		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
 		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
-		A6D11D512C0FD4C200349B05 /* LocalCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */; };
 		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
 		A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D552C0FD75B00349B05 /* HomeView.swift */; };
 		A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D582C0FD81200349B05 /* DiskLogger.swift */; };
 		A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */; };
-		A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */; };
 		A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D5E2C1004C900349B05 /* CheckinListView.swift */; };
 		A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D602C10063800349B05 /* FourskieCoordinator.swift */; };
 		A6D11D632C10140E00349B05 /* ManualCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D622C10140E00349B05 /* ManualCheckinView.swift */; };
@@ -89,9 +94,13 @@
 		A61D9C482C12BD3600422715 /* Syncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
 		A61D9C4D2C12C16600422715 /* WrappedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedDefault.swift; sourceTree = "<group>"; };
 		A61D9C4F2C134D4800422715 /* NavigationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContainer.swift; sourceTree = "<group>"; };
-		A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCheckin+Wrapper.swift"; sourceTree = "<group>"; };
-		A65191A42C10D39500884620 /* LocalPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlace.swift; sourceTree = "<group>"; };
-		A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlace+Wrapper.swift"; sourceTree = "<group>"; };
+		A61D9C592C135AE700422715 /* LibFourskie */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibFourskie; sourceTree = "<group>"; };
+		A64C96742C136D28000C91BF /* Checkin+CL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+CL.swift"; sourceTree = "<group>"; };
+		A64C96762C1373EA000C91BF /* DatabaseConvertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConvertibles.swift; sourceTree = "<group>"; };
+		A64C96792C137493000C91BF /* ListQueryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListQueryRequest.swift; sourceTree = "<group>"; };
+		A64C967B2C1374BC000C91BF /* CheckinListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinListRequest.swift; sourceTree = "<group>"; };
+		A64C967D2C13794F000C91BF /* PlaceCheckinsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCheckinsRequest.swift; sourceTree = "<group>"; };
+		A64C967F2C137BFE000C91BF /* Query+DatabaseQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+DatabaseQueue.swift"; sourceTree = "<group>"; };
 		A65191A82C10DC2900884620 /* PlaceFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinder.swift; sourceTree = "<group>"; };
 		A65191AB2C10DD5C00884620 /* Coordinate+CL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinate+CL.swift"; sourceTree = "<group>"; };
 		A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateSpan+Constants.swift"; sourceTree = "<group>"; };
@@ -103,27 +112,26 @@
 		A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCheckinFinishView.swift; sourceTree = "<group>"; };
 		A65191BD2C1112AE00884620 /* Place+CL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CL.swift"; sourceTree = "<group>"; };
 		A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualCheckinChoosePlaceView.swift; sourceTree = "<group>"; };
-		A65791092C11225200D2273A /* ModelContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContext.swift; sourceTree = "<group>"; };
 		A657910B2C1124C900D2273A /* DragDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDismissable.swift; sourceTree = "<group>"; };
 		A657910D2C11252A00D2273A /* ErrorOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOverlay.swift; sourceTree = "<group>"; };
 		A657910F2C112AF700D2273A /* PreviewsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewsWrapper.swift; sourceTree = "<group>"; };
 		A65791112C112C3200D2273A /* CheckinCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinCellView.swift; sourceTree = "<group>"; };
 		A65791132C1170D200D2273A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		A6901ED02C1299D1002F4764 /* SharedWrapper+SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SharedWrapper+SwiftData.swift"; sourceTree = "<group>"; };
 		A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
 		A6901ED42C12B87B002F4764 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		A69AE89B2C135F8B00818D93 /* Checkin+Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+Database.swift"; sourceTree = "<group>"; };
+		A69AE89D2C135FD400818D93 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		A69AE89F2C13615200818D93 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A69AE8A12C13625F00818D93 /* Place+Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+Database.swift"; sourceTree = "<group>"; };
 		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
-		A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCheckin.swift; sourceTree = "<group>"; };
 		A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermissionsView.swift; sourceTree = "<group>"; };
 		A6D11D552C0FD75B00349B05 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A6D11D582C0FD81200349B05 /* DiskLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskLogger.swift; sourceTree = "<group>"; };
 		A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 		A6D11D5E2C1004C900349B05 /* CheckinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinListView.swift; sourceTree = "<group>"; };
 		A6D11D602C10063800349B05 /* FourskieCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieCoordinator.swift; sourceTree = "<group>"; };
 		A6D11D622C10140E00349B05 /* ManualCheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCheckinView.swift; sourceTree = "<group>"; };
-		A6D11D642C10CB1E00349B05 /* FourskieServer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FourskieServer; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* Fourskie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fourskie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieApp.swift; sourceTree = "<group>"; };
 		A6E649F52C0ACEFE00553F10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,8 +149,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A66B840F2C135BB3004D4D51 /* LibFourskie in Frameworks */,
+				A61D9C582C1356EB00422715 /* GRDB in Frameworks */,
+				A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */,
 				A61D9C4C2C12BEC000422715 /* Queue in Frameworks */,
-				A64DD77E2C10D2B9004FF084 /* LibFourskie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +182,16 @@
 			path = Sync;
 			sourceTree = "<group>";
 		};
+		A64C96782C13748B000C91BF /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				A64C96792C137493000C91BF /* ListQueryRequest.swift */,
+				A64C967B2C1374BC000C91BF /* CheckinListRequest.swift */,
+				A64C967D2C13794F000C91BF /* PlaceCheckinsRequest.swift */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
 		A65191AA2C10DD5500884620 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,13 +200,14 @@
 				A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */,
 				A65191BD2C1112AE00884620 /* Place+CL.swift */,
 				A61308CD2C1210D5004B35A3 /* Checkin+MapKit.swift */,
+				A64C96742C136D28000C91BF /* Checkin+CL.swift */,
+				A64C96762C1373EA000C91BF /* DatabaseConvertibles.swift */,
 				A61308C92C118171004B35A3 /* MKCoordinateRegion.swift */,
 				A61308CB2C11817D004B35A3 /* Array.swift */,
-				A65791092C11225200D2273A /* ModelContext.swift */,
 				A65791132C1170D200D2273A /* String.swift */,
-				A6901ED02C1299D1002F4764 /* SharedWrapper+SwiftData.swift */,
 				A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */,
 				A61D9C462C12BC8200422715 /* URLSession+Helpers.swift */,
+				A64C967F2C137BFE000C91BF /* Query+DatabaseQueue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,13 +215,12 @@
 		A6D11D4F2C0FD4BB00349B05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A6D11D502C0FD4C200349B05 /* LocalCheckin.swift */,
-				A64DD77A2C10D25D004FF084 /* LocalCheckin+Wrapper.swift */,
-				A65191A42C10D39500884620 /* LocalPlace.swift */,
-				A65191A62C10D4AE00884620 /* LocalPlace+Wrapper.swift */,
 				A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */,
-				A6D11D5C2C0FF14700349B05 /* ModelContainer.swift */,
 				A65191A82C10DC2900884620 /* PlaceFinder.swift */,
+				A69AE89B2C135F8B00818D93 /* Checkin+Database.swift */,
+				A69AE8A12C13625F00818D93 /* Place+Database.swift */,
+				A69AE89F2C13615200818D93 /* Model.swift */,
+				A69AE89D2C135FD400818D93 /* Database.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,23 +228,24 @@
 		A6D11D522C0FD56100349B05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A64C96782C13748B000C91BF /* Queries */,
+				A65791112C112C3200D2273A /* CheckinCellView.swift */,
+				A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */,
+				A6D11D5E2C1004C900349B05 /* CheckinListView.swift */,
+				A61308D12C121F6D004B35A3 /* CheckinShowView.swift */,
 				A6E649F52C0ACEFE00553F10 /* ContentView.swift */,
 				A657910D2C11252A00D2273A /* ErrorOverlay.swift */,
-				A6D11D552C0FD75B00349B05 /* HomeView.swift */,
 				A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */,
+				A6D11D552C0FD75B00349B05 /* HomeView.swift */,
+				A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */,
+				A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */,
+				A65191B32C11016000884620 /* ManualCheckinPlaceCellView.swift */,
+				A6D11D622C10140E00349B05 /* ManualCheckinView.swift */,
+				A61D9C4F2C134D4800422715 /* NavigationContainer.swift */,
+				A65191B52C11030E00884620 /* PlaceListView.swift */,
 				A657910F2C112AF700D2273A /* PreviewsWrapper.swift */,
 				A6D11D5A2C0FE9F700349B05 /* SettingsView.swift */,
-				A6D11D622C10140E00349B05 /* ManualCheckinView.swift */,
-				A65791072C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift */,
-				A65191B32C11016000884620 /* ManualCheckinPlaceCellView.swift */,
-				A65191BB2C11113E00884620 /* ManualCheckinFinishView.swift */,
-				A6D11D5E2C1004C900349B05 /* CheckinListView.swift */,
-				A65791112C112C3200D2273A /* CheckinCellView.swift */,
-				A61308D12C121F6D004B35A3 /* CheckinShowView.swift */,
-				A65191B52C11030E00884620 /* PlaceListView.swift */,
-				A61308CF2C1211A8004B35A3 /* CheckinChoosePlaceView.swift */,
 				A6901ED42C12B87B002F4764 /* Styles.swift */,
-				A61D9C4F2C134D4800422715 /* NavigationContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,7 +265,7 @@
 		A6E649E72C0ACEFE00553F10 = {
 			isa = PBXGroup;
 			children = (
-				A6D11D642C10CB1E00349B05 /* FourskieServer */,
+				A61D9C592C135AE700422715 /* LibFourskie */,
 				A6E649F22C0ACEFE00553F10 /* Fourskie */,
 				A6E64A052C0ACEFF00553F10 /* FourskieTests */,
 				A6E64A0F2C0ACEFF00553F10 /* FourskieUITests */,
@@ -265,11 +286,11 @@
 		A6E649F22C0ACEFE00553F10 /* Fourskie */ = {
 			isa = PBXGroup;
 			children = (
+				A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */,
 				A61D9C432C12BC2B00422715 /* Sync */,
 				A65191AA2C10DD5500884620 /* Extensions */,
 				A6D11D572C0FD80E00349B05 /* Util */,
 				A6D11D4C2C0FA36D00349B05 /* Info.plist */,
-				A6E649F32C0ACEFE00553F10 /* FourskieApp.swift */,
 				A6D11D4F2C0FD4BB00349B05 /* Model */,
 				A6D11D522C0FD56100349B05 /* Views */,
 				A6E649F92C0ACEFF00553F10 /* Assets.xcassets */,
@@ -321,8 +342,10 @@
 			);
 			name = Fourskie;
 			packageProductDependencies = (
-				A64DD77D2C10D2B9004FF084 /* LibFourskie */,
 				A61D9C4B2C12BEC000422715 /* Queue */,
+				A61D9C572C1356EB00422715 /* GRDB */,
+				A66B840E2C135BB3004D4D51 /* LibFourskie */,
+				A69AE8A42C1369C200818D93 /* GRDBQuery */,
 			);
 			productName = Fourskie;
 			productReference = A6E649F02C0ACEFE00553F10 /* Fourskie.app */;
@@ -397,8 +420,10 @@
 			);
 			mainGroup = A6E649E72C0ACEFE00553F10;
 			packageReferences = (
-				A64DD77C2C10D2B9004FF084 /* XCLocalSwiftPackageReference "FourskieServer" */,
 				A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */,
+				A61D9C562C1356EB00422715 /* XCRemoteSwiftPackageReference "GRDB" */,
+				A66B840D2C135BB3004D4D51 /* XCLocalSwiftPackageReference "LibFourskie" */,
+				A69AE8A32C1369C200818D93 /* XCRemoteSwiftPackageReference "GRDBQuery" */,
 			);
 			productRefGroup = A6E649F12C0ACEFE00553F10 /* Products */;
 			projectDirPath = "";
@@ -443,7 +468,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6D11D632C10140E00349B05 /* ManualCheckinView.swift in Sources */,
+				A64C967E2C13794F000C91BF /* PlaceCheckinsRequest.swift in Sources */,
 				A657910E2C11252A00D2273A /* ErrorOverlay.swift in Sources */,
+				A64C967C2C1374BC000C91BF /* CheckinListRequest.swift in Sources */,
 				A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */,
 				A61308CC2C11817D004B35A3 /* Array.swift in Sources */,
 				A657910C2C1124C900D2273A /* DragDismissable.swift in Sources */,
@@ -460,32 +487,33 @@
 				A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */,
 				A61308D22C121F6D004B35A3 /* CheckinShowView.swift in Sources */,
 				A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */,
+				A64C96752C136D28000C91BF /* Checkin+CL.swift in Sources */,
 				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
 				A61308CE2C1210D5004B35A3 /* Checkin+MapKit.swift in Sources */,
 				A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */,
 				A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */,
 				A65191B42C11016000884620 /* ManualCheckinPlaceCellView.swift in Sources */,
-				A64DD77B2C10D25D004FF084 /* LocalCheckin+Wrapper.swift in Sources */,
-				A65191A72C10D4AE00884620 /* LocalPlace+Wrapper.swift in Sources */,
+				A64C96772C1373EA000C91BF /* DatabaseConvertibles.swift in Sources */,
 				A65191AE2C10E0A800884620 /* MKCoordinateSpan+Constants.swift in Sources */,
-				A65191A52C10D39500884620 /* LocalPlace.swift in Sources */,
+				A69AE8A22C13625F00818D93 /* Place+Database.swift in Sources */,
 				A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */,
+				A64C96802C137BFE000C91BF /* Query+DatabaseQueue.swift in Sources */,
 				A6D11D5B2C0FE9F700349B05 /* SettingsView.swift in Sources */,
 				A65191B62C11030E00884620 /* PlaceListView.swift in Sources */,
 				A65191BA2C11072E00884620 /* Debouncer.swift in Sources */,
-				A6D11D512C0FD4C200349B05 /* LocalCheckin.swift in Sources */,
-				A6901ED12C1299D1002F4764 /* SharedWrapper+SwiftData.swift in Sources */,
+				A64C967A2C137493000C91BF /* ListQueryRequest.swift in Sources */,
 				A65191B82C11072000884620 /* LockAttribute.swift in Sources */,
 				A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */,
-				A6D11D5D2C0FF14700349B05 /* ModelContainer.swift in Sources */,
 				A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */,
 				A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */,
 				A65191A92C10DC2900884620 /* PlaceFinder.swift in Sources */,
+				A69AE8A02C13615200818D93 /* Model.swift in Sources */,
 				A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */,
+				A69AE89E2C135FD400818D93 /* Database.swift in Sources */,
+				A69AE89C2C135F8B00818D93 /* Checkin+Database.swift in Sources */,
 				A61D9C472C12BC8200422715 /* URLSession+Helpers.swift in Sources */,
 				A65791142C1170D200D2273A /* String.swift in Sources */,
 				A61D9C492C12BD3600422715 /* Syncer.swift in Sources */,
-				A657910A2C11225200D2273A /* ModelContext.swift in Sources */,
 				A61308CA2C118171004B35A3 /* MKCoordinateRegion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,9 +854,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		A64DD77C2C10D2B9004FF084 /* XCLocalSwiftPackageReference "FourskieServer" */ = {
+		A66B840D2C135BB3004D4D51 /* XCLocalSwiftPackageReference "LibFourskie" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = FourskieServer;
+			relativePath = LibFourskie;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -841,6 +869,22 @@
 				minimumVersion = 0.1.4;
 			};
 		};
+		A61D9C562C1356EB00422715 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		A69AE8A32C1369C200818D93 /* XCRemoteSwiftPackageReference "GRDBQuery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDBQuery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -849,9 +893,19 @@
 			package = A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */;
 			productName = Queue;
 		};
-		A64DD77D2C10D2B9004FF084 /* LibFourskie */ = {
+		A61D9C572C1356EB00422715 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A61D9C562C1356EB00422715 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+		A66B840E2C135BB3004D4D51 /* LibFourskie */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LibFourskie;
+		};
+		A69AE8A42C1369C200818D93 /* GRDBQuery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A69AE8A32C1369C200818D93 /* XCRemoteSwiftPackageReference "GRDBQuery" */;
+			productName = GRDBQuery;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

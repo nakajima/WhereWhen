@@ -42,14 +42,14 @@ struct FourskieClient {
 		_ = try await URLSession.shared.upload(for: request, from: data)
 	}
 
-	func download(since: Date) async throws -> [Checkin] {
+	func download(since _: Date) async throws -> [Checkin] {
 		var request = URLRequest(url: serverURL.appending(path: "checkins"))
 //		request.setValue(since.formatted(.iso8601), forHTTPHeaderField: "If-Modified-Since")
 
 		let (data, response) = try await URLSession.shared.data(for: request)
 
 		print(response)
-		print(String(data: data, encoding: .utf8))
+		print(String(data: data, encoding: .utf8)!)
 
 		return try JSONDecoder().decode([Checkin].self, from: data)
 	}

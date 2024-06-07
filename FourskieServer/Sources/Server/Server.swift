@@ -46,17 +46,12 @@ public struct Server {
 				var checkinsWithPlaces: [Checkin] = []
 				for serverCheckin in checkins {
 					var checkin = serverCheckin.wrapped
-					context.logger.info("checkin \(checkin)")
 					let uuid = serverCheckin.placeUUID
 					checkin.place = try! await placeStore.first(where: #SQL { $0.uuid == uuid })?.wrapped
-					context.logger.info("assigned \(checkin.place?.name)")
 					checkinsWithPlaces.append(checkin)
 				}
 
 				let data = try encoder.encode(checkinsWithPlaces)
-
-				context.logger.info("sending \(String(data: data, encoding: .utf8))")
-
 				return ByteBuffer(data: data)
 			} catch {
 				context.logger.error("error serving checkins: \(error)")

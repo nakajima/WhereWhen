@@ -7,11 +7,10 @@
 
 import Foundation
 import LibFourskie
-import SwiftData
 import SwiftUI
 
 @MainActor final class FourskieCoordinator: ObservableObject {
-	let container: ModelContainer
+	let database: Database
 
 	@Published var isShowingManualCheckin = false
 	@Published var errorMessage: String?
@@ -19,10 +18,10 @@ import SwiftUI
 
 	let syncer: Syncer?
 
-	init(container: ModelContainer) {
-		self.container = container
+	init(database: Database) {
+		self.database = database
 		self.syncer = Syncer(
-			container: container,
+			database: database,
 			client: .init(
 				serverURL: URL(string: "http://localhost:4567")!
 			)
@@ -42,16 +41,11 @@ import SwiftUI
 	}
 
 	func updateCheckinPlace(checkin: Checkin, place: Place) {
-		let context = container.mainContext
-
-		let localCheckin = LocalCheckin.model(for: checkin, in: context)
-		let localPlace = LocalPlace.model(for: place, in: context)
-		context.insert(localPlace)
-
-		localCheckin.place = localPlace
+		var checkin = checkin
+		checkin.place = place
 
 		do {
-			try context.save()
+			try checkin.save(to: database)
 			navigation = []
 		} catch {
 			errorMessage = error.localizedDescription
@@ -59,10 +53,8 @@ import SwiftUI
 	}
 
 	func manualCheckIn(place: Place, from coordinate: Coordinate) {
-		let context = container.mainContext
-		let localPlace = LocalPlace.model(for: place, in: context)
 		do {
-			let checkin = LocalCheckin(
+			let checkin = Checkin(
 				source: .manual,
 				uuid: UUID().uuidString,
 				coordinate: coordinate,
@@ -70,12 +62,10 @@ import SwiftUI
 				accuracy: place.coordinate.distance(to: coordinate),
 				arrivalDate: Date(),
 				departureDate: nil,
-				place: localPlace
+				place: place
 			)
 
-			container.mainContext.insert(checkin)
-
-			try container.mainContext.save()
+			try checkin.save(to: database)
 		} catch {
 			errorMessage = error.localizedDescription
 		}
