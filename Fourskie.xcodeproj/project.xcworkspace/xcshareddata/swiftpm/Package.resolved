@@ -1,5 +1,5 @@
 {
-  "originHash" : "61f64626bcb2286493f5835a4ee7c6d9d7f5920d95ff95562b1e9d023a5d05f0",
+  "originHash" : "05b59c3809ec45a3c7509e3766a0d12f9b6950cc6bfe086de3cbb0ffbb20be2c",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -29,12 +29,21 @@
       }
     },
     {
+      "identity" : "queue",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mattmassicotte/Queue",
+      "state" : {
+        "revision" : "8d6f936097888f97011610ced40313655dc5948d",
+        "version" : "0.1.4"
+      }
+    },
+    {
       "identity" : "serverdata.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nakajima/ServerData.swift",
       "state" : {
         "branch" : "main",
-        "revision" : "19172a63fe7b171498750673f7e73b7a3fb6ddb2"
+        "revision" : "c81616a50b2fc01e6d5929229229b54f312c1143"
       }
     },
     {

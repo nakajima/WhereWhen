@@ -17,18 +17,18 @@ import ServerData
 	var coordinateID: String
 
 	// When was this place added
-	let addedAt: Date
+	var addedAt: Date
 
 	// The lat/lng of the place. Stored as fields instead of Coordinate
 	// so we can query easier
-	let latitude: Double
-	let longitude: Double
+	var latitude: Double
+	var longitude: Double
 
 	// About
-	let name: String
-	let phoneNumber: String?
-	let url: URL?
-	let category: PlaceCategory?
+	var name: String
+	var phoneNumber: String?
+	var url: URL?
+	var category: PlaceCategory?
 
 	// Address
 	var thoroughfare: String?
