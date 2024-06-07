@@ -12,7 +12,7 @@ import ServerData
 @Model(table: "places") struct ServerPlace: Codable, Sendable {
 	@Column(.primaryKey(autoIncrement: true)) var id: Int?
 
-	var uuid: String
+	@Column(.unique) var uuid: String
 
 	var coordinateID: String
 
