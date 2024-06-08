@@ -10,17 +10,50 @@ import GRDB
 import LibFourskie
 import LibSpatialite
 
+extension DatabaseQueue {
+	// I try to set up the spatialite stuff in Configuration.prepareDatabase but
+	// sometimes connections aren't getting it so it's just been safer to wrap
+	// accesses of spatialite functions in this, even tho it's a bit of a perf hit.
+	func spatialite<T>(_ operation: (GRDB.Database) throws -> T) throws -> T {
+		try inDatabase { db in
+			spatialite_initialize()
+			spatialite_alloc_connection()
+			var spconnect: OpaquePointer?
+			spatialite_init_ex(db.sqliteConnection, &spconnect, 0)
+
+			return try operation(db)
+		}
+	}
+}
+
 final class Database: Sendable {
 	let queue: DatabaseQueue
 
 	static func create(name: String) -> Database {
 		let path = URL.documentsDirectory.appending(path: name).path
 
-		let needsCreating = !FileManager.default.fileExists(atPath: path)
+		var config = Configuration()
 
-		let queue = try! DatabaseQueue(path: path)
+		// This isn't working reliably
+		config.prepareDatabase { db in
+			spatialite_initialize()
+			spatialite_alloc_connection()
+			var spconnect: OpaquePointer?
+			spatialite_init_ex(db.sqliteConnection, &spconnect, 0)
+			try db.execute(literal: "SELECT InitSpatialMetaData('WGS84');")
+			let version = try String.fetchOne(db, sql: "SELECT spatialite_version()")
+			print("spatialite setup for \(String(describing: db.sqliteConnection)): \(String(describing: version))")
+		}
 
+		#if DEBUG
+		// Protect sensitive information by enabling verbose debugging in DEBUG builds only
+		config.publicStatementArguments = true
+
+		// It can be helpful to know where the db is
 		print("DB: \(path)")
+		#endif
+
+		let queue = try! DatabaseQueue(path: path, configuration: config)
 		return Database(queue: queue)
 	}
 
@@ -29,6 +62,7 @@ final class Database: Sendable {
 
 	init(queue: DatabaseQueue) {
 		self.queue = queue
+
 		setupTables()
 	}
 
@@ -39,24 +73,29 @@ final class Database: Sendable {
 	}
 
 	func create(table: String, spatial: Bool = false, definition: (TableDefinition) throws -> Void) throws {
+		let existing = try! queue.read { db in
+			try String.fetchAll(db, sql: """
+			SELECT name FROM sqlite_master WHERE type='table'
+			""")
+		}
+
+		if existing.contains(table) { return }
+
 		try queue.write { db in
 			try db.create(table: table, options: [.ifNotExists], body: definition)
+		}
 
-			if spatial {
-				spatialite_initialize()
-				spatialite_alloc_connection()
-				var spconnect: OpaquePointer?
-				spatialite_init_ex(db.sqliteConnection, &spconnect, 1)
+		if spatial {
+			// Add POINT geometry field & create a spatial index for it. 4326 is the SRID
+			// for lat/lng: https://spatialreference.org/ref/epsg/4326/
+			let sqlSpatial = [
+				"SELECT AddGeometryColumn('\(table)', 'coordinate', 4326, 'POINT', 'XY');",
+				"SELECT CreateSpatialIndex('\(table)', 'coordinate');",
+			]
 
-				try db.execute(literal: "SELECT InitSpatialMetaData('WGS84');")
-				// Add POINT geometry field & create a spatial index for it. 4326 is the SRID
-				// for lat/lng: https://spatialreference.org/ref/epsg/4326/
-				let sqlSpatial = [
-					"SELECT AddGeometryColumn('\(table)', 'geom', 4326, 'POINT', 'XY');",
-					"SELECT CreateSpatialIndex('\(table)', 'geom');",
-				]
+			try queue.spatialite { db in
 				for sql in sqlSpatial {
-					try db.execute(sql: sql)
+					try! db.execute(sql: sql)
 				}
 			}
 		}

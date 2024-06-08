@@ -66,17 +66,13 @@ actor Syncer {
 
 			for checkin in checkins {
 				if let place = checkin.place {
-					try await database.queue.write { db in
-						try place.save(db)
-					}
+					try await place.save(to: database)
 				}
 
-				try await database.queue.write { db in
-					try checkin.save(db)
-				}
+				try await checkin.save(to: database)
 			}
 		} catch {
-			logger.error("Error downloading: \(error)")
+			logger.error("Error downloading: \(error) \(database.queue.path)")
 		}
 	}
 

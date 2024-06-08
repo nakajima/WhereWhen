@@ -18,6 +18,8 @@ extension Place {
 }
 
 extension Place: Model {
+	static var tableName: String { "place" }
+
 	static func create(in database: Database) throws {
 		try database.create(table: "place", spatial: true) { t in
 			t.primaryKey("uuid", .text)

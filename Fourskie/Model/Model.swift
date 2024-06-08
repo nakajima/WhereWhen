@@ -7,11 +7,21 @@
 
 import Foundation
 import GRDB
+import LibFourskie
+
+extension Coordinate {
+	func updateSQL(uuid: String, table: String) -> String {
+		"""
+		UPDATE \(table) SET coordinate = GeomFromText('POINT(\(latitude) \(longitude))', 4326) WHERE uuid = '\(uuid)'
+		"""
+	}
+}
 
 // Just a lil common interface around GRDB wrappers
 protocol Model: Sendable, TableRecord, FetchableRecord, PersistableRecord {
 	var uuid: String { get }
 
+	static var tableName: String { get }
 	static func create(in database: Database) throws
 }
 
@@ -32,11 +42,23 @@ extension Model {
 		try database.queue.write { db in
 			try save(db)
 		}
+
+		if let spatialModel = self as? SpatialModel {
+			try database.queue.spatialite { db in
+				try db.execute(sql: spatialModel.coordinate.updateSQL(uuid: uuid, table: Self.tableName))
+			}
+		}
 	}
 
 	func save(to database: Database) async throws {
 		try await database.queue.write { db in
 			try save(db)
+		}
+
+		if let spatialModel = self as? SpatialModel {
+			try database.queue.spatialite { db in
+				try db.execute(sql: spatialModel.coordinate.updateSQL(uuid: uuid, table: Self.tableName))
+			}
 		}
 	}
 }

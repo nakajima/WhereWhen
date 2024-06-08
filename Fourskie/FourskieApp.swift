@@ -32,6 +32,5 @@ struct FourskieApp: App {
 		}
 		.environment(appDelegate.location)
 		.environment(\.database, .dev)
-		.environment(\.dbQueue, Database.dev.queue)
 	}
 }

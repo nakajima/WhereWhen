@@ -16,18 +16,18 @@ extension Query where Request.DatabaseContext == DatabaseQueue {
 	/// Creates a `Query`, given an initial `Queryable` request that
 	/// uses `DatabaseQueue` as a `DatabaseContext`.
 	init(_ request: Request) {
-		self.init(request, in: \.dbQueue)
+		self.init(request, in: \.database.queue)
 	}
 
 	/// Creates a `Query`, given a SwiftUI binding to a `Queryable`
 	/// request that uses `DatabaseQueue` as a `DatabaseContext`.
 	init(_ request: Binding<Request>) {
-		self.init(request, in: \.dbQueue)
+		self.init(request, in: \.database.queue)
 	}
 
 	/// Creates a `Query`, given a ``Queryable`` request that uses
 	/// `DatabaseQueue` as a `DatabaseContext`.
 	init(constant request: Request) {
-		self.init(constant: request, in: \.dbQueue)
+		self.init(constant: request, in: \.database.queue)
 	}
 }
