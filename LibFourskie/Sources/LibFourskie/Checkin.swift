@@ -16,7 +16,7 @@ public struct Checkin: Identifiable, Codable, Sendable, Hashable {
 	public let uuid: String
 
 	// Where was this checkin recorded
-	public let coordinate: Coordinate
+	public var coordinate: Coordinate
 
 	// When was this checkin recorded
 	public let savedAt: Date
@@ -64,5 +64,24 @@ public struct Checkin: Identifiable, Codable, Sendable, Hashable {
 			departureDate: Date().addingTimeInterval(-100),
 			place: Place.preview
 		)
+
+		static func makePreview(block: ((inout Checkin) -> Void)? = nil) -> Checkin {
+			var checkin = Checkin(
+				source: .automatic,
+				uuid: UUID().uuidString,
+				coordinate: Place.preview.coordinate,
+				savedAt: Date().addingTimeInterval(-100),
+				accuracy: 12,
+				arrivalDate: Date().addingTimeInterval(-100),
+				departureDate: Date().addingTimeInterval(-100),
+				place: Place.preview
+			)
+
+			if let block {
+				block(&checkin)
+			}
+
+			return checkin
+		}
 	}
 #endif

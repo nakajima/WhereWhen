@@ -8,6 +8,12 @@
 import Foundation
 
 public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
+	static let currentPlanetRadiusMeters = 6371.0 * 1000.0 // hardcoding "earth" here
+
+	public enum Offset {
+		case meters(Double)
+	}
+
 	public var id: String { "\(latitude),\(longitude)" }
 
 	public let latitude: Double
@@ -20,9 +26,6 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 
 	// Calculate distance between two coordinates using Haversine formula (according to chatgpt)
 	public func distance(to other: Coordinate) -> Distance {
-		let earthRadiusKm = 6371.0 // Earth's radius in kilometers
-		let earthRadiusM = earthRadiusKm * 1000.0 // Earth's radius in meters
-
 		let dLat = degreesToRadians(degrees: other.latitude - latitude)
 		let dLon = degreesToRadians(degrees: other.longitude - longitude)
 
@@ -31,12 +34,36 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 			sin(dLon / 2) * sin(dLon / 2)
 		let c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
-		let distance = earthRadiusM * c
+		let distance = Self.currentPlanetRadiusMeters * c
 
 		return distance
 	}
 
+	public func offset(x: Offset, y: Offset) -> Coordinate {
+		var dLat = 0.0
+		var dLon = 0.0
+
+		switch x {
+		case .meters(let distanceX):
+			dLon = distanceX / (Self.currentPlanetRadiusMeters * cos(degreesToRadians(degrees: latitude)))
+		}
+
+		switch y {
+		case .meters(let distanceY):
+			dLat = distanceY / Self.currentPlanetRadiusMeters
+		}
+
+		let newLatitude = latitude + radiansToDegrees(radians: dLat)
+		let newLongitude = longitude + radiansToDegrees(radians: dLon)
+
+		return Coordinate(latitude: newLatitude, longitude: newLongitude)
+	}
+
 	fileprivate func degreesToRadians(degrees: Double) -> Double {
 		return degrees * .pi / 180
+	}
+
+	fileprivate func radiansToDegrees(radians: Double) -> Double {
+		return radians * 180 / .pi
 	}
 }
