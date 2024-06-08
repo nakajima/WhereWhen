@@ -48,10 +48,8 @@ final class Database: Sendable {
 		}
 
 		#if DEBUG
-		// Protect sensitive information by enabling verbose debugging in DEBUG builds only
-		config.publicStatementArguments = true
-
-
+			// Protect sensitive information by enabling verbose debugging in DEBUG builds only
+			config.publicStatementArguments = true
 
 		#endif
 
@@ -66,7 +64,6 @@ final class Database: Sendable {
 			let queue = try! DatabaseQueue(configuration: config)
 			return Database(queue: queue)
 		}
-
 	}
 
 	static let dev = create(.path("fourskiedev.sqlite"))

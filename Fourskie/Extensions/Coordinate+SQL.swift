@@ -10,9 +10,9 @@ import LibFourskie
 
 extension Coordinate {
 	var sql: String {
-	"""
-		GeomFromText('POINT(\(latitude) \(longitude))', 4326)
-	"""
+		"""
+			GeomFromText('POINT(\(latitude) \(longitude))', 4326)
+		"""
 	}
 
 	func updateSQL(uuid: String, table: String) -> String {

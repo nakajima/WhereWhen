@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import GRDB
+import SwiftUI
 
 struct DatabaseKey: EnvironmentKey {
 	static let defaultValue: Database = .memory

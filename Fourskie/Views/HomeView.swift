@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import LibFourskie
+import SwiftUI
 
 struct HomeView: View {
 	@Environment(\.database) var database
@@ -26,7 +26,7 @@ struct HomeView: View {
 			}
 
 			let checkinPoints = try! database.queue.spatialite { db in
-				try Optional<String>.fetchAll(db, sql: "SELECT AsText(coordinate) FROM checkin")
+				try String?.fetchAll(db, sql: "SELECT AsText(coordinate) FROM checkin")
 			}
 
 			print("checkin points: \(checkinPoints)")

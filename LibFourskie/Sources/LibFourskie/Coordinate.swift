@@ -44,12 +44,12 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 		var dLon = 0.0
 
 		switch x {
-		case .meters(let distanceX):
+		case let .meters(distanceX):
 			dLon = distanceX / (Self.currentPlanetRadiusMeters * cos(degreesToRadians(degrees: latitude)))
 		}
 
 		switch y {
-		case .meters(let distanceY):
+		case let .meters(distanceY):
 			dLat = distanceY / Self.currentPlanetRadiusMeters
 		}
 
