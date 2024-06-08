@@ -42,6 +42,7 @@
 		A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791112C112C3200D2273A /* CheckinCellView.swift */; };
 		A65791142C1170D200D2273A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65791132C1170D200D2273A /* String.swift */; };
 		A66B840F2C135BB3004D4D51 /* LibFourskie in Frameworks */ = {isa = PBXBuildFile; productRef = A66B840E2C135BB3004D4D51 /* LibFourskie */; };
+		A66FDEED2C14058600979F75 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66FDEEC2C14058600979F75 /* Environment.swift */; };
 		A6901ED32C12B4B7002F4764 /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */; };
 		A6901ED52C12B87B002F4764 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6901ED42C12B87B002F4764 /* Styles.swift */; };
 		A69AE89C2C135F8B00818D93 /* Checkin+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE89B2C135F8B00818D93 /* Checkin+Database.swift */; };
@@ -119,6 +120,7 @@
 		A657910F2C112AF700D2273A /* PreviewsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewsWrapper.swift; sourceTree = "<group>"; };
 		A65791112C112C3200D2273A /* CheckinCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinCellView.swift; sourceTree = "<group>"; };
 		A65791132C1170D200D2273A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		A66FDEEC2C14058600979F75 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
 		A6901ED42C12B87B002F4764 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		A69AE89B2C135F8B00818D93 /* Checkin+Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+Database.swift"; sourceTree = "<group>"; };
@@ -212,8 +214,16 @@
 				A6901ED22C12B4B7002F4764 /* Int+Formatting.swift */,
 				A61D9C462C12BC8200422715 /* URLSession+Helpers.swift */,
 				A64C967F2C137BFE000C91BF /* Query+DatabaseQueue.swift */,
+				A66FDEEC2C14058600979F75 /* Environment.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A66FDEEE2C1405F000979F75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A6D11D4F2C0FD4BB00349B05 /* Model */ = {
@@ -276,6 +286,7 @@
 				A6E64A052C0ACEFF00553F10 /* FourskieTests */,
 				A6E64A0F2C0ACEFF00553F10 /* FourskieUITests */,
 				A6E649F12C0ACEFE00553F10 /* Products */,
+				A66FDEEE2C1405F000979F75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -489,6 +500,7 @@
 				A6D11D592C0FD81200349B05 /* DiskLogger.swift in Sources */,
 				A61308D02C1211A8004B35A3 /* CheckinChoosePlaceView.swift in Sources */,
 				A6901ED32C12B4B7002F4764 /* Int+Formatting.swift in Sources */,
+				A66FDEED2C14058600979F75 /* Environment.swift in Sources */,
 				A6901ED52C12B87B002F4764 /* Styles.swift in Sources */,
 				A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */,
 				A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */,
