@@ -119,7 +119,8 @@ struct PlaceFinder {
 							subLocality: item.placemark.subLocality,
 							administrativeArea: item.placemark.administrativeArea,
 							subAdministrativeArea: item.placemark.subAdministrativeArea,
-							postalCode: item.placemark.postalCode
+							postalCode: item.placemark.postalCode,
+							isIgnored: false
 						)
 
 						results.append(place)

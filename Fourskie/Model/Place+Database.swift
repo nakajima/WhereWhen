@@ -29,6 +29,8 @@ extension Place: Model {
 			t.column("name", .text).notNull()
 			t.column("category", .text)
 
+			t.column("isIgnored", .boolean).notNull().defaults(to: false)
+
 			// Contact
 			t.column("phoneNumber", .text)
 			t.column("url", .text)
@@ -61,7 +63,9 @@ extension Place: Model {
 			subLocality: row["subLocality"],
 			administrativeArea: row["administrativeArea"],
 			subAdministrativeArea: row["subAdministrativeArea"],
-			postalCode: row["postalCode"]
+			postalCode: row["postalCode"],
+
+			isIgnored: row["isIgnored"]
 		)
 	}
 
@@ -83,5 +87,7 @@ extension Place: Model {
 		container["administrativeArea"] = administrativeArea
 		container["subAdministrativeArea"] = subAdministrativeArea
 		container["postalCode"] = postalCode
+
+		container["isIgnored"] = isIgnored
 	}
 }

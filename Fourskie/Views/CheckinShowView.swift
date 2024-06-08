@@ -12,17 +12,19 @@ import MapKit
 import SwiftUI
 
 @MainActor struct CheckinShowView: View {
+	@Environment(\.database) var database
 	@Query(PlaceCheckinsRequest(placeUUID: ""))
 	var placeCheckins: [Checkin]
 
 	let checkin: Checkin
-	let place: Place
+
+	@LiveModel var place: Place
 
 	@State private var isDeleting = false
 
 	init(checkin: Checkin, place: Place) {
 		self.checkin = checkin
-		self.place = place
+		self._place = LiveModel(wrappedValue: place)
 		self._placeCheckins = Query(PlaceCheckinsRequest(placeUUID: place.uuid))
 	}
 
@@ -68,13 +70,19 @@ import SwiftUI
 				}
 			}
 
-			Section {
+			Section(footer: Text("Ignoring a place will make Fourskie try to avoid checking you in here automatically.")) {
 				Button("Delete Checkin", role: .destructive) {
 					isDeleting = true
 				}
 				.confirmationDialog("Delete this checkin?", isPresented: $isDeleting, titleVisibility: .visible) {
 					Button("Delete", role: .destructive) {}
 					Button("Cancel", role: .cancel) {}
+				}
+
+				Button(place.isIgnored ? "Unignore Place" : "Ignore Place") {
+					var place = place
+					place.isIgnored.toggle()
+					try! place.save(to: database)
 				}
 			}
 		}
