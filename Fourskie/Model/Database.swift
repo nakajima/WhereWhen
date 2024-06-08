@@ -75,6 +75,10 @@ final class Database: Sendable {
 		setupTables()
 	}
 
+	var url: URL {
+		URL.documentsDirectory.appending(path: queue.path)
+	}
+
 	func setupTables() {
 		try! Place.create(in: self)
 		try! Checkin.create(in: self)
