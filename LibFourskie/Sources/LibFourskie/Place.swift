@@ -54,6 +54,8 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 	// Gets populated by DBs
 	public var checkins: [Checkin] = []
 
+	public var isIgnored: Bool = false
+
 	public init(
 		uuid: String,
 		addedAt: Date,
@@ -68,7 +70,8 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 		subLocality: String?,
 		administrativeArea: String?,
 		subAdministrativeArea: String?,
-		postalCode: String?
+		postalCode: String?,
+		isIgnored: Bool
 	) {
 		self.uuid = uuid
 
@@ -86,6 +89,7 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 		self.administrativeArea = administrativeArea
 		self.subAdministrativeArea = subAdministrativeArea
 		self.postalCode = postalCode
+		self.isIgnored = isIgnored
 	}
 }
 
@@ -115,7 +119,8 @@ extension Place: Hashable {
 			subLocality: nil,
 			administrativeArea: "CA",
 			subAdministrativeArea: nil,
-			postalCode: "90120"
+			postalCode: "90120",
+			isIgnored: false
 		)
 	}
 #endif

@@ -65,6 +65,7 @@
 		A6E64A112C0ACEFF00553F10 /* FourskieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */; };
 		A6E64A132C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */; };
 		A6EF91472C1383AE0080EEC8 /* DeletedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */; };
+		A6EF91492C13BD090080EEC8 /* LiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EF91482C13BD090080EEC8 /* LiveModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,7 @@
 		A6E64A102C0ACEFF00553F10 /* FourskieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieUITests.swift; sourceTree = "<group>"; };
 		A6E64A122C0ACEFF00553F10 /* FourskieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourskieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedRecord.swift; sourceTree = "<group>"; };
+		A6EF91482C13BD090080EEC8 /* LiveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				A65191B92C11072E00884620 /* Debouncer.swift */,
 				A657910B2C1124C900D2273A /* DragDismissable.swift */,
 				A61D9C4D2C12C16600422715 /* WrappedDefault.swift */,
+				A6EF91482C13BD090080EEC8 /* LiveModel.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				A6E649F42C0ACEFE00553F10 /* FourskieApp.swift in Sources */,
 				A61308CE2C1210D5004B35A3 /* Checkin+MapKit.swift in Sources */,
 				A6D11D612C10063800349B05 /* FourskieCoordinator.swift in Sources */,
+				A6EF91492C13BD090080EEC8 /* LiveModel.swift in Sources */,
 				A65191BC2C11113E00884620 /* ManualCheckinFinishView.swift in Sources */,
 				A65191B42C11016000884620 /* ManualCheckinPlaceCellView.swift in Sources */,
 				A64C96772C1373EA000C91BF /* DatabaseConvertibles.swift in Sources */,

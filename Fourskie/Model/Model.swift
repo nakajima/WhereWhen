@@ -10,6 +10,8 @@ import GRDB
 
 // Just a lil common interface around GRDB wrappers
 protocol Model: Sendable, TableRecord, FetchableRecord, PersistableRecord {
+	var uuid: String { get }
+
 	static func create(in database: Database) throws
 }
 
