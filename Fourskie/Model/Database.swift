@@ -8,28 +8,7 @@
 import Foundation
 import GRDB
 import LibFourskie
-import SwiftUI
-
-struct DatabaseKey: EnvironmentKey {
-	static let defaultValue: Database = .memory
-}
-
-private struct DatabaseQueueKey: EnvironmentKey {
-	/// The default dbQueue is an empty in-memory database
-	static var defaultValue: DatabaseQueue { try! DatabaseQueue() }
-}
-
-extension EnvironmentValues {
-	var database: Database {
-		get { self[DatabaseKey.self] }
-		set { self[DatabaseKey.self] = newValue }
-	}
-
-	var dbQueue: DatabaseQueue {
-		get { self[DatabaseQueueKey.self] }
-		set { self[DatabaseQueueKey.self] = newValue }
-	}
-}
+import LibSpatialite
 
 final class Database: Sendable {
 	let queue: DatabaseQueue
