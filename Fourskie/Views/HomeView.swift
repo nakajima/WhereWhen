@@ -7,8 +7,10 @@
 
 import Foundation
 import SwiftUI
+import LibFourskie
 
 struct HomeView: View {
+	@Environment(\.database) var database
 	@Environment(LocationListener.self) var location
 	@EnvironmentObject var coordinator: FourskieCoordinator
 	@AppStorage("isLocationPromptDismissed") var isLocationPromptDismissed = false
@@ -16,6 +18,18 @@ struct HomeView: View {
 	var body: some View {
 		List {
 			CheckinListView()
+		}
+		.task {
+			let checkins = try! Checkin.all(in: database)
+			for checkin in checkins {
+				try! checkin.syncCoordinate(in: database)
+			}
+
+			let checkinPoints = try! database.queue.spatialite { db in
+				try Optional<String>.fetchAll(db, sql: "SELECT AsText(coordinate) FROM checkin")
+			}
+
+			print("checkin points: \(checkinPoints)")
 		}
 		.toolbar {
 			ToolbarItem(placement: .navigationBarLeading) {

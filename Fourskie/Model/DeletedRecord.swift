@@ -14,6 +14,8 @@ public protocol DeleteSyncable {
 
 // Tracks deletions of stuff so we can let the server know.
 public struct DeletedRecord: Sendable, Codable, Model {
+	static var tableName: String { "deletedRecord" }
+
 	static func create(in database: Database) throws {
 		try database.create(table: "deletedRecord") { t in
 			t.primaryKey("uuid", .text)

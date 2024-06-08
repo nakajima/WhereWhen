@@ -26,7 +26,8 @@ extension ServerPlace: SharedWrapper {
 			subLocality: wrapped.subLocality,
 			administrativeArea: wrapped.administrativeArea,
 			subAdministrativeArea: wrapped.subAdministrativeArea,
-			postalCode: wrapped.postalCode
+			postalCode: wrapped.postalCode,
+      isIgnored: wrapped.isIgnored
 		)
 	}
 
@@ -45,7 +46,8 @@ extension ServerPlace: SharedWrapper {
 			subLocality: subLocality,
 			administrativeArea: administrativeArea,
 			subAdministrativeArea: subAdministrativeArea,
-			postalCode: postalCode
+			postalCode: postalCode,
+      isIgnored: isIgnored
 		)
 	}
 }

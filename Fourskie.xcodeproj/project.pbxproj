@@ -51,6 +51,9 @@
 		A69AE8A22C13625F00818D93 /* Place+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE8A12C13625F00818D93 /* Place+Database.swift */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
 		A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A69B50742C142787001CBBAD /* libiconv.tbd */; };
+		A69B50772C14B387001CBBAD /* SpatialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B50762C14B387001CBBAD /* SpatialModel.swift */; };
+		A69B50792C14B410001CBBAD /* Place+Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B50782C14B410001CBBAD /* Place+Spatial.swift */; };
+		A69B507B2C14BD3F001CBBAD /* Checkin+Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B507A2C14BD3F001CBBAD /* Checkin+Spatial.swift */; };
 		A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */ = {isa = PBXBuildFile; productRef = A6D042242C141D2B00E2E194 /* LibSpatialite */; };
 		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
 		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
@@ -130,6 +133,9 @@
 		A69AE89F2C13615200818D93 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A69AE8A12C13625F00818D93 /* Place+Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+Database.swift"; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		A69B50762C14B387001CBBAD /* SpatialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialModel.swift; sourceTree = "<group>"; };
+		A69B50782C14B410001CBBAD /* Place+Spatial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+Spatial.swift"; sourceTree = "<group>"; };
+		A69B507A2C14BD3F001CBBAD /* Checkin+Spatial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+Spatial.swift"; sourceTree = "<group>"; };
 		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
 		A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermissionsView.swift; sourceTree = "<group>"; };
@@ -239,9 +245,12 @@
 				A65191A82C10DC2900884620 /* PlaceFinder.swift */,
 				A69AE89B2C135F8B00818D93 /* Checkin+Database.swift */,
 				A69AE8A12C13625F00818D93 /* Place+Database.swift */,
+				A69B50782C14B410001CBBAD /* Place+Spatial.swift */,
+				A69B507A2C14BD3F001CBBAD /* Checkin+Spatial.swift */,
 				A69AE89F2C13615200818D93 /* Model.swift */,
 				A69AE89D2C135FD400818D93 /* Database.swift */,
 				A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */,
+				A69B50762C14B387001CBBAD /* SpatialModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,6 +521,8 @@
 				A6901ED52C12B87B002F4764 /* Styles.swift in Sources */,
 				A65191AC2C10DD5C00884620 /* Coordinate+CL.swift in Sources */,
 				A65191B22C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift in Sources */,
+				A69B50772C14B387001CBBAD /* SpatialModel.swift in Sources */,
+				A69B50792C14B410001CBBAD /* Place+Spatial.swift in Sources */,
 				A61308D22C121F6D004B35A3 /* CheckinShowView.swift in Sources */,
 				A65791122C112C3200D2273A /* CheckinCellView.swift in Sources */,
 				A64C96752C136D28000C91BF /* Checkin+CL.swift in Sources */,
@@ -533,6 +544,7 @@
 				A65191B82C11072000884620 /* LockAttribute.swift in Sources */,
 				A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */,
 				A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */,
+				A69B507B2C14BD3F001CBBAD /* Checkin+Spatial.swift in Sources */,
 				A6D11D5F2C1004C900349B05 /* CheckinListView.swift in Sources */,
 				A65191A92C10DC2900884620 /* PlaceFinder.swift in Sources */,
 				A69AE8A02C13615200818D93 /* Model.swift in Sources */,
