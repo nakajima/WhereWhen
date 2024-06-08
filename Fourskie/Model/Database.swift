@@ -29,9 +29,11 @@ extension DatabaseQueue {
 final class Database: Sendable {
 	let queue: DatabaseQueue
 
-	static func create(name: String) -> Database {
-		let path = URL.documentsDirectory.appending(path: name).path
+	enum Name {
+		case path(String), memory
+	}
 
+	static func create(_ name: Name) -> Database {
 		var config = Configuration()
 
 		// This isn't working reliably
@@ -49,16 +51,26 @@ final class Database: Sendable {
 		// Protect sensitive information by enabling verbose debugging in DEBUG builds only
 		config.publicStatementArguments = true
 
-		// It can be helpful to know where the db is
-		print("DB: \(path)")
+
+
 		#endif
 
-		let queue = try! DatabaseQueue(path: path, configuration: config)
-		return Database(queue: queue)
+		if case let .path(name) = name {
+			let path = URL.documentsDirectory.appending(path: name).path
+			// It can be helpful to know where the db is
+			print("DB: \(path)")
+
+			let queue = try! DatabaseQueue(path: path, configuration: config)
+			return Database(queue: queue)
+		} else {
+			let queue = try! DatabaseQueue(configuration: config)
+			return Database(queue: queue)
+		}
+
 	}
 
-	static let dev = create(name: "fourskiedev.sqlite")
-	static let memory = Database(queue: try! DatabaseQueue())
+	static let dev = create(.path("fourskiedev.sqlite"))
+	static let memory = create(.memory)
 
 	init(queue: DatabaseQueue) {
 		self.queue = queue

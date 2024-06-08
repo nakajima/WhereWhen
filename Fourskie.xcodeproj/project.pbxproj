@@ -54,6 +54,9 @@
 		A69B50772C14B387001CBBAD /* SpatialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B50762C14B387001CBBAD /* SpatialModel.swift */; };
 		A69B50792C14B410001CBBAD /* Place+Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B50782C14B410001CBBAD /* Place+Spatial.swift */; };
 		A69B507B2C14BD3F001CBBAD /* Checkin+Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B507A2C14BD3F001CBBAD /* Checkin+Spatial.swift */; };
+		A69B507D2C14E30B001CBBAD /* Coordinate+SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B507C2C14E30B001CBBAD /* Coordinate+SQL.swift */; };
+		A69B507F2C14E73B001CBBAD /* CheckinMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B507E2C14E73B001CBBAD /* CheckinMaker.swift */; };
+		A69B50812C14E805001CBBAD /* CheckinCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B50802C14E805001CBBAD /* CheckinCreatorTests.swift */; };
 		A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */ = {isa = PBXBuildFile; productRef = A6D042242C141D2B00E2E194 /* LibSpatialite */; };
 		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
 		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
@@ -136,6 +139,9 @@
 		A69B50762C14B387001CBBAD /* SpatialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialModel.swift; sourceTree = "<group>"; };
 		A69B50782C14B410001CBBAD /* Place+Spatial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+Spatial.swift"; sourceTree = "<group>"; };
 		A69B507A2C14BD3F001CBBAD /* Checkin+Spatial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checkin+Spatial.swift"; sourceTree = "<group>"; };
+		A69B507C2C14E30B001CBBAD /* Coordinate+SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinate+SQL.swift"; sourceTree = "<group>"; };
+		A69B507E2C14E73B001CBBAD /* CheckinMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinMaker.swift; sourceTree = "<group>"; };
+		A69B50802C14E805001CBBAD /* CheckinCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinCreatorTests.swift; sourceTree = "<group>"; };
 		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
 		A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermissionsView.swift; sourceTree = "<group>"; };
@@ -213,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				A65191AB2C10DD5C00884620 /* Coordinate+CL.swift */,
+				A69B507C2C14E30B001CBBAD /* Coordinate+SQL.swift */,
 				A65191AD2C10E0A800884620 /* MKCoordinateSpan+Constants.swift */,
 				A65191B12C10F50900884620 /* MKPointOfInterestCategory+Conversion.swift */,
 				A65191BD2C1112AE00884620 /* Place+CL.swift */,
@@ -251,6 +258,7 @@
 				A69AE89D2C135FD400818D93 /* Database.swift */,
 				A6EF91462C1383AE0080EEC8 /* DeletedRecord.swift */,
 				A69B50762C14B387001CBBAD /* SpatialModel.swift */,
+				A69B507E2C14E73B001CBBAD /* CheckinMaker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				A6E64A062C0ACEFF00553F10 /* FourskieTests.swift */,
+				A69B50802C14E805001CBBAD /* CheckinCreatorTests.swift */,
 			);
 			path = FourskieTests;
 			sourceTree = "<group>";
@@ -503,6 +512,7 @@
 			files = (
 				A6D11D632C10140E00349B05 /* ManualCheckinView.swift in Sources */,
 				A64C967E2C13794F000C91BF /* PlaceCheckinsRequest.swift in Sources */,
+				A69B507F2C14E73B001CBBAD /* CheckinMaker.swift in Sources */,
 				A657910E2C11252A00D2273A /* ErrorOverlay.swift in Sources */,
 				A64C967C2C1374BC000C91BF /* CheckinListRequest.swift in Sources */,
 				A65791082C1116BC00D2273A /* ManualCheckinChoosePlaceView.swift in Sources */,
@@ -542,6 +552,7 @@
 				A65191BA2C11072E00884620 /* Debouncer.swift in Sources */,
 				A64C967A2C137493000C91BF /* ListQueryRequest.swift in Sources */,
 				A65191B82C11072000884620 /* LockAttribute.swift in Sources */,
+				A69B507D2C14E30B001CBBAD /* Coordinate+SQL.swift in Sources */,
 				A65791102C112AF700D2273A /* PreviewsWrapper.swift in Sources */,
 				A61D9C4E2C12C16600422715 /* WrappedDefault.swift in Sources */,
 				A69B507B2C14BD3F001CBBAD /* Checkin+Spatial.swift in Sources */,
@@ -562,6 +573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A69B50812C14E805001CBBAD /* CheckinCreatorTests.swift in Sources */,
 				A6E64A072C0ACEFF00553F10 /* FourskieTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -100,11 +100,9 @@ import Observation
 	func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
 		logger.info("didVisit: \(visit.debugDescription)")
 
-		// Assigning these to locals for sendability
 		Task {
 			do {
-				let checkin = Checkin(visit: visit)
-				try await checkin.save(to: database)
+				try await CheckinCreator(checkin: Checkin(visit: visit), database: database).create()
 			} catch {
 				logger.error("Error saving checking: \(error)")
 			}
