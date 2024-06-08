@@ -50,6 +50,8 @@
 		A69AE8A02C13615200818D93 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE89F2C13615200818D93 /* Model.swift */; };
 		A69AE8A22C13625F00818D93 /* Place+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69AE8A12C13625F00818D93 /* Place+Database.swift */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
+		A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A69B50742C142787001CBBAD /* libiconv.tbd */; };
+		A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */ = {isa = PBXBuildFile; productRef = A6D042242C141D2B00E2E194 /* LibSpatialite */; };
 		A6D11D4E2C0FD4A800349B05 /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */; };
 		A6D11D542C0FD57100349B05 /* GrantPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */; };
 		A6D11D562C0FD75B00349B05 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D11D552C0FD75B00349B05 /* HomeView.swift */; };
@@ -127,6 +129,7 @@
 		A69AE89D2C135FD400818D93 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		A69AE89F2C13615200818D93 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A69AE8A12C13625F00818D93 /* Place+Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+Database.swift"; sourceTree = "<group>"; };
+		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		A6D11D4C2C0FA36D00349B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6D11D4D2C0FD4A800349B05 /* LocationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
 		A6D11D532C0FD57100349B05 /* GrantPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantPermissionsView.swift; sourceTree = "<group>"; };
@@ -155,10 +158,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */,
 				A66B840F2C135BB3004D4D51 /* LibFourskie in Frameworks */,
 				A61D9C582C1356EB00422715 /* GRDB in Frameworks */,
 				A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */,
 				A61D9C4C2C12BEC000422715 /* Queue in Frameworks */,
+				A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +227,7 @@
 		A66FDEEE2C1405F000979F75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A69B50742C142787001CBBAD /* libiconv.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				A61D9C572C1356EB00422715 /* GRDB */,
 				A66B840E2C135BB3004D4D51 /* LibFourskie */,
 				A69AE8A42C1369C200818D93 /* GRDBQuery */,
+				A6D042242C141D2B00E2E194 /* LibSpatialite */,
 			);
 			productName = Fourskie;
 			productReference = A6E649F02C0ACEFE00553F10 /* Fourskie.app */;
@@ -441,6 +448,7 @@
 				A61D9C562C1356EB00422715 /* XCRemoteSwiftPackageReference "GRDB" */,
 				A66B840D2C135BB3004D4D51 /* XCLocalSwiftPackageReference "LibFourskie" */,
 				A69AE8A32C1369C200818D93 /* XCRemoteSwiftPackageReference "GRDBQuery" */,
+				A6D042232C141D2B00E2E194 /* XCLocalSwiftPackageReference "LibSpatialite" */,
 			);
 			productRefGroup = A6E649F12C0ACEFE00553F10 /* Products */;
 			projectDirPath = "";
@@ -878,6 +886,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = LibFourskie;
 		};
+		A6D042232C141D2B00E2E194 /* XCLocalSwiftPackageReference "LibSpatialite" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = LibSpatialite;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -926,6 +938,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A69AE8A32C1369C200818D93 /* XCRemoteSwiftPackageReference "GRDBQuery" */;
 			productName = GRDBQuery;
+		};
+		A6D042242C141D2B00E2E194 /* LibSpatialite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LibSpatialite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

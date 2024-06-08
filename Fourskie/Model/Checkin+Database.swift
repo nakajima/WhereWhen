@@ -20,7 +20,7 @@ extension Checkin: DeleteSyncable {}
 
 extension Checkin: Model, Sendable {
 	static func create(in database: Database) throws {
-		try database.create(table: "checkin") { t in
+		try database.create(table: "checkin", spatial: true) { t in
 			t.primaryKey("uuid", .text)
 			t.column("source", .text).notNull()
 			t.column("latitude", .double).notNull()

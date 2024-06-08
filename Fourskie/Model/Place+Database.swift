@@ -19,7 +19,7 @@ extension Place {
 
 extension Place: Model {
 	static func create(in database: Database) throws {
-		try database.create(table: "place") { t in
+		try database.create(table: "place", spatial: true) { t in
 			t.primaryKey("uuid", .text)
 			t.column("addedAt", .date).notNull()
 
