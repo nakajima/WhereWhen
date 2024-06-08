@@ -8,6 +8,4 @@
 import Foundation
 import LibFourskie
 
-extension Place: SpatialModel {
-
-}
+extension Place: SpatialModel {}

@@ -5,13 +5,13 @@
 //  Created by Pat Nakajima on 6/7/24.
 //
 
-import Foundation
 import Combine
-import LibFourskie
+import Foundation
 import GRDB
 import GRDBQuery
-import SwiftUI
+import LibFourskie
 import Observation
+import SwiftUI
 
 @propertyWrapper struct LiveModel<ModelType: Model>: DynamicProperty, Sendable {
 	@Environment(\.database) private var database: Database
@@ -33,7 +33,7 @@ import Observation
 				try ModelType.find(db, key: uuid)
 			}
 
-			self.cancellable = observation.start(in: database.queue) {
+			cancellable = observation.start(in: database.queue) {
 				print("LiveModel error: \($0)")
 			} onChange: {
 				self.instance = $0
@@ -48,9 +48,7 @@ import Observation
 	}
 
 	var wrappedValue: ModelType {
-		get {
-			updater.instance
-		}
+		updater.instance
 	}
 
 	init(wrappedValue: ModelType) {

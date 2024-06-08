@@ -39,5 +39,5 @@ import ServerData
 	var subAdministrativeArea: String?
 	var postalCode: String?
 
-  var isIgnored: Bool = false
+	var isIgnored: Bool = false
 }
