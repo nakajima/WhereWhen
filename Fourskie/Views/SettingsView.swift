@@ -165,7 +165,7 @@ struct SettingsView: View {
 				in: .userDomainMask,
 				appropriateFor: zipUrl,
 				create: true
-			).appendingPathComponent("\(database.url.lastPathComponent).zip")
+			).appendingPathComponent("fourskie.zip")
 
 			try! FileManager.default.moveItem(at: zipUrl, to: tmpUrl)
 			self.exportURL = tmpUrl
