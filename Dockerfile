@@ -9,7 +9,7 @@ ADD WhereWhenServer /app/WhereWhenServer
 WORKDIR /app/WhereWhenServer
 
 # Build the application
-RUN swift build -c release --product WhereWhen
+RUN swift build -c release --product wherewhen
 
 RUN mkdir /app/bin
 RUN cp /app/WhereWhenServer/.build/release/wherewhen /app/wherewhen
