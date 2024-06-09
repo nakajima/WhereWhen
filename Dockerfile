@@ -18,10 +18,10 @@ RUN chmod +x /app/fourskie
 
 VOLUME [ "/db" ]
 
-# Debugging step to verify copy
-RUN ls /app
+ENV DBDIR=/db
+ENV PORT=4567
 
-EXPOSE 4567
+EXPOSE ${PORT}
 
 # Start the server
 ENTRYPOINT ["/app/fourskie"]

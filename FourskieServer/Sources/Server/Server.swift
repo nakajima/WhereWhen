@@ -13,6 +13,9 @@ import ServerData
 import SQLiteKit
 
 public struct Server {
+  let dbLocation = ProcessInfo.processInfo.environment["DBDIR"] ?? "."
+  let port = ProcessInfo.processInfo.environment["PORT"].flatMap { Int($0) } ?? 4567
+
 	public init() {}
 
 	public func run() async throws {
@@ -20,7 +23,7 @@ public struct Server {
 		encoder.outputFormatting = .prettyPrinted
 
 		let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-		let container = Container.sqlite("/db/fourskie.sqlite", on: eventLoopGroup)
+		let container = Container.sqlite("\(dbLocation)/fourskie.sqlite", on: eventLoopGroup)
 
 		let checkinStore = PersistentStore(for: ServerCheckin.self, container: container)
 		await checkinStore.setup()
@@ -109,7 +112,7 @@ public struct Server {
 			return ByteBuffer(data: Data("OK".utf8))
 		}
 
-		router.get("") { _, _ -> String in
+		router.get("status") { _, _ -> String in
 			"fourskie is up."
 		}
 
@@ -120,7 +123,7 @@ public struct Server {
 		// create application using router
 		let app = Application(
 			router: router,
-			configuration: .init(address: .hostname("0.0.0.0", port: 4567)),
+			configuration: .init(address: .hostname("0.0.0.0", port: port)),
 			eventLoopGroupProvider: .shared(eventLoopGroup)
 		)
 
