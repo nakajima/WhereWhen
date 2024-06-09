@@ -36,7 +36,7 @@ import Observation
 
 	init(database: Database) {
 		manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-		manager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+		manager.distanceFilter = kCLLocationAccuracyHundredMeters
 		manager.allowsBackgroundLocationUpdates = true
 		manager.pausesLocationUpdatesAutomatically = false
 
