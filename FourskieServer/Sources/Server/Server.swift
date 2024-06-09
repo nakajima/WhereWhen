@@ -120,7 +120,7 @@ public struct Server {
 		// create application using router
 		let app = Application(
 			router: router,
-			configuration: .init(address: .hostname("127.0.0.1", port: 4567)),
+			configuration: .init(address: .hostname("0.0.0.0", port: 4567)),
 			eventLoopGroupProvider: .shared(eventLoopGroup)
 		)
 
