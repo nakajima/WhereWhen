@@ -16,10 +16,27 @@ actor Syncer {
 	let queue: AsyncQueue
 	let logger = DiskLogger(label: "Syncer", location: URL.documentsDirectory.appending(path: "fourskie.log"))
 
+	nonisolated let clientURL: URL
+
+	nonisolated static func load(with database: Database) -> Syncer? {
+		if let savedURL = UserDefaults.standard.string(forKey: "syncURL"),
+			 let url = URL(string: savedURL) {
+			return Syncer(database: database, client: FourskieClient(serverURL: url))
+		}
+
+		return nil
+	}
+
 	init(database: Database, client: FourskieClient) {
 		self.database = database
 		self.client = client
+		self.clientURL = client.serverURL
 		self.queue = AsyncQueue()
+	}
+
+	nonisolated func setup() {
+		UserDefaults.standard.set(client.serverURL.absoluteString, forKey: "syncURL")
+		sync()
 	}
 
 	func syncDeletions() async {
