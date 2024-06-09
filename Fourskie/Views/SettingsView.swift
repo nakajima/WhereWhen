@@ -139,9 +139,21 @@ struct SettingsView: View {
 				ShareLink(item: url)
 			}
 
-			NavigationLink("Logs", destination: DiskLoggerViewer(logger: location.logger))
+			NavigationLink("Logs \(logFileSize())", destination: DiskLoggerViewer(logger: location.logger))
 
 		}
+	}
+
+	func logFileSize() -> String {
+		let path = location.logger.location.path
+
+		guard let attributes = try? FileManager.default.attributesOfItem(atPath: path) else {
+			return ""
+		}
+
+		let size = attributes[.size] as? UInt64 ?? UInt64(0)
+
+		return "(" + ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file) + ")"
 	}
 
 	func exportDatabase() {
