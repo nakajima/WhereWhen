@@ -19,6 +19,9 @@ struct HomeView: View {
 		List {
 			CheckinListView()
 		}
+		.refreshable {
+			coordinator.sync()
+		}
 		.toolbar {
 			ToolbarItem(placement: .navigationBarLeading) {
 				NavigationLink(value: Route.settings) {
