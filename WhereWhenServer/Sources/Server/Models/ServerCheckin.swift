@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import LibFourskie
+import LibWhereWhen
 @preconcurrency import ServerData
 
 @Model(table: "checkins") struct ServerCheckin: Codable, Sendable {

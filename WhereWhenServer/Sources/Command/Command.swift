@@ -19,11 +19,11 @@ struct ServerCommand: AsyncParsableCommand {
 
 @main
 struct Commands: AsyncParsableCommand {
-	static let version = "fourskie v0.0.1"
+	static let version = "wherewhen v0.0.1"
 
 	static let configuration = CommandConfiguration(
-		commandName: "fourskie",
-		abstract: "Stuff for fourskie",
+		commandName: "wherewhen",
+		abstract: "Stuff for wherewhen",
 		version: version,
 		subcommands: [ServerCommand.self]
 	)

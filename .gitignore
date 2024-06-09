@@ -7,8 +7,8 @@ DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
 
-FourskieServer/fourskie.sqlite
-FourskieServer/.vscode
+WhereWhenServer/wherewhen.sqlite
+WhereWhenServer/.vscode
 .envrc
 db/
 .vscode

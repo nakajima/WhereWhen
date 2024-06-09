@@ -36,20 +36,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A6E64A012C0ACEFF00553F10"
-               BuildableName = "FourskieTests.xctest"
-               BlueprintName = "FourskieTests"
-               ReferencedContainer = "container:Fourskie.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6E64A0B2C0ACEFF00553F10"
-               BuildableName = "FourskieUITests.xctest"
-               BlueprintName = "FourskieUITests"
-               ReferencedContainer = "container:Fourskie.xcodeproj">
+               BuildableName = "WhereWhenTests.xctest"
+               BlueprintName = "WhereWhenTests"
+               ReferencedContainer = "container:WhereWhen.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
