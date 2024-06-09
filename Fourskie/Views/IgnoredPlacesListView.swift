@@ -26,8 +26,10 @@ struct IgnoredPlacesListView: View {
 	}
 }
 
+#if DEBUG
 #Preview {
 	PreviewsWrapper {
 		IgnoredPlacesListView()
 	}
 }
+#endif
