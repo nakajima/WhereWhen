@@ -13,7 +13,7 @@ struct CheckinCreator {
 	let checkin: Checkin
 	let database: Database
 
-	func create() async throws {
+	func create(place: Place?) async throws {
 		// TODO: use spatialite query instead of filtering in swift
 		let ignoredPlaces = try await Place.where(Column("isIgnored") == true, in: database)
 
@@ -23,6 +23,8 @@ struct CheckinCreator {
 			}
 		}
 
+		var checkin = checkin
+		checkin.place = place
 		try await checkin.save(to: database)
 	}
 }

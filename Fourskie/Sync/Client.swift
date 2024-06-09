@@ -26,7 +26,7 @@ struct FourskieClient {
 
 	func isAvailable() async -> Bool {
 		do {
-			return try await URLSession.shared.string(from: serverURL) == "fourskie is up."
+			return try await URLSession.shared.string(from: serverURL.appending(path: "status")) == "fourskie is up."
 		} catch {
 			logger.error("error checking server availability: \(error)")
 			return false
