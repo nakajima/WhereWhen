@@ -133,7 +133,7 @@ struct SettingsView: View {
 			}
 
 			Button(action: exportDatabase) {
-				Text("Export Database")
+				Text("Export Your Data")
 			}
 			.sheet(item: $exportURL) { url in
 				ShareLink(item: url)
