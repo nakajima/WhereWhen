@@ -15,23 +15,25 @@ import SwiftUI
 	@Published var isShowingManualCheckin = false
 	@Published var errorMessage: String?
 	@Published var navigation: [Route] = []
-
-	let syncer: Syncer
+	@Published var isSyncServerOnline = false
+	@Published var syncer: Syncer?
 
 	init(database: Database) {
 		self.database = database
-		self.syncer = Syncer(
-			database: database,
-			client: .init(
-				serverURL: URL(string: "http://localhost:4567")!
-			)
-		)
+		self.syncer = Syncer.load(with: database)
+	}
 
-		sync()
+	func checkSyncServer() async {
+		guard let syncer else {
+			isSyncServerOnline = false
+			return
+		}
+
+		isSyncServerOnline = await syncer.client.isAvailable()
 	}
 
 	func sync() {
-		syncer.sync()
+		syncer?.sync()
 	}
 
 	func dismissError() {
