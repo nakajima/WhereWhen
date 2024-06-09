@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import LibFourskie
+import LibWhereWhen
 import ServerData
 
 @Model(table: "places") struct ServerPlace: Codable, Sendable {

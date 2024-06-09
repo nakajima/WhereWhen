@@ -28,7 +28,7 @@ struct WhereWhenClient {
 		do {
 			let response = try await URLSession.shared.string(from: serverURL.appending(path: "status"))
 
-			if response == "WhereWhen is up." {
+			if response == "wherewhen is up." {
 				return true
 			} else {
 				logger.error("got bad server response: \(response)")

@@ -3,7 +3,7 @@ name: docker
 on:
   push:
     paths:
-      - FourskieServer/**
+      - WhereWhenServer/**
 
 jobs:
   docker:
@@ -21,10 +21,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: rockajima/fourskie:v${{ github.ref_name }},rockajima/fourskie:latest
+          tags: rockajima/wherewhen:v${{ github.ref_name }},rockajima/wherewhen:latest
       - name: Build and push unstable
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: rockajima/fourskie:v${{ github.sha }},rockajima/fourskie:unstable
+          tags: rockajima/wherewhen:v${{ github.sha }},rockajima/wherewhen:unstable

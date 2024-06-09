@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import LibFourskie
+import LibWhereWhen
 
 extension ServerPlace: SharedWrapper {
 	init(wrapped: Place) {

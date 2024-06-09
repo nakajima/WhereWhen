@@ -4,10 +4,10 @@
 import PackageDescription
 
 let package = Package(
-	name: "FourskieServer",
+	name: "WhereWhenServer",
 	platforms: [.macOS(.v14), .iOS(.v17)],
 	products: [
-		.executable(name: "fourskie", targets: ["Command"]),
+		.executable(name: "wherewhen", targets: ["Command"]),
 	],
 	dependencies: [
 		.package(url: "https://github.com/hummingbird-project/hummingbird", branch: "main"),
@@ -15,7 +15,7 @@ let package = Package(
 		.package(url: "https://github.com/swift-server/async-http-client", branch: "main"),
 		.package(url: "https://github.com/nakajima/ServerData.swift", branch: "main"),
 		.package(url: "https://github.com/vapor/sqlite-kit", branch: "main"),
-		.package(path: "../LibFourskie"),
+		.package(path: "../LibWhereWhen"),
 	],
 	targets: [
 		// Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -31,7 +31,7 @@ let package = Package(
 		.target(
 			name: "Server",
 			dependencies: [
-				"LibFourskie",
+				"LibWhereWhen",
 				.product(name: "Hummingbird", package: "hummingbird"),
 				.product(name: "AsyncHTTPClient", package: "async-http-client"),
 				.product(name: "ServerData", package: "ServerData.swift"),

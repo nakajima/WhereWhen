@@ -7,7 +7,7 @@
 
 import Foundation
 import Hummingbird
-import LibFourskie
+import LibWhereWhen
 import NIOCore
 import ServerData
 import SQLiteKit
@@ -23,7 +23,7 @@ public struct Server {
 		encoder.outputFormatting = .prettyPrinted
 
 		let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-		let container = Container.sqlite("\(dbLocation)/fourskie.sqlite", on: eventLoopGroup)
+		let container = Container.sqlite("\(dbLocation)/wherewhen.sqlite", on: eventLoopGroup)
 
 		let checkinStore = PersistentStore(for: ServerCheckin.self, container: container)
 		await checkinStore.setup()
@@ -113,7 +113,7 @@ public struct Server {
 		}
 
 		router.get("status") { _, _ -> String in
-			"fourskie is up."
+			"wherewhen is up."
 		}
 
 		router.get("ping") { _, _ -> String in

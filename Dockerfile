@@ -3,18 +3,18 @@ FROM swift:5.10
 WORKDIR /app
 
 # Copy the source code
-ADD LibFourskie /app/LibFourskie
-ADD FourskieServer /app/FourskieServer
+ADD LibWhereWhen /app/LibWhereWhen
+ADD WhereWhenServer /app/WhereWhenServer
 
-WORKDIR /app/FourskieServer
+WORKDIR /app/WhereWhenServer
 
 # Build the application
-RUN swift build -c release --product fourskie
+RUN swift build -c release --product WhereWhen
 
 RUN mkdir /app/bin
-RUN cp /app/FourskieServer/.build/release/fourskie /app/fourskie
+RUN cp /app/WhereWhenServer/.build/release/wherewhen /app/wherewhen
 
-RUN chmod +x /app/fourskie
+RUN chmod +x /app/wherewhen
 
 VOLUME [ "/db" ]
 
@@ -24,5 +24,5 @@ ENV PORT=4567
 EXPOSE ${PORT}
 
 # Start the server
-ENTRYPOINT ["/app/fourskie"]
+ENTRYPOINT ["/app/wherewhen"]
 CMD ["server"]
