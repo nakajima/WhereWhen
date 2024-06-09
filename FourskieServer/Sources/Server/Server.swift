@@ -20,7 +20,7 @@ public struct Server {
 		encoder.outputFormatting = .prettyPrinted
 
 		let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-		let container = Container.sqlite("fourskie.sqlite", on: eventLoopGroup)
+		let container = Container.sqlite("/db/fourskie.sqlite", on: eventLoopGroup)
 
 		let checkinStore = PersistentStore(for: ServerCheckin.self, container: container)
 		await checkinStore.setup()
@@ -114,7 +114,7 @@ public struct Server {
 		}
 
 		router.get("ping") { _, _ -> String in
-			"PONG (\(Date().ISO8601Format()))\n"
+			"PONG (\(Date()))\n"
 		}
 
 		// create application using router

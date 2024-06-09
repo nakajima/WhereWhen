@@ -1,5 +1,5 @@
 //
-//  CheckinChoosePlaceView.swift
+//  CheckinEditPlaceView.swift
 //  Fourskie
 //
 //  Created by Pat Nakajima on 6/6/24.
@@ -23,12 +23,12 @@ struct UpdateCheckinView: View {
 	}
 }
 
-struct CheckinChoosePlaceView: View {
+struct CheckinEditPlaceView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
 	let checkin: Checkin
 
 	var body: some View {
-		ManualCheckinChoosePlaceView(location: checkin.coordinate) { place in
+		ChoosePlaceView(location: checkin.coordinate) { place in
 			.finishUpdateCheckinView(checkin, place)
 		}
 		.navigationTitle("Choose a place")
@@ -39,7 +39,7 @@ struct CheckinChoosePlaceView: View {
 	#Preview {
 		PreviewsWrapper {
 			NavigationStack {
-				CheckinChoosePlaceView(checkin: Checkin.preview)
+				CheckinEditPlaceView(checkin: Checkin.preview)
 			}
 		}
 	}

@@ -42,7 +42,7 @@ struct ManualCheckinView: View {
 				}
 		case let .loaded(clLocation):
 			NavigationContainer(path: $path) {
-				ManualCheckinChoosePlaceView(
+				ChoosePlaceView(
 					location: .init(clLocation.coordinate),
 					destination: { place in .finishCheckinView(place, .init(clLocation.coordinate)) }
 				)
