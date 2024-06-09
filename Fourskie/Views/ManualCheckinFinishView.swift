@@ -12,12 +12,13 @@ import SwiftUI
 struct ManualCheckinFinishView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
 	@Environment(\.dismiss) var dismiss
+	@Environment(\.database) var database
+	@Environment(\.navigationPath) var navigationPath
 
 	var checkin: Checkin?
 	var place: Place
 	var currentLocation: Coordinate
 	var caption: String = "Checking in here:"
-	var buttonLabel: String = "Check In"
 
 	var body: some View {
 		Form {
@@ -33,9 +34,17 @@ struct ManualCheckinFinishView: View {
 			}
 
 			Section {
-				Button(buttonLabel) {
-					if let checkin {
-						coordinator.updateCheckinPlace(checkin: checkin, place: place)
+				Button(checkin == nil ? "Finish Checking In" : "Update Check In") {
+					if var checkin {
+						checkin.place = place
+
+						do {
+							try checkin.save(to: database)
+						} catch {
+							coordinator.errorMessage = error.localizedDescription
+						}
+
+						navigationPath.wrappedValue.removeAll()
 					} else {
 						coordinator.manualCheckIn(place: place, from: currentLocation)
 					}

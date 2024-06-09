@@ -17,8 +17,7 @@ struct UpdateCheckinView: View {
 		ManualCheckinFinishView(
 			place: place,
 			currentLocation: checkin.coordinate,
-			caption: "Setting Checkin Place",
-			buttonLabel: "Set Checkin Place"
+			caption: "Setting Checkin Place"
 		)
 	}
 }

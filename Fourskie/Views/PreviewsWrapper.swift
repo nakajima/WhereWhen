@@ -13,9 +13,10 @@ import SwiftUI
 		var content: () -> Content
 
 		@StateObject var coordinator = FourskieCoordinator(database: .memory)
+		@State private var path: [Route] = []
 
 		var body: some View {
-			return NavigationContainer(path: $coordinator.navigation) {
+			return NavigationContainer(path: $path) {
 				content()
 					.environment(\.database, .memory)
 					.environmentObject(coordinator)

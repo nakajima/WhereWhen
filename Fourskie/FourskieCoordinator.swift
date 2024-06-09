@@ -14,7 +14,6 @@ import SwiftUI
 
 	@Published var isShowingManualCheckin = false
 	@Published var errorMessage: String?
-	@Published var navigation: [Route] = []
 	@Published var isSyncServerOnline = false
 	@Published var syncer: Syncer?
 
@@ -39,18 +38,6 @@ import SwiftUI
 	func dismissError() {
 		withAnimation {
 			errorMessage = nil
-		}
-	}
-
-	func updateCheckinPlace(checkin: Checkin, place: Place) {
-		var checkin = checkin
-		checkin.place = place
-
-		do {
-			try checkin.save(to: database)
-			navigation = []
-		} catch {
-			errorMessage = error.localizedDescription
 		}
 	}
 

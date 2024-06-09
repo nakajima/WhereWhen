@@ -10,9 +10,10 @@ import SwiftUI
 
 struct ContentView: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
+	@State private var path: [Route] = []
 
 	var body: some View {
-		NavigationContainer(path: $coordinator.navigation) {
+		NavigationContainer(path: $path) {
 			HomeView()
 		}
 		.sheet(isPresented: $coordinator.isShowingManualCheckin) {
