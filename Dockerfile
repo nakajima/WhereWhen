@@ -3,21 +3,25 @@ FROM swift:5.10
 WORKDIR /app
 
 # Copy the source code
-COPY . /app
+ADD LibFourskie /app/LibFourskie
+ADD FourskieServer /app/FourskieServer
+
+WORKDIR /app/FourskieServer
 
 # Build the application
 RUN swift build -c release --product fourskie
 
-# Debugging steps to verify build output
-RUN ls /app/.build/release/
-
 RUN mkdir /app/bin
-RUN cp /app/.build/release/fourskie /app/fourskie
+RUN cp /app/FourskieServer/.build/release/fourskie /app/fourskie
 
 RUN chmod +x /app/fourskie
 
+VOLUME [ "/db" ]
+
 # Debugging step to verify copy
 RUN ls /app
+
+EXPOSE 4567
 
 # Start the server
 ENTRYPOINT ["/app/fourskie"]

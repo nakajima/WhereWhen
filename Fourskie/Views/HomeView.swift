@@ -19,18 +19,6 @@ struct HomeView: View {
 		List {
 			CheckinListView()
 		}
-		.task {
-			let checkins = try! Checkin.all(in: database)
-			for checkin in checkins {
-				try! checkin.syncCoordinate(in: database)
-			}
-
-			let checkinPoints = try! database.queue.spatialite { db in
-				try String?.fetchAll(db, sql: "SELECT AsText(coordinate) FROM checkin")
-			}
-
-			print("checkin points: \(checkinPoints)")
-		}
 		.toolbar {
 			ToolbarItem(placement: .navigationBarLeading) {
 				NavigationLink(value: Route.settings) {
@@ -82,9 +70,7 @@ struct HomeView: View {
 #if DEBUG
 	#Preview {
 		PreviewsWrapper {
-			NavigationContainer(path: .constant([])) {
-				HomeView()
-			}
+			HomeView()
 		}
 	}
 #endif

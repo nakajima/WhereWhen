@@ -30,43 +30,49 @@ import SwiftUI
 
 	var body: some View {
 		List {
-			VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
+			VStack(alignment: .leading) {
 				VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
-					Text(place.name)
-						.bold()
-					Text("You’ve checked-in here \(placeCheckins.count.ordinalize("time")).")
-						.font(.subheadline)
-						.foregroundStyle(.secondary)
-				}
-			}
-
-			VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
-				if let category = place.category {
-					meta("Category") {
-						Text(category.description)
+					VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
+						Text(place.name)
+							.bold()
+						Text("You’ve checked-in here \(placeCheckins.count.ordinalize("time")).")
+							.font(.subheadline)
+							.foregroundStyle(.secondary)
 					}
 				}
 
-				if let url = place.url {
-					Divider()
-					meta("Website") {
-						Link(destination: url) {
-							Text(url.absoluteString)
-								.multilineTextAlignment(.leading)
+				VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
+					if let category = place.category?.description.presence {
+						Divider()
+						meta("Category") {
+							Text(category)
 						}
 					}
-				}
 
-				if let phoneNumber = place.phoneNumber {
-					Divider()
-					meta("Phone Number") {
-						Link(phoneNumber, destination: URL(string: "tel:\(phoneNumber)")!)
+					if let url = place.url {
+						Divider()
+						meta("Website") {
+							Link(destination: url) {
+								Text(url.absoluteString)
+									.multilineTextAlignment(.leading)
+									.font(.subheadline)
+							}
+						}
 					}
-				}
 
-				Divider()
-				meta("Address") {
-					Text(place.formatAddress())
+					if let phoneNumber = place.phoneNumber?.presence {
+						Divider()
+						meta("Phone Number") {
+							Link(phoneNumber, destination: URL(string: "tel:\(phoneNumber)")!)
+						}
+					}
+
+					if !place.formatAddress().isBlank {
+						Divider()
+						meta("Address") {
+							Text(place.formatAddress())
+						}
+					}
 				}
 			}
 
@@ -88,7 +94,7 @@ import SwiftUI
 		}
 		.safeAreaInset(edge: .top) {
 			Map(initialPosition: .region(place.region(.within(meters: 100))), interactionModes: []) {
-				Marker(coordinate: checkin.coordinate.clLocation) {}
+				Marker(coordinate: place.coordinate.clLocation) {}
 			}
 			.frame(height: 200)
 			.shadow(radius: 2)
@@ -97,7 +103,7 @@ import SwiftUI
 		.navigationBarTitleDisplayMode(.inline)
 	}
 
-	func meta<Content: View>(_ title: String, content: () -> Content) -> some View {
+	func meta<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
 		VStack(alignment: .leading) {
 			Text(title)
 				.font(.caption)

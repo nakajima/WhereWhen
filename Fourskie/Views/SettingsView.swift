@@ -16,6 +16,10 @@ struct SettingsView: View {
 		List {
 			ShareLink(item: database.url) { Text("Export Database") }
 			NavigationLink("Logs", destination: DiskLoggerViewer(logger: location.logger))
+
+			Section {
+				NavigationLink("Ignored Places", destination: IgnoredPlacesListView())
+			}
 		}
 	}
 }

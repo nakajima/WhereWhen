@@ -14,17 +14,18 @@ enum Route: Hashable {
 	     checkin(Checkin, Place),
 	     checkinChoosePlace(Checkin),
 	     finishCheckinView(Place, Coordinate),
-	     finishUpdateCheckinView(Checkin, Place)
+	     finishUpdateCheckinView(Checkin, Place),
+	     createPlace(Coordinate, Checkin?)
 }
 
 struct NavigationContainer<Content: View>: View {
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
-	var path: Binding<[Route]>
+	@Binding var path: [Route]
 	@ViewBuilder var content: () -> Content
 
 	var body: some View {
-		NavigationStack(path: path) {
+		NavigationStack(path: $path) {
 			content()
 				.navigationDestination(for: Route.self) { route in
 					switch route {
@@ -44,10 +45,13 @@ struct NavigationContainer<Content: View>: View {
 					case let .checkin(checkin, place):
 						CheckinShowView(checkin: checkin, place: place)
 					case let .checkinChoosePlace(checkin):
-						CheckinChoosePlaceView(checkin: checkin)
+						CheckinEditPlaceView(checkin: checkin)
+					case let .createPlace(coordinate, checkin):
+						CreatePlaceView(coordinate: coordinate, checkin: checkin)
 					}
 				}
 		}
+		.environment(\.navigationPath, $path)
 	}
 }
 

@@ -12,11 +12,13 @@ import SwiftUI
 	struct PreviewsWrapper<Content: View>: View {
 		var content: () -> Content
 
+		@StateObject var coordinator = FourskieCoordinator(database: .memory)
+
 		var body: some View {
-			NavigationStack {
+			return NavigationContainer(path: $coordinator.navigation) {
 				content()
 					.environment(\.database, .memory)
-					.environmentObject(FourskieCoordinator(database: .memory))
+					.environmentObject(coordinator)
 					.environment(LocationListener(database: .memory))
 			}
 		}

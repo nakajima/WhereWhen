@@ -10,3 +10,5 @@ DerivedData/
 FourskieServer/fourskie.sqlite
 FourskieServer/.vscode
 .envrc
+db/
+.vscode

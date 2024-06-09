@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum PlaceCategory: String, Codable, Sendable {
+public enum PlaceCategory: String, Codable, Sendable, CaseIterable {
 	case airport
 	case amusementPark
 	case aquarium

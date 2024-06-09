@@ -1,5 +1,5 @@
 //
-//  ManualCheckinChoosePlaceView.swift
+//  ChoosePlaceView.swift
 //  Fourskie
 //
 //  Created by Pat Nakajima on 6/5/24.
@@ -11,7 +11,7 @@ import LibFourskie
 import MapKit
 import SwiftUI
 
-struct ManualCheckinChoosePlaceView: View {
+struct ChoosePlaceView: View {
 	// What part of the map are we lookin at
 	@State private var region: MKCoordinateRegion
 
@@ -25,6 +25,7 @@ struct ManualCheckinChoosePlaceView: View {
 	@State private var searchTerm: String = ""
 
 	@Environment(\.database) var database
+	@Environment(\.navigationPath) var navigationPath
 	@EnvironmentObject var coordinator: FourskieCoordinator
 
 	let location: Coordinate
@@ -37,7 +38,7 @@ struct ManualCheckinChoosePlaceView: View {
 		self._region = State(
 			wrappedValue: .init(
 				center: location.clLocation,
-				span: .within(meters: 500)
+				span: .within(meters: 100)
 			)
 		)
 	}
@@ -57,6 +58,7 @@ struct ManualCheckinChoosePlaceView: View {
 					.contentShape(Rectangle())
 				}
 			}
+			.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
 			.ignoresSafeArea(edges: .bottom)
 			.searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
 			.safeAreaInset(edge: .top, spacing: 0) {
@@ -64,6 +66,11 @@ struct ManualCheckinChoosePlaceView: View {
 					ForEach(visiblePlaces) { place in
 						Marker(place.name, coordinate: place.coordinate.clLocation)
 					}
+
+					Marker(coordinate: location.clLocation) {
+						Label("You’re Here", systemImage: "person.fill")
+					}
+					.tint(Color.accentColor)
 				}
 				.onMapCameraChange { context in
 					self.region = context.region
@@ -72,6 +79,14 @@ struct ManualCheckinChoosePlaceView: View {
 				.background(
 					Color.primary.shadow(radius: 2)
 				)
+			}
+			.safeAreaInset(edge: .bottom) {
+				Button("Create a Place") {
+					print(navigationPath.wrappedValue)
+					navigationPath.wrappedValue.append(.createPlace(location, nil))
+				}
+				.buttonStyle(.borderedProminent)
+				.buttonBorderShape(.capsule)
 			}
 			.task(id: searchTerm) {
 				await refresh()
