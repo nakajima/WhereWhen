@@ -29,6 +29,7 @@ struct SyncServerEditorView: View {
 	var body: some View {
 		TextField("Enter Server URL…", text: $serverURLText)
 			.focused($isFocused)
+			.textInputAutocapitalization(.never)
 			.onAppear {
 				self.isFocused = true
 			}
@@ -63,7 +64,7 @@ struct SyncServerEditorView: View {
 				.foregroundStyle(.red)
 				.font(.subheadline)
 		}
-		Button("Check") {
+		Button("Update") {
 			withAnimation {
 				status = .checking
 			}

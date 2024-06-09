@@ -102,7 +102,14 @@ import Observation
 
 		Task {
 			do {
-				try await CheckinCreator(checkin: Checkin(visit: visit), database: database).create()
+				let placemark = try await CLGeocoder().reverseGeocodeLocation(.init(latitude: visit.coordinate.latitude, longitude: visit.coordinate.longitude)).first
+				let place = Place(placemark: placemark)
+
+				if let place {
+					try await place.save(to: database)
+				}
+
+				try await CheckinCreator(checkin: Checkin(visit: visit), database: database).create(place: place)
 			} catch {
 				logger.error("Error saving checking: \(error)")
 			}

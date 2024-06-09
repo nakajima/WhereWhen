@@ -11,6 +11,32 @@ import LibFourskie
 import MapKit
 
 extension Place {
+	init?(placemark: CLPlacemark?) {
+		guard let placemark,
+					let placemarkLocation = placemark.location,
+					let placemarkName = placemark.name else {
+			return nil
+		}
+
+		self.init(
+			uuid: UUID().uuidString,
+			addedAt: Date(),
+			coordinate: .init(placemarkLocation.coordinate),
+			name: placemarkName,
+			phoneNumber: nil,
+			url: nil,
+			category: nil,
+			thoroughfare: placemark.thoroughfare,
+			subThoroughfare: placemark.subThoroughfare,
+			locality: placemark.locality,
+			subLocality: placemark.subLocality,
+			administrativeArea: placemark.administrativeArea,
+			subAdministrativeArea: placemark.subAdministrativeArea,
+			postalCode: placemark.postalCode,
+			isIgnored: false
+		)
+	}
+
 	func region(_ span: MKCoordinateSpan) -> MKCoordinateRegion {
 		MKCoordinateRegion(
 			center: coordinate.clLocation,
