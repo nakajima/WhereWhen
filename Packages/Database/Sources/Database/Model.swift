@@ -7,14 +7,13 @@
 
 import Foundation
 import GRDB
-import LibSpatialite
 
 // Just a lil common interface around GRDB wrappers
 public protocol Model: Sendable, TableRecord, FetchableRecord, PersistableRecord {
 	var uuid: String { get }
 
 	static var tableName: String { get }
-	static func create(in definition: TableDefinition) throws
+	static func create(in db: Database) throws
 }
 
 public extension Model {
@@ -57,28 +56,12 @@ public extension Model {
 	func save(to database: DatabaseContainer) throws {
 		try database.queue.write { db in
 			try save(db)
-
-			if let spatialModel = self as? SpatialModel {
-				try! db.execute(sql: """
-				UPDATE \(Self.tableName) SET spatialCoordinate = \(spatialModel.coordinateSQL)
-				"""
-				)
-			}
 		}
 	}
 
 	func save(to database: DatabaseContainer) async throws {
 		try await database.queue.write { db in
 			try! save(db)
-		}
-
-		if let spatialModel = self as? SpatialModel {
-			try await database.queue.write { db in
-				try! db.execute(sql: """
-				UPDATE \(Self.tableName) SET spatialCoordinate = \(spatialModel.coordinateSQL)
-				"""
-				)
-			}
 		}
 	}
 }

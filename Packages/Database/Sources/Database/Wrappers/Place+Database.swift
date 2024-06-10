@@ -7,8 +7,6 @@
 
 import Foundation
 import GRDB
-import Database
-import LibSpatialite
 import LibWhereWhen
 
 extension HasManyAssociation: @unchecked Sendable {}
@@ -19,33 +17,35 @@ extension Place {
 	static let checkinsAssociation = hasMany(Checkin.self, using: ForeignKey(["placeID"]))
 }
 
-extension Place: Model {
+extension Place: SpatialModel {
 	public static var tableName: String { "place" }
 
-	public static func create(in t: TableDefinition) throws {
-		t.primaryKey("uuid", .text)
-		t.column("addedAt", .date).notNull()
-
-		// Coordinate
-		t.column("latitude", .double).notNull()
-		t.column("longitude", .double).notNull()
-		t.column("name", .text).notNull()
-		t.column("category", .text)
-
-		t.column("isIgnored", .boolean).notNull().defaults(to: false)
-
-		// Contact
-		t.column("phoneNumber", .text)
-		t.column("url", .text)
-
-		// Address
-		t.column("thoroughfare", .text)
-		t.column("subThoroughfare", .text)
-		t.column("locality", .text)
-		t.column("subLocality", .text)
-		t.column("administrativeArea", .text)
-		t.column("subAdministrativeArea", .text)
-		t.column("postalCode", .text)
+	public static func create(in db: Database) throws {
+		try db.create(table: tableName, options: [.ifNotExists]) { t in
+			t.primaryKey("uuid", .text)
+			t.column("addedAt", .date).notNull()
+			
+			// Coordinate
+			t.column("latitude", .double).notNull()
+			t.column("longitude", .double).notNull()
+			t.column("name", .text).notNull()
+			t.column("category", .text)
+			
+			t.column("isIgnored", .boolean).notNull().defaults(to: false)
+			
+			// Contact
+			t.column("phoneNumber", .text)
+			t.column("url", .text)
+			
+			// Address
+			t.column("thoroughfare", .text)
+			t.column("subThoroughfare", .text)
+			t.column("locality", .text)
+			t.column("subLocality", .text)
+			t.column("administrativeArea", .text)
+			t.column("subAdministrativeArea", .text)
+			t.column("postalCode", .text)
+		}
 	}
 
 	public init(row: Row) throws {

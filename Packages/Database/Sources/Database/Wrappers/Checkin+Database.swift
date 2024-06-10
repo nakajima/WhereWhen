@@ -5,30 +5,31 @@
 //  Created by Pat Nakajima on 6/7/24.
 //
 
-import Database
 import Foundation
 import GRDB
 import LibWhereWhen
 
-extension Checkin {
+public extension Checkin {
 	static let placeAssociation = belongsTo(Place.self, using: ForeignKey(["placeID"]))
 }
 
 extension Checkin: DeleteSyncable {}
 
-extension Checkin: Model, Sendable {
+extension Checkin: SpatialModel, Sendable {
 	public static var tableName: String { "checkin" }
 
-	public static func create(in t: TableDefinition) throws {
-		t.primaryKey("uuid", .text)
-		t.column("source", .text).notNull()
-		t.column("latitude", .double).notNull()
-		t.column("longitude", .double).notNull()
-		t.column("accuracy", .double).notNull()
-		t.column("savedAt", .datetime).notNull()
-		t.column("arrivalDate", .date)
-		t.column("departureDate", .date)
-		t.column("placeID", .text)
+	public static func create(in db: Database) throws {
+		try db.create(table: tableName, options: [.ifNotExists]) { t in
+			t.primaryKey("uuid", .text)
+			t.column("source", .text).notNull()
+			t.column("latitude", .double).notNull()
+			t.column("longitude", .double).notNull()
+			t.column("accuracy", .double).notNull()
+			t.column("savedAt", .datetime).notNull()
+			t.column("arrivalDate", .date)
+			t.column("departureDate", .date)
+			t.column("placeID", .text)
+		}
 	}
 
 	public init(row: Row) throws {

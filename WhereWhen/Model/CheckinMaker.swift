@@ -15,7 +15,7 @@ struct CheckinCreator {
 	let database: DatabaseContainer
 
 	func create(place: Place?) async throws {
-		// TODO: use spatialite query instead of filtering in swift
+		// TODO: use sql query instead of filtering in swift
 		let ignoredPlaces = try await Place.where(Column("isIgnored") == true, in: database)
 
 		for place in ignoredPlaces {

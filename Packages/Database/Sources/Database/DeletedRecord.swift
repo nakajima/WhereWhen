@@ -16,10 +16,12 @@ public protocol DeleteSyncable {
 public struct DeletedRecord: Sendable, Codable, Model {
 	public static var tableName: String { "deletedRecord" }
 
-	public static func create(in t: TableDefinition) throws {
-		t.primaryKey("uuid", .text)
-		t.column("type", .text)
-		t.column("deletedAt", .datetime)
+	public static func create(in db: Database) throws {
+		try db.create(table: tableName, options: [.ifNotExists]) { t in
+			t.primaryKey("uuid", .text)
+			t.column("type", .text)
+			t.column("deletedAt", .datetime)
+		}
 	}
 
 	public var uuid: String

@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Database
 import LibWhereWhen
 
-struct PlaceResolver {
-	protocol Resolver {
+public struct PlaceResolver {
+	public protocol Resolver {
 		func place() async throws -> Place?
-		init(database: Database, coordinate: Coordinate)
+		init(database: DatabaseContainer, coordinate: Coordinate)
 	}
 
-	let database: Database
+	let database: DatabaseContainer
 	let coordinate: Coordinate
 
 	let resolvers: [any Resolver.Type] = [
@@ -24,7 +25,7 @@ struct PlaceResolver {
 		Nominatim.self,
 	]
 
-	func resolve() -> Place? {
+	public func resolve() -> Place? {
 		nil
 	}
 }

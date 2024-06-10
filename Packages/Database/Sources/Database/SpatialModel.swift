@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import LibWhereWhen
 
 public protocol SpatialModel: Model, Sendable {
-	var coordinateSQL: String { get }
+	var coordinate: Coordinate { get }
 }
