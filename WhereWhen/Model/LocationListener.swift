@@ -9,6 +9,7 @@
 import Foundation
 import LibWhereWhen
 import Observation
+import Database
 
 @Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
 	enum Error: Swift.Error {
@@ -31,10 +32,10 @@ import Observation
 	let manager = CLLocationManager()
 
 	var isAuthorized = false
-	var database: Database
+	var database: DatabaseContainer
 	var locationRequest: LocationRequest?
 
-	init(database: Database) {
+	init(database: DatabaseContainer) {
 		manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 		manager.distanceFilter = kCLLocationAccuracyHundredMeters
 		manager.allowsBackgroundLocationUpdates = true

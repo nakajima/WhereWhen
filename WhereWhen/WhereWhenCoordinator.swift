@@ -6,18 +6,19 @@
 //
 
 import Foundation
+import Database
 import LibWhereWhen
 import SwiftUI
 
 @MainActor final class WhereWhenCoordinator: ObservableObject {
-	let database: Database
+	let database: DatabaseContainer
 
 	@Published var isShowingManualCheckin = false
 	@Published var errorMessage: String?
 	@Published var isSyncServerOnline = false
 	@Published var syncer: Syncer?
 
-	init(database: Database) {
+	init(database: DatabaseContainer) {
 		self.database = database
 		self.syncer = Syncer.load(with: database)
 	}

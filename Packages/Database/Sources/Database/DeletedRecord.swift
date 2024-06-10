@@ -14,14 +14,12 @@ public protocol DeleteSyncable {
 
 // Tracks deletions of stuff so we can let the server know.
 public struct DeletedRecord: Sendable, Codable, Model {
-	static var tableName: String { "deletedRecord" }
+	public static var tableName: String { "deletedRecord" }
 
-	static func create(in database: Database) throws {
-		try database.create(table: "deletedRecord") { t in
-			t.primaryKey("uuid", .text)
-			t.column("type", .text)
-			t.column("deletedAt", .datetime)
-		}
+	public static func create(in t: TableDefinition) throws {
+		t.primaryKey("uuid", .text)
+		t.column("type", .text)
+		t.column("deletedAt", .datetime)
 	}
 
 	public var uuid: String

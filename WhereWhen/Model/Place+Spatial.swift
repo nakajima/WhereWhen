@@ -7,5 +7,8 @@
 
 import Foundation
 import LibWhereWhen
+import Database
 
-extension Place: SpatialModel {}
+extension Place: SpatialModel {
+	public var coordinateSQL: String { coordinate.sql }
+}

@@ -8,9 +8,10 @@
 import Foundation
 import GRDB
 import SwiftUI
+import Database
 
 struct DatabaseKey: EnvironmentKey {
-	static let defaultValue: Database = .memory
+	static let defaultValue: DatabaseContainer = .memory
 }
 
 struct NavigationPathKey: EnvironmentKey {
@@ -18,7 +19,7 @@ struct NavigationPathKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var database: Database {
+	var database: DatabaseContainer {
 		get { self[DatabaseKey.self] }
 		set { self[DatabaseKey.self] = newValue }
 	}

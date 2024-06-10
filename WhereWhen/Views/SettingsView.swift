@@ -142,6 +142,9 @@ struct SettingsView: View {
 			NavigationLink("Logs \(logFileSize())", destination: DiskLoggerViewer(logger: location.logger))
 
 		}
+		.refreshable {
+			await coordinator.checkSyncServer()
+		}
 	}
 
 	func logFileSize() -> String {

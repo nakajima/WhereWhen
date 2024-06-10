@@ -7,18 +7,19 @@
 
 import Foundation
 import GRDB
+import Database
 import LibWhereWhen
 import Queue
 
 actor Syncer {
-	let database: Database
+	let database: DatabaseContainer
 	let client: WhereWhenClient
 	let queue: AsyncQueue
 	let logger = DiskLogger(label: "Syncer", location: URL.documentsDirectory.appending(path: "WhereWhen.log"))
 
 	nonisolated let clientURL: URL
 
-	nonisolated static func load(with database: Database) -> Syncer? {
+	nonisolated static func load(with database: DatabaseContainer) -> Syncer? {
 		if let savedURL = UserDefaults.standard.string(forKey: "syncURL"),
 			 let url = URL(string: savedURL) {
 			return Syncer(database: database, client: WhereWhenClient(serverURL: url))
@@ -27,7 +28,7 @@ actor Syncer {
 		return nil
 	}
 
-	init(database: Database, client: WhereWhenClient) {
+	init(database: DatabaseContainer, client: WhereWhenClient) {
 		self.database = database
 		self.client = client
 		self.clientURL = client.serverURL
@@ -44,7 +45,7 @@ actor Syncer {
 			let deletions = try await DeletedRecord.all(in: database)
 			let deletedIDs = try await client.upload(deletions: deletions)
 
-			_ = try await database.queue.write { db in
+			_ = try await database.write { db in
 				try DeletedRecord.deleteAll(db, keys: deletedIDs)
 			}
 		} catch {
@@ -55,7 +56,7 @@ actor Syncer {
 	func upload() async {
 		do {
 			let lastSyncedAt = await client.lastSyncedAt()
-			let localCheckins = try await database.queue.read { db in
+			let localCheckins = try await database.read { db in
 				try Checkin
 					.filter(Column("savedAt") > lastSyncedAt)
 					.including(optional: Checkin.placeAssociation)
@@ -75,7 +76,7 @@ actor Syncer {
 
 	func download() async {
 		do {
-			let lastCheckinAt = try await database.queue.read { db in
+			let lastCheckinAt = try await database.read { db in
 				try Checkin.order(Column("savedAt").desc).fetchOne(db)?.savedAt ?? .distantPast
 			}
 
@@ -89,7 +90,7 @@ actor Syncer {
 				try await checkin.save(to: database)
 			}
 		} catch {
-			logger.error("Error downloading: \(error) \(database.queue.path)")
+			logger.error("Error downloading: \(error) \(database._queue.path)")
 		}
 	}
 

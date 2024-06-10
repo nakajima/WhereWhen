@@ -12,9 +12,10 @@ import GRDBQuery
 import LibWhereWhen
 import Observation
 import SwiftUI
+import Database
 
 @propertyWrapper struct LiveModel<ModelType: Model>: DynamicProperty, Sendable {
-	@Environment(\.database) private var database: Database
+	@Environment(\.database) private var database: DatabaseContainer
 
 	class Updater: ObservableObject {
 		@Published var instance: ModelType
@@ -24,7 +25,7 @@ import SwiftUI
 			self.instance = instance
 		}
 
-		func start(in database: Database) {
+		func start(in database: DatabaseContainer) {
 			if cancellable != nil { return }
 
 			let uuid = instance.uuid
@@ -33,7 +34,7 @@ import SwiftUI
 				try ModelType.find(db, key: uuid)
 			}
 
-			cancellable = observation.start(in: database.queue) {
+			cancellable = observation.start(in: database._queue) {
 				print("LiveModel error: \($0)")
 			} onChange: {
 				self.instance = $0

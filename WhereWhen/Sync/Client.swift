@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Database
 import LibWhereWhen
 
 struct WhereWhenClient {
@@ -68,6 +69,7 @@ struct WhereWhenClient {
 		let (data, response) = try await URLSession.shared.data(for: request)
 
 		print(response)
+		print(String(data: data, encoding: .utf8))
 
 		return try JSONDecoder().decode([Checkin].self, from: data)
 	}

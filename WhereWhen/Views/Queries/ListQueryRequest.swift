@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import GRDB
 import GRDBQuery
+import Database
 
 struct ListQueryRequest<ModelType: Model>: Queryable {
 	static var defaultValue: [ModelType] { [] }

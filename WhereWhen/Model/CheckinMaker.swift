@@ -8,10 +8,11 @@
 import Foundation
 @preconcurrency import GRDB
 import LibWhereWhen
+import Database
 
 struct CheckinCreator {
 	let checkin: Checkin
-	let database: Database
+	let database: DatabaseContainer
 
 	func create(place: Place?) async throws {
 		// TODO: use spatialite query instead of filtering in swift

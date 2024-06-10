@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,14 +27,10 @@
 		A68572122C161930007828EE /* Checkin+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C92C161930007828EE /* Checkin+Database.swift */; };
 		A68572132C161930007828EE /* Checkin+Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571CA2C161930007828EE /* Checkin+Spatial.swift */; };
 		A68572142C161930007828EE /* CheckinMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571CB2C161930007828EE /* CheckinMaker.swift */; };
-		A68572152C161930007828EE /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571CC2C161930007828EE /* Database.swift */; };
-		A68572162C161930007828EE /* DeletedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571CD2C161930007828EE /* DeletedRecord.swift */; };
 		A68572172C161930007828EE /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571CE2C161930007828EE /* LocationListener.swift */; };
-		A68572182C161930007828EE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571CF2C161930007828EE /* Model.swift */; };
 		A68572192C161930007828EE /* Place+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571D02C161930007828EE /* Place+Database.swift */; };
 		A685721A2C161930007828EE /* Place+Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571D12C161930007828EE /* Place+Spatial.swift */; };
 		A685721B2C161930007828EE /* PlaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571D22C161930007828EE /* PlaceFinder.swift */; };
-		A685721C2C161930007828EE /* SpatialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571D32C161930007828EE /* SpatialModel.swift */; };
 		A685721D2C161930007828EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68571D52C161930007828EE /* Preview Assets.xcassets */; };
 		A685721E2C161930007828EE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571D72C161930007828EE /* Client.swift */; };
 		A685721F2C161930007828EE /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571D82C161930007828EE /* Syncer.swift */; };
@@ -70,11 +66,11 @@
 		A685723D2C161930007828EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68571FA2C161930007828EE /* Assets.xcassets */; };
 		A685723E2C161930007828EE /* WhereWhenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571FB2C161930007828EE /* WhereWhenApp.swift */; };
 		A685723F2C161930007828EE /* WhereWhenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571FC2C161930007828EE /* WhereWhenCoordinator.swift */; };
-		A68572412C161930007828EE /* LibWhereWhen in Resources */ = {isa = PBXBuildFile; fileRef = A68571FF2C161930007828EE /* LibWhereWhen */; };
 		A68572462C161A62007828EE /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A68572452C161A62007828EE /* LibWhereWhen */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
 		A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A69B50742C142787001CBBAD /* libiconv.tbd */; };
 		A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */ = {isa = PBXBuildFile; productRef = A6D042242C141D2B00E2E194 /* LibSpatialite */; };
+		A6DF5D8D2C17577500F97200 /* Database in Frameworks */ = {isa = PBXBuildFile; productRef = A6DF5D8C2C17577500F97200 /* Database */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,14 +102,10 @@
 		A68571C92C161930007828EE /* Checkin+Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checkin+Database.swift"; sourceTree = "<group>"; };
 		A68571CA2C161930007828EE /* Checkin+Spatial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checkin+Spatial.swift"; sourceTree = "<group>"; };
 		A68571CB2C161930007828EE /* CheckinMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinMaker.swift; sourceTree = "<group>"; };
-		A68571CC2C161930007828EE /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		A68571CD2C161930007828EE /* DeletedRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletedRecord.swift; sourceTree = "<group>"; };
 		A68571CE2C161930007828EE /* LocationListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
-		A68571CF2C161930007828EE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A68571D02C161930007828EE /* Place+Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+Database.swift"; sourceTree = "<group>"; };
 		A68571D12C161930007828EE /* Place+Spatial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+Spatial.swift"; sourceTree = "<group>"; };
 		A68571D22C161930007828EE /* PlaceFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceFinder.swift; sourceTree = "<group>"; };
-		A68571D32C161930007828EE /* SpatialModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpatialModel.swift; sourceTree = "<group>"; };
 		A68571D52C161930007828EE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A68571D72C161930007828EE /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A68571D82C161930007828EE /* Syncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
@@ -150,12 +142,15 @@
 		A68571FB2C161930007828EE /* WhereWhenApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereWhenApp.swift; sourceTree = "<group>"; };
 		A68571FC2C161930007828EE /* WhereWhenCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereWhenCoordinator.swift; sourceTree = "<group>"; };
 		A68571FD2C161930007828EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A68571FF2C161930007828EE /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A68572002C161930007828EE /* CheckinCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinCreatorTests.swift; sourceTree = "<group>"; };
 		A68572012C161930007828EE /* WhereWhenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereWhenTests.swift; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		A6DF5D862C1752F100F97200 /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
+		A6DF5D872C17532B00F97200 /* LibSpatialite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibSpatialite; sourceTree = "<group>"; };
+		A6DF5D892C17543700F97200 /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* WhereWhen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereWhen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E64A022C0ACEFF00553F10 /* WhereWhenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereWhenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6EA08BA2C17522300AF5404 /* PlaceResolver */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PlaceResolver; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +160,7 @@
 			files = (
 				A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */,
 				A61D9C582C1356EB00422715 /* GRDB in Frameworks */,
+				A6DF5D8D2C17577500F97200 /* Database in Frameworks */,
 				A68572462C161A62007828EE /* LibWhereWhen in Frameworks */,
 				A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */,
 				A61D9C4C2C12BEC000422715 /* Queue in Frameworks */,
@@ -218,14 +214,10 @@
 				A68571C92C161930007828EE /* Checkin+Database.swift */,
 				A68571CA2C161930007828EE /* Checkin+Spatial.swift */,
 				A68571CB2C161930007828EE /* CheckinMaker.swift */,
-				A68571CC2C161930007828EE /* Database.swift */,
-				A68571CD2C161930007828EE /* DeletedRecord.swift */,
 				A68571CE2C161930007828EE /* LocationListener.swift */,
-				A68571CF2C161930007828EE /* Model.swift */,
 				A68571D02C161930007828EE /* Place+Database.swift */,
 				A68571D12C161930007828EE /* Place+Spatial.swift */,
 				A68571D22C161930007828EE /* PlaceFinder.swift */,
-				A68571D32C161930007828EE /* SpatialModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,7 +319,7 @@
 		A6E649E72C0ACEFE00553F10 = {
 			isa = PBXGroup;
 			children = (
-				A68571FF2C161930007828EE /* LibWhereWhen */,
+				A6EA08B92C17520300AF5404 /* Packages */,
 				A68571FE2C161930007828EE /* WhereWhen */,
 				A68572022C161930007828EE /* WhereWhenTests */,
 				A6E649F12C0ACEFE00553F10 /* Products */,
@@ -342,6 +334,17 @@
 				A6E64A022C0ACEFF00553F10 /* WhereWhenTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A6EA08B92C17520300AF5404 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				A6DF5D892C17543700F97200 /* Database */,
+				A6DF5D872C17532B00F97200 /* LibSpatialite */,
+				A6DF5D862C1752F100F97200 /* LibWhereWhen */,
+				A6EA08BA2C17522300AF5404 /* PlaceResolver */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +369,7 @@
 				A69AE8A42C1369C200818D93 /* GRDBQuery */,
 				A6D042242C141D2B00E2E194 /* LibSpatialite */,
 				A68572452C161A62007828EE /* LibWhereWhen */,
+				A6DF5D8C2C17577500F97200 /* Database */,
 			);
 			productName = WhereWhen;
 			productReference = A6E649F02C0ACEFE00553F10 /* WhereWhen.app */;
@@ -404,6 +408,7 @@
 					};
 					A6E64A012C0ACEFF00553F10 = {
 						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
 						TestTargetID = A6E649EF2C0ACEFE00553F10;
 					};
 				};
@@ -421,8 +426,6 @@
 				A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */,
 				A61D9C562C1356EB00422715 /* XCRemoteSwiftPackageReference "GRDB" */,
 				A69AE8A32C1369C200818D93 /* XCRemoteSwiftPackageReference "GRDBQuery" */,
-				A6D042232C141D2B00E2E194 /* XCLocalSwiftPackageReference "LibSpatialite" */,
-				A68572442C161A62007828EE /* XCLocalSwiftPackageReference "LibWhereWhen" */,
 			);
 			productRefGroup = A6E649F12C0ACEFE00553F10 /* Products */;
 			projectDirPath = "";
@@ -439,7 +442,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A68572412C161930007828EE /* LibWhereWhen in Resources */,
 				A685723D2C161930007828EE /* Assets.xcassets in Resources */,
 				A685721D2C161930007828EE /* Preview Assets.xcassets in Resources */,
 			);
@@ -503,15 +505,11 @@
 				A685720F2C161930007828EE /* Query+DatabaseQueue.swift in Sources */,
 				A68572252C161930007828EE /* WrappedDefault.swift in Sources */,
 				A685722F2C161930007828EE /* ContentView.swift in Sources */,
-				A685721C2C161930007828EE /* SpatialModel.swift in Sources */,
 				A68572342C161930007828EE /* IgnoredPlacesListView.swift in Sources */,
-				A68572162C161930007828EE /* DeletedRecord.swift in Sources */,
 				A685721F2C161930007828EE /* Syncer.swift in Sources */,
 				A685722E2C161930007828EE /* ChoosePlaceView.swift in Sources */,
 				A68572082C161930007828EE /* DatabaseConvertibles.swift in Sources */,
-				A68572182C161930007828EE /* Model.swift in Sources */,
 				A685723B2C161930007828EE /* SettingsView.swift in Sources */,
-				A68572152C161930007828EE /* Database.swift in Sources */,
 				A685723C2C161930007828EE /* Styles.swift in Sources */,
 				A68572372C161930007828EE /* ManualCheckinView.swift in Sources */,
 				A68572332C161930007828EE /* HomeView.swift in Sources */,
@@ -731,6 +729,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z773AM52SJ;
@@ -740,6 +739,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fm.folder.FourskieTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhereWhen.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WhereWhen";
@@ -751,6 +751,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z773AM52SJ;
@@ -797,17 +798,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		A68572442C161A62007828EE /* XCLocalSwiftPackageReference "LibWhereWhen" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = LibWhereWhen;
-		};
-		A6D042232C141D2B00E2E194 /* XCLocalSwiftPackageReference "LibSpatialite" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = LibSpatialite;
-		};
-/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		A61D9C4A2C12BEC000422715 /* XCRemoteSwiftPackageReference "Queue" */ = {
@@ -859,6 +849,10 @@
 		A6D042242C141D2B00E2E194 /* LibSpatialite */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LibSpatialite;
+		};
+		A6DF5D8C2C17577500F97200 /* Database */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Database;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

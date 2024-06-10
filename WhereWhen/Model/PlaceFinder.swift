@@ -7,6 +7,7 @@
 
 import Foundation
 import LibWhereWhen
+import Database
 import MapKit
 
 struct PlaceFinder {
@@ -15,7 +16,7 @@ struct PlaceFinder {
 	}
 
 	// We have a database so we can save found places
-	let database: Database
+	let database: DatabaseContainer
 
 	// Where is the user right now? This may differ from where they are searching
 	let coordinate: Coordinate
@@ -23,7 +24,7 @@ struct PlaceFinder {
 	// A user entered string to search for
 	let search: String
 
-	init(database: Database, coordinate: Coordinate, search: String) {
+	init(database: DatabaseContainer, coordinate: Coordinate, search: String) {
 		self.database = database
 		self.coordinate = coordinate
 		self.search = search

@@ -12,7 +12,7 @@ import LibWhereWhen
 import SwiftUI
 
 struct CheckinListView: View {
-	@Query(CheckinListRequest(), in: \.database.queue) var checkins: [Checkin]
+	@Query(CheckinListRequest()) var checkins: [Checkin]
 
 	@EnvironmentObject var coordinator: WhereWhenCoordinator
 
@@ -40,7 +40,7 @@ struct CheckinListView: View {
 		PreviewsWrapper {
 			CheckinListView()
 				.onAppear {
-					try! Checkin.preview.save(to: Database.memory)
+					try! Checkin.preview.save(to: .memory)
 				}
 		}
 	}

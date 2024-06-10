@@ -7,6 +7,8 @@
 
 import Foundation
 import GRDB
+import Database
+import LibSpatialite
 import LibWhereWhen
 
 extension HasManyAssociation: @unchecked Sendable {}
@@ -18,34 +20,32 @@ extension Place {
 }
 
 extension Place: Model {
-	static var tableName: String { "place" }
+	public static var tableName: String { "place" }
 
-	static func create(in database: Database) throws {
-		try database.create(table: "place", spatial: true) { t in
-			t.primaryKey("uuid", .text)
-			t.column("addedAt", .date).notNull()
+	public static func create(in t: TableDefinition) throws {
+		t.primaryKey("uuid", .text)
+		t.column("addedAt", .date).notNull()
 
-			// Coordinate
-			t.column("latitude", .double).notNull()
-			t.column("longitude", .double).notNull()
-			t.column("name", .text).notNull()
-			t.column("category", .text)
+		// Coordinate
+		t.column("latitude", .double).notNull()
+		t.column("longitude", .double).notNull()
+		t.column("name", .text).notNull()
+		t.column("category", .text)
 
-			t.column("isIgnored", .boolean).notNull().defaults(to: false)
+		t.column("isIgnored", .boolean).notNull().defaults(to: false)
 
-			// Contact
-			t.column("phoneNumber", .text)
-			t.column("url", .text)
+		// Contact
+		t.column("phoneNumber", .text)
+		t.column("url", .text)
 
-			// Address
-			t.column("thoroughfare", .text)
-			t.column("subThoroughfare", .text)
-			t.column("locality", .text)
-			t.column("subLocality", .text)
-			t.column("administrativeArea", .text)
-			t.column("subAdministrativeArea", .text)
-			t.column("postalCode", .text)
-		}
+		// Address
+		t.column("thoroughfare", .text)
+		t.column("subThoroughfare", .text)
+		t.column("locality", .text)
+		t.column("subLocality", .text)
+		t.column("administrativeArea", .text)
+		t.column("subAdministrativeArea", .text)
+		t.column("postalCode", .text)
 	}
 
 	public init(row: Row) throws {

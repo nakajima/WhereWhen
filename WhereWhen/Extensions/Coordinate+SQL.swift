@@ -6,18 +6,29 @@
 //
 
 import Foundation
+import GRDB
 import LibWhereWhen
 
-extension Coordinate {
+extension Coordinate: DatabaseValueConvertible, RawRepresentable {
+	public init?(rawValue: String) {
+		nil
+	}
+	
+	public var rawValue: String {
+		sql
+	}
+	
+	public typealias RawValue = String
+
 	var sql: String {
 		"""
-			GeomFromText('POINT(\(latitude) \(longitude))', 4326)
+		MakePoint(\(latitude), \(longitude), 4326)
 		"""
 	}
 
 	func updateSQL(uuid: String, table: String) -> String {
 		"""
-		UPDATE \(table) SET coordinate = \(sql) WHERE uuid = '\(uuid)'
+		UPDATE \(table) SET spatialCoordinate = \(sql) WHERE uuid = '\(uuid)'
 		"""
 	}
 }

@@ -8,12 +8,13 @@
 import LibWhereWhen
 import MapKit
 import SwiftUI
+import Database
 
 struct CheckinCellMapView: View {
 	let region: MKCoordinateRegion
 
 	var body: some View {
-		Map(initialPosition: .region(region))
+		Map(initialPosition: .region(region), interactionModes: [])
 			.frame(width: 64, height: 64)
 			.clipShape(RoundedRectangle(cornerRadius: 8))
 			.padding(8)
