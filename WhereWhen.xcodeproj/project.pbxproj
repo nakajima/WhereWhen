@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A61D9C4C2C12BEC000422715 /* Queue in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C4B2C12BEC000422715 /* Queue */; };
 		A61D9C582C1356EB00422715 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C572C1356EB00422715 /* GRDB */; };
+		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
 		A68572032C161930007828EE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571B92C161930007828EE /* Array.swift */; };
 		A68572042C161930007828EE /* Checkin+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571BA2C161930007828EE /* Checkin+CL.swift */; };
 		A68572052C161930007828EE /* Checkin+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571BB2C161930007828EE /* Checkin+MapKit.swift */; };
@@ -66,7 +67,6 @@
 		A685723D2C161930007828EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68571FA2C161930007828EE /* Assets.xcassets */; };
 		A685723E2C161930007828EE /* WhereWhenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571FB2C161930007828EE /* WhereWhenApp.swift */; };
 		A685723F2C161930007828EE /* WhereWhenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571FC2C161930007828EE /* WhereWhenCoordinator.swift */; };
-		A68572462C161A62007828EE /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A68572452C161A62007828EE /* LibWhereWhen */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
 		A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A69B50742C142787001CBBAD /* libiconv.tbd */; };
 		A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */ = {isa = PBXBuildFile; productRef = A6D042242C141D2B00E2E194 /* LibSpatialite */; };
@@ -84,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A68571B92C161930007828EE /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		A68571BA2C161930007828EE /* Checkin+CL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checkin+CL.swift"; sourceTree = "<group>"; };
 		A68571BB2C161930007828EE /* Checkin+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checkin+MapKit.swift"; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		A68572002C161930007828EE /* CheckinCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinCreatorTests.swift; sourceTree = "<group>"; };
 		A68572012C161930007828EE /* WhereWhenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereWhenTests.swift; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		A6DF5D862C1752F100F97200 /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A6DF5D872C17532B00F97200 /* LibSpatialite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibSpatialite; sourceTree = "<group>"; };
 		A6DF5D892C17543700F97200 /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* WhereWhen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereWhen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +161,7 @@
 				A69B50752C142787001CBBAD /* libiconv.tbd in Frameworks */,
 				A61D9C582C1356EB00422715 /* GRDB in Frameworks */,
 				A6DF5D8D2C17577500F97200 /* Database in Frameworks */,
-				A68572462C161A62007828EE /* LibWhereWhen in Frameworks */,
+				A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */,
 				A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */,
 				A61D9C4C2C12BEC000422715 /* Queue in Frameworks */,
 				A6D042252C141D2B00E2E194 /* LibSpatialite in Frameworks */,
@@ -339,9 +339,9 @@
 		A6EA08B92C17520300AF5404 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				A67EDFFB2C176AF10016E07D /* LibWhereWhen */,
 				A6DF5D892C17543700F97200 /* Database */,
 				A6DF5D872C17532B00F97200 /* LibSpatialite */,
-				A6DF5D862C1752F100F97200 /* LibWhereWhen */,
 				A6EA08BA2C17522300AF5404 /* PlaceResolver */,
 			);
 			path = Packages;
@@ -368,8 +368,8 @@
 				A61D9C572C1356EB00422715 /* GRDB */,
 				A69AE8A42C1369C200818D93 /* GRDBQuery */,
 				A6D042242C141D2B00E2E194 /* LibSpatialite */,
-				A68572452C161A62007828EE /* LibWhereWhen */,
 				A6DF5D8C2C17577500F97200 /* Database */,
+				A67EDFFC2C176B3B0016E07D /* LibWhereWhen */,
 			);
 			productName = WhereWhen;
 			productReference = A6E649F02C0ACEFE00553F10 /* WhereWhen.app */;
@@ -837,7 +837,7 @@
 			package = A61D9C562C1356EB00422715 /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
 		};
-		A68572452C161A62007828EE /* LibWhereWhen */ = {
+		A67EDFFC2C176B3B0016E07D /* LibWhereWhen */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LibWhereWhen;
 		};
