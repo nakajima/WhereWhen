@@ -3,7 +3,7 @@ FROM swift:5.10
 WORKDIR /app
 
 # Copy the source code
-ADD LibWhereWhen /app/LibWhereWhen
+ADD Packages/LibWhereWhen /app/Packages/LibWhereWhen
 ADD WhereWhenServer /app/WhereWhenServer
 
 WORKDIR /app/WhereWhenServer

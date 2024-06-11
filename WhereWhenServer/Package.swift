@@ -15,7 +15,7 @@ let package = Package(
 		.package(url: "https://github.com/swift-server/async-http-client", branch: "main"),
 		.package(url: "https://github.com/nakajima/ServerData.swift", branch: "main"),
 		.package(url: "https://github.com/vapor/sqlite-kit", branch: "main"),
-		.package(path: "../LibWhereWhen"),
+		.package(path: "../Packages/LibWhereWhen"),
 	],
 	targets: [
 		// Targets are the basic building blocks of a package, defining a module or a test suite.
