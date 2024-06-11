@@ -59,11 +59,11 @@ import SwiftUI
 }
 
 struct LiveModelQuery<ModelType: Model>: Queryable {
-	static var defaultValue: ModelType { fatalError() }
+	static var defaultValue: ModelType? { nil }
 
 	let uuid: String
 
-	func publisher(in dbQueue: DatabaseQueue) -> AnyPublisher<ModelType, Error> {
+	func publisher(in dbQueue: DatabaseQueue) -> AnyPublisher<ModelType?, Error> {
 		ValueObservation
 			.tracking { db in
 				try ModelType.find(db, key: uuid)

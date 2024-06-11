@@ -13,8 +13,10 @@ import SwiftUI
 	@State private var coordinateString = ""
 	@State private var coordinate: Coordinate?
 	@State private var isResolving = false
+	@State private var isLocating = false
 	@State private var results: [String: PlaceResolver.Suggestion]?
 
+	@Environment(LocationListener.self) var location
 	@Environment(\.database) var database
 
 	var body: some View {
@@ -23,7 +25,7 @@ import SwiftUI
 				.onSubmit {
 					isResolving = true
 				}
-			Button("Resolve") {
+			Button("Resolve Coordinate") {
 				isResolving = true
 			}
 			.task(id: isResolving) {
@@ -34,6 +36,21 @@ import SwiftUI
 				await resolve()
 
 				isResolving = false
+			}
+			Button("Locate Me") {
+				isLocating = true
+			}
+			.task(id: isLocating) {
+				guard isLocating else { return }
+
+				do {
+					let current = try await location.requestCurrent()
+					coordinateString = "\(current.coordinate.latitude), \(current.coordinate.longitude)"
+				} catch {
+					print("error locating: \(error)")
+				}
+
+				isLocating = false
 			}
 
 			if let sortedResults, let coordinate {

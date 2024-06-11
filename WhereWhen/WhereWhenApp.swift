@@ -8,18 +8,11 @@
 import SwiftUI
 import UIKit
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-	let location = LocationListener(database: .dev)
-
-	func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-		true
-	}
-}
-
 @main
 struct WhereWhenApp: App {
-	@UIApplicationDelegateAdaptor var appDelegate: AppDelegate
 	@StateObject var coordinator: WhereWhenCoordinator
+
+	let location = LocationListener(database: .dev)
 
 	init() {
 		_coordinator = StateObject(
@@ -32,7 +25,7 @@ struct WhereWhenApp: App {
 			ContentView()
 				.environmentObject(coordinator)
 		}
-		.environment(appDelegate.location)
+		.environment(location)
 		.environment(\.database, .dev)
 	}
 }

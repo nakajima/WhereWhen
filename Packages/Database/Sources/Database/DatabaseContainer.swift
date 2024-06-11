@@ -9,6 +9,8 @@ import Foundation
 import GRDB
 import LibWhereWhen
 
+private let logger = DiskLogger(label: "DatabaseContainer", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
+
 public final class DatabaseContainer: Sendable {
 	let queue: DatabaseQueue
 	let models: [any Model.Type]
@@ -42,22 +44,27 @@ public final class DatabaseContainer: Sendable {
 			config.publicStatementArguments = true
 		#endif
 
-		if case let .path(name) = name {
-			let path = URL.documentsDirectory.appending(path: name).path
-			// It can be helpful to know where the db is
-			print("DB: \(path)")
+		do {
+			if case let .path(name) = name {
+				let path = URL.documentsDirectory.appending(path: name).path
+				// It can be helpful to know where the db is
+				print("DB: \(path)")
 
-			let queue = try! DatabaseQueue(path: path, configuration: config)
-			return DatabaseContainer(
-				queue: queue,
-				models: models
-			)
-		} else {
-			let queue = try! DatabaseQueue(configuration: config)
-			return DatabaseContainer(
-				queue: queue,
-				models: models
-			)
+				let queue = try DatabaseQueue(path: path, configuration: config)
+				return DatabaseContainer(
+					queue: queue,
+					models: models
+				)
+			} else {
+				let queue = try DatabaseQueue(configuration: config)
+				return DatabaseContainer(
+					queue: queue,
+					models: models
+				)
+			}
+		} catch {
+			logger.error("error creating DatabaseContainer: \(error)")
+			fatalError()
 		}
 	}
 
@@ -74,8 +81,12 @@ public final class DatabaseContainer: Sendable {
 
 	func setupTables() {
 		for model in models {
-			try! queue.write { db in
-				try! model.create(in: db)
+			do {
+				try queue.write { db in
+					try model.create(in: db)
+				}
+			} catch {
+				logger.error("Error setting up tables: \(error)")
 			}
 		}
 	}

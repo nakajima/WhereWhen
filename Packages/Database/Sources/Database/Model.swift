@@ -61,7 +61,7 @@ public extension Model {
 
 	func save(to database: DatabaseContainer) async throws {
 		try await database.queue.write { db in
-			try! save(db)
+			try save(db)
 		}
 	}
 }

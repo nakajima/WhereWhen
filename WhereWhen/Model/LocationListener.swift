@@ -34,7 +34,7 @@ import PlaceResolver
 
 	var isAuthorized = false
 	var database: DatabaseContainer
-	var locationRequest: LocationRequest?
+	private var locationRequest: LocationRequest?
 
 	init(database: DatabaseContainer) {
 		manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -104,12 +104,10 @@ import PlaceResolver
 
 		Task {
 			do {
-				guard let place = await PlaceResolver(
+				let place = await PlaceResolver(
 					database: database,
 					coordinate: .init(visit.coordinate)
-				).resolve() else {
-					return
-				}
+				).resolve()
 
 				try await CheckinCreator(
 					checkin: Checkin(visit: visit),
