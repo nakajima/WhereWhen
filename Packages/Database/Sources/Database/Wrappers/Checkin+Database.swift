@@ -11,6 +11,10 @@ import LibWhereWhen
 
 public extension Checkin {
 	static let placeAssociation = belongsTo(Place.self, using: ForeignKey(["placeID"]))
+
+	static var withPlace: QueryInterfaceRequest<Checkin> {
+		Checkin.including(optional: placeAssociation)
+	}
 }
 
 extension Checkin: DeleteSyncable {}

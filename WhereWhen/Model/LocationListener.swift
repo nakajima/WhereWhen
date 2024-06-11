@@ -111,7 +111,10 @@ import PlaceResolver
 					return
 				}
 
-				try await CheckinCreator(checkin: Checkin(visit: visit), database: database).create(place: place)
+				try await CheckinCreator(
+					checkin: Checkin(visit: visit),
+					database: database
+				).create(place: place)
 			} catch {
 				logger.error("Error saving checking: \(error)")
 			}

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4640F817-C6E8-4CF8-80DA-7E127664F43E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:WhereWhen.xcodeproj",
+        "identifier" : "A6E64A012C0ACEFF00553F10",
+        "name" : "WhereWhenTests"
+      }
+    }
+  ],
+  "version" : 1
+}

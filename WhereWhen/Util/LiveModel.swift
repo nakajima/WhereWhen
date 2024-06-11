@@ -36,7 +36,8 @@ import SwiftUI
 
 			cancellable = observation.start(in: database._queue) {
 				print("LiveModel error: \($0)")
-			} onChange: {
+			} onChange: { [weak self] in
+				guard let self else { return }
 				self.instance = $0
 			}
 		}

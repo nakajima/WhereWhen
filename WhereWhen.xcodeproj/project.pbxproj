@@ -11,6 +11,8 @@
 		A61D9C582C1356EB00422715 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C572C1356EB00422715 /* GRDB */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
 		A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */ = {isa = PBXBuildFile; productRef = A67EE03B2C17F2C20016E07D /* PlaceResolver */; };
+		A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */; };
+		A67EE0412C1809CA0016E07D /* CheckinCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68572002C161930007828EE /* CheckinCreatorTests.swift */; };
 		A68572032C161930007828EE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571B92C161930007828EE /* Array.swift */; };
 		A68572042C161930007828EE /* Checkin+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571BA2C161930007828EE /* Checkin+CL.swift */; };
 		A68572052C161930007828EE /* Checkin+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571BB2C161930007828EE /* Checkin+MapKit.swift */; };
@@ -77,6 +79,8 @@
 
 /* Begin PBXFileReference section */
 		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
+		A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceResolverDebuggerView.swift; sourceTree = "<group>"; };
+		A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WhereWhen.xctestplan; path = WhereWhen/WhereWhen.xctestplan; sourceTree = "<group>"; };
 		A68571B92C161930007828EE /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		A68571BA2C161930007828EE /* Checkin+CL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checkin+CL.swift"; sourceTree = "<group>"; };
 		A68571BB2C161930007828EE /* Checkin+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checkin+MapKit.swift"; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 		A67EE03D2C17F38C0016E07D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 		A6E649E72C0ACEFE00553F10 = {
 			isa = PBXGroup;
 			children = (
+				A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */,
 				A6EA08B92C17520300AF5404 /* Packages */,
 				A68571FE2C161930007828EE /* WhereWhen */,
 				A68572022C161930007828EE /* WhereWhenTests */,
@@ -453,6 +459,7 @@
 				A68572282C161930007828EE /* ListQueryRequest.swift in Sources */,
 				A68572212C161930007828EE /* DiskLogger.swift in Sources */,
 				A68572362C161930007828EE /* ManualCheckinPlaceCellView.swift in Sources */,
+				A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */,
 				A68572322C161930007828EE /* GrantPermissionsView.swift in Sources */,
 				A685723E2C161930007828EE /* WhereWhenApp.swift in Sources */,
 				A685723F2C161930007828EE /* WhereWhenCoordinator.swift in Sources */,
@@ -499,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A67EE0412C1809CA0016E07D /* CheckinCreatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

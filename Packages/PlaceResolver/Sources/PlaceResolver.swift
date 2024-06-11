@@ -9,8 +9,9 @@ import Database
 import Foundation
 import LibWhereWhen
 
-public struct PlaceResolver {
-	public struct Suggestion {
+public struct PlaceResolver: Sendable {
+	public struct Suggestion: Sendable {
+		public let source: String
 		public let place: Place
 		public let confidence: Double
 	}
@@ -35,15 +36,50 @@ public struct PlaceResolver {
 		Nominatim.self,
 	]
 
-	public func resolve() async throws -> Place? {
+	public func resolve() async -> Place? {
+		await suggestion()?.place
+	}
+
+	public func suggestions() async -> [Suggestion] {
+		await withTaskGroup(of: Suggestion?.self) { group in
+			for resolver in resolvers {
+				group.addTask {
+					do {
+						if let suggestion = try await resolver.init(
+							database: database,
+							coordinate: coordinate
+						).suggestion() {
+							return suggestion
+						}
+					} catch {
+						print("Error resolving: \(error)")
+					}
+
+					return nil
+				}
+			}
+
+			var result: [Suggestion] = []
+
+			for await suggestion in group.compactMap({ $0 }) {
+				result.append(suggestion)
+			}
+
+			return result
+		}
+	}
+
+	public func suggestion() async -> Suggestion? {
 		for resolver in resolvers {
-			if let suggestion = try await resolver.init(
-				database: database,
-				coordinate: coordinate
-			).suggestion() {
-				let place = suggestion.place
-				try await place.save(to: database)
-				return place
+			do {
+				if let suggestion = try await resolver.init(
+					database: database,
+					coordinate: coordinate
+				).suggestion() {
+					return suggestion
+				}
+			} catch {
+				print("Error resolving: \(error)")
 			}
 		}
 

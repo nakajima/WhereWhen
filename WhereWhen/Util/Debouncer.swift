@@ -12,7 +12,9 @@ public final class Debouncer: @unchecked Sendable {
 
 	public func debounce(action: @MainActor @Sendable @escaping () -> Void) {
 		task?.cancel()
-		task = Task { @MainActor in
+		task = Task { @MainActor [weak self] in
+			guard let self else { return }
+
 			do {
 				try await Task.sleep(for: .seconds(0.2))
 			} catch {

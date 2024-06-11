@@ -140,6 +140,8 @@ struct SettingsView: View {
 			}
 
 			NavigationLink("Logs \(logFileSize())", destination: DiskLoggerViewer(logger: location.logger))
+
+			PlaceResolverDebuggerView()
 		}
 		.refreshable {
 			await coordinator.checkSyncServer()
