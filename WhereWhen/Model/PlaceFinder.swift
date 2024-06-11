@@ -5,9 +5,9 @@
 //  Created by Pat Nakajima on 6/5/24.
 //
 
+import Database
 import Foundation
 import LibWhereWhen
-import Database
 import MapKit
 
 struct PlaceFinder {

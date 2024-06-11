@@ -13,8 +13,9 @@ import MapKit
 extension Place {
 	init?(placemark: CLPlacemark?) {
 		guard let placemark,
-					let placemarkLocation = placemark.location,
-					let placemarkName = placemark.name else {
+		      let placemarkLocation = placemark.location,
+		      let placemarkName = placemark.name
+		else {
 			return nil
 		}
 

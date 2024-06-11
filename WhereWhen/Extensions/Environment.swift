@@ -5,10 +5,10 @@
 //  Created by Pat Nakajima on 6/7/24.
 //
 
+import Database
 import Foundation
 import GRDB
 import SwiftUI
-import Database
 
 struct DatabaseKey: EnvironmentKey {
 	static let defaultValue: DatabaseContainer = .memory

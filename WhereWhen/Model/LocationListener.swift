@@ -6,10 +6,10 @@
 //
 
 @preconcurrency import CoreLocation
+import Database
 import Foundation
 import LibWhereWhen
 import Observation
-import Database
 import PlaceResolver
 
 @Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {

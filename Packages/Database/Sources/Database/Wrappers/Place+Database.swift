@@ -24,19 +24,19 @@ extension Place: SpatialModel {
 		try db.create(table: tableName, options: [.ifNotExists]) { t in
 			t.primaryKey("uuid", .text)
 			t.column("addedAt", .date).notNull()
-			
+
 			// Coordinate
 			t.column("latitude", .double).notNull()
 			t.column("longitude", .double).notNull()
 			t.column("name", .text).notNull()
 			t.column("category", .text)
-			
+
 			t.column("isIgnored", .boolean).notNull().defaults(to: false)
-			
+
 			// Contact
 			t.column("phoneNumber", .text)
 			t.column("url", .text)
-			
+
 			// Address
 			t.column("thoroughfare", .text)
 			t.column("subThoroughfare", .text)

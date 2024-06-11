@@ -5,8 +5,8 @@
 //  Created by Pat Nakajima on 6/9/24.
 //
 
-import Foundation
 import Database
+import Foundation
 import LibWhereWhen
 
 public struct PlaceResolver {

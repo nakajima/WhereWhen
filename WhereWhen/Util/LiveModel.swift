@@ -6,13 +6,13 @@
 //
 
 import Combine
+import Database
 import Foundation
 import GRDB
 import GRDBQuery
 import LibWhereWhen
 import Observation
 import SwiftUI
-import Database
 
 @propertyWrapper struct LiveModel<ModelType: Model>: DynamicProperty, Sendable {
 	@Environment(\.database) private var database: DatabaseContainer

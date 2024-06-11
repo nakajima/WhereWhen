@@ -13,8 +13,8 @@ import ServerData
 import SQLiteKit
 
 public struct Server {
-  let dbLocation = ProcessInfo.processInfo.environment["DBDIR"] ?? "."
-  let port = ProcessInfo.processInfo.environment["PORT"].flatMap { Int($0) } ?? 4567
+	let dbLocation = ProcessInfo.processInfo.environment["DBDIR"] ?? "."
+	let port = ProcessInfo.processInfo.environment["PORT"].flatMap { Int($0) } ?? 4567
 
 	public init() {}
 

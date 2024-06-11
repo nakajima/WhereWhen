@@ -5,10 +5,10 @@
 //  Created by Pat Nakajima on 6/5/24.
 //
 
+import Database
 import LibWhereWhen
 import MapKit
 import SwiftUI
-import Database
 
 struct CheckinCellMapView: View {
 	let region: MKCoordinateRegion

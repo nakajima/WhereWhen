@@ -5,10 +5,10 @@
 //  Created by Pat Nakajima on 6/8/24.
 //
 
+import Database
 import Foundation
 @preconcurrency import GRDB
 import LibWhereWhen
-import Database
 
 struct CheckinCreator {
 	let checkin: Checkin

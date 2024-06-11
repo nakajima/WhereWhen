@@ -5,8 +5,8 @@
 //  Created by Pat Nakajima on 6/8/24.
 //
 
-@testable import WhereWhen
 import LibWhereWhen
+@testable import WhereWhen
 import XCTest
 
 final class CheckinCreatorTests: XCTestCase {

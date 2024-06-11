@@ -5,9 +5,9 @@
 //  Created by Pat Nakajima on 6/6/24.
 //
 
+import Database
 import Foundation
 import GRDB
-import Database
 import LibWhereWhen
 import Queue
 
@@ -21,7 +21,8 @@ actor Syncer {
 
 	nonisolated static func load(with database: DatabaseContainer) -> Syncer? {
 		if let savedURL = UserDefaults.standard.string(forKey: "syncURL"),
-			 let url = URL(string: savedURL) {
+		   let url = URL(string: savedURL)
+		{
 			return Syncer(database: database, client: WhereWhenClient(serverURL: url))
 		}
 
