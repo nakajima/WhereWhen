@@ -10,6 +10,7 @@
 		A61D9C4C2C12BEC000422715 /* Queue in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C4B2C12BEC000422715 /* Queue */; };
 		A61D9C582C1356EB00422715 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C572C1356EB00422715 /* GRDB */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
+		A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */ = {isa = PBXBuildFile; productRef = A67EE03B2C17F2C20016E07D /* PlaceResolver */; };
 		A68572032C161930007828EE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571B92C161930007828EE /* Array.swift */; };
 		A68572042C161930007828EE /* Checkin+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571BA2C161930007828EE /* Checkin+CL.swift */; };
 		A68572052C161930007828EE /* Checkin+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571BB2C161930007828EE /* Checkin+MapKit.swift */; };
@@ -18,7 +19,6 @@
 		A685720A2C161930007828EE /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C02C161930007828EE /* Int+Formatting.swift */; };
 		A685720B2C161930007828EE /* MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C12C161930007828EE /* MKCoordinateRegion.swift */; };
 		A685720C2C161930007828EE /* MKCoordinateSpan+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C22C161930007828EE /* MKCoordinateSpan+Constants.swift */; };
-		A685720D2C161930007828EE /* MKPointOfInterestCategory+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C32C161930007828EE /* MKPointOfInterestCategory+Conversion.swift */; };
 		A685720E2C161930007828EE /* Place+CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C42C161930007828EE /* Place+CL.swift */; };
 		A685720F2C161930007828EE /* Query+DatabaseQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C52C161930007828EE /* Query+DatabaseQueue.swift */; };
 		A68572102C161930007828EE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571C62C161930007828EE /* String.swift */; };
@@ -85,7 +85,6 @@
 		A68571C02C161930007828EE /* Int+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
 		A68571C12C161930007828EE /* MKCoordinateRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegion.swift; sourceTree = "<group>"; };
 		A68571C22C161930007828EE /* MKCoordinateSpan+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKCoordinateSpan+Constants.swift"; sourceTree = "<group>"; };
-		A68571C32C161930007828EE /* MKPointOfInterestCategory+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKPointOfInterestCategory+Conversion.swift"; sourceTree = "<group>"; };
 		A68571C42C161930007828EE /* Place+CL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CL.swift"; sourceTree = "<group>"; };
 		A68571C52C161930007828EE /* Query+DatabaseQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Query+DatabaseQueue.swift"; sourceTree = "<group>"; };
 		A68571C62C161930007828EE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -145,6 +144,7 @@
 			files = (
 				A61D9C582C1356EB00422715 /* GRDB in Frameworks */,
 				A6DF5D8D2C17577500F97200 /* Database in Frameworks */,
+				A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */,
 				A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */,
 				A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */,
 				A61D9C4C2C12BEC000422715 /* Queue in Frameworks */,
@@ -169,6 +169,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A67EE03D2C17F38C0016E07D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		A68571C82C161930007828EE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +187,6 @@
 				A68571C02C161930007828EE /* Int+Formatting.swift */,
 				A68571C12C161930007828EE /* MKCoordinateRegion.swift */,
 				A68571C22C161930007828EE /* MKCoordinateSpan+Constants.swift */,
-				A68571C32C161930007828EE /* MKPointOfInterestCategory+Conversion.swift */,
 				A68571C42C161930007828EE /* Place+CL.swift */,
 				A68571C52C161930007828EE /* Query+DatabaseQueue.swift */,
 				A68571C62C161930007828EE /* String.swift */,
@@ -243,6 +249,7 @@
 		A68571F92C161930007828EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A67EE03D2C17F38C0016E07D /* Settings */,
 				A68571E52C161930007828EE /* Queries */,
 				A68571E62C161930007828EE /* CheckinCellView.swift */,
 				A68571E72C161930007828EE /* CheckinEditPlaceView.swift */,
@@ -345,6 +352,7 @@
 				A69AE8A42C1369C200818D93 /* GRDBQuery */,
 				A6DF5D8C2C17577500F97200 /* Database */,
 				A67EDFFC2C176B3B0016E07D /* LibWhereWhen */,
+				A67EE03B2C17F2C20016E07D /* PlaceResolver */,
 			);
 			productName = WhereWhen;
 			productReference = A6E649F02C0ACEFE00553F10 /* WhereWhen.app */;
@@ -453,7 +461,6 @@
 				A68572312C161930007828EE /* ErrorOverlay.swift in Sources */,
 				A685720A2C161930007828EE /* Int+Formatting.swift in Sources */,
 				A68572142C161930007828EE /* CheckinMaker.swift in Sources */,
-				A685720D2C161930007828EE /* MKPointOfInterestCategory+Conversion.swift in Sources */,
 				A68572222C161930007828EE /* DragDismissable.swift in Sources */,
 				A68572382C161930007828EE /* NavigationContainer.swift in Sources */,
 				A68572102C161930007828EE /* String.swift in Sources */,
@@ -809,6 +816,10 @@
 		A67EDFFC2C176B3B0016E07D /* LibWhereWhen */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LibWhereWhen;
+		};
+		A67EE03B2C17F2C20016E07D /* PlaceResolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlaceResolver;
 		};
 		A69AE8A42C1369C200818D93 /* GRDBQuery */ = {
 			isa = XCSwiftPackageProductDependency;

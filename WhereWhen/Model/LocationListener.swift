@@ -10,6 +10,7 @@ import Foundation
 import LibWhereWhen
 import Observation
 import Database
+import PlaceResolver
 
 @Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
 	enum Error: Swift.Error {
@@ -103,11 +104,11 @@ import Database
 
 		Task {
 			do {
-				let placemark = try await CLGeocoder().reverseGeocodeLocation(.init(latitude: visit.coordinate.latitude, longitude: visit.coordinate.longitude)).first
-				let place = Place(placemark: placemark)
-
-				if let place {
-					try await place.save(to: database)
+				guard let place = try await PlaceResolver(
+					database: database,
+					coordinate: .init(visit.coordinate)
+				).resolve() else {
+					return
 				}
 
 				try await CheckinCreator(checkin: Checkin(visit: visit), database: database).create(place: place)

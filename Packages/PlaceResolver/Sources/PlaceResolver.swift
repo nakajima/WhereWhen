@@ -10,13 +10,23 @@ import Database
 import LibWhereWhen
 
 public struct PlaceResolver {
+	public struct Suggestion {
+		public let place: Place
+		public let confidence: Double
+	}
+
 	public protocol Resolver {
-		func place() async throws -> Place?
+		func suggestion() async throws -> Suggestion?
 		init(database: DatabaseContainer, coordinate: Coordinate)
 	}
 
 	let database: DatabaseContainer
 	let coordinate: Coordinate
+
+	public init(database: DatabaseContainer, coordinate: Coordinate) {
+		self.database = database
+		self.coordinate = coordinate
+	}
 
 	let resolvers: [any Resolver.Type] = [
 		LocalDatabase.self,
@@ -25,7 +35,18 @@ public struct PlaceResolver {
 		Nominatim.self,
 	]
 
-	public func resolve() -> Place? {
-		nil
+	public func resolve() async throws -> Place? {
+		for resolver in resolvers {
+			if let suggestion = try await resolver.init(
+				database: database,
+				coordinate: coordinate
+			).suggestion() {
+				let place = suggestion.place
+				try await place.save(to: database)
+				return place
+			}
+		}
+
+		return nil
 	}
 }
