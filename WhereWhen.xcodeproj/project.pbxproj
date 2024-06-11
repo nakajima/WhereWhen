@@ -684,6 +684,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WhereWhen/Preview Content\"";
 				DEVELOPMENT_TEAM = Z773AM52SJ;
 				ENABLE_PREVIEWS = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhereWhen/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WhereWhen;

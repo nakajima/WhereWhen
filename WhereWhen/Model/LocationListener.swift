@@ -104,7 +104,7 @@ import PlaceResolver
 
 		Task {
 			do {
-				guard let place = try await PlaceResolver(
+				guard let place = await PlaceResolver(
 					database: database,
 					coordinate: .init(visit.coordinate)
 				).resolve() else {

@@ -22,7 +22,9 @@ struct WhereWhenApp: App {
 	@StateObject var coordinator: WhereWhenCoordinator
 
 	init() {
-		_coordinator = StateObject(wrappedValue: WhereWhenCoordinator(database: .dev))
+		_coordinator = StateObject(
+			wrappedValue: WhereWhenCoordinator(database: .dev)
+		)
 	}
 
 	var body: some Scene {
