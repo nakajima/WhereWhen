@@ -107,8 +107,8 @@ public struct DiskLogger: Sendable {
 			let parts = string.split(separator: "\t", maxSplits: 3).map { String($0) }
 
 			guard parts.count == 4,
-						let level = LogType(rawValue: parts[1].lowercased()),
-						let timestamp = Entry.formatter.date(from: parts[2])
+			      let level = LogType(rawValue: parts[1].lowercased()),
+			      let timestamp = Entry.formatter.date(from: parts[2])
 			else {
 				return nil
 			}
