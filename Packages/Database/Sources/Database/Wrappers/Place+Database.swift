@@ -45,6 +45,8 @@ extension Place: SpatialModel {
 			t.column("administrativeArea", .text)
 			t.column("subAdministrativeArea", .text)
 			t.column("postalCode", .text)
+
+			t.uniqueKey(["latitude", "longitude"])
 		}
 	}
 
@@ -91,5 +93,12 @@ extension Place: SpatialModel {
 		container["postalCode"] = postalCode
 
 		container["isIgnored"] = isIgnored
+	}
+
+	public static func sameCoordinates(as place: Place) -> QueryInterfaceRequest<Place> {
+		Place.filter(sql: "latitude = ? AND longitude = ?", arguments: [
+			place.coordinate.latitude,
+			place.coordinate.longitude,
+		])
 	}
 }

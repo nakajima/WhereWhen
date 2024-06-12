@@ -9,6 +9,7 @@ import Database
 import Foundation
 import LibWhereWhen
 import MapKit
+import PlaceResolver
 
 struct PlaceFinder {
 	enum Error: Swift.Error {
@@ -31,39 +32,20 @@ struct PlaceFinder {
 	}
 
 	func results(in region: MKCoordinateRegion) async throws -> [Place] {
-		// Looks up places we have in our DB
-		let localResults = try localLookup()
+		let suggestions = await PlaceResolver(database: database, coordinate: .init(region.center))
+			.suggestions()
 
-		let remoteResults = if search.isBlank {
-			// Looks up any places nearby from mapkit
-			try await lookupFromCL(region: region)
-		} else {
-			// Looks up places matching the search term from mapkit
-			try await lookupFromSearchTerm(term: search)
-		}
-
-		return Set(remoteResults + localResults)
-			.filter {
-				// Filter out far away stuff
-				if $0.coordinate.distance(to: .init(region.center)) > 1000 {
-					return false
+		if let search = search.presence {
+			return suggestions.compactMap { suggestion in
+				if suggestion.place.name.lowercased().contains(search.lowercased()) {
+					return suggestion.place
+				} else {
+					return nil
 				}
-
-				// If the user searching, filter on that
-				if let search = search.presence {
-					return $0.name.lowercased().contains(search.lowercased())
-				}
-
-				// Otherwise let it all through
-				return true
 			}
-			.sorted(by: {
-				// Sort by how close the place is from our region's center (which may or
-				// may not be where the user actually is)
-				$0.coordinate.distance(to: .init(region.center)) <
-					$1.coordinate.distance(to: .init(region.center))
-			})
-			.first(20)
+		} else {
+			return suggestions.map(\.place)
+		}
 	}
 
 	private func lookupFromSearchTerm(term: String) async throws -> [Place] {

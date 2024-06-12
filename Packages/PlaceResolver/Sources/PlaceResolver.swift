@@ -9,6 +9,8 @@ import Database
 import Foundation
 import LibWhereWhen
 
+private let logger = DiskLogger(label: "PlaceResolver", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
+
 public struct PlaceResolver: Sendable {
 	public struct Suggestion: Sendable, Identifiable {
 		public var id: String { "\(source)-\(place.id)" }
@@ -18,7 +20,8 @@ public struct PlaceResolver: Sendable {
 	}
 
 	public protocol Resolver {
-		func suggestion() async throws -> Suggestion?
+		var coordinate: Coordinate { get }
+		func suggestions() async throws -> [Suggestion]
 		init(database: DatabaseContainer, coordinate: Coordinate)
 	}
 
@@ -41,32 +44,53 @@ public struct PlaceResolver: Sendable {
 		await suggestion()?.place
 	}
 
-	public func suggestions() async -> [Suggestion] {
-		await withTaskGroup(of: Suggestion?.self) { group in
+	public func suggestions(limit: Int? = nil) async -> [Suggestion] {
+		await withTaskGroup(of: [Suggestion].self) { group in
 			for resolver in resolvers {
 				group.addTask {
 					do {
-						if let suggestion = try await resolver.init(
+						return try await resolver.init(
 							database: database,
 							coordinate: coordinate
-						).suggestion() {
-							return suggestion
-						}
+						).suggestions()
 					} catch {
-						print("Error resolving: \(error)")
+						logger.error("Error resolving \(resolver): \(error)")
 					}
 
-					return nil
+					return []
 				}
 			}
 
 			var result: [Suggestion] = []
 
-			for await suggestion in group.compactMap({ $0 }) {
-				result.append(suggestion)
+			var knownByName: [String: Suggestion] = [:]
+			for await suggestions in group {
+				for suggestion in suggestions {
+					// Prevent duplicate places returns by different sources from
+					// showing up, favoring local results
+					if let existing = knownByName[suggestion.place.name] {
+						if existing.source == "Local" {
+							knownByName[suggestion.place.name] = suggestion
+						}
+
+						continue
+					}
+
+					knownByName[suggestion.place.name] = suggestion
+					result.append(suggestion)
+				}
 			}
 
-			return result
+			let sorted = result.sorted {
+				$0.place.coordinate.distance(to: coordinate) <
+					$1.place.coordinate.distance(to: coordinate)
+			}
+
+			if let limit, sorted.count > limit {
+				return Array(sorted[0 ..< limit])
+			} else {
+				return sorted
+			}
 		}
 	}
 
@@ -80,10 +104,19 @@ public struct PlaceResolver: Sendable {
 					return suggestion
 				}
 			} catch {
-				print("Error resolving: \(error)")
+				logger.error("Error resolving: \(error)")
 			}
 		}
 
 		return nil
+	}
+}
+
+extension PlaceResolver.Resolver {
+	func suggestion() async throws -> PlaceResolver.Suggestion? {
+		try await suggestions().sorted {
+			$0.place.coordinate.distance(to: coordinate) <
+				$1.place.coordinate.distance(to: coordinate)
+		}.first
 	}
 }

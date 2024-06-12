@@ -17,7 +17,7 @@ extension PlaceResolver {
 			self.coordinate = coordinate
 		}
 
-		func suggestion() async throws -> Suggestion? {
+		func suggestions() async throws -> [Suggestion] {
 			let url = URL(string: "https://nominatim.openstreetmap.org/reverse")!.appending(
 				queryItems: [
 					.init(name: "lat", value: "\(coordinate.latitude)"),
@@ -32,40 +32,45 @@ extension PlaceResolver {
 			let (data, _) = try await URLSession.shared.data(for: request)
 
 			guard let response = try? JSONDecoder().decode(NominatimResponse.self, from: data),
-			      let feature = response.features?.first,
-			      let properties = feature.properties
+			      let features = response.features
 			else {
-				return nil
+				return []
 			}
 
-			guard let name = properties.displayName?.presence ?? properties.name?.presence,
-			      let coordinates = feature.geometry?.coordinates,
-			      coordinates.count == 2
-			else {
-				return nil
+			return features.compactMap { feature in
+				guard let properties = feature.properties else {
+					return nil
+				}
+
+				guard let name = properties.displayName?.presence ?? properties.name?.presence,
+				      let coordinates = feature.geometry?.coordinates,
+				      coordinates.count == 2
+				else {
+					return nil
+				}
+
+				let place = Place(
+					uuid: UUID().uuidString,
+					addedAt: Date(),
+					coordinate: .init(coordinates[0], coordinates[1]),
+					name: name,
+					phoneNumber: nil,
+					url: nil,
+					category: PlaceCategory(rawValue: properties.category ?? ""),
+					thoroughfare: nil,
+					subThoroughfare: nil,
+					locality: nil,
+					subLocality: nil,
+					administrativeArea: nil,
+					subAdministrativeArea: nil,
+					postalCode: nil,
+					isIgnored: false
+				)
+
+				// These don't tend to be what we're looking for but i guess
+				// they're better than nothing.
+				return .init(source: "Nominatim", place: place, confidence: -1)
 			}
-
-			let place = Place(
-				uuid: UUID().uuidString,
-				addedAt: Date(),
-				coordinate: .init(coordinates[0], coordinates[1]),
-				name: name,
-				phoneNumber: nil,
-				url: nil,
-				category: PlaceCategory(rawValue: properties.category ?? ""),
-				thoroughfare: nil,
-				subThoroughfare: nil,
-				locality: nil,
-				subLocality: nil,
-				administrativeArea: nil,
-				subAdministrativeArea: nil,
-				postalCode: nil,
-				isIgnored: false
-			)
-
-			// These don't tend to be what we're looking for but i guess
-			// they're better than nothing.
-			return .init(source: "Nominatim", place: place, confidence: -1)
 		}
 	}
 }

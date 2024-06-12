@@ -66,7 +66,8 @@ extension Checkin: SpatialModel, Sendable {
 		try database.write { db in
 			do {
 				if let place {
-					try place.save(db)
+					let placeToSave = try Place.sameCoordinates(as: place).fetchOne(db) ?? place
+					try placeToSave.save(db)
 				}
 
 				try save(db)
@@ -82,7 +83,8 @@ extension Checkin: SpatialModel, Sendable {
 		try await database.write { db in
 			do {
 				if let place {
-					try place.save(db)
+					let placeToSave = try Place.sameCoordinates(as: place).fetchOne(db) ?? place
+					try placeToSave.save(db)
 				}
 
 				try save(db)

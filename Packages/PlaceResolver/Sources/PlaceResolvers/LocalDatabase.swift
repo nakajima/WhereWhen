@@ -39,27 +39,23 @@ public struct SpatialQuery: SQLSpecificExpressible {
 public extension PlaceResolver {
 	struct LocalDatabase: Resolver {
 		let database: DatabaseContainer
-		let coordinate: Coordinate
+		public let coordinate: Coordinate
 
 		public init(database: DatabaseContainer, coordinate: Coordinate) {
 			self.database = database
 			self.coordinate = coordinate
 		}
 
-		@MainActor public func suggestion() async throws -> Suggestion? {
+		@MainActor public func suggestions() async throws -> [Suggestion] {
 			let query = SpatialQuery(coordinate: coordinate, span: .meters(10))
 			let places = try await Place.where(query, in: database)
 
-			let firstPlace = places.sorted(by: {
+			return places.sorted(by: {
 				$0.coordinate.distance(to: coordinate) <
 					$1.coordinate.distance(to: coordinate)
-			}).first
-
-			if let firstPlace {
-				return .init(source: "Local DB", place: firstPlace, confidence: 10)
+			}).map {
+				.init(source: "Local", place: $0, confidence: 10)
 			}
-
-			return nil
 		}
 	}
 }

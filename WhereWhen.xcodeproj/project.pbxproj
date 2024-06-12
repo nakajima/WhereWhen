@@ -14,6 +14,7 @@
 		A63779092C1947A0004C5D21 /* MapThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63779082C1947A0004C5D21 /* MapThumbnail.swift */; };
 		A637790C2C194969004C5D21 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = A637790B2C194969004C5D21 /* Nuke */; };
 		A637790E2C194969004C5D21 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = A637790D2C194969004C5D21 /* NukeUI */; };
+		A63779102C19631E004C5D21 /* SyncServerEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
 		A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */ = {isa = PBXBuildFile; productRef = A67EE03B2C17F2C20016E07D /* PlaceResolver */; };
 		A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */; };
@@ -86,6 +87,7 @@
 		A615DC792C1906C3004B71B4 /* VisitImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitImporterView.swift; sourceTree = "<group>"; };
 		A615DC7B2C191317004B71B4 /* VisitImporterLineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitImporterLineCellView.swift; sourceTree = "<group>"; };
 		A63779082C1947A0004C5D21 /* MapThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapThumbnail.swift; sourceTree = "<group>"; };
+		A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServerEditorView.swift; sourceTree = "<group>"; };
 		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceResolverDebuggerView.swift; sourceTree = "<group>"; };
 		A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WhereWhen.xctestplan; path = WhereWhen/WhereWhen.xctestplan; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				A68571F72C161930007828EE /* SettingsView.swift */,
 				A68571F02C161930007828EE /* IgnoredPlacesListView.swift */,
+				A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */,
 				A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */,
 				A615DC792C1906C3004B71B4 /* VisitImporterView.swift */,
 				A615DC7B2C191317004B71B4 /* VisitImporterLineCellView.swift */,
@@ -511,6 +514,7 @@
 				A68572222C161930007828EE /* DragDismissable.swift in Sources */,
 				A68572382C161930007828EE /* NavigationContainer.swift in Sources */,
 				A615DC7A2C1906C3004B71B4 /* VisitImporterView.swift in Sources */,
+				A63779102C19631E004C5D21 /* SyncServerEditorView.swift in Sources */,
 				A68572102C161930007828EE /* String.swift in Sources */,
 				A68572232C161930007828EE /* LiveModel.swift in Sources */,
 				A68572112C161930007828EE /* URLSession+Helpers.swift in Sources */,

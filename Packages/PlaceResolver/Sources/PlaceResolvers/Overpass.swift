@@ -17,8 +17,7 @@ extension PlaceResolver {
 			self.coordinate = coordinate
 		}
 
-		// We'll get to it.
-		func suggestion() async throws -> Suggestion? {
+		func suggestions() async throws -> [Suggestion] {
 			let url = URL(string: "https://overpass-api.de/api/interpreter")!.appending(
 				queryItems: [
 					.init(name: "lat", value: "\(coordinate.latitude)"),
@@ -36,34 +35,37 @@ extension PlaceResolver {
 			decoder.dateDecodingStrategy = .iso8601
 			let response = try decoder.decode(OverpassResponse.self, from: data)
 
-			guard let element = response.elements?.first(where: { $0.type == "way" }),
-			      let tags = element.tags,
-			      let name = tags["name"]
-			else {
-				return nil
+			guard let elements = response.elements else {
+				return []
 			}
 
-			let coordinate = findCenter(of: response.elements?.filter { $0.type == "node" }) ?? coordinate
+			return elements.compactMap { element in
+				guard element.type == "way", let tags = element.tags, let name = tags["name"] else {
+					return nil
+				}
 
-			let place = Place(
-				uuid: UUID().uuidString,
-				addedAt: Date(),
-				coordinate: coordinate,
-				name: name,
-				phoneNumber: tags["phone"] ?? tags["contact:phone"],
-				url: URL(string: tags["website"] ?? ""),
-				category: PlaceCategory(rawValue: tags["amenity"] ?? ""),
-				thoroughfare: tags["addr:street"],
-				subThoroughfare: tags["addr:housenumber"],
-				locality: tags["Kettleman City"],
-				subLocality: nil,
-				administrativeArea: tags["addr:state"],
-				subAdministrativeArea: nil,
-				postalCode: tags["addr:postcode"],
-				isIgnored: false
-			)
+				let coordinate = findCenter(of: response.elements?.filter { $0.type == "node" }) ?? coordinate
 
-			return .init(source: "Overpass", place: place, confidence: 10)
+				let place = Place(
+					uuid: UUID().uuidString,
+					addedAt: Date(),
+					coordinate: coordinate,
+					name: name,
+					phoneNumber: tags["phone"] ?? tags["contact:phone"],
+					url: URL(string: tags["website"] ?? ""),
+					category: PlaceCategory(rawValue: tags["amenity"] ?? ""),
+					thoroughfare: tags["addr:street"],
+					subThoroughfare: tags["addr:housenumber"],
+					locality: tags["Kettleman City"],
+					subLocality: nil,
+					administrativeArea: tags["addr:state"],
+					subAdministrativeArea: nil,
+					postalCode: tags["addr:postcode"],
+					isIgnored: false
+				)
+
+				return .init(source: "Overpass", place: place, confidence: 10)
+			}
 		}
 
 		func findCenter(of nodes: [Element]?) -> Coordinate? {

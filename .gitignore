@@ -11,3 +11,4 @@ WhereWhenServer/.vscode
 .envrc
 db/
 .vscode
+fix.rb

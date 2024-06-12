@@ -28,7 +28,7 @@ extension PlaceResolver {
 			self.coordinate = coordinate
 		}
 
-		func suggestion() async throws -> Suggestion? {
+		func suggestions() async throws -> [Suggestion] {
 			let request = MKLocalPointsOfInterestRequest(
 				center: .init(
 					latitude: coordinate.latitude,
@@ -51,11 +51,9 @@ extension PlaceResolver {
 			}
 
 			// These tend to be p good
-			if let place = places.first {
-				return .init(source: "MapKit", place: place, confidence: 10)
+			return places.map {
+				.init(source: "Apple", place: $0, confidence: 10)
 			}
-
-			return nil
 		}
 
 		func placesFrom(response: MKLocalSearch.Response) -> [Place] {

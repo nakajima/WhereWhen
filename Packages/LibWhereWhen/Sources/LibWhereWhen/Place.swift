@@ -11,6 +11,8 @@ import Foundation
 public struct Place: Codable, Identifiable, Sendable, Equatable {
 	public var id: String { coordinate.id }
 
+	public var resolver: String?
+
 	public let uuid: String
 
 	// When was this place added

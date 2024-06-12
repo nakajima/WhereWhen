@@ -14,6 +14,7 @@ import SwiftUI
 struct VisitImporterLineCellView: View {
 	let line: VisitImporter.Line
 
+	@State private var limit = 5
 	@State private var cachedSuggestions: [PlaceResolver.Suggestion] = []
 	@State private var status: Status = .loading
 	@Environment(\.database) var database
@@ -60,7 +61,7 @@ struct VisitImporterLineCellView: View {
 					self.status = .loaded(suggestions)
 				}
 			case let .loaded(results):
-				ForEach(results) { suggestion in
+				ForEach(results.first(limit)) { suggestion in
 					VStack(alignment: .leading, spacing: Styles.verticalSpacing) {
 						HStack(spacing: 0) {
 							Text("Source: ")
@@ -86,11 +87,13 @@ struct VisitImporterLineCellView: View {
 					}
 				}
 
-				Button("Search…") {
-					print("search")
+				if limit < results.count {
+					Button("Show More…") {
+						withAnimation {
+							limit += 5
+						}
+					}
 				}
-				.controlSize(.mini)
-				.buttonStyle(.bordered)
 			case let .error(err):
 				Text("Error: \(err)")
 			case let .done(place):
