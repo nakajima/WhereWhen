@@ -27,18 +27,14 @@ struct VisitImporterLineCellView: View {
 
 	var body: some View {
 		Section {
-			Map(
-				initialPosition: .region(
-					.init(
-						center: line.coordinate.clLocation,
-						span: .within(meters: 200)
-					)
-				),
-				interactionModes: []
-			) {
-				Marker(coordinate: line.coordinate.clLocation) {
-					Label("You were here", systemImage: "mappin")
-				}
+			MapThumbnail(
+				coordinate: line.coordinate,
+				span: .within(meters: 200)
+			)
+			.overlay {
+				Label("You were here", systemImage: "mappin")
+					.labelStyle(.iconOnly)
+					.foregroundStyle(.red)
 			}
 			.frame(height: 200)
 			.listRowInsets(.init())

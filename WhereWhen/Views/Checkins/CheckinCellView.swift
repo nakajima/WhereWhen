@@ -14,7 +14,7 @@ struct CheckinCellMapView: View {
 	let region: MKCoordinateRegion
 
 	var body: some View {
-		Map(initialPosition: .region(region), interactionModes: [])
+		MapThumbnail(region: region)
 			.frame(width: 64, height: 64)
 			.clipShape(RoundedRectangle(cornerRadius: 8))
 			.padding(8)

@@ -93,8 +93,10 @@ import SwiftUI
 			}
 		}
 		.safeAreaInset(edge: .top) {
-			Map(initialPosition: .region(place.region(.within(meters: 100))), interactionModes: []) {
-				Marker(coordinate: place.coordinate.clLocation) {}
+			Map(initialPosition: .region(place.region(.within(meters: 100)))) {
+				Marker(coordinate: place.coordinate.clLocation) {
+					Text("You were here.")
+				}
 			}
 			.frame(height: 200)
 			.shadow(radius: 2)
