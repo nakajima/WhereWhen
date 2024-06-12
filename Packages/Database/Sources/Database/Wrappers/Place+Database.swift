@@ -101,4 +101,20 @@ extension Place: SpatialModel {
 			place.coordinate.longitude,
 		])
 	}
+
+	// Overriding this to avoid duplicate save attempts
+	public func save(to database: DatabaseContainer) throws {
+		try database.write { db in
+			let placeToSave = try Place.sameCoordinates(as: self).fetchOne(db) ?? self
+			try placeToSave.save(db)
+		}
+	}
+
+	// Overriding this to avoid duplicate save attempts
+	public func save(to database: DatabaseContainer) async throws {
+		try await database.write { db in
+			let placeToSave = try Place.sameCoordinates(as: self).fetchOne(db) ?? self
+			try placeToSave.save(db)
+		}
+	}
 }
