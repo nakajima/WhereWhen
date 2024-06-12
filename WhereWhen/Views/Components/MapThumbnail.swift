@@ -18,6 +18,7 @@ import SwiftUI
 	let span: MKCoordinateSpan
 
 	@State private var status: Status = .loading
+	@Environment(\.colorScheme) var colorScheme
 
 	enum Status {
 		case loading, loaded(Image), error(String)
@@ -34,24 +35,30 @@ import SwiftUI
 	}
 
 	var body: some View {
-		switch status {
-		case .loading:
-			GeometryReader { geo in
+		GeometryReader { geo in
+			switch status {
+			case .loading:
 				Color.secondary
 					.task {
 						do {
-							try await generate(size: geo.size)
+							try await load(size: geo.size, colorScheme: colorScheme)
 						} catch {
 							self.status = .error(error.localizedDescription)
 						}
 					}
+			case let .loaded(image):
+				image
+					.resizable()
+					.scaledToFill()
+					.onChange(of: colorScheme) {
+						print("color scheme change: \(colorScheme )")
+						Task {
+							try await load(size: geo.size, colorScheme: colorScheme)
+						}
+					}
+			case .error:
+				Map(initialPosition: .region(region))
 			}
-		case let .loaded(image):
-			image
-				.resizable()
-				.scaledToFill()
-		case .error:
-			Map(initialPosition: .region(region))
 		}
 	}
 
@@ -62,24 +69,47 @@ import SwiftUI
 		)
 	}
 
-	private func generate(size: CGSize) async throws {
+	private func load(size: CGSize, colorScheme: ColorScheme) async throws {
 		do {
-			let image = try await ImagePipeline.shared.image(for: coordinate.cacheURL(for: size))
-
-			print("Using cached thumbnail")
-
+			let image = try await ImagePipeline.shared.image(for: coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme))
+			print("loaded \(coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme))")
 			status = .loaded(Image(uiImage: image))
 			return
 		} catch {
 			print(error)
 		}
 
+		let image = try await generate(size: size)
+
+		withAnimation {
+			self.status = .loaded(image)
+		}
+	}
+
+	func generate(size: CGSize) async throws -> Image {
+		async let light = try generateColorScheme(size: size, colorScheme: .light)
+		async let dark = try generateColorScheme(size: size, colorScheme: .dark)
+
+		_ = try await light
+		_ = try await dark
+
+		if colorScheme == .light {
+			return try await light
+		} else {
+			return try await dark
+		}
+	}
+
+	func generateColorScheme(size: CGSize, colorScheme: ColorScheme) async throws -> Image {
 		let options: MKMapSnapshotter.Options = .init()
 		options.region = region
 
 		options.size = size
 		options.mapType = .standard
 		options.showsBuildings = true
+		options.traitCollection = options.traitCollection.modifyingTraits {
+			$0.userInterfaceStyle = colorScheme == .light ? .light : .dark
+		}
 
 		let snapshotter = MKMapSnapshotter(
 			options: options
@@ -90,25 +120,31 @@ import SwiftUI
 
 		if let data {
 			do {
-				try data.write(to: coordinate.cacheURL(for: size))
+				let cacheURL = coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme)
+				try data.write(to: cacheURL)
+				print("generated \(cacheURL)")
 			} catch {
 				status = .error(error.localizedDescription)
 			}
-
-			withAnimation {
-				self.status = .loaded(Image(uiImage: snapshot.image))
-			}
 		}
+
+		return Image(uiImage: snapshot.image)
 	}
 }
 
 private extension Coordinate {
-	func cacheURL(for size: CGSize) -> URL {
+	func cacheURL(for size: CGSize, span: MKCoordinateSpan, colorScheme: ColorScheme) -> URL {
 		let coords = "\(latitude)-\(longitude)"
 			.components(separatedBy: ".")
 			.joined(separator: "-")
 
-		return URL.temporaryDirectory.appending(path: "\(coords)-\(size.width)x\(size.height).png")
+		let span = "\(span.latitudeDelta)-\(span.longitudeDelta)"
+			.components(separatedBy: ".")
+			.joined(separator: "-")
+
+		let color = colorScheme == .light ? "light" : "dark"
+
+		return URL.temporaryDirectory.appending(path: "\(coords)-\(span)-\(size.width)x\(size.height)-\(color).png")
 	}
 }
 
@@ -121,12 +157,26 @@ private extension Coordinate {
 		return VStack {
 			MapThumbnail(
 				coordinate: coordinate,
-				span: .within(meters: 200)
+				span: .within(meters: 1500)
 			)
 			.frame(width: 200, height: 200)
 
 			Button("Clear Cache") {
-				try! FileManager.default.removeItem(at: coordinate.cacheURL(for: .init(width: 200, height: 200)))
+				try! FileManager.default.removeItem(
+					at: coordinate.cacheURL(
+						for: .init(width: 200, height: 200),
+						span: .within(meters: 1500),
+						colorScheme: .light
+					)
+				)
+
+				try! FileManager.default.removeItem(
+					at: coordinate.cacheURL(
+						for: .init(width: 200, height: 200),
+						span: .within(meters: 1500),
+						colorScheme: .dark
+					)
+				)
 			}
 		}
 	}
