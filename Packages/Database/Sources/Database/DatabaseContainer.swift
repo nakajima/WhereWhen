@@ -109,6 +109,17 @@ public extension DatabaseContainer {
 	// Sometimes we need it...
 	var _queue: DatabaseQueue { queue }
 
+	var updates: AsyncValueObservation<[Int]> {
+		let observation = ValueObservation.tracking { db in
+			[
+				try Place.fetchCount(db),
+				try Checkin.fetchCount(db)
+			]
+		}.removeDuplicates()
+
+		return observation.values(in: queue, bufferingPolicy: .bufferingNewest(10))
+	}
+
 	func read<T>(updates: (Database) throws -> T) throws -> T {
 		try queue.read { db in
 			try updates(db)

@@ -51,6 +51,7 @@ extension PlaceResolver {
 
 				let place = Place(
 					uuid: UUID().uuidString,
+					attribution: "https://www.openstreetmap.org",
 					addedAt: Date(),
 					coordinate: .init(coordinates[0], coordinates[1]),
 					name: name,

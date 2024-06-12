@@ -43,6 +43,7 @@ struct CreatePlaceView: View {
 				Button("Create Place") {
 					let place = Place(
 						uuid: UUID().uuidString,
+						attribution: "Manually Entered",
 						addedAt: Date(),
 						coordinate: coordinate,
 						name: name,

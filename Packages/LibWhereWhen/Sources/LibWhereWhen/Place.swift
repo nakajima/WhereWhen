@@ -11,7 +11,8 @@ import Foundation
 public struct Place: Codable, Identifiable, Sendable, Equatable {
 	public var id: String { coordinate.id }
 
-	public var resolver: String?
+	// Where did the data for this place come from?
+	public var attribution: String?
 
 	public let uuid: String
 
@@ -60,6 +61,7 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 
 	public init(
 		uuid: String,
+		attribution: String?,
 		addedAt: Date,
 		coordinate: Coordinate,
 		name: String,
@@ -76,6 +78,7 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 		isIgnored: Bool
 	) {
 		self.uuid = uuid
+		self.attribution = attribution
 
 		self.addedAt = addedAt
 		self.coordinate = coordinate
@@ -116,6 +119,7 @@ extension Place: Hashable {
 	public extension Place {
 		static let preview = Place(
 			uuid: UUID().uuidString,
+			attribution: "Preview",
 			addedAt: Date(),
 			coordinate: .init(latitude: 37.33233141, longitude: -122.03121860),
 			name: "Test Location",

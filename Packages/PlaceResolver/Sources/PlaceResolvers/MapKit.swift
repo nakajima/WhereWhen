@@ -65,6 +65,7 @@ extension PlaceResolver {
 
 				let place = Place(
 					uuid: UUID().uuidString,
+					attribution: "Apple",
 					addedAt: Date(),
 					coordinate: .init(
 						latitude: item.placemark.coordinate.latitude,

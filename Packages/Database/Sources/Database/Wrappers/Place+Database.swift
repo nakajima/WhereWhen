@@ -23,6 +23,7 @@ extension Place: SpatialModel {
 	public static func create(in db: Database) throws {
 		try db.create(table: tableName, options: [.ifNotExists]) { t in
 			t.primaryKey("uuid", .text)
+			t.column("attribution", .text)
 			t.column("addedAt", .date).notNull()
 
 			// Coordinate
@@ -53,6 +54,7 @@ extension Place: SpatialModel {
 	public init(row: Row) throws {
 		self.init(
 			uuid: row["uuid"],
+			attribution: row["attribution"],
 			addedAt: row["addedAt"],
 			coordinate: .init(latitude: row["latitude"], longitude: row["longitude"]),
 			name: row["name"],
@@ -75,6 +77,7 @@ extension Place: SpatialModel {
 
 	public func encode(to container: inout PersistenceContainer) throws {
 		container["uuid"] = uuid
+		container["attribution"] = attribution
 		container["addedAt"] = addedAt
 		container["latitude"] = coordinate.latitude
 		container["longitude"] = coordinate.longitude
