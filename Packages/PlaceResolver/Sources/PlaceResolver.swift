@@ -10,7 +10,8 @@ import Foundation
 import LibWhereWhen
 
 public struct PlaceResolver: Sendable {
-	public struct Suggestion: Sendable {
+	public struct Suggestion: Sendable, Identifiable {
+		public var id: String { "\(source)-\(place.id)" }
 		public let source: String
 		public let place: Place
 		public let confidence: Double

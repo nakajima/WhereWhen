@@ -5,6 +5,7 @@
 //  Created by Pat Nakajima on 6/7/24.
 //
 
+import Database
 import LibWhereWhen
 import SwiftUI
 
@@ -15,7 +16,19 @@ enum Route: Hashable {
 	     checkinChoosePlace(Checkin),
 	     finishCheckinView(Place, Coordinate),
 	     finishUpdateCheckinView(Checkin, Place),
-	     createPlace(Coordinate, Checkin?)
+	     createPlace(Coordinate, Checkin?),
+	     settingsVisitImporter,
+	     settingsVisitImporterSelection(VisitImporter)
+}
+
+extension Binding<[Route]> {
+	func popToRoot() {
+		wrappedValue = []
+	}
+
+	func append(_ route: Route) {
+		wrappedValue.append(route)
+	}
 }
 
 struct NavigationContainer<Content: View>: View {
@@ -48,6 +61,10 @@ struct NavigationContainer<Content: View>: View {
 						CheckinEditPlaceView(checkin: checkin)
 					case let .createPlace(coordinate, checkin):
 						CreatePlaceView(coordinate: coordinate, checkin: checkin)
+					case .settingsVisitImporter:
+						VisitImporterView()
+					case let .settingsVisitImporterSelection(importer):
+						VisitImporterSelectionView(importer: importer)
 					}
 				}
 		}

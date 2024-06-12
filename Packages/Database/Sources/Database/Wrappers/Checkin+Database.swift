@@ -60,4 +60,26 @@ extension Checkin: SpatialModel, Sendable {
 		container["departureDate"] = departureDate
 		container["placeID"] = place?.uuid
 	}
+
+	// Need to override this to make sure the place is saved as well
+	public func save(to database: DatabaseContainer) throws {
+		try database.write { db in
+			if let place {
+				try place.save(db)
+			}
+
+			try save(db)
+		}
+	}
+
+	// Need to override this to make sure the place is saved as well
+	public func save(to database: DatabaseContainer) async throws {
+		try await database.write { db in
+			if let place {
+				try place.save(db)
+			}
+
+			try save(db)
+		}
+	}
 }

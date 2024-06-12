@@ -142,6 +142,10 @@ struct SettingsView: View {
 			NavigationLink("Logs \(logFileSize())", destination: DiskLoggerViewer(logger: location.logger))
 
 			PlaceResolverDebuggerView()
+
+			Section("Visit Importer") {
+				NavigationLink("Import Visits", value: Route.settingsVisitImporter)
+			}
 		}
 		.refreshable {
 			await coordinator.checkSyncServer()

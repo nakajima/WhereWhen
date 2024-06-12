@@ -42,6 +42,10 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 		self.longitude = longitude
 	}
 
+	public func within(_ range: Distance, of other: Coordinate) -> Bool {
+		distance(to: other) < range
+	}
+
 	// Calculate distance between two coordinates using Haversine formula (according to chatgpt)
 	public func distance(to other: Coordinate) -> Distance {
 		let dLat = degreesToRadians(degrees: other.latitude - latitude)

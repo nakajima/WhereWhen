@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A615DC7A2C1906C3004B71B4 /* VisitImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615DC792C1906C3004B71B4 /* VisitImporterView.swift */; };
+		A615DC7C2C191317004B71B4 /* VisitImporterLineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615DC7B2C191317004B71B4 /* VisitImporterLineCellView.swift */; };
 		A61D9C4C2C12BEC000422715 /* Queue in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C4B2C12BEC000422715 /* Queue */; };
 		A61D9C582C1356EB00422715 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A61D9C572C1356EB00422715 /* GRDB */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
@@ -78,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A615DC792C1906C3004B71B4 /* VisitImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitImporterView.swift; sourceTree = "<group>"; };
+		A615DC7B2C191317004B71B4 /* VisitImporterLineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitImporterLineCellView.swift; sourceTree = "<group>"; };
 		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceResolverDebuggerView.swift; sourceTree = "<group>"; };
 		A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WhereWhen.xctestplan; path = WhereWhen/WhereWhen.xctestplan; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */,
+				A615DC792C1906C3004B71B4 /* VisitImporterView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				A68571E62C161930007828EE /* CheckinCellView.swift */,
 				A68571E72C161930007828EE /* CheckinEditPlaceView.swift */,
 				A68571E82C161930007828EE /* CheckinListView.swift */,
+				A615DC7B2C191317004B71B4 /* VisitImporterLineCellView.swift */,
 				A68571E92C161930007828EE /* CheckinShowView.swift */,
 				A68571EA2C161930007828EE /* ChoosePlaceView.swift */,
 				A68571EB2C161930007828EE /* ContentView.swift */,
@@ -470,6 +476,7 @@
 				A68572142C161930007828EE /* CheckinMaker.swift in Sources */,
 				A68572222C161930007828EE /* DragDismissable.swift in Sources */,
 				A68572382C161930007828EE /* NavigationContainer.swift in Sources */,
+				A615DC7A2C1906C3004B71B4 /* VisitImporterView.swift in Sources */,
 				A68572102C161930007828EE /* String.swift in Sources */,
 				A68572232C161930007828EE /* LiveModel.swift in Sources */,
 				A68572112C161930007828EE /* URLSession+Helpers.swift in Sources */,
@@ -481,6 +488,7 @@
 				A68572052C161930007828EE /* Checkin+MapKit.swift in Sources */,
 				A68572262C161930007828EE /* CheckinListRequest.swift in Sources */,
 				A68572092C161930007828EE /* Environment.swift in Sources */,
+				A615DC7C2C191317004B71B4 /* VisitImporterLineCellView.swift in Sources */,
 				A685722D2C161930007828EE /* CheckinShowView.swift in Sources */,
 				A68572272C161930007828EE /* IgnoredPlacesRequest.swift in Sources */,
 				A685721E2C161930007828EE /* Client.swift in Sources */,

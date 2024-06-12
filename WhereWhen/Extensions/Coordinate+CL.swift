@@ -20,10 +20,4 @@ extension Coordinate {
 			longitude: clCoordinate.longitude
 		)
 	}
-
-	// Calculate distance between two coordinates using Haversine formula (according to chatgpt)
-	public func distance(to other: Coordinate) -> Distance {
-		CLLocation(latitude: latitude, longitude: longitude)
-			.distance(from: CLLocation(latitude: other.latitude, longitude: other.longitude))
-	}
 }
