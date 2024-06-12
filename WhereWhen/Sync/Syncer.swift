@@ -49,6 +49,8 @@ actor Syncer {
 			_ = try await database.write { db in
 				try DeletedRecord.deleteAll(db, keys: deletedIDs)
 			}
+
+			logger.info("Uploaded \(deletions.count) deletions, received \(deletedIDs.count) deleted ids")
 		} catch {
 			logger.error("Error syncing deletions: \(error)")
 		}
@@ -70,6 +72,7 @@ actor Syncer {
 			}
 
 			try await client.upload(checkins: localCheckins)
+			logger.info("Uploaded \(localCheckins.count) (using last sync at \(lastSyncedAt)")
 		} catch {
 			logger.error("Error uploading: \(error)")
 		}
@@ -90,6 +93,8 @@ actor Syncer {
 
 				try await checkin.save(to: database)
 			}
+
+			logger.info("Imported \(checkins.count) checkins")
 		} catch {
 			logger.error("Error downloading: \(error) \(database._queue.path)")
 		}
