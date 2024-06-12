@@ -69,6 +69,7 @@ import SwiftUI
 			print("Using cached thumbnail")
 
 			status = .loaded(Image(uiImage: image))
+			return
 		} catch {
 			print(error)
 		}

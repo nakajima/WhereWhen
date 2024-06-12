@@ -64,22 +64,43 @@ extension Checkin: SpatialModel, Sendable {
 	// Need to override this to make sure the place is saved as well
 	public func save(to database: DatabaseContainer) throws {
 		try database.write { db in
-			if let place {
-				try place.save(db)
-			}
+			do {
+				if let place {
+					try place.save(db)
+				}
 
-			try save(db)
+				try save(db)
+			} catch {
+				logSaveFailure()
+				throw error
+			}
 		}
 	}
 
 	// Need to override this to make sure the place is saved as well
 	public func save(to database: DatabaseContainer) async throws {
 		try await database.write { db in
-			if let place {
-				try place.save(db)
-			}
+			do {
+				if let place {
+					try place.save(db)
+				}
 
-			try save(db)
+				try save(db)
+			} catch {
+				logSaveFailure()
+				throw error
+			}
 		}
+	}
+
+	private func logSaveFailure() {
+		let log = URL.documentsDirectory.appending(path: "failed-checkins.log")
+		let line = VisitImporter.Line(
+			latitude: coordinate.latitude,
+			longitude: coordinate.longitude,
+			timestamp: savedAt
+		)
+
+		try? Data(line.description.utf8).append(to: log)
 	}
 }

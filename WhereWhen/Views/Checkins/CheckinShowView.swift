@@ -13,6 +13,7 @@ import SwiftUI
 
 @MainActor struct CheckinShowView: View {
 	@Environment(\.database) var database
+	@Environment(\.navigationPath) var navigation
 	@Query(PlaceCheckinsRequest(placeUUID: ""))
 	var placeCheckins: [Checkin]
 
@@ -81,8 +82,19 @@ import SwiftUI
 					isDeleting = true
 				}
 				.confirmationDialog("Delete this checkin?", isPresented: $isDeleting, titleVisibility: .visible) {
-					Button("Delete", role: .destructive) {}
+					Button("Delete", role: .destructive) {
+						do {
+							try database.delete(checkin)
+							navigation.popToRoot()
+						} catch {
+							print("Error deleting checkin: \(error)")
+						}
+					}
 					Button("Cancel", role: .cancel) {}
+				}
+
+				Button("Change Place…") {
+					navigation.append(.checkinChoosePlace(checkin))
 				}
 
 				Button(place.isIgnored ? "Unignore Place" : "Ignore Place") {
