@@ -41,7 +41,7 @@ struct VisitImporterView: View {
 	var body: some View {
 		List {
 			Section(
-				header: Text("Enter visit.log text:"),
+				header: Text("Enter failed-checkins.log text:"),
 				footer: Text("You can get this text if you export your data. You probably shouldn’t need to though.")
 			) {
 				TextEditor(text: $input)
