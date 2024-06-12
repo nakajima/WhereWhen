@@ -65,12 +65,15 @@ extension Checkin: SpatialModel, Sendable {
 	public func save(to database: DatabaseContainer) throws {
 		try database.write { db in
 			do {
+				var checkin = self
+
 				if let place {
 					let placeToSave = try Place.sameCoordinates(as: place).fetchOne(db) ?? place
 					try placeToSave.save(db)
+					checkin.place = placeToSave
 				}
 
-				try save(db)
+				try checkin.save(db)
 			} catch {
 				logSaveFailure()
 				throw error
@@ -82,12 +85,15 @@ extension Checkin: SpatialModel, Sendable {
 	public func save(to database: DatabaseContainer) async throws {
 		try await database.write { db in
 			do {
+				var checkin = self
+
 				if let place {
 					let placeToSave = try Place.sameCoordinates(as: place).fetchOne(db) ?? place
 					try placeToSave.save(db)
+					checkin.place = placeToSave
 				}
 
-				try save(db)
+				try checkin.save(db)
 			} catch {
 				logSaveFailure()
 				throw error
