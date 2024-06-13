@@ -11,17 +11,13 @@ import LibWhereWhen
 
 extension PlaceResolver {
 	struct Nominatim: Resolver {
-		let coordinate: Coordinate
-
-		init(database _: DatabaseContainer, coordinate: Coordinate) {
-			self.coordinate = coordinate
-		}
+		public let context: Context
 
 		func suggestions() async throws -> [Suggestion] {
 			let url = URL(string: "https://nominatim.openstreetmap.org/reverse")!.appending(
 				queryItems: [
-					.init(name: "lat", value: "\(coordinate.latitude)"),
-					.init(name: "lon", value: "\(coordinate.longitude)"),
+					.init(name: "lat", value: "\(context.coordinate.latitude)"),
+					.init(name: "lon", value: "\(context.coordinate.longitude)"),
 					.init(name: "format", value: "geojson"),
 				]
 			)
@@ -70,7 +66,7 @@ extension PlaceResolver {
 
 				// These don't tend to be what we're looking for but i guess
 				// they're better than nothing.
-				return .init(source: "Nominatim", place: place, confidence: -1)
+				return .init(source: "Nominatim", place: place, confidence: -1, context: context)
 			}
 		}
 	}

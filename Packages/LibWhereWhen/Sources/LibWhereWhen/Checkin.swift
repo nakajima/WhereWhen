@@ -84,6 +84,7 @@ public struct Checkin: Identifiable, Codable, Sendable, Hashable {
 			return checkin
 		}
 
+		// Lets us mess with let properties in the makePreview setup block
 		subscript<T>(_ keyPath: PartialKeyPath<Checkin>) -> T {
 			get {
 				self[keyPath: keyPath] as! T

@@ -10,7 +10,9 @@ import GRDB
 import LibWhereWhen
 
 public extension Checkin {
-	static let placeAssociation = belongsTo(Place.self, using: ForeignKey(["placeID"]))
+	static var placeAssociation: BelongsToAssociation<Self, Place> {
+		belongsTo(Place.self, using: ForeignKey(["placeID"]))
+	}
 
 	static var withPlace: QueryInterfaceRequest<Checkin> {
 		Checkin.including(optional: placeAssociation)

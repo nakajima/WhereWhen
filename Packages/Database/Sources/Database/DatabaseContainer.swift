@@ -90,6 +90,16 @@ public final class DatabaseContainer: Sendable {
 			}
 		}
 	}
+
+	#if DEBUG
+		public func reset() async throws {
+			try await queue.write { db in
+				for model in DatabaseContainer.defaultModels {
+					try model.deleteAll(db)
+				}
+			}
+		}
+	#endif
 }
 
 // Commonly used
@@ -111,9 +121,9 @@ public extension DatabaseContainer {
 
 	var updates: AsyncValueObservation<[Int]> {
 		let observation = ValueObservation.tracking { db in
-			[
-				try Place.fetchCount(db),
-				try Checkin.fetchCount(db)
+			try [
+				Place.fetchCount(db),
+				Checkin.fetchCount(db),
 			]
 		}.removeDuplicates()
 

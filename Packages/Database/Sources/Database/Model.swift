@@ -41,6 +41,24 @@ public extension Model {
 		}
 	}
 
+	static func count(
+		in database: DatabaseContainer,
+		where filter: any SQLSpecificExpressible
+	) throws -> Int {
+		try database.queue.read { db in
+			try Self.filter(filter).fetchCount(db)
+		}
+	}
+
+	static func count(
+		in database: DatabaseContainer,
+		where filter: any SQLSpecificExpressible
+	) async throws -> Int {
+		try await database.queue.read { db in
+			try Self.filter(filter).fetchCount(db)
+		}
+	}
+
 	static func all(in database: DatabaseContainer) throws -> [Self] {
 		try database.queue.read { db in
 			try Self.fetchAll(db)

@@ -36,7 +36,7 @@ import PlaceResolver
 	var database: DatabaseContainer
 	private var locationRequest: LocationRequest?
 
-	init(database: DatabaseContainer) {
+	@MainActor init(database: DatabaseContainer) {
 		manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 		manager.distanceFilter = kCLLocationAccuracyHundredMeters
 		manager.allowsBackgroundLocationUpdates = true
@@ -107,7 +107,7 @@ import PlaceResolver
 				let place = await PlaceResolver(
 					database: database,
 					coordinate: .init(visit.coordinate)
-				).resolve()
+				).bestGuessPlace()
 
 				try await CheckinCreator(
 					checkin: Checkin(visit: visit),
@@ -121,10 +121,13 @@ import PlaceResolver
 
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 		logger.info("DidChangeAuthorization: \(manager.authorizationStatus)")
-		isAuthorized = manager.authorizationStatus == .authorizedAlways
 
-		if isAuthorized {
-			start()
+		Task { @MainActor in
+			isAuthorized = manager.authorizationStatus == .authorizedAlways
+
+			if isAuthorized {
+				start()
+			}
 		}
 	}
 }

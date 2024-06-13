@@ -11,17 +11,13 @@ import LibWhereWhen
 
 extension PlaceResolver {
 	struct Overpass: Resolver {
-		let coordinate: Coordinate
-
-		init(database _: DatabaseContainer, coordinate: Coordinate) {
-			self.coordinate = coordinate
-		}
+		public let context: Context
 
 		func suggestions() async throws -> [Suggestion] {
 			let url = URL(string: "https://overpass-api.de/api/interpreter")!.appending(
 				queryItems: [
-					.init(name: "lat", value: "\(coordinate.latitude)"),
-					.init(name: "lon", value: "\(coordinate.longitude)"),
+					.init(name: "lat", value: "\(context.coordinate.latitude)"),
+					.init(name: "lon", value: "\(context.coordinate.longitude)"),
 					.init(name: "format", value: "geojson"),
 				]
 			)
@@ -44,7 +40,7 @@ extension PlaceResolver {
 					return nil
 				}
 
-				let coordinate = findCenter(of: response.elements?.filter { $0.type == "node" }) ?? coordinate
+				let coordinate = findCenter(of: response.elements?.filter { $0.type == "node" }) ?? context.coordinate
 
 				let place = Place(
 					uuid: UUID().uuidString,
@@ -65,7 +61,7 @@ extension PlaceResolver {
 					isIgnored: false
 				)
 
-				return .init(source: "Overpass", place: place, confidence: 10)
+				return .init(source: "Overpass", place: place, confidence: 10, context: context)
 			}
 		}
 
@@ -94,7 +90,7 @@ extension PlaceResolver {
 			"""
 			[out:json];
 			(
-			way["building"](around:50.0, \(coordinate.latitude), \(coordinate.longitude))["name"];
+			way["building"](around:50.0, \(context.coordinate.latitude), \(context.coordinate.longitude))["name"];
 			);
 			out body;
 			>;

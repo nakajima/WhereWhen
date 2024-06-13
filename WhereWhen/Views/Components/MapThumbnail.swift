@@ -51,7 +51,7 @@ import SwiftUI
 					.resizable()
 					.scaledToFill()
 					.onChange(of: colorScheme) {
-						print("color scheme change: \(colorScheme )")
+						print("color scheme change: \(colorScheme)")
 						Task {
 							try await load(size: geo.size, colorScheme: colorScheme)
 						}

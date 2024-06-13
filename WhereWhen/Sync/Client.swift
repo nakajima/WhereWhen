@@ -32,7 +32,7 @@ struct WhereWhenClient {
 			if response == "wherewhen is up." {
 				return true
 			} else {
-				logger.error("got bad server response: \(response)")
+				logger.error("got bad server response: \(String(describing: response))")
 				return false
 			}
 		} catch {
@@ -69,7 +69,7 @@ struct WhereWhenClient {
 		let (data, response) = try await URLSession.shared.data(for: request)
 
 		print(response)
-		print(String(data: data, encoding: .utf8))
+		print(String(data: data, encoding: .utf8) ?? "")
 
 		return try JSONDecoder().decode([Checkin].self, from: data)
 	}

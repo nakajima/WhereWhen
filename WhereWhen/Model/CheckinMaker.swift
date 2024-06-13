@@ -12,7 +12,7 @@ import LibWhereWhen
 import PlaceResolver
 
 // Maybe saves a checkin to the DB.
-struct CheckinCreator {
+@MainActor struct CheckinCreator {
 	let checkin: Checkin
 	let database: DatabaseContainer
 
@@ -26,8 +26,9 @@ struct CheckinCreator {
 			}
 		}
 
+		let query = Checkin.withPlace.order(Column("savedAt").desc)
 		let lastCheckin = try await database.read { db in
-			try Checkin.withPlace.order(Column("savedAt").desc).fetchOne(db)
+			try query.fetchOne(db)
 		}
 
 		let place = if let place {
@@ -36,7 +37,7 @@ struct CheckinCreator {
 			await PlaceResolver(
 				database: database,
 				coordinate: checkin.coordinate
-			).resolve()
+			).bestGuessPlace()
 		}
 
 		// Try to avoid checking in at the same place in a row

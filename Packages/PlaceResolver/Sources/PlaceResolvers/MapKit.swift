@@ -22,17 +22,13 @@ extension MKCoordinateSpan {
 
 extension PlaceResolver {
 	struct MapKit: Resolver {
-		let coordinate: Coordinate
-
-		init(database _: DatabaseContainer, coordinate: Coordinate) {
-			self.coordinate = coordinate
-		}
+		public let context: Context
 
 		func suggestions() async throws -> [Suggestion] {
 			let request = MKLocalPointsOfInterestRequest(
 				center: .init(
-					latitude: coordinate.latitude,
-					longitude: coordinate.longitude
+					latitude: context.coordinate.latitude,
+					longitude: context.coordinate.longitude
 				),
 				radius: 100
 			)
@@ -52,7 +48,7 @@ extension PlaceResolver {
 
 			// These tend to be p good
 			return places.map {
-				.init(source: "Apple", place: $0, confidence: 10)
+				.init(source: "Apple", place: $0, confidence: 10, context: context)
 			}
 		}
 

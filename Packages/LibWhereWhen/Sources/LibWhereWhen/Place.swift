@@ -20,7 +20,7 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 	public let addedAt: Date
 
 	// The lat/lng of the place
-	public let coordinate: Coordinate
+	public private(set) var coordinate: Coordinate
 
 	public let category: PlaceCategory?
 
@@ -135,5 +135,43 @@ extension Place: Hashable {
 			postalCode: "90120",
 			isIgnored: false
 		)
+
+		static func makePreview(block: ((inout Place) -> Void)? = nil) -> Place {
+			var place = Place(
+				uuid: UUID().uuidString,
+				attribution: "Preview",
+				addedAt: Date(),
+				coordinate: .init(latitude: 37.33233141, longitude: -122.03121860),
+				name: "Test Location",
+				phoneNumber: "5551231234",
+				url: URL(string: "https://example.com"),
+				category: .park,
+				thoroughfare: "123 Here St.",
+				subThoroughfare: nil,
+				locality: "Los Angeles",
+				subLocality: nil,
+				administrativeArea: "CA",
+				subAdministrativeArea: nil,
+				postalCode: "90120",
+				isIgnored: false
+			)
+
+			if let block {
+				block(&place)
+			}
+
+			return place
+		}
+
+		// Lets us mess with let properties in the makePreview setup block
+		subscript<T>(_ keyPath: PartialKeyPath<Place>) -> T {
+			get {
+				self[keyPath: keyPath] as! T
+			}
+
+			set {
+				self[keyPath: keyPath as! WritableKeyPath<Place, T>] = newValue
+			}
+		}
 	}
 #endif

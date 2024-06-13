@@ -98,6 +98,15 @@ extension Place: SpatialModel {
 		container["isIgnored"] = isIgnored
 	}
 
+	public func checkinCount(in database: DatabaseContainer) -> Int {
+		do {
+			return try Checkin.count(in: database, where: Column("placeID") == uuid)
+		} catch {
+			assertionFailure("Error getting checkin count: \(error)")
+			return 0
+		}
+	}
+
 	public static func sameCoordinates(as place: Place) -> QueryInterfaceRequest<Place> {
 		Place.filter(sql: "latitude = ? AND longitude = ?", arguments: [
 			place.coordinate.latitude,

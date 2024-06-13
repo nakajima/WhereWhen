@@ -45,8 +45,10 @@ import SwiftUI
 
 	@StateObject private var updater: Updater
 
-	public func update() {
-		updater.start(in: database)
+	public nonisolated func update() {
+		Task { @MainActor in
+			updater.start(in: database)
+		}
 	}
 
 	var wrappedValue: ModelType {

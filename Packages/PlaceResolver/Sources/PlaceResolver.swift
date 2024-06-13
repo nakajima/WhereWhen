@@ -7,30 +7,32 @@
 
 import Database
 import Foundation
+import GRDB
 import LibWhereWhen
 
 private let logger = DiskLogger(label: "PlaceResolver", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
 
 public struct PlaceResolver: Sendable {
-	public struct Suggestion: Sendable, Identifiable {
-		public var id: String { "\(source)-\(place.id)" }
-		public let source: String
-		public let place: Place
-		public let confidence: Double
+	public struct Context: Sendable {
+		public let database: DatabaseContainer
+		public let coordinate: Coordinate
+
+		public init(database: DatabaseContainer, coordinate: Coordinate) {
+			self.database = database
+			self.coordinate = coordinate
+		}
 	}
 
 	public protocol Resolver {
-		var coordinate: Coordinate { get }
+		var context: Context { get }
 		func suggestions() async throws -> [Suggestion]
-		init(database: DatabaseContainer, coordinate: Coordinate)
+		init(context: Context)
 	}
 
-	let database: DatabaseContainer
-	let coordinate: Coordinate
+	let context: Context
 
 	public init(database: DatabaseContainer, coordinate: Coordinate) {
-		self.database = database
-		self.coordinate = coordinate
+		self.context = Context(database: database, coordinate: coordinate)
 	}
 
 	let resolvers: [any Resolver.Type] = [
@@ -40,8 +42,8 @@ public struct PlaceResolver: Sendable {
 		Nominatim.self,
 	]
 
-	public func resolve() async -> Place? {
-		await suggestion()?.place
+	public func bestGuessPlace() async -> Place? {
+		await suggestions(limit: 1).first?.place
 	}
 
 	public func suggestions(limit: Int? = nil) async -> [Suggestion] {
@@ -50,8 +52,7 @@ public struct PlaceResolver: Sendable {
 				group.addTask {
 					do {
 						return try await resolver.init(
-							database: database,
-							coordinate: coordinate
+							context: context
 						).suggestions()
 					} catch {
 						logger.error("Error resolving \(resolver): \(error)")
@@ -81,10 +82,7 @@ public struct PlaceResolver: Sendable {
 				}
 			}
 
-			let sorted = result.sorted {
-				$0.place.coordinate.distance(to: coordinate) <
-					$1.place.coordinate.distance(to: coordinate)
-			}
+			let sorted = result.sorted { $0 > $1 }
 
 			if let limit, sorted.count > limit {
 				return Array(sorted[0 ..< limit])
@@ -92,31 +90,5 @@ public struct PlaceResolver: Sendable {
 				return sorted
 			}
 		}
-	}
-
-	public func suggestion() async -> Suggestion? {
-		for resolver in resolvers {
-			do {
-				if let suggestion = try await resolver.init(
-					database: database,
-					coordinate: coordinate
-				).suggestion() {
-					return suggestion
-				}
-			} catch {
-				logger.error("Error resolving: \(error)")
-			}
-		}
-
-		return nil
-	}
-}
-
-extension PlaceResolver.Resolver {
-	func suggestion() async throws -> PlaceResolver.Suggestion? {
-		try await suggestions().sorted {
-			$0.place.coordinate.distance(to: coordinate) <
-				$1.place.coordinate.distance(to: coordinate)
-		}.first
 	}
 }
