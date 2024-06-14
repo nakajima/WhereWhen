@@ -18,13 +18,6 @@ public extension PlaceResolver {
 		public let source: String
 		public let place: Place
 		public let confidence: Double
-
 		public let context: PlaceResolver.Context
-
-		var score: Double {
-			// How far are we matters
-			let distanceScore = 100_000.0 - place.coordinate.distance(to: context.coordinate)
-			return distanceScore
-		}
 	}
 }
