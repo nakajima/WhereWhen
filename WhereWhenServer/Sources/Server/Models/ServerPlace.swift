@@ -18,6 +18,7 @@ import ServerData
 
 	// When was this place added
 	var addedAt: Date
+	var attribution: String?
 
 	// The lat/lng of the place. Stored as fields instead of Coordinate
 	// so we can query easier

@@ -87,29 +87,34 @@ public struct Server {
 		}
 
 		router.post("checkins") { request, context -> ByteBuffer in
-			let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 5))
-			let checkins = try JSONDecoder().decode([Checkin].self, from: checkinData)
+			do {
+				let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 500))
+				let checkins = try JSONDecoder().decode([Checkin].self, from: checkinData)
 
-			let places = checkins.compactMap(\.place)
-			for place in places {
-				do {
-					try await placeStore.save(ServerPlace(wrapped: place))
-				} catch {
-					context.logger.error("error saving place: \(error)")
+				let places = checkins.compactMap(\.place)
+				for place in places {
+					do {
+						try await placeStore.save(ServerPlace(wrapped: place))
+					} catch {
+						context.logger.error("error saving place: \(error)")
+					}
 				}
-			}
 
-			for checkin in checkins {
-				do {
-					try await checkinStore.save(ServerCheckin(wrapped: checkin))
-				} catch {
-					context.logger.error("error saving checkin: \(error)")
+				for checkin in checkins {
+					do {
+						try await checkinStore.save(ServerCheckin(wrapped: checkin))
+					} catch {
+						context.logger.error("error saving checkin: \(error)")
+					}
 				}
+
+				context.logger.info("Synced \(places.count) places, \(checkins.count) checkins")
+
+				return ByteBuffer(data: Data("OK".utf8))
+			} catch {
+				context.logger.error("Error receiving sync: \(error)")
+				return ByteBuffer(data: Data(error.localizedDescription.utf8))
 			}
-
-			context.logger.info("Synced \(places.count) places, \(checkins.count) checkins")
-
-			return ByteBuffer(data: Data("OK".utf8))
 		}
 
 		router.get("status") { _, _ -> String in

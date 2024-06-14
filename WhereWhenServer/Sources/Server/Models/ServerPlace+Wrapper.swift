@@ -14,6 +14,7 @@ extension ServerPlace: SharedWrapper {
 			uuid: wrapped.uuid,
 			coordinateID: wrapped.coordinate.id,
 			addedAt: wrapped.addedAt,
+			attribution: wrapped.attribution,
 			latitude: wrapped.coordinate.latitude,
 			longitude: wrapped.coordinate.longitude,
 			name: wrapped.name,
@@ -34,6 +35,7 @@ extension ServerPlace: SharedWrapper {
 	var wrapped: Place {
 		Place(
 			uuid: uuid,
+			attribution: attribution,
 			addedAt: addedAt,
 			coordinate: .init(latitude: latitude, longitude: longitude),
 			name: name,

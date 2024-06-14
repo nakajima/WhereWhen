@@ -112,7 +112,12 @@ enum MapThumbnailError: Error {
 	}
 
 	func generateColorScheme(size: CGSize, colorScheme: ColorScheme) async throws -> Image {
-		let snapshot: MKMapSnapshotter.Snapshot? = try await withCheckedThrowingContinuation { @MainActor continuation in
+		let uiImage: UIImage? = try await withCheckedThrowingContinuation { @MainActor continuation in
+			guard CLLocationCoordinate2DIsValid(region.center) else {
+				continuation.resume(returning: nil)
+				return
+			}
+
 			let options: MKMapSnapshotter.Options = .init()
 			options.region = region
 
@@ -129,7 +134,7 @@ enum MapThumbnailError: Error {
 
 			snapshotter.start(with: .main) { snapshot, error in
 				if let snapshot {
-					continuation.resume(returning: snapshot)
+					continuation.resume(returning: snapshot.image)
 					return
 				}
 
@@ -142,11 +147,11 @@ enum MapThumbnailError: Error {
 			}
 		}
 
-		guard let snapshot else {
+		guard let uiImage else {
 			throw MapThumbnailError.snapshotNotGenerated
 		}
 
-		let data = snapshot.image.pngData()
+		let data = uiImage.pngData()
 
 		if let data {
 			do {
@@ -158,7 +163,7 @@ enum MapThumbnailError: Error {
 			}
 		}
 
-		return Image(uiImage: snapshot.image)
+		return Image(uiImage: uiImage)
 	}
 }
 
