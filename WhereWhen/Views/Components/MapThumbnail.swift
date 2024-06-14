@@ -41,7 +41,7 @@ import SwiftUI
 				Color.secondary
 					.task {
 						do {
-							try await load(size: geo.size, colorScheme: colorScheme)
+//							try await load(size: geo.size, colorScheme: colorScheme)
 						} catch {
 							self.status = .error(error.localizedDescription)
 						}
