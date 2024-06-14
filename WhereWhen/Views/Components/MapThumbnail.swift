@@ -112,21 +112,21 @@ enum MapThumbnailError: Error {
 	}
 
 	func generateColorScheme(size: CGSize, colorScheme: ColorScheme) async throws -> Image {
-		let options: MKMapSnapshotter.Options = .init()
-		options.region = region
-
-		options.size = size
-		options.mapType = .standard
-		options.showsBuildings = true
-		options.traitCollection = options.traitCollection.modifyingTraits {
-			$0.userInterfaceStyle = colorScheme == .light ? .light : .dark
-		}
-
-		let snapshotter = MKMapSnapshotter(
-			options: options
-		)
-
 		let snapshot: MKMapSnapshotter.Snapshot? = try await withCheckedThrowingContinuation { @MainActor continuation in
+			let options: MKMapSnapshotter.Options = .init()
+			options.region = region
+
+			options.size = size
+			options.mapType = .standard
+			options.showsBuildings = true
+			options.traitCollection = options.traitCollection.modifyingTraits {
+				$0.userInterfaceStyle = colorScheme == .light ? .light : .dark
+			}
+
+			let snapshotter = MKMapSnapshotter(
+				options: options
+			)
+
 			snapshotter.start(with: .main) { snapshot, error in
 				if let snapshot {
 					continuation.resume(returning: snapshot)
