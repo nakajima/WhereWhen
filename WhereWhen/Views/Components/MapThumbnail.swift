@@ -10,10 +10,19 @@ import MapKit
 import Nuke
 import NukeUI
 import SwiftUI
+import Queue
+
+private let logger = DiskLogger(label: "MapThumbnail", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
+
+enum MapThumbnailError: Error {
+	case snapshotNotGenerated
+}
 
 // MapKit maps are like 50 megs of ram so let's
 // just generate images and show those when we can.
 @MainActor struct MapThumbnail: View {
+	static let queue = AsyncQueue()
+
 	let coordinate: Coordinate
 	let span: MKCoordinateSpan
 
@@ -41,7 +50,7 @@ import SwiftUI
 				Color.secondary
 					.task {
 						do {
-//							try await load(size: geo.size, colorScheme: colorScheme)
+							try await load(size: geo.size, colorScheme: colorScheme)
 						} catch {
 							self.status = .error(error.localizedDescription)
 						}
@@ -70,19 +79,21 @@ import SwiftUI
 	}
 
 	private func load(size: CGSize, colorScheme: ColorScheme) async throws {
-		do {
-			let image = try await ImagePipeline.shared.image(for: coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme))
-			print("loaded \(coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme))")
-			status = .loaded(Image(uiImage: image))
-			return
-		} catch {
-			print(error)
-		}
+		Self.queue.addOperation {
+			do {
+				let image = try await ImagePipeline.shared.image(for: coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme))
+				print("loaded \(coordinate.cacheURL(for: size, span: span, colorScheme: colorScheme))")
+				status = .loaded(Image(uiImage: image))
+				return
+			} catch {
+				print(error)
+			}
 
-		let image = try await generate(size: size)
+			let image = try await generate(size: size)
 
-		withAnimation {
-			self.status = .loaded(image)
+			withAnimation {
+				self.status = .loaded(image)
+			}
 		}
 	}
 
@@ -115,7 +126,26 @@ import SwiftUI
 			options: options
 		)
 
-		let snapshot = try await snapshotter.start(with: .main)
+		let snapshot: MKMapSnapshotter.Snapshot? = try await withCheckedThrowingContinuation { @MainActor continuation in
+			snapshotter.start(with: .main) { snapshot, error in
+				if let snapshot {
+					continuation.resume(returning: snapshot)
+					return
+				}
+
+				if let error {
+					continuation.resume(throwing: error)
+					return
+				}
+
+				continuation.resume(returning: nil)
+			}
+		}
+
+		guard let snapshot else {
+			throw MapThumbnailError.snapshotNotGenerated
+		}
+
 		let data = snapshot.image.pngData()
 
 		if let data {
