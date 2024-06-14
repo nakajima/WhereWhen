@@ -20,6 +20,10 @@ final class PlaceResolverSuggestionTests: XCTestCase {
 		)
 	}
 
+	func sorter(_ suggestions: PlaceResolver.Suggestion...) -> [PlaceResolver.Suggestion] {
+		try! PlaceResolver.Suggestion.Sorter(context: context, suggestions: suggestions).sorted()
+	}
+
 	func testSuggestionScoresCloserHigher() throws {
 		let place1 = Place.makePreview {
 			$0[\.coordinate] = self.context.coordinate.offset(x: .meters(10), y: .meters(10))
@@ -33,9 +37,9 @@ final class PlaceResolverSuggestionTests: XCTestCase {
 		let suggestion1 = PlaceResolver.Suggestion(source: "Test", place: place1, confidence: 1, context: context)
 		let suggestion2 = PlaceResolver.Suggestion(source: "Test", place: place2, confidence: 1, context: context)
 
-		XCTAssert(
-			// suggestion2 is closer so it should have a higher score.
-			suggestion2 > suggestion1
+		XCTAssertEqual(
+			sorter(suggestion1, suggestion2),
+			[suggestion2, suggestion1]
 		)
 	}
 
@@ -58,9 +62,11 @@ final class PlaceResolverSuggestionTests: XCTestCase {
 		let suggestion1 = PlaceResolver.Suggestion(source: "Test", place: place1, confidence: 1, context: context)
 		let suggestion2 = PlaceResolver.Suggestion(source: "Test", place: place2, confidence: 1, context: context)
 
-		XCTAssert(
+		XCTAssertEqual(
+			sorter(suggestion2, suggestion1),
+
 			// place1 has more checkins than place2 so it gets a higher score
-			suggestion1 > suggestion2
+			[suggestion1, suggestion2]
 		)
 	}
 }

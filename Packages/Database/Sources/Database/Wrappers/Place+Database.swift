@@ -9,12 +9,12 @@ import Foundation
 import GRDB
 import LibWhereWhen
 
-extension HasManyAssociation: @unchecked Sendable {}
-
 extension Place: DeleteSyncable {}
 
-extension Place {
-	static let checkinsAssociation = hasMany(Checkin.self, using: ForeignKey(["placeID"]))
+public extension Place {
+	static var checkinsAssociation: HasManyAssociation<Place, Checkin> {
+		hasMany(Checkin.self, using: ForeignKey(["placeID"]))
+	}
 }
 
 extension Place: SpatialModel {

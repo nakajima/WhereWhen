@@ -82,12 +82,17 @@ public struct PlaceResolver: Sendable {
 				}
 			}
 
-			let sorted = result.sorted { $0 > $1 }
+			do {
+				let sorted = try Suggestion.Sorter(context: context, suggestions: result).sorted()
 
-			if let limit, sorted.count > limit {
-				return Array(sorted[0 ..< limit])
-			} else {
-				return sorted
+				if let limit, sorted.count > limit {
+					return Array(sorted[0 ..< limit])
+				} else {
+					return sorted
+				}
+			} catch {
+				logger.error("Error sorting: \(error)")
+				return result
 			}
 		}
 	}
