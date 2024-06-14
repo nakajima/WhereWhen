@@ -115,7 +115,7 @@ import SwiftUI
 			options: options
 		)
 
-		let snapshot = try await snapshotter.start()
+		let snapshot = try await snapshotter.start(with: .main)
 		let data = snapshot.image.pngData()
 
 		if let data {

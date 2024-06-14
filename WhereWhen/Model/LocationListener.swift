@@ -17,8 +17,8 @@ import PlaceResolver
 		case authorizationNeeded, requestAlreadyInProgress, locationNotFound
 	}
 
-	class LocationRequest {
-		var continuation: CheckedContinuation<CLLocation, any Swift.Error>
+	final class LocationRequest: Sendable {
+		let continuation: CheckedContinuation<CLLocation, any Swift.Error>
 
 		init(continuation: CheckedContinuation<CLLocation, any Swift.Error>) {
 			self.continuation = continuation
@@ -80,29 +80,37 @@ import PlaceResolver
 
 	// MARK: Delegate methods
 
-	func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		if let locationRequest, let location = locations.first {
-			logger.info("Location updated: \(location)")
-			locationRequest.fulfill(with: .success(location))
-			self.locationRequest = nil
-		} else if let locationRequest {
-			logger.info("Location update failed: not found")
-			locationRequest.fulfill(with: .failure(Error.locationNotFound))
-			self.locationRequest = nil
+	nonisolated func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		Task { @MainActor in
+			if let locationRequest, let location = locations.first {
+				logger.info("Location updated: \(location)")
+				locationRequest.fulfill(with: .success(location))
+				self.locationRequest = nil
+			} else if let locationRequest {
+				logger.info("Location update failed: not found")
+				locationRequest.fulfill(with: .failure(Error.locationNotFound))
+				self.locationRequest = nil
+			}
 		}
 	}
 
-	func locationManager(_: CLLocationManager, didFailWithError error: any Swift.Error) {
-		logger.info("Location request failed with: \(error)")
-		if let locationRequest {
-			locationRequest.fulfill(with: .failure(error))
+	func clearLocationRequest() {
+		self.locationRequest = nil
+	}
+
+	nonisolated func locationManager(_: CLLocationManager, didFailWithError error: any Swift.Error) {
+		Task { @MainActor in
+			logger.info("Location request failed with: \(error)")
+			if let locationRequest {
+				locationRequest.fulfill(with: .failure(error))
+			}
 		}
 	}
 
-	func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
-		logger.info("didVisit: \(visit.debugDescription)")
+	nonisolated func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
+		Task { @MainActor in
+			logger.info("didVisit: \(visit.debugDescription)")
 
-		Task {
 			do {
 				let place = await PlaceResolver(
 					database: database,
@@ -119,10 +127,10 @@ import PlaceResolver
 		}
 	}
 
-	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-		logger.info("DidChangeAuthorization: \(manager.authorizationStatus)")
-
+	nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 		Task { @MainActor in
+			logger.info("DidChangeAuthorization: \(manager.authorizationStatus)")
+
 			isAuthorized = manager.authorizationStatus == .authorizedAlways
 
 			if isAuthorized {
