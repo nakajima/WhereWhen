@@ -27,7 +27,7 @@ struct CheckinEditPlaceView: View {
 	let checkin: Checkin
 
 	var body: some View {
-		ChoosePlaceView(location: checkin.coordinate) { place in
+		ChoosePlaceView(location: checkin.place?.coordinate ?? checkin.coordinate) { place in
 			.finishUpdateCheckinView(checkin, place)
 		}
 		.navigationTitle("Choose a place")

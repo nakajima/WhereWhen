@@ -22,7 +22,7 @@ struct ManualCheckinPlaceCellView: View {
 			HStack {
 				distance(to: place)
 
-				if let category = place.category {
+				if let category = place.category, category != .unknown {
 					HStack(spacing: 2) {
 						Image(systemName: "binoculars.fill")
 							.foregroundStyle(.quaternary)
@@ -36,10 +36,18 @@ struct ManualCheckinPlaceCellView: View {
 						Image(systemName: "link")
 							.foregroundStyle(.quaternary)
 							.accessibilityHidden(true)
-						Link(url.absoluteString, destination: url)
+						Link("Website", destination: url)
 							.font(.caption)
 							.foregroundColor(.secondary)
 							.lineLimit(1)
+					}
+				}
+
+				Spacer()
+
+				if let attribution = place.attribution {
+					HStack(spacing: 2) {
+						Text("Source: \(attribution)")
 					}
 				}
 			}
