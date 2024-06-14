@@ -12,7 +12,7 @@ import LibWhereWhen
 import Observation
 import PlaceResolver
 
-@Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
+@MainActor @Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
 	enum Error: Swift.Error {
 		case authorizationNeeded, requestAlreadyInProgress, locationNotFound
 	}

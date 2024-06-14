@@ -10,7 +10,7 @@ import OSLog
 import SwiftUI
 
 extension Data {
-	func append(to fileURL: URL) throws {
+	@MainActor func append(to fileURL: URL) throws {
 		if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
 			defer {
 				fileHandle.closeFile()
@@ -87,7 +87,7 @@ extension Truncator: Sequence {
 	}
 }
 
-public struct DiskLogger: Sendable {
+@MainActor public struct DiskLogger: Sendable {
 	public let label: String
 	public let location: URL
 	public let maxLines: Int

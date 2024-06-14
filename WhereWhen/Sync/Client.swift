@@ -32,11 +32,11 @@ struct WhereWhenClient {
 			if response == "wherewhen is up." {
 				return true
 			} else {
-				logger.error("got bad server response: \(String(describing: response))")
+				await logger.error("got bad server response: \(String(describing: response))")
 				return false
 			}
 		} catch {
-			logger.error("error checking server availability: \(error)")
+			await logger.error("error checking server availability: \(error)")
 			return false
 		}
 	}

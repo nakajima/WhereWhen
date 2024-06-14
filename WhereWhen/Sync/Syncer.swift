@@ -50,9 +50,9 @@ actor Syncer {
 				try DeletedRecord.deleteAll(db, keys: deletedIDs)
 			}
 
-			logger.info("Uploaded \(deletions.count) deletions, received \(deletedIDs.count) deleted ids")
+			await logger.info("Uploaded \(deletions.count) deletions, received \(deletedIDs.count) deleted ids")
 		} catch {
-			logger.error("Error syncing deletions: \(error)")
+			await logger.error("Error syncing deletions: \(error)")
 		}
 	}
 
@@ -67,14 +67,14 @@ actor Syncer {
 			}
 
 			if localCheckins.isEmpty {
-				logger.info("No local checkins to report")
+				await logger.info("No local checkins to report")
 				return
 			}
 
 			try await client.upload(checkins: localCheckins)
-			logger.info("Uploaded \(localCheckins.count) (using last sync at \(lastSyncedAt)")
+			await logger.info("Uploaded \(localCheckins.count) (using last sync at \(lastSyncedAt)")
 		} catch {
-			logger.error("Error uploading: \(error)")
+			await logger.error("Error uploading: \(error)")
 		}
 	}
 
@@ -94,9 +94,9 @@ actor Syncer {
 				try await checkin.save(to: database)
 			}
 
-			logger.info("Imported \(checkins.count) checkins")
+			await logger.info("Imported \(checkins.count) checkins")
 		} catch {
-			logger.error("Error downloading: \(error) \(database._queue.path)")
+			await logger.error("Error downloading: \(error) \(database._queue.path)")
 		}
 	}
 
@@ -108,7 +108,7 @@ actor Syncer {
 
 	private func synchronize() async {
 		guard await client.isAvailable() else {
-			logger.error("Sync server unavailable")
+			await logger.error("Sync server unavailable")
 			return
 		}
 

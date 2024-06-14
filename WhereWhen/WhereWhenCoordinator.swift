@@ -11,6 +11,8 @@ import LibWhereWhen
 import SwiftUI
 
 @MainActor final class WhereWhenCoordinator: ObservableObject {
+	public let logger = DiskLogger(label: "Coordinator", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
+
 	let database: DatabaseContainer
 
 	@Published var isShowingManualCheckin = false

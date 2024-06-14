@@ -32,10 +32,10 @@ struct WhereWhenApp: App {
 				.environmentObject(coordinator)
 				.task(priority: .low) { @MainActor in
 					let debouncer = Debouncer(wait: .seconds(1))
-
 					do {
+						try await Task.sleep(for: .seconds(1))
 						for try await update in coordinator.database.updates {
-							debouncer.debounce {
+							debouncer.debounce { @MainActor in
 								print("*** DATABASE UPDATED \(update) ***")
 								coordinator.sync()
 							}

@@ -14,6 +14,8 @@ import SwiftUI
 @MainActor struct CheckinShowView: View {
 	@Environment(\.database) var database
 	@Environment(\.navigationPath) var navigation
+	@EnvironmentObject var coordinator: WhereWhenCoordinator
+
 	@Query(PlaceCheckinsRequest(placeUUID: ""))
 	var placeCheckins: [Checkin]
 
@@ -100,7 +102,11 @@ import SwiftUI
 				Button(place.isIgnored ? "Unignore Place" : "Ignore Place") {
 					var place = place
 					place.isIgnored.toggle()
-					try! place.save(to: database)
+					do {
+						try place.save(to: database)
+					} catch {
+						coordinator.logger.error("Error saving place: \(place)")
+					}
 				}
 			}
 		}
