@@ -6,7 +6,7 @@
 //
 
 import LibWhereWhen
-@preconcurrency import MapKit
+import MapKit
 import Nuke
 import NukeUI
 import SwiftUI
