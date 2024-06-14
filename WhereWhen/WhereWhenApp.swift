@@ -6,17 +6,23 @@
 //
 
 import SwiftUI
+import Database
 import UIKit
 
 @main
 struct WhereWhenApp: App {
 	@StateObject var coordinator: WhereWhenCoordinator
 
-	let location = LocationListener(database: .dev)
+	let database: DatabaseContainer
+	let location: LocationListener
 
 	init() {
-		_coordinator = StateObject(
-			wrappedValue: WhereWhenCoordinator(database: .dev)
+		let database = DatabaseContainer.dev
+
+		self.database = database
+		self.location = LocationListener(database: database)
+		self._coordinator = StateObject(
+			wrappedValue: WhereWhenCoordinator(database: database)
 		)
 	}
 
@@ -24,7 +30,7 @@ struct WhereWhenApp: App {
 		WindowGroup {
 			ContentView()
 				.environmentObject(coordinator)
-				.task(priority: .low) {
+				.task(priority: .low) { @MainActor in
 					let debouncer = Debouncer(wait: .seconds(1))
 
 					do {
@@ -40,6 +46,6 @@ struct WhereWhenApp: App {
 				}
 		}
 		.environment(location)
-		.environment(\.database, .dev)
+		.environment(\.database, database)
 	}
 }
