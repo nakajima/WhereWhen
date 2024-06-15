@@ -29,8 +29,8 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 
 	public var id: String { "\(latitude),\(longitude)" }
 
-	public let latitude: Double
-	public let longitude: Double
+	public var latitude: Double
+	public var longitude: Double
 
 	public init(_ latitude: Double, _ longitude: Double) {
 		self.latitude = latitude

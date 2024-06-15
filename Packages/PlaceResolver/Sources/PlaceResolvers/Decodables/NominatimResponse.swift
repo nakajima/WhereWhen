@@ -55,7 +55,7 @@ public struct Properties: Codable, Sendable {
 	public let category, type: String?
 	public let importance: Double?
 	public let addresstype, name, displayName: String?
-	public let address: Address?
+	public let address: [String: String]?
 
 	public enum CodingKeys: String, CodingKey {
 		case placeID = "place_id"
@@ -67,7 +67,19 @@ public struct Properties: Codable, Sendable {
 		case address
 	}
 
-	public init(placeID: Int?, osmType: String?, osmID: Int?, placeRank: Int?, category: String?, type: String?, importance: Double?, addresstype: String?, name: String?, displayName: String?, address: Address?) {
+	public init(
+		placeID: Int?,
+		osmType: String?,
+		osmID: Int?,
+		placeRank: Int?,
+		category: String?,
+		type: String?,
+		importance: Double?,
+		addresstype: String?,
+		name: String?,
+		displayName: String?,
+		address: [String: String]?
+	) {
 		self.placeID = placeID
 		self.osmType = osmType
 		self.osmID = osmID
@@ -79,32 +91,5 @@ public struct Properties: Codable, Sendable {
 		self.name = name
 		self.displayName = displayName
 		self.address = address
-	}
-}
-
-// MARK: - Address
-
-public struct Address: Codable, Sendable {
-	public let highway, road, city, county: String?
-	public let state, iso31662Lvl4, postcode, country: String?
-	public let countryCode: String?
-
-	public enum CodingKeys: String, CodingKey {
-		case highway, road, city, county, state
-		case iso31662Lvl4 = "ISO3166-2-lvl4"
-		case postcode, country
-		case countryCode = "country_code"
-	}
-
-	public init(highway: String?, road: String?, city: String?, county: String?, state: String?, iso31662Lvl4: String?, postcode: String?, country: String?, countryCode: String?) {
-		self.highway = highway
-		self.road = road
-		self.city = city
-		self.county = county
-		self.state = state
-		self.iso31662Lvl4 = iso31662Lvl4
-		self.postcode = postcode
-		self.country = country
-		self.countryCode = countryCode
 	}
 }

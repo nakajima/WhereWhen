@@ -12,6 +12,8 @@ import SwiftUI
 private let logger = DiskLogger(label: "PlaceEditView", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
 
 struct PlaceEditView: View {
+	let distance = 250.0
+
 	@Environment(\.database) var database
 	@Environment(\.navigationPath) var navigation
 
@@ -24,32 +26,36 @@ struct PlaceEditView: View {
 			wrappedValue: .region(
 				.init(
 					center: place.coordinate.clLocation,
-					span: .within(meters: 100)
+					span: .within(meters: distance)
 				)
 			)
 		)
 	}
 
 	var body: some View {
-		Form {
-			PlaceFormView(place: $place, buttonLabel: "Update Place") {
-				do {
-					try place.save(to: database)
-					navigation.popToRoot()
-				} catch {
-					logger.error("Error updating place: \(error)")
-				}
+		PlaceFormView(place: $place, buttonLabel: "Update Place") {
+			do {
+				try place.save(to: database)
+				navigation.popToRoot()
+			} catch {
+				logger.error("Error updating place: \(error)")
 			}
 		}
+		.navigationTitle("Edit Place")
+		.navigationBarTitleDisplayMode(.inline)
 		.onChange(of: place.name) {
 			print("Place name now \(place.name)")
 		}
 		.safeAreaInset(edge: .top) {
 			Map(
-				position: $position
+				position: $position.animation()
 			)
 			.onMapCameraChange(frequency: .onEnd) { context in
-				place.coordinate = .init(context.region.center)
+				if position.positionedByUser {
+					withAnimation {
+						place.coordinate = .init(context.region.center)
+					}
+				}
 			}
 			.overlay {
 				Image(systemName: "mappin.and.ellipse")
@@ -61,7 +67,7 @@ struct PlaceEditView: View {
 				self.position = .region(
 					.init(
 						center: place.coordinate.clLocation,
-						span: .within(meters: 100)
+						span: .within(meters: distance)
 					)
 				)
 			}
@@ -71,6 +77,8 @@ struct PlaceEditView: View {
 
 #if DEBUG
 	#Preview {
-		PlaceEditView(place: Place.preview)
+		PreviewsWrapper {
+			PlaceEditView(place: Place.preview)
+		}
 	}
 #endif

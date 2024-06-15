@@ -9,11 +9,15 @@ import Database
 import Foundation
 import LibWhereWhen
 
-extension PlaceResolver {
-	struct Nominatim: Resolver {
+public extension PlaceResolver {
+	struct Nominatim: Resolver, Sendable {
 		public let context: Context
 
-		func suggestions() async throws -> [Suggestion] {
+		public init(context: Context) {
+			self.context = context
+		}
+
+		public func suggestions() async throws -> [Suggestion] {
 			let url = URL(string: "https://nominatim.openstreetmap.org/reverse")!.appending(
 				queryItems: [
 					.init(name: "lat", value: "\(context.coordinate.latitude)"),
@@ -33,25 +37,27 @@ extension PlaceResolver {
 				return []
 			}
 
-			return features.compactMap { feature in
+			return features.compactMap { feature -> PlaceResolver.Suggestion? in
 				guard let properties = feature.properties else {
 					return nil
 				}
 
-				guard let name = properties.displayName?.presence ?? properties.name?.presence,
+				guard let name = properties.name?.presence ?? properties.displayName?.presence,
 				      let coordinates = feature.geometry?.coordinates,
 				      coordinates.count == 2
 				else {
 					return nil
 				}
 
-				// For some reason, the coordinate comes back as [longitude, latitude]?
+				// For some reason, the coordinate comes back sometimes as [longitude, latitude]?
 				let foundCoordinate = [
 					Coordinate(coordinates[0], coordinates[1]),
 					Coordinate(coordinates[1], coordinates[0]),
 				].min(by: {
 					$0.distance(to: context.coordinate) < $1.distance(to: context.coordinate)
 				})!
+
+				let address = properties.address
 
 				let place = Place(
 					uuid: UUID().uuidString,
@@ -62,13 +68,13 @@ extension PlaceResolver {
 					phoneNumber: nil,
 					url: nil,
 					category: PlaceCategory(rawValue: properties.category ?? ""),
-					thoroughfare: nil,
-					subThoroughfare: nil,
-					locality: nil,
-					subLocality: nil,
-					administrativeArea: nil,
-					subAdministrativeArea: nil,
-					postalCode: nil,
+					thoroughfare: address?["road"] ?? address?["highway"],
+					subThoroughfare: address?["house_number"],
+					locality: address?["city"],
+					subLocality: address?["neighborhood"],
+					administrativeArea: address?["state"],
+					subAdministrativeArea: address?["county"],
+					postalCode: address?["postcode"],
 					isIgnored: false
 				)
 

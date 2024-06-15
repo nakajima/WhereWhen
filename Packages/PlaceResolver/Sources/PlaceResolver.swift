@@ -23,7 +23,7 @@ public struct PlaceResolver: Sendable {
 		}
 	}
 
-	public protocol Resolver {
+	public protocol Resolver: Sendable {
 		var context: Context { get }
 		func suggestions() async throws -> [Suggestion]
 		init(context: Context)

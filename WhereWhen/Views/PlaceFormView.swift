@@ -7,6 +7,7 @@
 
 import LibWhereWhen
 import Observation
+import PlaceResolver
 import SwiftUI
 
 struct FocusableTextField: View {
@@ -27,7 +28,7 @@ struct FocusableTextField: View {
 	}
 }
 
-extension Binding<String?> {
+extension Binding where Value == String? {
 	var asString: Binding<String> {
 		Binding<String>(
 			get: {
@@ -40,7 +41,24 @@ extension Binding<String?> {
 	}
 }
 
+// I tried to name this asString as well, but it didn't work in SwiftUI
+// previews for some reason?
+extension Binding where Value == Double {
+	var doubleAsString: Binding<String> {
+		Binding<String>(
+			get: {
+				String(wrappedValue)
+			},
+			set: { newValue in
+				wrappedValue = Double(newValue) ?? 0
+			}
+		)
+	}
+}
+
 struct PlaceFormView: View {
+	@Environment(\.database) var database
+
 	@Binding var place: Place
 
 	var buttonLabel: String
@@ -49,8 +67,8 @@ struct PlaceFormView: View {
 	@State private var address: Address
 	@State private var website: String
 
-	@State private var latitude: String = ""
-	@State private var longitude: String = ""
+	@State private var resolvedCoordinate: Coordinate
+	@State private var isResolvingCoordinateAddress = false
 
 	@FocusState var isFocused: Bool
 
@@ -62,91 +80,110 @@ struct PlaceFormView: View {
 		self.address = Address(place: place)
 		self.website = place.url?.absoluteString ?? ""
 
-		self.latitude = String(place.coordinate.latitude)
-		self.longitude = String(place.coordinate.longitude)
+		self.resolvedCoordinate = place.coordinate
 
 		self.onComplete = onComplete
 	}
 
 	var body: some View {
-		Section {
-			TextField("Place Name", text: $place.name)
-				.onChange(of: $place.name.wrappedValue) {
-					print("new name from form: \($place.name.wrappedValue)")
+		Form {
+			Section {
+				TextField("Place Name", text: $place.name)
+					.onChange(of: $place.name.wrappedValue) {
+						print("new name from form: \($place.name.wrappedValue)")
+					}
+				Picker(selection: $place.category) {
+					Text("None")
+						.tag(nil as String?)
+					ForEach(PlaceCategory.allCases, id: \.rawValue) { category in
+						Text(category.description)
+							.tag(category.description)
+					}
+				} label: {
+					Text("Category \(Text("(optional)").foregroundStyle(.secondary))")
 				}
-			Picker(selection: $place.category) {
-				Text("None")
-					.tag(nil as String?)
-				ForEach(PlaceCategory.allCases, id: \.rawValue) { category in
-					Text(category.description)
-						.tag(category.description)
+			}
+
+			Section("Address") {
+				TextField("Street", text: $address.street)
+				HStack {
+					TextField("City", text: $address.locality)
+						.frame(maxWidth: .infinity)
+					TextField("State", text: $address.administrativeArea)
+						.frame(maxWidth: 64)
+					TextField("Postal Code", text: $address.postalCode)
+						.frame(maxWidth: 96)
 				}
-			} label: {
-				Text("Category \(Text("(optional)").foregroundStyle(.secondary))")
 			}
-		}
 
-		Section("Address") {
-			TextField("Street", text: $address.street)
-			HStack {
-				TextField("City", text: $address.locality)
-					.frame(maxWidth: .infinity)
-				TextField("State", text: $address.administrativeArea)
-					.frame(maxWidth: 64)
-				TextField("Postal Code", text: $address.postalCode)
-					.frame(maxWidth: 96)
-			}
-		}
-
-		Grid(alignment: .leading) {
-			GridRow {
-				Text("Phone Number:")
-				FocusableTextField("Phone Number", text: $place.phoneNumber.asString)
-			}
-			Divider()
-			GridRow {
-				Text("Website:")
-				FocusableTextField("URL", text: $website)
-			}
-		}
-
-		Section(header: HStack {
-			Text("GPS")
-			Spacer()
-			Button("Swap") {
-				let oldLatitude = latitude
-				self.latitude = longitude
-				self.longitude = oldLatitude
-			}
-			.font(.caption)
-			.textCase(.none)
-		}) {
 			Grid(alignment: .leading) {
 				GridRow {
-					Text("Latitude:")
-					FocusableTextField("Latitude", text: $latitude)
+					Text("Phone Number:")
+					FocusableTextField("Phone Number", text: $place.phoneNumber.asString)
 				}
 				Divider()
 				GridRow {
-					Text("Longitude:")
-					FocusableTextField("Longitude", text: $longitude)
+					Text("Website:")
+					FocusableTextField("URL", text: $website)
 				}
 			}
-			.onChange(of: place.coordinate) {
-				latitude = String(place.coordinate.latitude)
-				longitude = String(place.coordinate.longitude)
-			}
-			.onChange(of: [latitude, longitude]) {
-				place.coordinate = if let lat = Double(latitude), let lon = Double(longitude) {
-					Coordinate(lat, lon)
-				} else {
-					self.place.coordinate
+
+			Section(header: HStack {
+				Text("GPS")
+				Spacer()
+				Button("Swap") {
+					withAnimation {
+						place.coordinate = .init(place.coordinate.longitude, place.coordinate.latitude)
+					}
 				}
+				.font(.caption)
+				.textCase(.none)
+			}) {
+				Grid(alignment: .leading) {
+					GridRow {
+						Text("Latitude:")
+						FocusableTextField("Latitude", text: $place.coordinate.latitude.doubleAsString)
+					}
+					Divider()
+					GridRow {
+						Text("Longitude:")
+						FocusableTextField("Longitude", text: $place.coordinate.longitude.doubleAsString)
+					}
+				}
+			}
+
+			Button(buttonLabel) {
+				complete()
 			}
 		}
+		.toolbar {
+			ToolbarItem {
+				Button("Refresh") {
+					isResolvingCoordinateAddress = true
+				}
+				.disabled(place.coordinate == resolvedCoordinate)
+				.transition(.move(edge: .trailing))
+				.task(id: isResolvingCoordinateAddress) {
+					guard isResolvingCoordinateAddress else { return }
 
-		Button(buttonLabel) {
-			complete()
+					let suggestedPlace = await PlaceResolver(
+						database: database,
+						coordinate: place.coordinate
+					).bestGuessPlace()
+
+					withAnimation {
+						if let suggestedPlace {
+							address = Address(place: suggestedPlace)
+							place = suggestedPlace
+							resolvedCoordinate = place.coordinate
+						} else {
+							print("No suggestion")
+						}
+
+						isResolvingCoordinateAddress = false
+					}
+				}
+			}
 		}
 	}
 
@@ -160,13 +197,19 @@ struct PlaceFormView: View {
 }
 
 #if DEBUG
-	#Preview {
-		NavigationStack {
-			Form {
-				PlaceFormView(place: .constant(Place.preview), buttonLabel: "Done!") {
+	struct PlaceFormViewPreviewContainer: View {
+		@State var place = Place.preview
+
+		var body: some View {
+			PreviewsWrapper {
+				PlaceFormView(place: $place, buttonLabel: "Done!") {
 					print("ok")
 				}
 			}
 		}
+	}
+
+	#Preview {
+		PlaceFormViewPreviewContainer()
 	}
 #endif
