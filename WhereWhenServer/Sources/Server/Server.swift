@@ -29,6 +29,8 @@ public struct Server {
 		await checkinStore.setup()
 		let placeStore = PersistentStore(for: ServerPlace.self, container: container)
 		await placeStore.setup()
+		let deletionStore = PersistentStore(for: DeletedRecord.self, container: container)
+		await deletionStore.setup()
 
 		// create router and add a single GET /hello route
 		let router = Router()
@@ -64,7 +66,7 @@ public struct Server {
 
 		router.post("deletions") { request, _ -> ByteBuffer in
 			do {
-				let deletionsData = try await Data(buffer: request.body.collect(upTo: 1024 * 5))
+				let deletionsData = try await Data(buffer: request.body.collect(upTo: 1024 * 512))
 				let deletions = try JSONDecoder().decode([DeletedRecord].self, from: deletionsData)
 
 				var deletedIDs: [String] = []
@@ -76,6 +78,7 @@ public struct Server {
 					}
 
 					deletedIDs.append(deletion.uuid)
+					try await deletionStore.save(deletion)
 				}
 
 				let deletedIDsData = try JSONEncoder().encode(deletedIDs)
@@ -88,7 +91,7 @@ public struct Server {
 
 		router.post("checkins") { request, context -> ByteBuffer in
 			do {
-				let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 500))
+				let checkinData = try await Data(buffer: request.body.collect(upTo: 1024 * 512))
 				let checkins = try JSONDecoder().decode([Checkin].self, from: checkinData)
 
 				let places = checkins.compactMap(\.place)

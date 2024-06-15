@@ -27,7 +27,6 @@ let package = Package(
 				"Server",
 			]
 		),
-		.target(name: "OverpassAPI"),
 		.target(
 			name: "Server",
 			dependencies: [

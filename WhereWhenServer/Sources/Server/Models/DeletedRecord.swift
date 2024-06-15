@@ -1,7 +1,9 @@
 import Foundation
+import ServerData
 
-struct DeletedRecord: Codable {
-	let uuid: String
-	let type: String
-	let deletedAt: Date
+@Model(table: "deleted_records") struct DeletedRecord: Codable, Sendable {
+	@Column(.primaryKey(autoIncrement: true)) var id: Int?
+	@Column(.unique) var uuid: String
+	var type: String
+	var deletedAt: Date
 }
