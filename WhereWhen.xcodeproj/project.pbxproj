@@ -59,7 +59,7 @@
 		A68572332C161930007828EE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571EF2C161930007828EE /* HomeView.swift */; };
 		A68572342C161930007828EE /* IgnoredPlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F02C161930007828EE /* IgnoredPlacesListView.swift */; };
 		A68572352C161930007828EE /* ManualCheckinFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F12C161930007828EE /* ManualCheckinFinishView.swift */; };
-		A68572362C161930007828EE /* ManualCheckinPlaceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F22C161930007828EE /* ManualCheckinPlaceCellView.swift */; };
+		A68572362C161930007828EE /* PlaceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F22C161930007828EE /* PlaceCellView.swift */; };
 		A68572372C161930007828EE /* ManualCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F32C161930007828EE /* ManualCheckinView.swift */; };
 		A68572382C161930007828EE /* NavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F42C161930007828EE /* NavigationContainer.swift */; };
 		A68572392C161930007828EE /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571F52C161930007828EE /* PlaceListView.swift */; };
@@ -131,7 +131,7 @@
 		A68571EF2C161930007828EE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A68571F02C161930007828EE /* IgnoredPlacesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoredPlacesListView.swift; sourceTree = "<group>"; };
 		A68571F12C161930007828EE /* ManualCheckinFinishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualCheckinFinishView.swift; sourceTree = "<group>"; };
-		A68571F22C161930007828EE /* ManualCheckinPlaceCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualCheckinPlaceCellView.swift; sourceTree = "<group>"; };
+		A68571F22C161930007828EE /* PlaceCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCellView.swift; sourceTree = "<group>"; };
 		A68571F32C161930007828EE /* ManualCheckinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualCheckinView.swift; sourceTree = "<group>"; };
 		A68571F42C161930007828EE /* NavigationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContainer.swift; sourceTree = "<group>"; };
 		A68571F52C161930007828EE /* PlaceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				A68571F12C161930007828EE /* ManualCheckinFinishView.swift */,
-				A68571F22C161930007828EE /* ManualCheckinPlaceCellView.swift */,
+				A68571F22C161930007828EE /* PlaceCellView.swift */,
 				A68571F32C161930007828EE /* ManualCheckinView.swift */,
 				A68571E92C161930007828EE /* CheckinShowView.swift */,
 				A68571E62C161930007828EE /* CheckinCellView.swift */,
@@ -501,7 +501,7 @@
 				A68572302C161930007828EE /* CreatePlaceView.swift in Sources */,
 				A68572282C161930007828EE /* ListQueryRequest.swift in Sources */,
 				A68572212C161930007828EE /* DiskLogger.swift in Sources */,
-				A68572362C161930007828EE /* ManualCheckinPlaceCellView.swift in Sources */,
+				A68572362C161930007828EE /* PlaceCellView.swift in Sources */,
 				A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */,
 				A68572322C161930007828EE /* GrantPermissionsView.swift in Sources */,
 				A685723E2C161930007828EE /* WhereWhenApp.swift in Sources */,

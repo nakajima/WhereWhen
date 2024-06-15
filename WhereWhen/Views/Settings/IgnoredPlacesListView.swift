@@ -20,7 +20,7 @@ struct IgnoredPlacesListView: View {
 			}
 
 			ForEach(places) { place in
-				ManualCheckinPlaceCellView(currentLocation: place.coordinate, place: place)
+				PlaceCellView(currentLocation: place.coordinate, place: place)
 			}
 		}
 	}

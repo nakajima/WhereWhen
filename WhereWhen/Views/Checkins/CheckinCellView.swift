@@ -39,6 +39,7 @@ struct CheckinWithPlaceCellView: View {
 				Text(place.name)
 					.bold()
 					.frame(maxWidth: .infinity, alignment: .leading)
+					.lineLimit(2)
 				Text(checkin.savedAt.formatted(.relative(presentation: .named)))
 					.font(.subheadline)
 					.foregroundStyle(.secondary)

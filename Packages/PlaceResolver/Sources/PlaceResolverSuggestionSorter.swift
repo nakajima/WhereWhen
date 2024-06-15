@@ -44,7 +44,7 @@ extension PlaceResolver.Suggestion {
 				let rows = try database.read { db in
 					try Row.fetchAll(
 						db,
-						sql: "SELECT placeID, COUNT(1) AS count FROM checkin GROUP BY placeID"
+						sql: "SELECT placeID, COUNT(placeID) AS count FROM checkin GROUP BY placeID"
 					)
 				}
 

@@ -72,7 +72,7 @@ struct VisitImporterLineCellView: View {
 						}
 						.font(.caption)
 
-						ManualCheckinPlaceCellView(
+						PlaceCellView(
 							currentLocation: suggestion.place.coordinate,
 							place: suggestion.place
 						)
@@ -97,7 +97,7 @@ struct VisitImporterLineCellView: View {
 			case let .error(err):
 				Text("Error: \(err)")
 			case let .done(place):
-				ManualCheckinPlaceCellView(
+				PlaceCellView(
 					currentLocation: line.coordinate,
 					place: place
 				)

@@ -45,11 +45,14 @@ extension PlaceResolver {
 					return nil
 				}
 
+				// For some reason, the coordinate comes back as [longitude, latitude]?
+				let foundCoordinate = Coordinate(coordinates[1], coordinates[0])
+
 				let place = Place(
 					uuid: UUID().uuidString,
 					attribution: "https://www.openstreetmap.org",
 					addedAt: Date(),
-					coordinate: .init(coordinates[0], coordinates[1]),
+					coordinate: foundCoordinate,
 					name: name,
 					phoneNumber: nil,
 					url: nil,

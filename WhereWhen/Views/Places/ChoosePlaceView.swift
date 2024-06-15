@@ -51,7 +51,7 @@ struct ChoosePlaceView: View {
 				NavigationLink(
 					value: destination(place)
 				) {
-					ManualCheckinPlaceCellView(
+					PlaceCellView(
 						currentLocation: location,
 						place: place
 					)

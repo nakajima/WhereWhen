@@ -64,7 +64,7 @@ import SwiftUI
 							Text("Confidence: \(result.value.confidence, format: .number)")
 						}
 						.font(.caption)
-						ManualCheckinPlaceCellView(
+						PlaceCellView(
 							currentLocation: result.value.place.coordinate,
 							place: result.value.place
 						)

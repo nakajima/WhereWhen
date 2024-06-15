@@ -8,8 +8,10 @@
 import Foundation
 import LibWhereWhen
 import SwiftUI
+import GRDB
 
-struct ManualCheckinPlaceCellView: View {
+struct PlaceCellView: View {
+	@Environment(\.database) var database
 	var currentLocation: Coordinate
 	var place: Place
 
@@ -19,7 +21,7 @@ struct ManualCheckinPlaceCellView: View {
 				.multilineTextAlignment(.leading)
 				.foregroundStyle(Color.primary)
 
-			HStack {
+			HStack(alignment: .top) {
 				distance(to: place)
 
 				if let category = place.category, category != .unknown {
@@ -53,6 +55,20 @@ struct ManualCheckinPlaceCellView: View {
 			}
 			.foregroundStyle(Color.secondary)
 			.font(.caption)
+
+			if let checkinCount, checkinCount > 0 {
+				Text("You’ve checked-in here \(checkinCount.ordinalize("time")).")
+					.font(.subheadline)
+					.foregroundStyle(.primary)
+			}
+		}
+	}
+
+	var checkinCount: Int? {
+		do {
+			return try Checkin.count(in: database, where: Column("placeID") == place.uuid)
+		} catch {
+			return nil
 		}
 	}
 
