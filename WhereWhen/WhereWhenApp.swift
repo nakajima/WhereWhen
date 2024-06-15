@@ -35,7 +35,6 @@ struct WhereWhenApp: App {
 						try await Task.sleep(for: .seconds(1))
 						for try await update in coordinator.database.updates {
 							debouncer.debounce { @MainActor in
-								print("*** DATABASE UPDATED \(update) ***")
 								coordinator.sync()
 							}
 						}
