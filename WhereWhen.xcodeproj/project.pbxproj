@@ -150,7 +150,6 @@
 		A6893FC82C1D5688000EE791 /* PlaceFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFormView.swift; sourceTree = "<group>"; };
 		A6893FCA2C1D5861000EE791 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEditView.swift; sourceTree = "<group>"; };
-		A6893FCE2C1DE47E000EE791 /* WhereWhenServer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WhereWhenServer; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		A6DF5D892C17543700F97200 /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* WhereWhen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereWhen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,7 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */,
-				A6893FCE2C1DE47E000EE791 /* WhereWhenServer */,
 				A6EA08B92C17520300AF5404 /* Packages */,
 				A68571FE2C161930007828EE /* WhereWhen */,
 				A68572022C161930007828EE /* WhereWhenTests */,
