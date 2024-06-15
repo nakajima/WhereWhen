@@ -69,6 +69,9 @@
 		A685723D2C161930007828EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68571FA2C161930007828EE /* Assets.xcassets */; };
 		A685723E2C161930007828EE /* WhereWhenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571FB2C161930007828EE /* WhereWhenApp.swift */; };
 		A685723F2C161930007828EE /* WhereWhenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68571FC2C161930007828EE /* WhereWhenCoordinator.swift */; };
+		A6893FC92C1D5688000EE791 /* PlaceFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FC82C1D5688000EE791 /* PlaceFormView.swift */; };
+		A6893FCB2C1D5861000EE791 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FCA2C1D5861000EE791 /* Address.swift */; };
+		A6893FCD2C1D670E000EE791 /* PlaceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
 		A6DF5D8D2C17577500F97200 /* Database in Frameworks */ = {isa = PBXBuildFile; productRef = A6DF5D8C2C17577500F97200 /* Database */; };
 /* End PBXBuildFile section */
@@ -144,6 +147,9 @@
 		A68571FD2C161930007828EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A68572002C161930007828EE /* CheckinCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinCreatorTests.swift; sourceTree = "<group>"; };
 		A68572012C161930007828EE /* WhereWhenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereWhenTests.swift; sourceTree = "<group>"; };
+		A6893FC82C1D5688000EE791 /* PlaceFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFormView.swift; sourceTree = "<group>"; };
+		A6893FCA2C1D5861000EE791 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEditView.swift; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		A6DF5D892C17543700F97200 /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* WhereWhen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereWhen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +215,7 @@
 				A68571F52C161930007828EE /* PlaceListView.swift */,
 				A68571EA2C161930007828EE /* ChoosePlaceView.swift */,
 				A68571EC2C161930007828EE /* CreatePlaceView.swift */,
+				A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -259,6 +266,7 @@
 				A68571CB2C161930007828EE /* CheckinMaker.swift */,
 				A68571CE2C161930007828EE /* LocationListener.swift */,
 				A68571D22C161930007828EE /* PlaceFinder.swift */,
+				A6893FCA2C1D5861000EE791 /* Address.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +323,7 @@
 				A68571EB2C161930007828EE /* ContentView.swift */,
 				A68571EF2C161930007828EE /* HomeView.swift */,
 				A68571F82C161930007828EE /* Styles.swift */,
+				A6893FC82C1D5688000EE791 /* PlaceFormView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -501,6 +510,8 @@
 				A68572302C161930007828EE /* CreatePlaceView.swift in Sources */,
 				A68572282C161930007828EE /* ListQueryRequest.swift in Sources */,
 				A68572212C161930007828EE /* DiskLogger.swift in Sources */,
+				A6893FC92C1D5688000EE791 /* PlaceFormView.swift in Sources */,
+				A6893FCB2C1D5861000EE791 /* Address.swift in Sources */,
 				A68572362C161930007828EE /* PlaceCellView.swift in Sources */,
 				A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */,
 				A68572322C161930007828EE /* GrantPermissionsView.swift in Sources */,
@@ -527,6 +538,7 @@
 				A68572262C161930007828EE /* CheckinListRequest.swift in Sources */,
 				A68572092C161930007828EE /* Environment.swift in Sources */,
 				A615DC7C2C191317004B71B4 /* VisitImporterLineCellView.swift in Sources */,
+				A6893FCD2C1D670E000EE791 /* PlaceEditView.swift in Sources */,
 				A63779092C1947A0004C5D21 /* MapThumbnail.swift in Sources */,
 				A685722D2C161930007828EE /* CheckinShowView.swift in Sources */,
 				A68572272C161930007828EE /* IgnoredPlacesRequest.swift in Sources */,

@@ -35,7 +35,7 @@ final class CheckinCreatorTests: XCTestCase {
 		try await place.save(to: database)
 
 		let uuid = place.uuid
-		let isIgnored = try await database.read { try Place.find($0, id: uuid).isIgnored }
+		let isIgnored = try await database.read { try Place.find($0, key: uuid).isIgnored }
 		XCTAssert(isIgnored, "did not set ignored properly")
 
 		let newCheckin = Checkin.makePreview { $0.coordinate = checkin.coordinate.offset(x: .meters(5), y: .meters(5)) }

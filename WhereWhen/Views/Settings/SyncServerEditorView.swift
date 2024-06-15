@@ -36,6 +36,14 @@ struct SyncServerEditorView: View {
 					return
 				}
 
+				if serverURLText == "" {
+					withAnimation {
+						coordinator.syncer?.teardown()
+						coordinator.syncer = nil
+						isEditingSync = false
+					}
+				}
+
 				guard let url = URL(string: serverURLText) else {
 					withAnimation {
 						self.status = .error("Invalid URL")

@@ -9,8 +9,8 @@ import LibWhereWhen
 import MapKit
 import Nuke
 import NukeUI
-import SwiftUI
 import Queue
+import SwiftUI
 
 private let logger = DiskLogger(label: "MapThumbnail", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
 

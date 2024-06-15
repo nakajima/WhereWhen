@@ -1,14 +1,14 @@
 //
-//  ManualCheckinPlaceCellView.swift
+//  PlaceCellView.swift
 //  WhereWhen
 //
 //  Created by Pat Nakajima on 6/5/24.
 //
 
 import Foundation
+import GRDB
 import LibWhereWhen
 import SwiftUI
-import GRDB
 
 struct PlaceCellView: View {
 	@Environment(\.database) var database

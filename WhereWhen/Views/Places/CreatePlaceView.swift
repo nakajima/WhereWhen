@@ -21,60 +21,48 @@ struct CreatePlaceView: View {
 	@Environment(\.navigationPath) var navigationPath
 	@EnvironmentObject var coordinator: WhereWhenCoordinator
 
-	@State private var name: String = ""
-	@State private var category: String = ""
+	@State var placeToCreate: Place
+
+	init(coordinate: Coordinate, checkin: Checkin? = nil) {
+		self.coordinate = coordinate
+		self.checkin = checkin
+
+		self._placeToCreate = State(wrappedValue: Place(
+			uuid: UUID().uuidString,
+			attribution: "Manually Entered",
+			addedAt: Date(),
+			coordinate: coordinate,
+			name: "",
+			phoneNumber: nil,
+			url: nil,
+			category: .none,
+			thoroughfare: nil,
+			subThoroughfare: nil,
+			locality: nil,
+			subLocality: nil,
+			administrativeArea: nil,
+			subAdministrativeArea: nil,
+			postalCode: nil,
+			isIgnored: false
+		))
+	}
 
 	var body: some View {
 		Form {
-			TextField("Place Name", text: $name)
+			PlaceFormView(place: $placeToCreate, buttonLabel: "Create Place") {
+				do {
+					try placeToCreate.save(to: database)
 
-			Picker(selection: $category) {
-				ForEach(PlaceCategory.allCases, id: \.rawValue) { category in
-					Text("None")
-						.tag("")
-					Text(category.description)
-						.tag(category.description)
-				}
-			} label: {
-				Text("Category \(Text("(optional)").foregroundStyle(.secondary))")
-			}
-
-			Section {
-				Button("Create Place") {
-					let place = Place(
-						uuid: UUID().uuidString,
-						attribution: "Manually Entered",
-						addedAt: Date(),
-						coordinate: coordinate,
-						name: name,
-						phoneNumber: nil,
-						url: nil,
-						category: PlaceCategory(rawValue: category),
-						thoroughfare: nil,
-						subThoroughfare: nil,
-						locality: nil,
-						subLocality: nil,
-						administrativeArea: nil,
-						subAdministrativeArea: nil,
-						postalCode: nil,
-						isIgnored: false
-					)
-
-					do {
-						try place.save(to: database)
-
-						let destination: Route = if let checkin {
-							.checkin(checkin, place)
-						} else {
-							.finishCheckinView(place, coordinate)
-						}
-
-						navigationPath.wrappedValue.append(destination)
-					} catch {
-						coordinator.errorMessage = error.localizedDescription
+					let destination: Route = if let checkin {
+						.checkin(checkin, placeToCreate)
+					} else {
+						.finishCheckinView(placeToCreate, coordinate)
 					}
+
+					navigationPath.wrappedValue.append(destination)
+				} catch {
+					coordinator.errorMessage = error.localizedDescription
 				}
-				.disabled(name.isBlank)
 			}
 		}
 		.safeAreaInset(edge: .top, spacing: 0) {

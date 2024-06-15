@@ -36,6 +36,10 @@ actor Syncer {
 		self.queue = AsyncQueue()
 	}
 
+	nonisolated func teardown() {
+		UserDefaults.standard.removeObject(forKey: "syncURL")
+	}
+
 	nonisolated func setup() {
 		UserDefaults.standard.set(client.serverURL.absoluteString, forKey: "syncURL")
 		sync()
@@ -58,10 +62,10 @@ actor Syncer {
 
 	func upload() async {
 		do {
-			let lastSyncedAt = await client.lastSyncedAt()
+//			let lastSyncedAt = await client.lastSyncedAt()
 			let localCheckins = try await database.read { db in
 				try Checkin
-					.filter(Column("savedAt") > lastSyncedAt)
+//					.filter(Column("savedAt") > lastSyncedAt)
 					.including(optional: Checkin.placeAssociation)
 					.fetchAll(db)
 			}
@@ -72,7 +76,7 @@ actor Syncer {
 			}
 
 			try await client.upload(checkins: localCheckins)
-			await logger.info("Uploaded \(localCheckins.count) (using last sync at \(lastSyncedAt)")
+			await logger.info("Uploaded \(localCheckins.count)")
 		} catch {
 			await logger.error("Error uploading: \(error)")
 		}

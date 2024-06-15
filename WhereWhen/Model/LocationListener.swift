@@ -95,7 +95,7 @@ import PlaceResolver
 	}
 
 	func clearLocationRequest() {
-		self.locationRequest = nil
+		locationRequest = nil
 	}
 
 	nonisolated func locationManager(_: CLLocationManager, didFailWithError error: any Swift.Error) {

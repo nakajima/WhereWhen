@@ -12,6 +12,7 @@ import SwiftUI
 enum Route: Hashable {
 	case home,
 	     settings,
+	     updatePlace(Place),
 	     checkin(Checkin, Place),
 	     checkinChoosePlace(Checkin),
 	     finishCheckinView(Place, Coordinate),
@@ -61,6 +62,8 @@ struct NavigationContainer<Content: View>: View {
 						CheckinEditPlaceView(checkin: checkin)
 					case let .createPlace(coordinate, checkin):
 						CreatePlaceView(coordinate: coordinate, checkin: checkin)
+					case let .updatePlace(place):
+						PlaceEditView(place: place)
 					case .settingsVisitImporter:
 						VisitImporterView()
 					case let .settingsVisitImporterSelection(importer):

@@ -95,8 +95,12 @@ import SwiftUI
 					Button("Cancel", role: .cancel) {}
 				}
 
-				Button("Change Place…") {
+				Button("Change Checkin…") {
 					navigation.append(.checkinChoosePlace(checkin))
+				}
+
+				Button("Change Place…") {
+					navigation.append(.updatePlace(place))
 				}
 
 				Button(place.isIgnored ? "Unignore Place" : "Ignore Place") {

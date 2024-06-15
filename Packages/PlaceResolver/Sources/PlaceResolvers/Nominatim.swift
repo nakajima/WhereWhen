@@ -46,7 +46,12 @@ extension PlaceResolver {
 				}
 
 				// For some reason, the coordinate comes back as [longitude, latitude]?
-				let foundCoordinate = Coordinate(coordinates[1], coordinates[0])
+				let foundCoordinate = [
+					Coordinate(coordinates[0], coordinates[1]),
+					Coordinate(coordinates[1], coordinates[0]),
+				].min(by: {
+					$0.distance(to: context.coordinate) < $1.distance(to: context.coordinate)
+				})!
 
 				let place = Place(
 					uuid: UUID().uuidString,

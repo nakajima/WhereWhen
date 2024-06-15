@@ -9,7 +9,25 @@ import Foundation
 
 // Places. This is basically a wrapper around CLPlacemark
 public struct Place: Codable, Identifiable, Sendable, Equatable {
-	public var id: String { coordinate.id }
+	public var id: [String] {
+		[
+			uuid,
+			String(coordinate.latitude),
+			String(coordinate.longitude),
+			name,
+			category?.rawValue,
+			phoneNumber,
+			url?.absoluteString,
+			subThoroughfare,
+			thoroughfare,
+			subLocality,
+			locality,
+			administrativeArea,
+			subAdministrativeArea,
+			postalCode,
+			isIgnored ? "1" : "0",
+		].compactMap { $0 }
+	}
 
 	// Where did the data for this place come from?
 	public var attribution: String?
@@ -20,39 +38,39 @@ public struct Place: Codable, Identifiable, Sendable, Equatable {
 	public let addedAt: Date
 
 	// The lat/lng of the place
-	public private(set) var coordinate: Coordinate
+	public var coordinate: Coordinate
 
-	public let category: PlaceCategory?
+	public var category: PlaceCategory?
 
 	// The name of the place.
-	public let name: String
+	public var name: String
 
 	// The phone number of the place
-	public let phoneNumber: String?
+	public var phoneNumber: String?
 
 	// The website
-	public let url: URL?
+	public var url: URL?
 
 	// The street address associated with the place.
-	public let thoroughfare: String?
+	public var thoroughfare: String?
 
 	// Additional street-level information for the place.
-	public let subThoroughfare: String?
+	public var subThoroughfare: String?
 
 	// The city associated with the place.
-	public let locality: String?
+	public var locality: String?
 
 	// Additional city-level information for the place.
-	public let subLocality: String?
+	public var subLocality: String?
 
 	// The state or province associated with the place.
-	public let administrativeArea: String?
+	public var administrativeArea: String?
 
 	// Additional administrative area information for the place.
-	public let subAdministrativeArea: String?
+	public var subAdministrativeArea: String?
 
 	// The postal code associated with the place.
-	public let postalCode: String?
+	public var postalCode: String?
 
 	// Gets populated by DBs
 	public var checkins: [Checkin] = []
@@ -123,7 +141,7 @@ extension Place: Hashable {
 			addedAt: Date(),
 			coordinate: .init(latitude: 37.33233141, longitude: -122.03121860),
 			name: "Test Location",
-			phoneNumber: "5551231234",
+			phoneNumber: "(555) 123-1234",
 			url: URL(string: "https://example.com"),
 			category: .park,
 			thoroughfare: "123 Here St.",
@@ -143,7 +161,7 @@ extension Place: Hashable {
 				addedAt: Date(),
 				coordinate: .init(latitude: 37.33233141, longitude: -122.03121860),
 				name: "Test Location",
-				phoneNumber: "5551231234",
+				phoneNumber: "(555) 123-1234",
 				url: URL(string: "https://example.com"),
 				category: .park,
 				thoroughfare: "123 Here St.",
