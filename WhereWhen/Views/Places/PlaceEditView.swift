@@ -57,12 +57,13 @@ struct PlaceEditView: View {
 					}
 				}
 			}
+			.shadow(radius: 2)
 			.overlay {
 				Image(systemName: "mappin.and.ellipse")
 					.foregroundStyle(.red)
 					.shadow(radius: 2)
 			}
-			.frame(height: 200)
+			.frame(height: Styles.topInsetMapHeight)
 			.onChange(of: place.coordinate) {
 				self.position = .region(
 					.init(

@@ -6,7 +6,7 @@
 //
 
 import LibWhereWhen
-import MapKit
+@preconcurrency import MapKit
 import Nuke
 import NukeUI
 import Queue
@@ -15,7 +15,7 @@ import SwiftUI
 private let logger = DiskLogger(label: "MapThumbnail", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
 
 enum MapThumbnailError: Error {
-	case snapshotNotGenerated
+	case snapshotNotGenerated, invalidCoordinate
 }
 
 // MapKit maps are like 50 megs of ram so let's
@@ -112,45 +112,25 @@ enum MapThumbnailError: Error {
 	}
 
 	func generateColorScheme(size: CGSize, colorScheme: ColorScheme) async throws -> Image {
-		let uiImage: UIImage? = try await withCheckedThrowingContinuation { @MainActor continuation in
-			guard CLLocationCoordinate2DIsValid(region.center) else {
-				continuation.resume(returning: nil)
-				return
-			}
-
-			let options: MKMapSnapshotter.Options = .init()
-			options.region = region
-
-			options.size = size
-			options.mapType = .standard
-			options.showsBuildings = true
-			options.traitCollection = options.traitCollection.modifyingTraits {
-				$0.userInterfaceStyle = colorScheme == .light ? .light : .dark
-			}
-
-			let snapshotter = MKMapSnapshotter(
-				options: options
-			)
-
-			snapshotter.start(with: .main) { snapshot, error in
-				if let snapshot {
-					continuation.resume(returning: snapshot.image)
-					return
-				}
-
-				if let error {
-					continuation.resume(throwing: error)
-					return
-				}
-
-				continuation.resume(returning: nil)
-			}
+		guard CLLocationCoordinate2DIsValid(region.center) else {
+			throw MapThumbnailError.invalidCoordinate
 		}
 
-		guard let uiImage else {
-			throw MapThumbnailError.snapshotNotGenerated
+		let options: MKMapSnapshotter.Options = .init()
+		options.region = region
+
+		options.size = size
+		options.mapType = .standard
+		options.showsBuildings = true
+		options.traitCollection = options.traitCollection.modifyingTraits {
+			$0.userInterfaceStyle = colorScheme == .light ? .light : .dark
 		}
 
+		let snapshotter = MKMapSnapshotter(
+			options: options
+		)
+
+		let uiImage = try await snapshotter.start(with: .main).image
 		let data = uiImage.pngData()
 
 		if let data {
@@ -184,35 +164,35 @@ private extension Coordinate {
 }
 
 #if DEBUG
-	#Preview {
-		let coordinate = Coordinate(
-			37.32433196872691, -122.03635318945706
+#Preview {
+	let coordinate = Coordinate(
+		37.32433196872691, -122.03635318945706
+	)
+
+	return VStack {
+		MapThumbnail(
+			coordinate: coordinate,
+			span: .within(meters: 1500)
 		)
+		.frame(width: 200, height: 200)
 
-		return VStack {
-			MapThumbnail(
-				coordinate: coordinate,
-				span: .within(meters: 1500)
+		Button("Clear Cache") {
+			try! FileManager.default.removeItem(
+				at: coordinate.cacheURL(
+					for: .init(width: 200, height: 200),
+					span: .within(meters: 1500),
+					colorScheme: .light
+				)
 			)
-			.frame(width: 200, height: 200)
 
-			Button("Clear Cache") {
-				try! FileManager.default.removeItem(
-					at: coordinate.cacheURL(
-						for: .init(width: 200, height: 200),
-						span: .within(meters: 1500),
-						colorScheme: .light
-					)
+			try! FileManager.default.removeItem(
+				at: coordinate.cacheURL(
+					for: .init(width: 200, height: 200),
+					span: .within(meters: 1500),
+					colorScheme: .dark
 				)
-
-				try! FileManager.default.removeItem(
-					at: coordinate.cacheURL(
-						for: .init(width: 200, height: 200),
-						span: .within(meters: 1500),
-						colorScheme: .dark
-					)
-				)
-			}
+			)
 		}
 	}
+}
 #endif

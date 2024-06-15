@@ -42,6 +42,18 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 		self.longitude = longitude
 	}
 
+	public init?(string: String) {
+		guard let match = string.wholeMatch(of: #/(-?\d+\.\d+)[,\/\s]\s?(-?\d+\.\d+)/#),
+					let lat = Double(match.output.1),
+					let lng = Double(match.output.2)
+		else {
+			print("didn't get coords from regex")
+			return nil
+		}
+
+		self.init(lat, lng)
+	}
+
 	public func within(_ range: Distance, of other: Coordinate) -> Bool {
 		distance(to: other) < range
 	}

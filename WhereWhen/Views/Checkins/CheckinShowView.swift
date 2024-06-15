@@ -80,29 +80,6 @@ import SwiftUI
 			}
 
 			Section(footer: Text("Ignoring a place will make WhereWhen try to avoid checking you in here automatically.")) {
-				Button("Delete Checkin", role: .destructive) {
-					isDeleting = true
-				}
-				.confirmationDialog("Delete this checkin?", isPresented: $isDeleting, titleVisibility: .visible) {
-					Button("Delete", role: .destructive) {
-						do {
-							try database.delete(checkin)
-							navigation.popToRoot()
-						} catch {
-							print("Error deleting checkin: \(error)")
-						}
-					}
-					Button("Cancel", role: .cancel) {}
-				}
-
-				Button("Change Checkin…") {
-					navigation.append(.checkinChoosePlace(checkin))
-				}
-
-				Button("Change Place…") {
-					navigation.append(.updatePlace(place))
-				}
-
 				Button(place.isIgnored ? "Unignore Place" : "Ignore Place") {
 					var place = place
 					place.isIgnored.toggle()
@@ -113,6 +90,29 @@ import SwiftUI
 					}
 				}
 			}
+
+			Button("Edit Checkin…") {
+				navigation.append(.checkinChoosePlace(checkin))
+			}
+
+			Button("Edit Place…") {
+				navigation.append(.updatePlace(place))
+			}
+
+			Button("Delete This Checkin", role: .destructive) {
+				isDeleting = true
+			}
+			.confirmationDialog("Delete this checkin?", isPresented: $isDeleting, titleVisibility: .visible) {
+				Button("Delete", role: .destructive) {
+					do {
+						try database.delete(checkin)
+						navigation.popToRoot()
+					} catch {
+						print("Error deleting checkin: \(error)")
+					}
+				}
+				Button("Cancel", role: .cancel) {}
+			}
 		}
 		.safeAreaInset(edge: .top) {
 			Map(initialPosition: .region(place.region(.within(meters: 100)))) {
@@ -120,7 +120,7 @@ import SwiftUI
 					Text("You were here.")
 				}
 			}
-			.frame(height: 200)
+			.frame(height: Styles.topInsetMapHeight)
 			.shadow(radius: 2)
 		}
 		.navigationTitle("Checkin Details")
@@ -141,12 +141,12 @@ import SwiftUI
 }
 
 #if DEBUG
-	#Preview {
-		PreviewsWrapper {
-			CheckinShowView(
-				checkin: Checkin.preview,
-				place: Place.preview
-			)
-		}
+#Preview {
+	PreviewsWrapper {
+		CheckinShowView(
+			checkin: Checkin.preview,
+			place: Place.preview
+		)
 	}
+}
 #endif

@@ -78,15 +78,11 @@ import SwiftUI
 	}
 
 	func resolve() async {
-		guard let match = coordinateString.wholeMatch(of: #/(-?\d+\.\d+)[,\/\s]\s?(-?\d+\.\d+)/#),
-		      let lat = Double(match.output.1),
-		      let lng = Double(match.output.2)
-		else {
-			print("didn't get coords from regex")
+		guard let coordinate = Coordinate(string: coordinateString) else {
+			print("did not parse coordinate")
 			return
 		}
 
-		let coordinate = Coordinate(lat, lng)
 		self.coordinate = coordinate
 		let resolver = PlaceResolver(
 			database: database,

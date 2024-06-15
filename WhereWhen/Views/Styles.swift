@@ -8,5 +8,6 @@
 import Foundation
 
 enum Styles {
+	static let topInsetMapHeight = 96.0
 	static let verticalSpacing = 8.0
 }

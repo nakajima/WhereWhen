@@ -28,7 +28,7 @@ struct FocusableTextField: View {
 	}
 }
 
-extension Binding where Value == String? {
+extension Binding<String?> {
 	var asString: Binding<String> {
 		Binding<String>(
 			get: {
@@ -43,7 +43,7 @@ extension Binding where Value == String? {
 
 // I tried to name this asString as well, but it didn't work in SwiftUI
 // previews for some reason?
-extension Binding where Value == Double {
+extension Binding<Double> {
 	var doubleAsString: Binding<String> {
 		Binding<String>(
 			get: {
@@ -51,6 +51,21 @@ extension Binding where Value == Double {
 			},
 			set: { newValue in
 				wrappedValue = Double(newValue) ?? 0
+			}
+		)
+	}
+}
+
+// I tried to name this asString as well, but it didn't work in SwiftUI
+// previews for some reason?
+extension Binding<Coordinate> {
+	var coordinateAsString: Binding<String> {
+		Binding<String>(
+			get: {
+				"\(wrappedValue.latitude), \(wrappedValue.longitude)"
+			},
+			set: { newValue in
+				wrappedValue = Coordinate(string: newValue) ?? .init(0, 0)
 			}
 		)
 	}
@@ -141,24 +156,12 @@ struct PlaceFormView: View {
 			}) {
 				Grid(alignment: .leading) {
 					GridRow {
-						Text("Latitude:")
-						FocusableTextField("Latitude", text: $place.coordinate.latitude.doubleAsString)
-					}
-					Divider()
-					GridRow {
-						Text("Longitude:")
-						FocusableTextField("Longitude", text: $place.coordinate.longitude.doubleAsString)
+						Text("Coordinate:")
+						FocusableTextField("Latitude, Longitude", text: $place.coordinate.coordinateAsString)
 					}
 				}
-			}
 
-			Button(buttonLabel) {
-				complete()
-			}
-		}
-		.toolbar {
-			ToolbarItem {
-				Button("Refresh") {
+				Button("Refresh Details from Location") {
 					isResolvingCoordinateAddress = true
 				}
 				.disabled(place.coordinate == resolvedCoordinate)
@@ -184,7 +187,12 @@ struct PlaceFormView: View {
 					}
 				}
 			}
+
+			Button(buttonLabel) {
+				complete()
+			}
 		}
+		.listSectionSpacing(.compact)
 	}
 
 	var isDisabled: Bool {
