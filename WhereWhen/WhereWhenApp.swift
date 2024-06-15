@@ -29,7 +29,6 @@ struct WhereWhenApp: App {
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
-				.environmentObject(coordinator)
 				.task(priority: .low) { @MainActor in
 					let debouncer = Debouncer(wait: .seconds(1))
 					do {
@@ -47,5 +46,6 @@ struct WhereWhenApp: App {
 		}
 		.environment(location)
 		.environment(\.database, database)
+		.environmentObject(coordinator)
 	}
 }
