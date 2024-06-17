@@ -1,9 +1,22 @@
 services:
   wherewhen:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "4567:4567"
+    image: rockajima/wherewhen:unstable
+    network_mode: service:wherewhen-ts
     volumes:
-      - ./db:/db
+      - "./wherewhen/db:/db"
+  wherewhen-ts:
+    image: tailscale/tailscale:stable
+    hostname: wherewhen
+    environment:
+      - TS_USERSPACE=0
+      - TS_AUTHKEY=[YOUR TAILSCALE AUTH]
+      - TS_ACCEPT_DNS=1
+      - TS_HOSTNAME=wherewhen
+      - TS_EXTRA_ARGS=
+      - TS_STATE_DIR=/var/lib/tailscale
+    volumes:
+      - ./wherewhen-tailscale/state:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
