@@ -84,6 +84,7 @@ struct SettingsView: View {
 		.refreshable {
 			await coordinator.checkSyncServer()
 		}
+		.navigationTitle("Settings")
 	}
 
 	func logFileSize() -> String {
