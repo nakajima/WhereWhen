@@ -8,7 +8,7 @@ There's an iOS app that tracks where you go in the background. On its own it doe
 
 ## Sync
 
-There's also a bare bones sync server (also written in Swift). It's available as a [docker image](https://hub.docker.com/r/rockajima/wherewhen/tags) that you can run. If you do, you can point the iOS app at your sync server from the settings page. Just be aware that there is currently no authentication whatsoever (I run it all inside my Tailscale network).
+There's also a bare bones sync server (also written in Swift). It's available as a [docker image](https://github.com/nakajima/WhereWhen/blob/main/WhereWhenServer/compose.yml) that you can run. If you do, you can point the iOS app at your sync server from the settings page. Just be aware that there is currently no authentication whatsoever (I run it all inside my Tailscale network).
 
 ## Screenshots
 
