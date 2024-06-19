@@ -73,6 +73,7 @@
 		A6893FCB2C1D5861000EE791 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FCA2C1D5861000EE791 /* Address.swift */; };
 		A6893FCD2C1D670E000EE791 /* PlaceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
+		A6B928122C2340E40051C980 /* VisitLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B928112C2340E40051C980 /* VisitLogsView.swift */; };
 		A6DF5D8D2C17577500F97200 /* Database in Frameworks */ = {isa = PBXBuildFile; productRef = A6DF5D8C2C17577500F97200 /* Database */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +152,7 @@
 		A6893FCA2C1D5861000EE791 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEditView.swift; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		A6B928112C2340E40051C980 /* VisitLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitLogsView.swift; sourceTree = "<group>"; };
 		A6DF5D892C17543700F97200 /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
 		A6E649F02C0ACEFE00553F10 /* WhereWhen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereWhen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E64A022C0ACEFF00553F10 /* WhereWhenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereWhenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				A68571F72C161930007828EE /* SettingsView.swift */,
+				A6B928112C2340E40051C980 /* VisitLogsView.swift */,
 				A68571F02C161930007828EE /* IgnoredPlacesListView.swift */,
 				A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */,
 				A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */,
@@ -521,6 +524,7 @@
 				A685722A2C161930007828EE /* CheckinCellView.swift in Sources */,
 				A68572312C161930007828EE /* ErrorOverlay.swift in Sources */,
 				A685720A2C161930007828EE /* Int+Formatting.swift in Sources */,
+				A6B928122C2340E40051C980 /* VisitLogsView.swift in Sources */,
 				A68572142C161930007828EE /* CheckinMaker.swift in Sources */,
 				A68572222C161930007828EE /* DragDismissable.swift in Sources */,
 				A68572382C161930007828EE /* NavigationContainer.swift in Sources */,

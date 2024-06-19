@@ -73,7 +73,10 @@ struct SettingsView: View {
 				ShareLink(item: url)
 			}
 
-			NavigationLink("Logs \(logFileSize())", destination: DiskLoggerViewer(logger: location.logger))
+			Section {
+				NavigationLink("Visit Log \(visitLogFileSize())", destination: VisitLogsView(logs: try? String(contentsOf: URL.documentsDirectory.appending(path: "visits.log"))))
+				NavigationLink("Application Logs \(logFileSize())", destination: DiskLoggerViewer(logger: location.logger))
+			}
 
 			PlaceResolverDebuggerView()
 
@@ -85,6 +88,18 @@ struct SettingsView: View {
 			await coordinator.checkSyncServer()
 		}
 		.navigationTitle("Settings")
+	}
+
+	func visitLogFileSize() -> String {
+		let path = URL.documentsDirectory.appending(path: "visits.log").path
+
+		guard let attributes = try? FileManager.default.attributesOfItem(atPath: path) else {
+			return ""
+		}
+
+		let size = attributes[.size] as? UInt64 ?? UInt64(0)
+
+		return "(" + ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file) + ")"
 	}
 
 	func logFileSize() -> String {
