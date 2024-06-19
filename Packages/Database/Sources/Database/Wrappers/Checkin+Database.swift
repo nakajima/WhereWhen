@@ -77,7 +77,6 @@ extension Checkin: SpatialModel, Sendable {
 
 				try checkin.save(db)
 			} catch {
-				logSaveFailure()
 				throw error
 			}
 		}
@@ -97,20 +96,8 @@ extension Checkin: SpatialModel, Sendable {
 
 				try checkin.save(db)
 			} catch {
-				logSaveFailure()
 				throw error
 			}
 		}
-	}
-
-	private func logSaveFailure() {
-		let log = URL.documentsDirectory.appending(path: "failed-checkins.log")
-		let line = VisitImporter.Line(
-			latitude: coordinate.latitude,
-			longitude: coordinate.longitude,
-			timestamp: savedAt
-		)
-
-		try? Data(line.description.utf8).append(to: log)
 	}
 }

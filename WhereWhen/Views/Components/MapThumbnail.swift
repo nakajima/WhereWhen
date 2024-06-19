@@ -163,35 +163,35 @@ private extension Coordinate {
 }
 
 #if DEBUG
-#Preview {
-	let coordinate = Coordinate(
-		37.32433196872691, -122.03635318945706
-	)
-
-	return VStack {
-		MapThumbnail(
-			coordinate: coordinate,
-			span: .within(meters: 1500)
+	#Preview {
+		let coordinate = Coordinate(
+			37.32433196872691, -122.03635318945706
 		)
-		.frame(width: 200, height: 200)
 
-		Button("Clear Cache") {
-			try! FileManager.default.removeItem(
-				at: coordinate.cacheURL(
-					for: .init(width: 200, height: 200),
-					span: .within(meters: 1500),
-					colorScheme: .light
-				)
+		return VStack {
+			MapThumbnail(
+				coordinate: coordinate,
+				span: .within(meters: 1500)
 			)
+			.frame(width: 200, height: 200)
 
-			try! FileManager.default.removeItem(
-				at: coordinate.cacheURL(
-					for: .init(width: 200, height: 200),
-					span: .within(meters: 1500),
-					colorScheme: .dark
+			Button("Clear Cache") {
+				try! FileManager.default.removeItem(
+					at: coordinate.cacheURL(
+						for: .init(width: 200, height: 200),
+						span: .within(meters: 1500),
+						colorScheme: .light
+					)
 				)
-			)
+
+				try! FileManager.default.removeItem(
+					at: coordinate.cacheURL(
+						for: .init(width: 200, height: 200),
+						span: .within(meters: 1500),
+						colorScheme: .dark
+					)
+				)
+			}
 		}
 	}
-}
 #endif

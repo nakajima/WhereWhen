@@ -11,6 +11,8 @@ import Foundation
 import LibWhereWhen
 import PlaceResolver
 
+private let logger = DiskLogger(label: "CheckinCreator", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
+
 // Maybe saves a checkin to the DB.
 @MainActor struct CheckinCreator {
 	let checkin: Checkin
@@ -22,6 +24,7 @@ import PlaceResolver
 
 		for place in ignoredPlaces {
 			if place.coordinate.distance(to: checkin.coordinate) < 10 {
+				logger.info("Too close to ignored place: \(place.name), skipping checkin")
 				return
 			}
 		}
@@ -48,6 +51,7 @@ import PlaceResolver
 		   // if it's older than 24 hours, don't worry about it
 		   lastCheckin.savedAt > Date().addingTimeInterval(-60 * 60 * 24)
 		{
+			logger.info("Last checkin was at same place: \(place), lastPlace: \(lastPlace)")
 			return
 		}
 

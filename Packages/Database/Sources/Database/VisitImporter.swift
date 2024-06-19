@@ -47,7 +47,7 @@ public struct VisitImporter: Hashable, Equatable {
 		public let longitude: Double
 		public let timestamp: Date
 
-		init(latitude: Double, longitude: Double, timestamp: Date) {
+		public init(latitude: Double, longitude: Double, timestamp: Date) {
 			self.latitude = latitude
 			self.longitude = longitude
 			self.timestamp = timestamp

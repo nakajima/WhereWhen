@@ -109,6 +109,19 @@ import PlaceResolver
 
 	nonisolated func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
 		Task { @MainActor in
+			do {
+				let log = URL.documentsDirectory.appending(path: "checkins.log")
+				let line = VisitImporter.Line(
+					latitude: visit.coordinate.latitude,
+					longitude: visit.coordinate.longitude,
+					timestamp: Date()
+				)
+
+				try Data(line.description.utf8).append(to: log)
+			} catch {
+				logger.error("Error logging checkin: \(error)")
+			}
+
 			logger.info("didVisit: \(visit.debugDescription)")
 
 			do {

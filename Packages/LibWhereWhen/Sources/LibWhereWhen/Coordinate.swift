@@ -44,8 +44,8 @@ public struct Coordinate: Codable, Identifiable, Sendable, Equatable, Hashable {
 
 	public init?(string: String) {
 		guard let match = string.wholeMatch(of: #/(-?\d+\.\d+)[,\/\s]\s?(-?\d+\.\d+)/#),
-					let lat = Double(match.output.1),
-					let lng = Double(match.output.2)
+		      let lat = Double(match.output.1),
+		      let lng = Double(match.output.2)
 		else {
 			print("didn't get coords from regex")
 			return nil

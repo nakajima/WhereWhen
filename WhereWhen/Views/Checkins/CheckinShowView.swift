@@ -141,12 +141,12 @@ import SwiftUI
 }
 
 #if DEBUG
-#Preview {
-	PreviewsWrapper {
-		CheckinShowView(
-			checkin: Checkin.preview,
-			place: Place.preview
-		)
+	#Preview {
+		PreviewsWrapper {
+			CheckinShowView(
+				checkin: Checkin.preview,
+				place: Place.preview
+			)
+		}
 	}
-}
 #endif

@@ -27,12 +27,12 @@ struct ManualCheckinView: View {
 			ProgressView("Finding Your Location…")
 				.task {
 					#if DEBUG
-					if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-						let coord = CLLocationCoordinate2D(latitude: 37.33233141, longitude: -122.03121860)
-						let clLocation = CLLocation(coordinate: coord, altitude: 0, horizontalAccuracy: kCLLocationAccuracyNearestTenMeters, verticalAccuracy: kCLLocationAccuracyNearestTenMeters, timestamp: Date())
-						self.status = .loaded(clLocation)
-						return
-					}
+						if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+							let coord = CLLocationCoordinate2D(latitude: 37.33233141, longitude: -122.03121860)
+							let clLocation = CLLocation(coordinate: coord, altitude: 0, horizontalAccuracy: kCLLocationAccuracyNearestTenMeters, verticalAccuracy: kCLLocationAccuracyNearestTenMeters, timestamp: Date())
+							self.status = .loaded(clLocation)
+							return
+						}
 					#endif
 
 					do {
