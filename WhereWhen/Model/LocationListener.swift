@@ -110,7 +110,7 @@ import PlaceResolver
 	nonisolated func locationManager(_: CLLocationManager, didVisit visit: CLVisit) {
 		Task { @MainActor in
 			do {
-				let log = URL.documentsDirectory.appending(path: "checkins.log")
+				let log = URL.documentsDirectory.appending(path: "visits.log")
 				let line = VisitImporter.Line(
 					latitude: visit.coordinate.latitude,
 					longitude: visit.coordinate.longitude,
