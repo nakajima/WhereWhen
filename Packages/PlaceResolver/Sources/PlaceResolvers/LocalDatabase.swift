@@ -27,11 +27,12 @@ public struct SpatialQuery: SQLSpecificExpressible {
 		self.span = span
 
 		let topLeading = coordinate.offset(x: -span, y: -span)
+		let bottomTrailing = coordinate.offset(x: span, y: span)
 		self.bounds = .init(
 			x: topLeading.longitude,
 			y: topLeading.latitude,
-			width: span.meters * 2.0,
-			height: span.meters * 2.0
+			width: bottomTrailing.longitude - topLeading.longitude,
+			height: bottomTrailing.latitude - topLeading.latitude
 		)
 	}
 }
