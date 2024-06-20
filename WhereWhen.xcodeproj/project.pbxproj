@@ -15,6 +15,7 @@
 		A637790C2C194969004C5D21 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = A637790B2C194969004C5D21 /* Nuke */; };
 		A637790E2C194969004C5D21 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = A637790D2C194969004C5D21 /* NukeUI */; };
 		A63779102C19631E004C5D21 /* SyncServerEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */; };
+		A64740D52C24A69D004A2D3D /* CLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740D42C24A69D004A2D3D /* CLError.swift */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
 		A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */ = {isa = PBXBuildFile; productRef = A67EE03B2C17F2C20016E07D /* PlaceResolver */; };
 		A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */; };
@@ -92,6 +93,7 @@
 		A615DC7B2C191317004B71B4 /* VisitImporterLineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitImporterLineCellView.swift; sourceTree = "<group>"; };
 		A63779082C1947A0004C5D21 /* MapThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapThumbnail.swift; sourceTree = "<group>"; };
 		A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServerEditorView.swift; sourceTree = "<group>"; };
+		A64740D42C24A69D004A2D3D /* CLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLError.swift; sourceTree = "<group>"; };
 		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceResolverDebuggerView.swift; sourceTree = "<group>"; };
 		A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WhereWhen.xctestplan; path = WhereWhen/WhereWhen.xctestplan; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				A68571C52C161930007828EE /* Query+DatabaseQueue.swift */,
 				A68571C62C161930007828EE /* String.swift */,
 				A68571C72C161930007828EE /* URLSession+Helpers.swift */,
+				A64740D42C24A69D004A2D3D /* CLError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				A685720C2C161930007828EE /* MKCoordinateSpan+Constants.swift in Sources */,
 				A68572302C161930007828EE /* CreatePlaceView.swift in Sources */,
 				A68572282C161930007828EE /* ListQueryRequest.swift in Sources */,
+				A64740D52C24A69D004A2D3D /* CLError.swift in Sources */,
 				A68572212C161930007828EE /* DiskLogger.swift in Sources */,
 				A6893FC92C1D5688000EE791 /* PlaceFormView.swift in Sources */,
 				A6893FCB2C1D5861000EE791 /* Address.swift in Sources */,

@@ -50,6 +50,7 @@ struct PlaceCellView: View {
 				if let attribution = place.attribution {
 					HStack(spacing: 2) {
 						Text("Source: \(attribution)")
+							.lineLimit(1)
 					}
 				}
 			}

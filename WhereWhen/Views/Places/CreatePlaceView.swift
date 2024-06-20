@@ -48,21 +48,19 @@ struct CreatePlaceView: View {
 	}
 
 	var body: some View {
-		Form {
-			PlaceFormView(place: $placeToCreate, buttonLabel: "Create Place") {
-				do {
-					try placeToCreate.save(to: database)
+		PlaceFormView(place: $placeToCreate, buttonLabel: "Create Place") {
+			do {
+				try placeToCreate.save(to: database)
 
-					let destination: Route = if let checkin {
-						.checkin(checkin, placeToCreate)
-					} else {
-						.finishCheckinView(placeToCreate, coordinate)
-					}
-
-					navigationPath.wrappedValue.append(destination)
-				} catch {
-					coordinator.errorMessage = error.localizedDescription
+				let destination: Route = if let checkin {
+					.checkin(checkin, placeToCreate)
+				} else {
+					.finishCheckinView(placeToCreate, coordinate)
 				}
+
+				navigationPath.wrappedValue.append(destination)
+			} catch {
+				coordinator.errorMessage = error.localizedDescription
 			}
 		}
 		.safeAreaInset(edge: .top, spacing: 0) {

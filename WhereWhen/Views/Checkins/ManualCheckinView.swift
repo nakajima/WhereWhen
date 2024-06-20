@@ -26,20 +26,25 @@ struct ManualCheckinView: View {
 		case .loading:
 			ProgressView("Finding Your Location…")
 				.task {
-					#if DEBUG
-						if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-							let coord = CLLocationCoordinate2D(latitude: 37.33233141, longitude: -122.03121860)
-							let clLocation = CLLocation(coordinate: coord, altitude: 0, horizontalAccuracy: kCLLocationAccuracyNearestTenMeters, verticalAccuracy: kCLLocationAccuracyNearestTenMeters, timestamp: Date())
-							self.status = .loaded(clLocation)
-							return
-						}
-					#endif
+					if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+						let coord = CLLocationCoordinate2D(latitude: 37.33233141, longitude: -122.03121860)
+						let clLocation = CLLocation(coordinate: coord, altitude: 0, horizontalAccuracy: kCLLocationAccuracyNearestTenMeters, verticalAccuracy: kCLLocationAccuracyNearestTenMeters, timestamp: Date())
+						self.status = .loaded(clLocation)
+						return
+					}
 
 					do {
 						let currentLocation = try await location.requestCurrent()
 						self.status = .loaded(currentLocation)
 					} catch {
-						self.status = .error(error.localizedDescription)
+						withAnimation {
+							if let error = error as? CLError {
+								self.status = .error(error.description)
+								return
+							}
+
+							self.status = .error(error.localizedDescription)
+						}
 					}
 				}
 		case let .loaded(clLocation):
@@ -52,7 +57,20 @@ struct ManualCheckinView: View {
 				.navigationBarTitleDisplayMode(.inline)
 			}
 		case let .error(string):
-			Text("Error fetching location: \(string)")
+			ContentUnavailableView {
+				Label("Could not find your location", systemImage: "mappin.slash")
+			} description: {
+				Text(string)
+				Button(action: {
+					withAnimation {
+						self.status = .loading
+					}
+				}) {
+					Text("Try Again")
+				}
+				.buttonStyle(.borderedProminent)
+				.buttonBorderShape(.capsule)
+			}
 		}
 	}
 }

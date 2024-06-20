@@ -14,7 +14,7 @@ import PlaceResolver
 
 @MainActor @Observable final class LocationListener: NSObject, Sendable, CLLocationManagerDelegate {
 	enum Error: Swift.Error {
-		case authorizationNeeded, requestAlreadyInProgress, locationNotFound
+		case authorizationNeeded, locationNotFound
 	}
 
 	final class LocationRequest: Sendable {
@@ -34,7 +34,7 @@ import PlaceResolver
 
 	var isAuthorized = false
 	var database: DatabaseContainer
-	private var locationRequest: LocationRequest?
+	private var locationRequests: [LocationRequest] = []
 
 	@MainActor init(database: DatabaseContainer) {
 		manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -63,13 +63,9 @@ import PlaceResolver
 	func requestCurrent() async throws -> CLLocation {
 		logger.info("Requesting current location.")
 
-		if locationRequest != nil {
-			throw Error.requestAlreadyInProgress
-		}
-
-		let result = try await withCheckedThrowingContinuation { continuation in
-			self.locationRequest = LocationRequest(continuation: continuation)
-
+		let result = try await withCheckedThrowingContinuation { [weak self] continuation in
+			guard let self else { return }
+			locationRequests.append(LocationRequest(continuation: continuation))
 			manager.requestLocation()
 		}
 
@@ -82,26 +78,26 @@ import PlaceResolver
 
 	nonisolated func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		Task { @MainActor in
-			if let locationRequest, let location = locations.first {
-				logger.info("Location updated: \(location)")
-				locationRequest.fulfill(with: .success(location))
-				self.locationRequest = nil
-			} else if let locationRequest {
-				logger.info("Location update failed: not found")
-				locationRequest.fulfill(with: .failure(Error.locationNotFound))
-				self.locationRequest = nil
+			while let locationRequest = locationRequests.popLast() {
+				if let location = locations.first {
+					logger.info("Location updated: \(location)")
+					locationRequest.fulfill(with: .success(location))
+				} else {
+					logger.info("Location update failed: not found")
+					locationRequest.fulfill(with: .failure(Error.locationNotFound))
+				}
 			}
 		}
 	}
 
-	func clearLocationRequest() {
-		locationRequest = nil
+	@MainActor func clearLocationRequest() {
+		locationRequests.removeAll()
 	}
 
 	nonisolated func locationManager(_: CLLocationManager, didFailWithError error: any Swift.Error) {
 		Task { @MainActor in
 			logger.info("Location request failed with: \(error)")
-			if let locationRequest {
+			while let locationRequest = locationRequests.popLast() {
 				locationRequest.fulfill(with: .failure(error))
 			}
 		}
