@@ -11,7 +11,7 @@ import SwiftUI
 
 @MainActor struct PlaceResolverDebuggerView: View {
 	@State private var coordinateString = ""
-	@State private var coordinate: Coordinate?
+//	@State private var coordinate: Coordinate?
 	@State private var isResolving = false
 	@State private var isLocating = false
 	@State private var results: [String: PlaceResolver.Suggestion]?
@@ -25,8 +25,17 @@ import SwiftUI
 				.onSubmit {
 					isResolving = true
 				}
-			Button("Resolve Coordinate") {
+			Button(action: {
 				isResolving = true
+			}) {
+				Text("Resolve Coordinate")
+					.frame(maxWidth: .infinity, alignment: .leading)
+			}
+			.disabled(coordinate == nil || isResolving)
+			.overlay(alignment: .trailing) {
+				if isResolving {
+					ProgressView()
+				}
 			}
 			.task(id: isResolving) {
 				if coordinateString.isBlank || !isResolving {
@@ -37,9 +46,18 @@ import SwiftUI
 
 				isResolving = false
 			}
-			Button("Locate Me") {
+			Button(action: {
 				isLocating = true
+			}) {
+				Text("Locate Me")
+					.frame(maxWidth: .infinity, alignment: .leading)
 			}
+			.overlay(alignment: .trailing) {
+				if isLocating {
+					ProgressView()
+				}
+			}
+			.disabled(isLocating)
 			.task(id: isLocating) {
 				guard isLocating else { return }
 
@@ -68,22 +86,26 @@ import SwiftUI
 							currentLocation: result.value.place.coordinate,
 							place: result.value.place
 						)
+
+						Text("\(coordinate.latitude), \(coordinate.longitude)")
+							.font(.caption)
+							.foregroundStyle(.secondary)
 					}
-					Text("\(coordinate.latitude), \(coordinate.longitude)")
-						.font(.caption)
-						.foregroundStyle(.secondary)
 				}
 			}
 		}
 	}
 
+	var coordinate: Coordinate? {
+		Coordinate(string: coordinateString)
+	}
+
 	func resolve() async {
-		guard let coordinate = Coordinate(string: coordinateString) else {
+		guard let coordinate else {
 			print("did not parse coordinate")
 			return
 		}
 
-		self.coordinate = coordinate
 		let resolver = PlaceResolver(
 			database: database,
 			coordinate: coordinate
