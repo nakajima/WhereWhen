@@ -14,18 +14,21 @@ import SwiftUI
 struct CheckinListView: View {
 	@Query(CheckinListRequest()) var checkins: [Checkin]
 
+	@Environment(LocationListener.self) var location
 	@EnvironmentObject var coordinator: WhereWhenCoordinator
 
 	var body: some View {
 		if checkins.isEmpty {
 			ContentUnavailableView {
-				Label("No checkins yet", systemImage: "mappin.slash")
+				Label("No checkins yet.", systemImage: "mappin.slash")
 			} actions: {
-				Button("Add One Manually…") {
-					coordinator.isShowingManualCheckin = true
+				if location.isAuthorized {
+					Button("Add One Manually…") {
+						coordinator.isShowingManualCheckin = true
+					}
+					.buttonStyle(.borderedProminent)
+					.padding(.top)
 				}
-				.buttonStyle(.borderedProminent)
-				.padding(.top)
 			}
 		}
 

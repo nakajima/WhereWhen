@@ -14,13 +14,24 @@ import LibWhereWhen
 struct CheckinListRequest: Queryable {
 	static var defaultValue: [Checkin] { [] }
 
+	var unique: Bool = false
+
+	init(unique: Bool = false) {
+		self.unique = unique
+	}
+
 	func publisher(in dbQueue: DatabaseQueue) -> AnyPublisher<[Checkin], Error> {
 		ValueObservation
 			.tracking { db in
-				try Checkin
+				var scope = Checkin
 					.including(optional: Checkin.placeAssociation)
 					.order(Column("savedAt").desc)
-					.fetchAll(db)
+
+				if unique {
+					scope = scope.select(literal: "DISTINCT placeID")
+				}
+
+				return try scope.fetchAll(db)
 			}
 			.publisher(in: dbQueue, scheduling: .immediate)
 			.eraseToAnyPublisher()

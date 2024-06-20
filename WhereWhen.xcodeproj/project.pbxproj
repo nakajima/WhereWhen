@@ -16,6 +16,10 @@
 		A637790E2C194969004C5D21 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = A637790D2C194969004C5D21 /* NukeUI */; };
 		A63779102C19631E004C5D21 /* SyncServerEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */; };
 		A64740D52C24A69D004A2D3D /* CLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740D42C24A69D004A2D3D /* CLError.swift */; };
+		A64740D72C24B3C3004A2D3D /* RequestLocationAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740D62C24B3C3004A2D3D /* RequestLocationAccessView.swift */; };
+		A64740DA2C24B514004A2D3D /* HomeCheckinPlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740D92C24B514004A2D3D /* HomeCheckinPlacesListView.swift */; };
+		A64740DC2C24BA73004A2D3D /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740DB2C24BA73004A2D3D /* HomeMapView.swift */; };
+		A64740DE2C24BE70004A2D3D /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740DD2C24BE70004A2D3D /* PlaceView.swift */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
 		A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */ = {isa = PBXBuildFile; productRef = A67EE03B2C17F2C20016E07D /* PlaceResolver */; };
 		A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */; };
@@ -94,6 +98,10 @@
 		A63779082C1947A0004C5D21 /* MapThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapThumbnail.swift; sourceTree = "<group>"; };
 		A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServerEditorView.swift; sourceTree = "<group>"; };
 		A64740D42C24A69D004A2D3D /* CLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLError.swift; sourceTree = "<group>"; };
+		A64740D62C24B3C3004A2D3D /* RequestLocationAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationAccessView.swift; sourceTree = "<group>"; };
+		A64740D92C24B514004A2D3D /* HomeCheckinPlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCheckinPlacesListView.swift; sourceTree = "<group>"; };
+		A64740DB2C24BA73004A2D3D /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		A64740DD2C24BE70004A2D3D /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceResolverDebuggerView.swift; sourceTree = "<group>"; };
 		A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WhereWhen.xctestplan; path = WhereWhen/WhereWhen.xctestplan; sourceTree = "<group>"; };
@@ -220,8 +228,18 @@
 				A68571EA2C161930007828EE /* ChoosePlaceView.swift */,
 				A68571EC2C161930007828EE /* CreatePlaceView.swift */,
 				A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */,
+				A64740DD2C24BE70004A2D3D /* PlaceView.swift */,
 			);
 			path = Places;
+			sourceTree = "<group>";
+		};
+		A64740D82C24B50B004A2D3D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A64740D92C24B514004A2D3D /* HomeCheckinPlacesListView.swift */,
+				A64740DB2C24BA73004A2D3D /* HomeMapView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A66FDEEE2C1405F000979F75 /* Frameworks */ = {
@@ -328,6 +346,8 @@
 				A68571E52C161930007828EE /* Queries */,
 				A68571EB2C161930007828EE /* ContentView.swift */,
 				A68571EF2C161930007828EE /* HomeView.swift */,
+				A64740D82C24B50B004A2D3D /* Home */,
+				A64740D62C24B3C3004A2D3D /* RequestLocationAccessView.swift */,
 				A68571F82C161930007828EE /* Styles.swift */,
 				A6893FC82C1D5688000EE791 /* PlaceFormView.swift */,
 			);
@@ -523,8 +543,10 @@
 				A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */,
 				A68572322C161930007828EE /* GrantPermissionsView.swift in Sources */,
 				A685723E2C161930007828EE /* WhereWhenApp.swift in Sources */,
+				A64740D72C24B3C3004A2D3D /* RequestLocationAccessView.swift in Sources */,
 				A685723F2C161930007828EE /* WhereWhenCoordinator.swift in Sources */,
 				A68572392C161930007828EE /* PlaceListView.swift in Sources */,
+				A64740DE2C24BE70004A2D3D /* PlaceView.swift in Sources */,
 				A685722A2C161930007828EE /* CheckinCellView.swift in Sources */,
 				A68572312C161930007828EE /* ErrorOverlay.swift in Sources */,
 				A685720A2C161930007828EE /* Int+Formatting.swift in Sources */,
@@ -538,6 +560,7 @@
 				A68572232C161930007828EE /* LiveModel.swift in Sources */,
 				A68572112C161930007828EE /* URLSession+Helpers.swift in Sources */,
 				A685722B2C161930007828EE /* CheckinEditPlaceView.swift in Sources */,
+				A64740DA2C24B514004A2D3D /* HomeCheckinPlacesListView.swift in Sources */,
 				A68572062C161930007828EE /* Coordinate+CL.swift in Sources */,
 				A68572242C161930007828EE /* LockAttribute.swift in Sources */,
 				A685720B2C161930007828EE /* MKCoordinateRegion.swift in Sources */,
@@ -546,6 +569,7 @@
 				A68572262C161930007828EE /* CheckinListRequest.swift in Sources */,
 				A68572092C161930007828EE /* Environment.swift in Sources */,
 				A615DC7C2C191317004B71B4 /* VisitImporterLineCellView.swift in Sources */,
+				A64740DC2C24BA73004A2D3D /* HomeMapView.swift in Sources */,
 				A6893FCD2C1D670E000EE791 /* PlaceEditView.swift in Sources */,
 				A63779092C1947A0004C5D21 /* MapThumbnail.swift in Sources */,
 				A685722D2C161930007828EE /* CheckinShowView.swift in Sources */,
@@ -721,8 +745,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhereWhen/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WhereWhen;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To add to your personal location history";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To add to your personal location history";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Automatically create checkins in the background.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Find places to checkin.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -757,8 +781,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhereWhen/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WhereWhen;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To add to your personal location history";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To add to your personal location history";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Automatically create checkins in the background.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Find places to checkin.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

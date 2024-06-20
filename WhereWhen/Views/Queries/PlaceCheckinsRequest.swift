@@ -20,6 +20,7 @@ struct PlaceCheckinsRequest: Queryable {
 		ValueObservation
 			.tracking { db in
 				try Checkin
+					.including(required: Checkin.placeAssociation)
 					.filter(Column("placeID") == placeUUID)
 					.order(Column("savedAt").desc)
 					.fetchAll(db)

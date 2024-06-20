@@ -13,60 +13,48 @@ struct HomeView: View {
 	@Environment(\.database) var database
 	@Environment(LocationListener.self) var location
 	@EnvironmentObject var coordinator: WhereWhenCoordinator
-	@AppStorage("isLocationPromptDismissed") var isLocationPromptDismissed = false
+
+	@State private var currentTab = 0
+	@State private var lastCurrentTab = 0
 
 	var body: some View {
-		List {
-			CheckinListView()
-		}
-		.refreshable {
-			coordinator.sync()
-		}
-		.toolbar {
-			ToolbarItem(placement: .navigationBarLeading) {
-				NavigationLink(value: Route.settings) {
-					Label("Settings", systemImage: "gearshape")
+		TabView(selection: $currentTab.animation()) {
+			HomeCheckinPlacesListView()
+				.tag(0)
+				.tabItem {
+					Label("Home", systemImage: "list.star")
 				}
-			}
-		}
-		.safeAreaInset(edge: .bottom) {
-			Button("Check In") {
-				coordinator.isShowingManualCheckin = true
-			}
-			.buttonStyle(.borderedProminent)
-			.controlSize(.large)
-			.clipShape(RoundedRectangle(cornerRadius: 32))
-		}
-		.safeAreaInset(edge: .bottom) {
-			if !location.isAuthorized, !isLocationPromptDismissed {
-				VStack {
-					Text("Hey you should probably grant location access. Otherwise there’s not much point to this app.")
-						.frame(maxWidth: .infinity, alignment: .leading)
-						.padding(.top)
-					HStack {
-						Button(action: {
-							location.requestAuthorization()
-						}) {
-							Text("Grant…")
-								.frame(maxWidth: .infinity)
+
+			ProgressView()
+				.tag(1)
+				.onAppear {
+					coordinator.isShowingManualCheckin = true
+				}
+				.onChange(of: coordinator.isShowingManualCheckin) {
+					if !coordinator.isShowingManualCheckin {
+						withAnimation {
+							currentTab = lastCurrentTab
 						}
-						.buttonStyle(.borderedProminent)
-						Button(action: {}) {
-							Text("I shan’t.")
-								.frame(maxWidth: .infinity)
-						}
-						.foregroundStyle(.primary)
-						.buttonStyle(.bordered)
 					}
 				}
-				.padding(.horizontal)
-				.padding(.bottom)
-				.background(.fill)
-				.font(.subheadline)
+				.tabItem {
+					Label("Checkin", systemImage: "mappin.and.ellipse.circle.fill")
+				}
+
+			HomeMapView()
+				.tag(2)
+				.tabItem {
+					Label("Map", systemImage: "map")
+				}
+		}
+		.onChange(of: currentTab) {
+			// Let us restore whatever tab we were on before when the user dismisses
+			// the manual checkin sheet
+			print("currentTab now \(currentTab)")
+			if currentTab != 1 {
+				lastCurrentTab = currentTab
 			}
 		}
-		.navigationBarTitleDisplayMode(.inline)
-		.navigationTitle("Places")
 	}
 }
 
@@ -74,6 +62,9 @@ struct HomeView: View {
 	#Preview {
 		PreviewsWrapper {
 			HomeView()
+				.onAppear {
+					try! Checkin.preview.save(to: .memory)
+				}
 		}
 	}
 #endif
