@@ -28,16 +28,6 @@ struct HomeCheckinPlacesListView: View {
 			}
 		}
 		.safeAreaInset(edge: .bottom) {
-			if location.isAuthorized {
-				Button("Check In") {
-					coordinator.isShowingManualCheckin = true
-				}
-				.buttonStyle(.borderedProminent)
-				.controlSize(.large)
-				.clipShape(RoundedRectangle(cornerRadius: 32))
-			}
-		}
-		.safeAreaInset(edge: .bottom) {
 			RequestLocationAccessView()
 		}
 		.navigationBarTitleDisplayMode(.inline)
