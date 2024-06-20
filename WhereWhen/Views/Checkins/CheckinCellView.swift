@@ -47,12 +47,6 @@ struct CheckinWithPlaceCellView: View {
 		}
 		.listRowInsets(.init())
 		.swipeActions {
-			Button("Remove Place") {
-				var checkin = checkin
-				checkin.place = nil
-				try! checkin.save(to: database)
-			}
-
 			Button("Delete", role: .destructive) {
 				try! database.delete(checkin)
 			}
