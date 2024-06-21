@@ -13,14 +13,14 @@ import SwiftUI
 	struct PreviewsWrapper<Content: View>: View {
 		var content: () -> Content
 
-		@StateObject var coordinator = WhereWhenCoordinator(database: .memory)
+		@State var coordinator = WhereWhenCoordinator(database: .memory)
 		@State private var path: [Route] = []
 
 		var body: some View {
 			return NavigationContainer(path: $path) {
 				content()
 					.environment(\.database, .memory)
-					.environmentObject(coordinator)
+					.environment(\.coordinator, coordinator)
 					.environment(LocationListener(database: .memory))
 			}
 		}

@@ -12,7 +12,7 @@ import SwiftUI
 struct HomeView: View {
 	@Environment(\.database) var database
 	@Environment(LocationListener.self) var location
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	@State private var currentTab = 0
 	@State private var lastCurrentTab = 0

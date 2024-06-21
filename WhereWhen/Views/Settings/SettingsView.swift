@@ -13,7 +13,7 @@ extension URL: Identifiable {
 }
 
 struct SettingsView: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 	@Environment(\.database) var database
 	@Environment(LocationListener.self) var location
 

@@ -14,7 +14,7 @@ import SwiftUI
 @MainActor struct CheckinShowView: View {
 	@Environment(\.database) var database
 	@Environment(\.navigationPath) var navigation
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	@Query(PlaceCheckinsRequest(placeUUID: ""))
 	var placeCheckins: [Checkin]

@@ -10,19 +10,21 @@ import Foundation
 import LibWhereWhen
 import SwiftUI
 
-@MainActor final class WhereWhenCoordinator: ObservableObject {
+@MainActor @Observable final class WhereWhenCoordinator {
 	public let logger = DiskLogger(label: "Coordinator", location: URL.documentsDirectory.appending(path: "wherewhen.log"))
 
 	let database: DatabaseContainer
 
-	@Published var isShowingManualCheckin = false
-	@Published var errorMessage: String?
-	@Published var isSyncServerOnline = false
-	@Published var syncer: Syncer?
+	var isShowingManualCheckin = false
+	var errorMessage: String?
+	var isSyncServerOnline = false
+	var syncer: Syncer?
 
-	init(database: DatabaseContainer) {
+	nonisolated init(database: DatabaseContainer) {
 		self.database = database
-		self.syncer = Syncer.load(with: database)
+		Task { @MainActor in
+			self.syncer = Syncer.load(with: database)
+		}
 	}
 
 	func checkSyncServer() async {

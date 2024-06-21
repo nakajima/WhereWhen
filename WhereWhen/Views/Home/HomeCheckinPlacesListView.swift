@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeCheckinPlacesListView: View {
 	@Environment(\.database) var database
 	@Environment(LocationListener.self) var location
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	var body: some View {
 		List {

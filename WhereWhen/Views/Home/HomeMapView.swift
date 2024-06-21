@@ -46,10 +46,10 @@ struct HomeMapView: View {
 }
 
 #if DEBUG
-#Preview {
-	HomeMapView()
-		.onAppear {
-			try! Checkin.preview.save(to: .memory)
-		}
-}
+	#Preview {
+		HomeMapView()
+			.onAppear {
+				try! Checkin.preview.save(to: .memory)
+			}
+	}
 #endif

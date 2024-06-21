@@ -18,6 +18,17 @@ struct NavigationPathKey: EnvironmentKey {
 	static let defaultValue: Binding<[Route]> = Binding(get: { [] }, set: { _ in })
 }
 
+struct CoordinatorKey: EnvironmentKey {
+	static let defaultValue: WhereWhenCoordinator = .init(database: .dev)
+}
+
+extension EnvironmentValues {
+	var coordinator: WhereWhenCoordinator {
+		get { self[CoordinatorKey.self] }
+		set { self[CoordinatorKey.self] = newValue }
+	}
+}
+
 extension EnvironmentValues {
 	var database: DatabaseContainer {
 		get { self[DatabaseKey.self] }

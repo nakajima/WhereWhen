@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ErrorOverlay: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	let message: String
 

@@ -10,7 +10,7 @@ import MapKit
 import SwiftUI
 
 struct ManualCheckinFinishView: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.database) var database
 	@Environment(\.navigationPath) var navigationPath

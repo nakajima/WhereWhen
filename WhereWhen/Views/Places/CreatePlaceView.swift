@@ -19,7 +19,7 @@ struct CreatePlaceView: View {
 	@Environment(\.database) var database
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.navigationPath) var navigationPath
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	@State var placeToCreate: Place
 

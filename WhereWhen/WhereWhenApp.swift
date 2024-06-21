@@ -11,7 +11,7 @@ import UIKit
 
 @main
 struct WhereWhenApp: App {
-	@StateObject var coordinator: WhereWhenCoordinator
+	@State var coordinator: WhereWhenCoordinator
 
 	let database: DatabaseContainer
 	let location: LocationListener
@@ -21,7 +21,7 @@ struct WhereWhenApp: App {
 
 		self.database = database
 		self.location = LocationListener(database: database)
-		self._coordinator = StateObject(
+		self._coordinator = State(
 			wrappedValue: WhereWhenCoordinator(database: database)
 		)
 	}
@@ -33,7 +33,7 @@ struct WhereWhenApp: App {
 					let debouncer = Debouncer(wait: .seconds(1))
 					do {
 						try await Task.sleep(for: .seconds(1))
-						for try await update in coordinator.database.updates {
+						for try await _ in coordinator.database.updates {
 							debouncer.debounce { @MainActor in
 								coordinator.sync()
 							}
@@ -45,6 +45,6 @@ struct WhereWhenApp: App {
 		}
 		.environment(location)
 		.environment(\.database, database)
-		.environmentObject(coordinator)
+		.environment(\.coordinator, coordinator)
 	}
 }

@@ -9,14 +9,14 @@ import LibWhereWhen
 import SwiftUI
 
 struct ContentView: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 	@State private var path: [Route] = []
 
 	var body: some View {
 		NavigationContainer(path: $path) {
 			HomeView()
 		}
-		.sheet(isPresented: $coordinator.isShowingManualCheckin) {
+		.sheet(isPresented: coordinator.binding(\.isShowingManualCheckin)) {
 			ManualCheckinView()
 		}
 		.overlay(alignment: .center) {
@@ -31,7 +31,7 @@ struct ContentView: View {
 	#Preview {
 		ContentView()
 			.environment(\.database, .memory)
-			.environmentObject(WhereWhenCoordinator(database: .memory))
+			.environment(\.coordinator, WhereWhenCoordinator(database: .memory))
 			.environment(LocationListener(database: .memory))
 	}
 #endif

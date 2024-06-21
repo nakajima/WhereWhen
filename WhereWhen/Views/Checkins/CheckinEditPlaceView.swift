@@ -23,7 +23,7 @@ struct UpdateCheckinView: View {
 }
 
 struct CheckinEditPlaceView: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 	let checkin: Checkin
 
 	var body: some View {

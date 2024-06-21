@@ -26,7 +26,7 @@ struct ChoosePlaceView: View {
 
 	@Environment(\.database) var database
 	@Environment(\.navigationPath) var navigationPath
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	let location: Coordinate
 	let destination: (Place) -> Route
@@ -97,7 +97,7 @@ struct ChoosePlaceView: View {
 		}
 	}
 
-	func refresh() async {
+	@MainActor func refresh() async {
 		do {
 			try? await Task.sleep(for: .seconds(0.3))
 			if Task.isCancelled {

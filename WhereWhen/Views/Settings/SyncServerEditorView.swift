@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SyncServerEditorView: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 	@Environment(\.database) var database
 
 	@State private var serverURLText: String = ""

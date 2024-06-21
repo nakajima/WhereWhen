@@ -20,6 +20,7 @@
 		A64740DA2C24B514004A2D3D /* HomeCheckinPlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740D92C24B514004A2D3D /* HomeCheckinPlacesListView.swift */; };
 		A64740DC2C24BA73004A2D3D /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740DB2C24BA73004A2D3D /* HomeMapView.swift */; };
 		A64740DE2C24BE70004A2D3D /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740DD2C24BE70004A2D3D /* PlaceView.swift */; };
+		A64740E22C25E2EF004A2D3D /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64740E12C25E2EF004A2D3D /* Observable.swift */; };
 		A67EDFFD2C176B3B0016E07D /* LibWhereWhen in Frameworks */ = {isa = PBXBuildFile; productRef = A67EDFFC2C176B3B0016E07D /* LibWhereWhen */; };
 		A67EE03C2C17F2C20016E07D /* PlaceResolver in Frameworks */ = {isa = PBXBuildFile; productRef = A67EE03B2C17F2C20016E07D /* PlaceResolver */; };
 		A67EE03F2C17F3F30016E07D /* PlaceResolverDebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */; };
@@ -102,6 +103,7 @@
 		A64740D92C24B514004A2D3D /* HomeCheckinPlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCheckinPlacesListView.swift; sourceTree = "<group>"; };
 		A64740DB2C24BA73004A2D3D /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		A64740DD2C24BE70004A2D3D /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		A64740E12C25E2EF004A2D3D /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		A67EDFFB2C176AF10016E07D /* LibWhereWhen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LibWhereWhen; sourceTree = "<group>"; };
 		A67EE03E2C17F3F30016E07D /* PlaceResolverDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceResolverDebuggerView.swift; sourceTree = "<group>"; };
 		A67EE0402C1809A40016E07D /* WhereWhen.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WhereWhen.xctestplan; path = WhereWhen/WhereWhen.xctestplan; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				A68571C62C161930007828EE /* String.swift */,
 				A68571C72C161930007828EE /* URLSession+Helpers.swift */,
 				A64740D42C24A69D004A2D3D /* CLError.swift */,
+				A64740E12C25E2EF004A2D3D /* Observable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				A68572102C161930007828EE /* String.swift in Sources */,
 				A68572232C161930007828EE /* LiveModel.swift in Sources */,
 				A68572112C161930007828EE /* URLSession+Helpers.swift in Sources */,
+				A64740E22C25E2EF004A2D3D /* Observable.swift in Sources */,
 				A685722B2C161930007828EE /* CheckinEditPlaceView.swift in Sources */,
 				A64740DA2C24B514004A2D3D /* HomeCheckinPlacesListView.swift in Sources */,
 				A68572062C161930007828EE /* Coordinate+CL.swift in Sources */,

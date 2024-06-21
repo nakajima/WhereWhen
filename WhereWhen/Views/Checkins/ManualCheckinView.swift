@@ -11,7 +11,7 @@ import MapKit
 import SwiftUI
 
 struct ManualCheckinView: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 	@Environment(LocationListener.self) var location
 
 	@State private var status: Status = .loading

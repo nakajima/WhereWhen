@@ -34,7 +34,7 @@ extension Binding<[Route]> {
 }
 
 struct NavigationContainer<Content: View>: View {
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	@Binding var path: [Route]
 	@ViewBuilder var content: () -> Content

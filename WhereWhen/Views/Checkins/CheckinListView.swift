@@ -15,7 +15,7 @@ struct CheckinListView: View {
 	@Query(CheckinListRequest()) var checkins: [Checkin]
 
 	@Environment(LocationListener.self) var location
-	@EnvironmentObject var coordinator: WhereWhenCoordinator
+	@Environment(\.coordinator) var coordinator
 
 	var body: some View {
 		if checkins.isEmpty {
