@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension Observable {
+@MainActor extension Observable {
 	func binding<T>(_ keyPath: ReferenceWritableKeyPath<Self, T>) -> Binding<T> {
 		Binding<T>(
 			get: {
