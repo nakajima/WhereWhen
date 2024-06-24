@@ -13,25 +13,23 @@ struct ContentView: View {
 	@State private var path: [Route] = []
 
 	var body: some View {
-		NavigationContainer(path: $path) {
-			HomeView()
-		}
-		.sheet(isPresented: coordinator.binding(\.isShowingManualCheckin)) {
-			ManualCheckinView()
-		}
-		.overlay(alignment: .center) {
-			if let errorMessage = coordinator.errorMessage {
-				ErrorOverlay(message: errorMessage)
+		HomeView()
+			.sheet(isPresented: coordinator.binding(\.isShowingManualCheckin)) {
+				ManualCheckinView()
 			}
-		}
+			.overlay(alignment: .center) {
+				if let errorMessage = coordinator.errorMessage {
+					ErrorOverlay(message: errorMessage)
+				}
+			}
 	}
 }
 
 #if DEBUG
-	#Preview {
-		ContentView()
-			.environment(\.database, .memory)
-			.environment(\.coordinator, WhereWhenCoordinator(database: .memory))
-			.environment(LocationListener(database: .memory))
-	}
+#Preview {
+	ContentView()
+		.environment(\.database, .memory)
+		.environment(\.coordinator, WhereWhenCoordinator(database: .memory))
+		.environment(LocationListener(database: .memory))
+}
 #endif
