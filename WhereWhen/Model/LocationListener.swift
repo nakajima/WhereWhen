@@ -113,7 +113,7 @@ import PlaceResolver
 					timestamp: Date()
 				)
 
-				try Data(line.description.utf8).append(to: log)
+				try Data((line.description + "\n").utf8).append(to: log)
 			} catch {
 				logger.error("Error logging checkin: \(error)")
 			}
