@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct VisitLogsView: View {
-	let logs: String?
+	@State var logs: String?
 
 	var body: some View {
 		VStack {
@@ -20,6 +20,14 @@ struct VisitLogsView: View {
 			} else {
 				ContentUnavailableView("No visits logged.", systemImage: "location.slash")
 				Text("No visits logged.")
+			}
+		}
+		.toolbar {
+			ToolbarItem {
+				Button("Clear") {
+					try? FileManager.default.removeItem(at: URL.documentsDirectory.appending(path: "visits.log"))
+					logs = nil
+				}
 			}
 		}
 		.navigationTitle("Raw Visit Logs")
