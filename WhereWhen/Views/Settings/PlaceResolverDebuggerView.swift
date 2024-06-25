@@ -108,7 +108,8 @@ import SwiftUI
 
 		let resolver = PlaceResolver(
 			database: database,
-			coordinate: coordinate
+			coordinate: coordinate,
+			distance: 100
 		)
 
 		let suggestions = await resolver.suggestions()

@@ -90,7 +90,7 @@ extension PlaceResolver {
 			"""
 			[out:json];
 			(
-			way["building"](around:50.0, \(context.coordinate.latitude), \(context.coordinate.longitude))["name"];
+			way["building"](around:\(context.distance), \(context.coordinate.latitude), \(context.coordinate.longitude))["name"];
 			);
 			out body;
 			>;

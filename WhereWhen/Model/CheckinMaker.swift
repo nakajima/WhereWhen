@@ -39,7 +39,8 @@ private let logger = DiskLogger(label: "CheckinCreator", location: URL.documents
 		} else {
 			await PlaceResolver(
 				database: database,
-				coordinate: checkin.coordinate
+				coordinate: checkin.coordinate,
+				distance: 100
 			).bestGuessPlace()
 		}
 

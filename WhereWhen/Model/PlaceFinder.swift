@@ -22,19 +22,24 @@ struct PlaceFinder {
 	// Where is the user right now? This may differ from where they are searching
 	let coordinate: Coordinate
 
+	// How far from the user's location should we search
+	let distance: Distance
+
 	// A user entered string to search for
 	let search: String
 
-	init(database: DatabaseContainer, coordinate: Coordinate, search: String) {
+	init(database: DatabaseContainer, coordinate: Coordinate, distance: Distance, search: String) {
 		self.database = database
 		self.coordinate = coordinate
+		self.distance = distance
 		self.search = search
 	}
 
 	func results(in region: MKCoordinateRegion) async throws -> [Place] {
 		let suggestions = await PlaceResolver(
 			database: database,
-			coordinate: .init(region.center)
+			coordinate: .init(region.center),
+			distance: distance
 		).suggestions()
 
 		// Do some simple filtering if we have a search. It'd be nice to improve this

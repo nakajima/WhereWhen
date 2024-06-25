@@ -123,7 +123,8 @@ import PlaceResolver
 			do {
 				let place = await PlaceResolver(
 					database: database,
-					coordinate: .init(visit.coordinate)
+					coordinate: .init(visit.coordinate),
+					distance: 100
 				).bestGuessPlace()
 
 				try await CheckinCreator(

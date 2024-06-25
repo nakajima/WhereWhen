@@ -16,10 +16,12 @@ public struct PlaceResolver: Sendable {
 	public struct Context: Sendable {
 		public let database: DatabaseContainer
 		public let coordinate: Coordinate
+		public let distance: Distance
 
-		public init(database: DatabaseContainer, coordinate: Coordinate) {
+		public init(database: DatabaseContainer, coordinate: Coordinate, distance: Distance) {
 			self.database = database
 			self.coordinate = coordinate
+			self.distance = distance
 		}
 	}
 
@@ -31,8 +33,8 @@ public struct PlaceResolver: Sendable {
 
 	let context: Context
 
-	public init(database: DatabaseContainer, coordinate: Coordinate) {
-		self.context = Context(database: database, coordinate: coordinate)
+	public init(database: DatabaseContainer, coordinate: Coordinate, distance: Distance) {
+		self.context = Context(database: database, coordinate: coordinate, distance: distance)
 	}
 
 	let resolvers: [any Resolver.Type] = [

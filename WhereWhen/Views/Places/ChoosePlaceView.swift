@@ -11,9 +11,13 @@ import LibWhereWhen
 import MapKit
 import SwiftUI
 
+enum ChoosePlaceViewStatus {
+	case loading, loaded(Place), loadingMore, loadedAll
+}
+
 struct ChoosePlaceView: View {
 	// What part of the map are we lookin at
-	@State private var region: MKCoordinateRegion
+	@State private var region: MapCameraPosition
 
 	// What are our possible results
 	@State var possibleResults: [Place] = []
@@ -23,6 +27,8 @@ struct ChoosePlaceView: View {
 
 	// Is the user searching for something?
 	@State private var searchTerm: String = ""
+
+	@State private var distance = 100.0
 
 	@Environment(\.database) var database
 	@Environment(\.navigationPath) var navigationPath
@@ -36,77 +42,124 @@ struct ChoosePlaceView: View {
 		self.destination = destination
 
 		self._region = State(
-			wrappedValue: .init(
+			wrappedValue: .region(.init(
 				center: location.clLocation,
 				span: .within(meters: 100)
-			)
+			))
 		)
 	}
 
 	var body: some View {
 		VStack(spacing: 0) {
-			PlaceListView(places: possibleResults, regionID: region.id) { visiblePlaces in
-				self.visiblePlaces = visiblePlaces
-			} cellBuilder: { place in
-				NavigationLink(
-					value: destination(place)
-				) {
-					PlaceCellView(
-						currentLocation: location,
-						place: place
-					)
-					.contentShape(Rectangle())
-				}
-			}
-			.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
-			.ignoresSafeArea(edges: .bottom)
-			.searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
-			.safeAreaInset(edge: .top, spacing: 0) {
-				Map(initialPosition: .region(region), interactionModes: [.pan, .zoom]) {
-					ForEach(visiblePlaces) { place in
-						Marker(place.name, coordinate: place.coordinate.clLocation)
+			VStack {
+				if !searchTerm.isBlank && possibleResults.isEmpty {
+					CreatePlaceView(coordinate: location, checkin: nil, placeName: searchTerm.trimmed)
+						.transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
+				} else {
+					PlaceListView(places: possibleResults) { visiblePlaces in
+						self.visiblePlaces = visiblePlaces
+					} cellBuilder: { place in
+						NavigationLink(
+							value: destination(place)
+						) {
+							PlaceCellView(
+								currentLocation: location,
+								place: place
+							)
+							.contentShape(Rectangle())
+						}
+					} loadMore: {
+						Button {
+							Task {
+								await loadMore()
+							}
+						} label: {
+							Text("Load More")
+						}
 					}
+					.transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
+					.ignoresSafeArea(edges: .bottom)
+					.safeAreaInset(edge: .top, spacing: 0) {
+						Map(position: $region, interactionModes: [.pan, .zoom]) {
+							ForEach(visiblePlaces) { place in
+								Marker(place.name, coordinate: place.coordinate.clLocation)
+							}
 
-					Marker(coordinate: location.clLocation) {
-						Label("You’re Here", systemImage: "person.fill")
+							Marker(coordinate: location.clLocation) {
+								Label("You’re Here", systemImage: "person.fill")
+							}
+							.tint(Color.accentColor)
+						}
+						.onMapCameraChange { context in
+							self.region = .region(context.region)
+						}
+						.frame(height: 200)
+						.background(
+							Color.primary.shadow(radius: 2)
+						)
 					}
-					.tint(Color.accentColor)
+					.safeAreaInset(edge: .bottom) {
+						Button("Create a Place") {
+							print(navigationPath.wrappedValue)
+							navigationPath.wrappedValue.append(.createPlace(location, nil))
+						}
+						.buttonStyle(.borderedProminent)
+						.buttonBorderShape(.capsule)
+					}
+					.task(id: searchTerm) {
+						await refresh()
+					}
+					.task(id: region.region?.id) {
+						await refresh()
+					}
 				}
-				.onMapCameraChange { context in
-					self.region = context.region
-				}
-				.frame(height: 200)
-				.background(
-					Color.primary.shadow(radius: 2)
-				)
 			}
-			.safeAreaInset(edge: .bottom) {
-				Button("Create a Place") {
-					print(navigationPath.wrappedValue)
-					navigationPath.wrappedValue.append(.createPlace(location, nil))
-				}
-				.buttonStyle(.borderedProminent)
-				.buttonBorderShape(.capsule)
-			}
-			.task(id: searchTerm) {
-				await refresh()
-			}
-			.task(id: region.id) {
-				await refresh()
-			}
+			.searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
 		}
 	}
 
 	@MainActor func refresh() async {
-		do {
-			try? await Task.sleep(for: .seconds(0.3))
-			if Task.isCancelled {
-				return
-			}
+		guard let region = region.region else {
+			return
+		}
 
+		do {
 			let placeFinder = PlaceFinder(
 				database: database,
 				coordinate: .init(region.center),
+				distance: distance,
+				search: searchTerm
+			)
+
+			let searchResults = try await placeFinder.results(in: region)
+
+			withAnimation {
+				// All of this is kinda gross
+				self.possibleResults = searchResults
+			}
+		} catch {
+			coordinator.errorMessage = error.localizedDescription
+		}
+	}
+
+	@MainActor func loadMore() async {
+		withAnimation {
+			distance += 100
+			self.region = .region(.init(
+				center: location.clLocation,
+				span: .within(meters: distance)
+			))
+		}
+
+		guard let region = region.region else {
+			return
+		}
+
+		do {
+			let placeFinder = PlaceFinder(
+				database: database,
+				coordinate: .init(region.center),
+				distance: distance,
 				search: searchTerm
 			)
 			let searchResults = try await placeFinder.results(in: region)

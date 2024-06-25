@@ -46,7 +46,7 @@ public extension PlaceResolver {
 		}
 
 		@MainActor public func suggestions() async throws -> [Suggestion] {
-			let query = SpatialQuery(coordinate: context.coordinate, span: .meters(10))
+			let query = SpatialQuery(coordinate: context.coordinate, span: .meters(context.distance))
 			let places = try await Place.where(query, in: context.database)
 
 			return places.sorted(by: {

@@ -23,21 +23,24 @@ class PlaceListCell: UITableViewCell {
 	}
 }
 
-@MainActor class PlaceListController<CellView: View>: UITableViewController {
+@MainActor class PlaceListController<CellView: View, LoadMoreView: View>: UITableViewController {
 	var places: [Place]
 	var visiblePlacesChanged: (([Place]) -> Void)?
 	var cellBuilder: (Place) -> CellView
+	var loadMore: (() -> LoadMoreView)?
 
 	let visiblePlacesDebouncer = Debouncer()
 
 	init(
 		places: [Place],
 		visiblePlacesChanged: (([Place]) -> Void)?,
-		@ViewBuilder cellBuilder: @escaping (Place) -> CellView
+		@ViewBuilder cellBuilder: @escaping (Place) -> CellView,
+		loadMore: (() -> LoadMoreView)?
 	) {
 		self.places = places
 		self.visiblePlacesChanged = visiblePlacesChanged
 		self.cellBuilder = cellBuilder
+		self.loadMore = loadMore
 
 		super.init(style: .plain)
 
@@ -54,15 +57,21 @@ class PlaceListCell: UITableViewCell {
 	}
 
 	override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-		places.count
+		places.count + 1
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PlaceListCell
 
-		let place = places[indexPath.row]
-		cell.place = place
-		cell.contentConfiguration = UIHostingConfiguration { cellBuilder(place) }
+		if places.indices.contains(indexPath.row) {
+			let place = places[indexPath.row]
+			cell.place = place
+			cell.contentConfiguration = UIHostingConfiguration { cellBuilder(place) }
+		} else {
+			if let loadMore {
+				cell.contentConfiguration = UIHostingConfiguration { loadMore() }
+			}
+		}
 
 		return cell
 	}
@@ -90,21 +99,22 @@ class PlaceListCell: UITableViewCell {
 }
 
 // Wrapping UIKit here because List doesn't let us get visible rows easily
-struct PlaceListView<CellView: View>: UIViewControllerRepresentable {
+struct PlaceListView<CellView: View, LoadMoreView: View>: UIViewControllerRepresentable {
 	var places: [Place]
-	var regionID: String
 	var visiblePlacesChanged: (([Place]) -> Void)?
 	@ViewBuilder var cellBuilder: (Place) -> CellView
+	var loadMore: (() -> LoadMoreView)?
 
-	func makeUIViewController(context _: Context) -> PlaceListController<CellView> {
+	func makeUIViewController(context _: Context) -> PlaceListController<CellView, LoadMoreView> {
 		PlaceListController(
 			places: places,
 			visiblePlacesChanged: visiblePlacesChanged,
-			cellBuilder: cellBuilder
+			cellBuilder: cellBuilder,
+			loadMore: loadMore
 		)
 	}
 
-	func updateUIViewController(_ uiViewController: PlaceListController<CellView>, context _: Context) {
+	func updateUIViewController(_ uiViewController: PlaceListController<CellView, LoadMoreView>, context _: Context) {
 		print("Updating view controller")
 		uiViewController.places = places
 		uiViewController.tableView.reloadData()

@@ -26,10 +26,10 @@ struct ContentView: View {
 }
 
 #if DEBUG
-#Preview {
-	ContentView()
-		.environment(\.database, .memory)
-		.environment(\.coordinator, WhereWhenCoordinator(database: .memory))
-		.environment(LocationListener(database: .memory))
-}
+	#Preview {
+		ContentView()
+			.environment(\.database, .memory)
+			.environment(\.coordinator, WhereWhenCoordinator(database: .memory))
+			.environment(LocationListener(database: .memory))
+	}
 #endif

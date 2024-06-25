@@ -30,7 +30,7 @@ extension PlaceResolver {
 					latitude: context.coordinate.latitude,
 					longitude: context.coordinate.longitude
 				),
-				radius: 100
+				radius: context.distance
 			)
 			let search = MKLocalSearch(request: request)
 

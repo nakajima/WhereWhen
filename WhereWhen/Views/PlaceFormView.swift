@@ -82,7 +82,7 @@ struct PlaceFormView: View {
 	@State private var address: Address
 	@State private var website: String
 
-	@State private var resolvedCoordinate: Coordinate
+	@State private var resolvedCoordinate: Coordinate?
 	@State private var isResolvingCoordinateAddress = false
 
 	@FocusState var isFocused: Bool
@@ -94,8 +94,6 @@ struct PlaceFormView: View {
 		let place = place.wrappedValue
 		self.address = Address(place: place)
 		self.website = place.url?.absoluteString ?? ""
-
-		self.resolvedCoordinate = place.coordinate
 
 		self.onComplete = onComplete
 	}
@@ -171,7 +169,8 @@ struct PlaceFormView: View {
 
 					let suggestedPlace = await PlaceResolver(
 						database: database,
-						coordinate: place.coordinate
+						coordinate: place.coordinate,
+						distance: 100
 					).bestGuessPlace()
 
 					withAnimation {

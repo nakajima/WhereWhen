@@ -56,7 +56,7 @@ struct VisitImporterLineCellView: View {
 					ProgressView()
 				}
 				.task {
-					let placeResolver = PlaceResolver(database: database, coordinate: line.coordinate)
+					let placeResolver = PlaceResolver(database: database, coordinate: line.coordinate, distance: 100)
 					let suggestions = await placeResolver.suggestions()
 					self.status = .loaded(suggestions)
 				}

@@ -15,6 +15,7 @@ struct CreatePlaceView: View {
 
 	// If we're creating this place for a checkin, the checkin will be here.
 	var checkin: Checkin?
+	var placeName: String = ""
 
 	@Environment(\.database) var database
 	@Environment(\.dismiss) var dismiss
@@ -23,16 +24,17 @@ struct CreatePlaceView: View {
 
 	@State var placeToCreate: Place
 
-	init(coordinate: Coordinate, checkin: Checkin? = nil) {
+	init(coordinate: Coordinate, checkin: Checkin? = nil, placeName: String = "") {
 		self.coordinate = coordinate
 		self.checkin = checkin
+		self.placeName = placeName
 
 		self._placeToCreate = State(wrappedValue: Place(
 			uuid: UUID().uuidString,
 			attribution: "Manually Entered",
 			addedAt: Date(),
 			coordinate: coordinate,
-			name: "",
+			name: placeName,
 			phoneNumber: nil,
 			url: nil,
 			category: .none,
@@ -62,6 +64,9 @@ struct CreatePlaceView: View {
 			} catch {
 				coordinator.errorMessage = error.localizedDescription
 			}
+		}
+		.onChange(of: placeName) {
+			placeToCreate.name = placeName
 		}
 		.safeAreaInset(edge: .top, spacing: 0) {
 			Map(
