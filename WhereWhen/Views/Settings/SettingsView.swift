@@ -12,14 +12,12 @@ extension URL: Identifiable {
 	public var id: URL { self }
 }
 
-struct SettingsView: View {
+@MainActor struct SettingsView: View {
 	@Environment(\.coordinator) var coordinator
 	@Environment(\.database) var database
 	@Environment(LocationListener.self) var location
 
 	@State private var isEditingSync = false
-
-	@State private var exportURL: URL?
 
 	var body: some View {
 		List {
@@ -66,11 +64,8 @@ struct SettingsView: View {
 				NavigationLink("Ignored Places", destination: IgnoredPlacesListView())
 			}
 
-			Button(action: exportDatabase) {
+			NavigationLink(value: Route.exportData) {
 				Text("Export Your Data")
-			}
-			.sheet(item: $exportURL) { url in
-				ShareLink(item: url)
 			}
 
 			Section {
@@ -112,22 +107,6 @@ struct SettingsView: View {
 		let size = attributes[.size] as? UInt64 ?? UInt64(0)
 
 		return "(" + ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file) + ")"
-	}
-
-	func exportDatabase() {
-		var error: NSError?
-		let coordinator = NSFileCoordinator()
-		coordinator.coordinate(readingItemAt: URL.documentsDirectory, options: [.forUploading], error: &error) { zipUrl in
-			let tmpUrl = try! FileManager.default.url(
-				for: .itemReplacementDirectory,
-				in: .userDomainMask,
-				appropriateFor: zipUrl,
-				create: true
-			).appendingPathComponent("WhereWhen.zip")
-
-			try! FileManager.default.moveItem(at: zipUrl, to: tmpUrl)
-			self.exportURL = tmpUrl
-		}
 	}
 }
 

@@ -14,13 +14,20 @@ import SwiftUI
 struct HomeMapView: View {
 	@Query(ListQueryRequest<Place>()) var places: [Place]
 	@State private var path: [Route] = []
+	@State private var position: MapCameraPosition
+
+	init() {
+		self._places = Query(ListQueryRequest<Place>())
+		self._path = State(wrappedValue: [])
+		self._position = .init(wrappedValue: .automatic)
+	}
 
 	var body: some View {
 		NavigationContainer(path: $path) {
-			Map(initialPosition: .automatic) {
+			Map(position: $position) {
 				UserAnnotation(anchor: .center)
 				ForEach(places) { place in
-					Annotation("", coordinate: place.coordinate.clLocation) {
+					Annotation(place.name, coordinate: place.coordinate.clLocation) {
 						Button(action: {
 							path.append(.place(place))
 						}) {
@@ -29,16 +36,12 @@ struct HomeMapView: View {
 									.resizable()
 									.scaledToFit()
 									.frame(width: 24, height: 24)
-									.foregroundStyle(.white, .blue)
+									.foregroundStyle(.white, .pink)
 									.shadow(radius: 2)
-								Text(place.name)
-									.font(.caption)
-									.bold()
-									.foregroundColor(.primary)
-									.shadow(color: Color(UIColor.systemBackground).opacity(1), radius: 2)
 							}
 						}
 					}
+					.annotationTitles(.automatic)
 				}
 			}
 		}
@@ -49,7 +52,16 @@ struct HomeMapView: View {
 	#Preview {
 		HomeMapView()
 			.onAppear {
-				try! Checkin.preview.save(to: .memory)
+				let placesJSON = #"""
+				[]
+				"""#
+
+				let decoder = JSONDecoder()
+				decoder.dateDecodingStrategy = .iso8601
+				let places = try! decoder.decode([Place].self, from: Data(placesJSON.utf8))
+				for place in places {
+					try! place.save(to: .memory)
+				}
 			}
 	}
 #endif

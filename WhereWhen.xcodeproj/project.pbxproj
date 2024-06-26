@@ -78,6 +78,7 @@
 		A6893FC92C1D5688000EE791 /* PlaceFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FC82C1D5688000EE791 /* PlaceFormView.swift */; };
 		A6893FCB2C1D5861000EE791 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FCA2C1D5861000EE791 /* Address.swift */; };
 		A6893FCD2C1D670E000EE791 /* PlaceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */; };
+		A69993E52C2B8A4200BDBA29 /* ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69993E42C2B8A4200BDBA29 /* ExportDataView.swift */; };
 		A69AE8A52C1369C200818D93 /* GRDBQuery in Frameworks */ = {isa = PBXBuildFile; productRef = A69AE8A42C1369C200818D93 /* GRDBQuery */; };
 		A6B928122C2340E40051C980 /* VisitLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B928112C2340E40051C980 /* VisitLogsView.swift */; };
 		A6DF5D8D2C17577500F97200 /* Database in Frameworks */ = {isa = PBXBuildFile; productRef = A6DF5D8C2C17577500F97200 /* Database */; };
@@ -163,6 +164,7 @@
 		A6893FC82C1D5688000EE791 /* PlaceFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFormView.swift; sourceTree = "<group>"; };
 		A6893FCA2C1D5861000EE791 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		A6893FCC2C1D670E000EE791 /* PlaceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEditView.swift; sourceTree = "<group>"; };
+		A69993E42C2B8A4200BDBA29 /* ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataView.swift; sourceTree = "<group>"; };
 		A69B50742C142787001CBBAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		A6B928112C2340E40051C980 /* VisitLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitLogsView.swift; sourceTree = "<group>"; };
 		A6DF5D892C17543700F97200 /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				A68571F72C161930007828EE /* SettingsView.swift */,
+				A69993E42C2B8A4200BDBA29 /* ExportDataView.swift */,
 				A6B928112C2340E40051C980 /* VisitLogsView.swift */,
 				A68571F02C161930007828EE /* IgnoredPlacesListView.swift */,
 				A637790F2C19631E004C5D21 /* SyncServerEditorView.swift */,
@@ -537,6 +540,7 @@
 				A685722C2C161930007828EE /* CheckinListView.swift in Sources */,
 				A685720C2C161930007828EE /* MKCoordinateSpan+Constants.swift in Sources */,
 				A68572302C161930007828EE /* CreatePlaceView.swift in Sources */,
+				A69993E52C2B8A4200BDBA29 /* ExportDataView.swift in Sources */,
 				A68572282C161930007828EE /* ListQueryRequest.swift in Sources */,
 				A64740D52C24A69D004A2D3D /* CLError.swift in Sources */,
 				A68572212C161930007828EE /* DiskLogger.swift in Sources */,

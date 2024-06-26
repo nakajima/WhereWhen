@@ -20,7 +20,8 @@ enum Route: Hashable {
 	     finishUpdateCheckinView(Checkin, Place),
 	     createPlace(Coordinate, Checkin?),
 	     settingsVisitImporter,
-	     settingsVisitImporterSelection(VisitImporter)
+	     settingsVisitImporterSelection(VisitImporter),
+	     exportData
 }
 
 extension Binding<[Route]> {
@@ -71,6 +72,8 @@ struct NavigationContainer<Content: View>: View {
 						VisitImporterView()
 					case let .settingsVisitImporterSelection(importer):
 						VisitImporterSelectionView(importer: importer)
+					case let .exportData:
+						ExportDataView()
 					}
 				}
 		}
