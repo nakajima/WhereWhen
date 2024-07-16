@@ -15,7 +15,7 @@ extension URL: Identifiable {
 @MainActor struct SettingsView: View {
 	@Environment(\.coordinator) var coordinator
 	@Environment(\.database) var database
-	@Environment(LocationListener.self) var location
+	@Environment(\.location) var location
 
 	@State private var isEditingSync = false
 

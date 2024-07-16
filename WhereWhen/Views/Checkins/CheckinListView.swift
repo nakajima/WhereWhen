@@ -14,7 +14,7 @@ import SwiftUI
 struct CheckinListView: View {
 	@Query(CheckinListRequest()) var checkins: [Checkin]
 
-	@Environment(LocationListener.self) var location
+	@Environment(\.location) var location
 	@Environment(\.coordinator) var coordinator
 
 	var body: some View {

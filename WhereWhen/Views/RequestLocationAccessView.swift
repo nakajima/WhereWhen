@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct RequestLocationAccessView: View {
-	@Environment(LocationListener.self) var location
+	@Environment(\.location) var location
 	@AppStorage("isLocationPromptDismissed") var isLocationPromptDismissed = false
 	@Environment(\.openURL) var openURL
 

@@ -12,7 +12,7 @@ import SwiftUI
 
 struct ManualCheckinView: View {
 	@Environment(\.coordinator) var coordinator
-	@Environment(LocationListener.self) var location
+	@Environment(\.location) var location
 
 	@State private var status: Status = .loading
 	@State private var path: [Route] = []

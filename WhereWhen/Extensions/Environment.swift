@@ -10,6 +10,10 @@ import Foundation
 import GRDB
 import SwiftUI
 
+struct LocationKey: EnvironmentKey {
+	static let defaultValue: LocationListener = .init(database: .memory)
+}
+
 struct DatabaseKey: EnvironmentKey {
 	static let defaultValue: DatabaseContainer = .memory
 }
@@ -23,13 +27,16 @@ struct CoordinatorKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
+	var location: LocationListener {
+		get { self[LocationKey.self] }
+		set { self[LocationKey.self] = newValue }
+	}
+
 	var coordinator: WhereWhenCoordinator {
 		get { self[CoordinatorKey.self] }
 		set { self[CoordinatorKey.self] = newValue }
 	}
-}
 
-extension EnvironmentValues {
 	var database: DatabaseContainer {
 		get { self[DatabaseKey.self] }
 		set { self[DatabaseKey.self] = newValue }

@@ -43,7 +43,7 @@ struct WhereWhenApp: App {
 					}
 				}
 		}
-		.environment(location)
+		.environment(\.location, location)
 		.environment(\.database, database)
 		.environment(\.coordinator, coordinator)
 	}

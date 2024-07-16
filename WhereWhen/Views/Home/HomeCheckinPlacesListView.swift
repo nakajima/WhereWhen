@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeCheckinPlacesListView: View {
 	@Environment(\.database) var database
-	@Environment(LocationListener.self) var location
+	@Environment(\.location) var location
 	@Environment(\.coordinator) var coordinator
 	@State private var path: [Route] = []
 

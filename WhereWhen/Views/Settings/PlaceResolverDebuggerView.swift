@@ -16,7 +16,7 @@ import SwiftUI
 	@State private var isLocating = false
 	@State private var results: [String: PlaceResolver.Suggestion]?
 
-	@Environment(LocationListener.self) var location
+	@Environment(\.location) var location
 	@Environment(\.database) var database
 
 	var body: some View {
